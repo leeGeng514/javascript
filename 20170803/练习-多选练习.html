@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background: mediumpurple;
+        }
+        #check-box{
+            width:800px;
+            height:450px;
+            margin:100px auto auto;
+            background: #fff;
+            border:1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #000;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            height:60px;
+            line-height: 60px;
+            padding:0 15px;
+            overflow: hidden;
+        }
+        li .point{
+            float: left;
+            width: 50px;
+            height: 100%;
+        }
+        span{
+            display: inline-block;
+            width:20px;
+            height:20px;
+            border:4px solid #fff;
+            box-shadow: 0 0 1px red;
+            margin:16px 15px;
+            border-radius: 14px;
+            vertical-align: middle;
+            background: #fff;
+        }
+        span.active{
+            background: red;
+        }
+        li .music-name{
+            margin-left:60px;
+            margin-right:90px;
+            font-size:20px;
+        }
+        li .singer{
+            float: right;
+            width:80px;
+            height:100%;
+            font-size:20px;
+        }
+        .tool{
+            height:50px;
+            padding:0 15px ;
+            line-height:50px;
+        }
+
+
+    </style>
+</head>
+<body>
+<!--布局-->
+<div id="check-box">
+    <ul>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class="active"></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class="active"></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class="active"></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class="active"></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class="active"></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class="active"></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+    </ul>
+    <div class="tool">
+        <div class="check-all"><span></span> 全选</div>
+    </div>
+</div>
+
+
+<script>
+
+    //获取要操作的元素
+    var lies = document.querySelectorAll('li');  //获取li集合
+    var checkAllBox = document.querySelector('.check-all'); //获取全选按钮
+
+    //记录选中的个数
+    var num = 0;
+
+    //添加事件  批量
+    for(var i=0;i<lies.length;i++){
+
+        //初始化一下
+        lies[i].querySelector('span').className = '';   //默认清空所有被勾选的class
+        lies[i].isClick = false;        //默认所以li都是未被点击状态
+
+        //隔行变色
+        if(i%2){
+            lies[i].style.background = 'pink';  // 下标为1 3 5的li改变背景色
+            lies[i].oldColor = 'pink';    //给下标为1 3 5的li设置自定义属性，属性值为‘pink’
+        }else{
+            lies[i].style.background = '';  //下标为0 2 4的li没有背景颜色
+            lies[i].oldColor = '';      //给下标为1 3 5的li设置自定义属性，属性值为‘’
+        }
+
+        //鼠标移入
+        lies[i].onmouseover = function(){   //鼠标移入
+            //改变背景颜色
+            if(this.isClick==false) {   //判断 如果当前li是未被点击状态
+                this.style.backgroundColor = 'red'; //改变当前移入li的背景颜色为红色
+            }
+        };
+
+        lies[i].onmouseout = function(){  //鼠标移出
+            if(this.isClick==false){  //判断 如果当前li是未被点击状态
+                this.style.backgroundColor = this.oldColor; //鼠标移出时，当前li的背景颜色，还是设置为遍历时添加的自定义属性的值
+            }
+        };
+
+        lies[i].onclick = function(){   //li点击事件
+            if(this.isClick){   //判断 当前li的isClick
+                this.style.backgroundColor = this.oldColor;   //背景色不变
+                this.isClick = false;   //是否被点击的标记还是为false
+                this.querySelector('span').className = '';  //span的勾选状态还是为空
+                num--;
+            }else{      //
+                this.style.backgroundColor = 'red';
+                this.isClick = true;
+                this.querySelector('span').className = 'active';
+                num++;
+            }
+
+            if(num==lies.length){
+                checkAllBox.querySelector('span').className = 'active';
+                checkAllBox.isClick = true;
+            }else{
+                checkAllBox.querySelector('span').className = '';
+                checkAllBox.isClick = false;
+            }
+
+
+        };
+    }
+
+
+    checkAllBox.onclick = function(){
+
+        if(this.isClick){
+            for(var i=0;i<lies.length;i++){
+                lies[i].querySelector('span').className = '';
+                lies[i].isClick = false;
+                lies[i].style.backgroundColor = lies[i].oldColor;
+            }
+            this.isClick = false;
+            this.querySelector('span').className = '';
+            num = 0;
+        }else{
+            for(var i=0;i<lies.length;i++){
+                lies[i].querySelector('span').className = 'active';
+                lies[i].isClick = true;
+                lies[i].style.backgroundColor = 'red';
+            }
+            this.isClick = true;
+            this.querySelector('span').className = 'active';
+            num = lies.length;
+        }
+
+
+
+
+
+    };
+
+
+</script>
+
+</body>
+</html>

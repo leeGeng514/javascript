@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 把一个字符串   逐个的显示到一个div中
+    *
+    * */
+
+    var  str = 'asdfadsfasdfasdfasdfasdfasdfasdfasdfasdfasfsadsdfasdfasdfasdfasdf';
+
+//    document.body.innerHTML =  str.charAt(0);
+
+//    for(var i=0;i<str.length;i++){
+//        document.body.innerHTML +=  str.charAt(i);
+//    }
+    var i = 0;
+    setInterval(function(){
+        document.body.innerHTML +=  str.charAt(i);
+        i++;
+    },300)
+
+
+
+
+
+</script>
+</body>
+</html>

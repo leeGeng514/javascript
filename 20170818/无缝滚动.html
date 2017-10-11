@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box{
+            width:800px;
+            height:500px;
+            overflow: hidden;
+            margin:auto;
+            position: relative;
+        }
+        .imgs{
+            height:500px;
+            overflow: hidden;
+        }
+        img{
+            float: left;
+            width:800px;
+            height:500px;
+        }
+        a{
+            display: block;
+            position: absolute;
+            width:50px;
+            height:100px;
+            border:1px solid #666;
+            top:200px;
+            color:#fff;
+            background-color: rgba(0,0,0,.5);
+            text-align: center;
+            line-height: 100px;
+            font-size:42px;
+            text-decoration: none;
+        }
+        a:first-of-type{
+            left:0;
+        }
+        a:last-of-type{
+            right:0;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+            width:100%;
+            margin-top:-100px;
+            height:100px;
+            position: relative;
+            z-index: 10;
+            width:150px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        li{
+            width:20px;
+            height:20px;
+            background-color: #fff;
+            position: absolute;
+            bottom:20px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="imgs">
+        <img src="img/5.jpg" alt="">
+        <img src="img/1.jpg" alt="">
+        <img src="img/2.jpg" alt="">
+        <img src="img/3.jpg" alt="">
+        <img src="img/4.jpg" alt="">
+        <img src="img/5.jpg" alt="">
+        <img src="img/1.jpg" alt="">
+    </div>
+    <a href="javascript:;">&lt;</a>
+    <a href="javascript:;">&gt;</a>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script src="MTween.js"></script>
+<script>
+
+    /*
+    * 思路：
+    *       小点 和 图片的运动 是同步
+    *       运动效果要分开写
+    *
+    *       之间的关系：
+    *         两个运动效果的  运动时间 要保持一致
+    *
+    *
+    *
+    * */
+
+    var lis = document.querySelectorAll('li');
+
+    var btns = document.querySelectorAll('a');
+
+    var imgBox = document.querySelector('.imgs');
+
+    var imgs = document.querySelectorAll('img');
+
+
+    var box = document.querySelector('#box');
+
+
+    var timer = 0;
+
+    var dur = 300;
+
+    var delay = 1000;
+
+
+
+
+    /*
+    *   先处理小点运动
+    * */
+
+    //初始化一下位置
+    for(var i=0;i<lis.length;i++){
+        lis[i].style.left = i*30+'px';
+    }
+
+    //初始化位置
+    var liIndex = 0;
+
+    //初始化图片的位置
+    var imgIndex = 1;
+
+    //初始化一下第一个的高度
+//    lis[liIndex].style.height = '40px';
+    MTween(lis[liIndex],20,300,'height','linear');
+
+
+    //初始化一下图片外框的宽度
+    imgBox.style.width = imgs.length*800+'px';
+    imgBox.style.marginLeft = -imgIndex*800+'px';
+
+
+
+    time();//页面刷新 开启定时器
+
+
+
+    //定义动画是否在执行
+    var isAmin = false; //动画默认未执行
+
+    //按钮的操作
+    btns[0].onclick = function(){
+
+        if(isAmin) return;
+
+        isAmin = true;//一点点击了 动画就在执行
+
+        MTween(lis[liIndex],-20,dur,'height','linear');
+        liIndex--;
+        if(liIndex<0){
+            liIndex = lis.length-1;
+        }
+        MTween(lis[liIndex],20,dur,'height','linear');
+
+        //图片的运动
+        MTween(imgBox,800,dur,'marginLeft','linear',function(){
+            imgIndex--;
+//            console.log(imgIndex);
+            if(imgIndex<=0){
+                imgIndex = imgs.length-2;
+                imgBox.style.marginLeft = -imgIndex*800+'px';
+            }
+
+            isAmin = false;//动画已完成 ，允许用户点击
+
+        });
+    };
+
+    btns[1].onclick = function(){
+
+        if(isAmin) return;
+
+        isAmin = true;//一点点击了 动画就在执行
+
+        MTween(lis[liIndex],-20,dur,'height','linear');
+        liIndex++;
+        if(liIndex>lis.length-1){
+            liIndex = 0;
+        }
+        MTween(lis[liIndex],20,dur,'height','linear');
+
+
+        //图片的运动
+        //图片的运动
+        MTween(imgBox,-800,dur,'marginLeft','linear',function(){
+            imgIndex++;
+            console.log(imgIndex);
+            if(imgIndex>=imgs.length-1){
+                imgIndex = 1;
+                imgBox.style.marginLeft = '-800px';
+            }
+
+
+            isAmin = false;//动画已完成 ，允许用户点击
+
+        });
+    };
+
+
+
+
+
+
+
+    //定时器的开和关
+    box.onmouseover = function () {
+        clearInterval(timer);
+    };
+
+    box.onmouseout = function () {
+        time();
+    };
+
+
+
+    //把动画封装起来  方便管理 和 调用
+    function time(){
+        //每秒走一次
+        timer = setInterval(function(){
+
+            if(isAmin) return;
+
+            isAmin = true;//一点点击了 动画就在执行
+
+            //小点的运动
+//        lis[liIndex].style.height = '20px';
+            MTween(lis[liIndex],-20,dur,'height','linear');
+
+            liIndex++;
+//        console.log(liIndex);
+            //过界处理
+            if(liIndex>lis.length-1){
+                liIndex = 0;
+            }
+
+//        lis[liIndex].style.height = '40px';
+            MTween(lis[liIndex],20,dur,'height','linear');
+
+
+            //图片的运动
+            MTween(imgBox,-800,dur,'marginLeft','linear',function(){
+                imgIndex++;
+                console.log(imgIndex);
+                if(imgIndex>=imgs.length-1){
+                    imgIndex = 1;
+                    imgBox.style.marginLeft = '-800px';
+                }
+
+
+                isAmin = false;
+
+
+
+            });
+
+
+
+
+
+
+
+
+        },delay);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

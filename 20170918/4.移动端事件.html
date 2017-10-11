@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="box">我是div</div>
+
+<script>
+
+    var box = document.querySelector('#box');
+
+
+//    box.onclick = function(ev){
+//        console.log(ev.target);
+//    };
+
+    box.addEventListener('touchstart',function(ev){
+
+        console.log(ev.target);
+
+    });
+
+
+    /*
+    * 移动端事件
+    *
+    * touch 触摸事件
+    *
+    * onmousedown --->  touchstart 手指触摸到屏幕时触发
+    * onmouseup --->  touchend 手指离开屏幕时触发
+    * onmousemove --->  touchmove 手指触摸到屏幕是触发
+    *
+    *
+    * touchEvent  移动端事件对象
+    *
+    * changedTouches  发生变化的手指数
+    *
+    * targetTouches 接触屏幕的手指数
+    *
+    *
+    * touches 接触屏幕的手指
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+    document.addEventListener('touchstart',function(ev){
+
+            console.log(ev);
+
+
+//        console.log('touchstart');
+    });
+
+//    document.addEventListener('touchend',function(){
+//        console.log('touchend');
+//    });
+//
+//    document.addEventListener('touchmove',function(){
+//        console.log('touchmove');
+//    });
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

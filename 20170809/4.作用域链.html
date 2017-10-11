@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+    /*
+    * 作用域链
+    *   是js中作用域中查找变量和函数的规则
+    *
+    * 如果局部作用域中不存在某个变量或者函数，就会默认 向上一级作用域中查找，直到全局作用域中。
+    *
+    * 如果局部作用域中存在该变量，那么就直接使用局部作用域中的变量
+    *
+    * 作用域可以无限嵌套
+    *       全局作用域是window，局部作用域是function，即函数。
+    *       函数可以无限嵌套，就会产生一系列的作用域
+    *       从顶级作用域到嵌套中最里面的作用域，就形成了作用域链
+    *
+    *       作用域链只能从最里面往外访问，因此只子作用域可以访问到父作用域的变量和函数，父作用域无法访问子作用域
+    *
+    * */
+
+
+    var a = 10;
+
+    function fn(){}
+
+    function fn1(){
+        var b = 20;
+        console.log(a);//10  能访问全局
+
+        console.log(c); //报错  无法访问，c子作用域中申明的
+
+        function fn2(){
+            var c = 30;
+            console.log(a);//10 能访问全局
+            console.log(b);//20 能访问父级
+        }
+        fn2();
+    }
+    fn1();
+//    fn2(); //fn2 is not defined  因为这是子集作用域申明的函数无法访问
+
+
+//    console.log(b);//not a defined
+
+    fn1();
+
+    console.log(window);
+
+</script>
+</body>
+</html>

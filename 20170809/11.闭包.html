@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+    //什么是闭包：通过函数产生一个不被外界访问到的作用域叫做闭包
+
+    //闭包是函数作用域的一种应用，是一种写代码的方式
+
+
+    //优点：可以保护变量或者函数名不被污染，避免命名冲突的问题
+
+    //缺点：产生垃圾代码，造成内存爆满；
+
+    var a = 0;
+    var b = 0;
+
+
+    function fn1(){
+        var a = 0;
+        var b = 10;
+        function sum(){
+            return a+b;
+        }
+        var fn = function(num){
+            return sum()+num;
+        };
+
+        return fn;//把函数暴露在调用这个函数的作用域中，以便其他人使用
+    }
+
+    var fn2 =  fn1();
+
+    console.log(fn2(10));
+
+
+</script>
+</body>
+</html>

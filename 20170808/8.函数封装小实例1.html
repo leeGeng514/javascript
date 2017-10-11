@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div,header,nav{
+            height:50px;
+            border:1px solid #000;
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<header></header>
+<nav></nav>
+<script>
+
+
+    //获取元素
+    var div = document.querySelector('div');
+    var head = document.querySelector('header');
+    var nav = document.querySelector('nav');
+
+//    div.onmouseover = function(){
+//        div.style.backgroundColor = "green";
+//    };
+//    head.onmouseover = function(){
+//        head.style.backgroundColor = "green";
+//    };
+//    nav.onmouseover = function(){
+//        nav.style.backgroundColor = "green";
+//    };
+
+    //初始化
+    changeBgc(div,'green');
+    changeBgc(head,'pink');
+    changeBgc(nav,'blue');
+
+
+    div.onmouseover = function(){
+        changeBgc(this,'red');
+    };
+
+    head.onmouseover = function(){
+        changeBgc(this,'red');
+    };
+
+    nav.onmouseover = function(){
+        changeBgc(this,'red');
+    };
+
+
+    /*****************公共函数***************************/
+    //修改背景颜色的函数
+    function changeBgc(obj,color){
+        obj.style.backgroundColor = color;
+        obj.style.border = '10px solid #000';
+    }
+    /****************end****************/
+
+//    changeBgc(); //this是window，但是window不能修改背景颜色
+
+
+
+</script>
+</body>
+</html>

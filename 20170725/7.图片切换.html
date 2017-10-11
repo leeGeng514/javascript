@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img src="img/1.jpg" id="img-box" alt="">
+<script>
+
+    //图片切换  点击图片 切换图片
+
+    //获取元素
+    var imgBox = document.getElementById('img-box');
+
+    var isChange = 1;
+
+    //添加事件
+    imgBox.onclick = function(){
+//        if(isChange==1){
+//            imgBox.src = 'img/2.jpg';
+//            isChange = 2;
+//        }else{
+//            imgBox.src = 'img/1.jpg';
+//            isChange = 1;
+//        }
+        if(!this.isClick){
+            this.src='img/2.jpg';
+            this.isClick=true;
+        }else {
+            this.src='img/1.jpg';
+            this.isClick=false;
+        }
+    };
+
+</script>
+</body>
+</html>

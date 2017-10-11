@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        td{
+            width:120px;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            background-color:#6DE0FD;
+            border-bottom:1px solid #ccc;
+        }
+        span{
+            display: inline-block;
+            width:20px;
+            height:20px;
+            border:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="inputBox">
+        <input type="text" value="1">
+        <input type="text" value="2">
+        <select>
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+        <input type="button" value="添加">
+    </div>
+    <br>
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <td><span></span> 全选</td>
+                <td>ID</td>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>性别</td>
+                <td colspan="3">操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!--<tr>-->
+                <!--<td><span></span></td>-->
+                <!--<td>1</td>-->
+                <!--<td>老刘</td>-->
+                <!--<td>32</td>-->
+                <!--<td>男</td>-->
+                <!--<td>↑</td>-->
+                <!--<td>↓</td>-->
+                <!--<td>删除</td>-->
+            <!--</tr>-->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    /*
+    * 1.获取内容
+    *
+    * 2.根据内容生成表格
+    *
+    * 3.全选
+    *
+    * 4.上移 下移
+    *
+    * 5 删除
+    *
+    *
+    *
+    * */
+
+    //默认id
+    var id=  0;
+
+    //获取元素
+    var input = document.querySelectorAll('input[type=text]');
+    var select = document.querySelector('select');
+    var btn = document.querySelector('input[type=button]');
+
+    var table = document.querySelector('table');
+    var allCheck = table.tHead.rows[0].cells[0].children[0];
+
+    //全选按钮事件
+    allCheck.onclick = function(){
+
+        if(this.ischecked){
+            this.ischecked = false;
+            this.style.backgroundColor = '';
+        }else{
+            this.ischecked = true;
+            this.style.backgroundColor = 'red';
+        }
+
+        var spans = table.tBodies[0].querySelectorAll('span');
+        for(var i=0;i<spans.length;i++){
+            spans[i].ischecked = this.ischecked;
+            if(spans[i].ischecked){
+                spans[i].style.backgroundColor = 'red';
+            }else{
+                spans[i].style.backgroundColor = '';
+            }
+
+        }
+    };
+
+
+
+    //表格的默认数据
+    var json= {
+        "id":0,
+        "name":"",
+        "age":"",
+        "sex":""
+    };
+
+    //点击添加 获取数据
+    btn.onclick = function(){
+        json= {
+            "id":id++,
+            "name":input[0].value,
+            "age":input[1].value,
+            "sex":select.value
+        };
+
+
+        //根据获取的内容生成table
+        var tr = document.createElement('tr');
+
+
+
+        tr.innerHTML = '<td>'+json.id+'</td><td>'+json.name+'</td><td>'+json.age+'</td><td>'+json.sex+'</td>';
+
+
+        var td0 = document.createElement('td');
+        var span = document.createElement('span');
+        td0.appendChild(span);
+        span.onclick = function(){
+
+            //全选
+            if(this.ischecked){
+                this.style.backgroundColor = '';
+                this.ischecked = false;
+            }else{
+                this.style.backgroundColor = 'red';
+                this.ischecked = true;
+            }
+
+
+            //判断一下是不是全部被选中
+            //获取所有的点击span
+            var spans = table.tBodies[0].querySelectorAll('span');
+            allCheck.style.backgroundColor = '';
+            allCheck.ischecked = false;
+            for(var i=0;i<spans.length;i++){
+                if(!spans[i].ischecked){
+                    return;
+                }
+            }
+            allCheck.style.backgroundColor = 'red';
+            allCheck.ischecked = true;
+
+
+        };
+        tr.insertBefore(td0,tr.cells[0]);
+
+
+        var td1 = document.createElement('td');
+        td1.innerHTML = '↑';
+        td1.onclick = function(){
+            //上移
+
+            if(!this.parentNode.previousElementSibling){
+                alert('到达顶部');
+                return;
+            }
+
+            //交换数据
+            var a = this.parentNode.cells[1].innerHTML;
+            var b = this.parentNode.previousElementSibling.cells[1].innerHTML;
+            this.parentNode.cells[1].innerHTML = b;
+            this.parentNode.previousElementSibling.cells[1].innerHTML = a;
+
+            table.tBodies[0].insertBefore(this.parentNode,this.parentNode.previousElementSibling);
+
+
+
+
+        };
+        tr.appendChild(td1);
+
+        var td2 = document.createElement('td');
+        td2.innerHTML = '↓';
+        td2.onclick = function(){
+            //下移
+
+            if(!this.parentNode.nextElementSibling){
+                alert('到达底部');
+                return;
+            }
+
+            //交换数据
+            var a = this.parentNode.cells[1].innerHTML;
+            var b = this.parentNode.nextElementSibling.cells[1].innerHTML;
+            this.parentNode.cells[1].innerHTML = b;
+            this.parentNode.nextElementSibling.cells[1].innerHTML = a;
+
+            table.tBodies[0].insertBefore(this.parentNode,this.parentNode.nextElementSibling.nextElementSibling);
+
+
+        };
+        tr.appendChild(td2);
+
+        var td3 = document.createElement('td');
+        td3.innerHTML = '删除';
+        td3.onclick = function(){
+            //删除
+            this.parentNode.parentNode.removeChild(this.parentNode);
+
+        };
+        tr.appendChild(td3);
+
+
+        //把拼好的tr放到tbody中
+        table.tBodies[0].appendChild(tr);
+
+
+        //判断一下是不是全部被选中
+        //获取所有的点击span
+        var spans = table.tBodies[0].querySelectorAll('span');
+        allCheck.style.backgroundColor = '';
+        allCheck.ischecked = false;
+        for(var i=0;i<spans.length;i++){
+            if(!spans[i].ischecked){
+                return;
+            }
+        }
+        allCheck.style.backgroundColor = 'red';
+        allCheck.ischecked = true;
+
+    };
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

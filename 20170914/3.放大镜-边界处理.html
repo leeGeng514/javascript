@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #box{
+            margin:100px;
+            width:600px;
+            height:300px;
+            border:1px solid #000;
+            position: relative;
+        }
+        #box img{
+            width:100%;
+            height:100%;
+            display: block;
+        }
+        #box div{
+            width:100px;
+            height:100px;
+            background-color: #000;
+            opacity: .6;
+            position: absolute;
+            left:0;
+            top:0;
+            display: none;
+        }
+
+        #big{
+            display: none;
+            width:300px;
+            height:300px;
+            position: absolute;
+            left:610px;
+            top:0;
+            overflow: hidden;
+            border:1px solid #000;
+        }
+        #big img{
+            width: 1800px;
+            height:900px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <!--被缩小图片-->
+    <img src="1.jpg" alt="">
+    <!--放大镜-->
+    <div></div>
+</div>
+
+<div id="big">
+    <img src="1.jpg" alt="">
+</div>
+
+
+<script>
+
+    /*
+    * 鼠标移入移出 box  显示和隐藏放大镜
+    *
+    * */
+    var box = document.querySelector('#box');
+
+    var div = box.querySelector('div');
+
+    var big = document.querySelector('#big');
+
+    box.onmouseover = function(){
+
+        //显示放大镜
+        div.style.display = 'block';
+
+        //放大的图片显示
+        big.style.display = 'block';
+        big.style.left = box.offsetLeft+box.offsetWidth+10+'px';
+        big.style.top = box.offsetTop+'px';
+
+
+    };
+
+
+    //移出隐藏
+    box.onmouseout = function(){
+
+        //隐藏放大镜
+        div.style.display = 'none';
+
+        //放大的图片隐藏
+        big.style.display = 'none';
+
+    };
+
+    //页面中的这两个元素是隐藏的，获取不到属性值，需要先显示
+    div.style.display = 'block';
+    big.style.display = 'block';
+
+    //下边最大值  和  右边最大值
+    var maxLeft = box.clientWidth-div.offsetWidth;
+    var maxTop = box.clientHeight-div.offsetHeight;
+
+    //获取完值之后，马上让这两个元素还原
+    div.style.display = 'none';
+    big.style.display = 'none';
+
+
+
+    //box 移动事件
+    box.onmousemove = function(ev){
+
+        console.log(window.pageYOffset);
+
+        var x = ev.clientX;
+        var y = ev.clientY;
+
+        //计算放大镜距离父级的左边和上边的距离
+        var l = x-box.offsetLeft-div.offsetWidth/2+window.pageXOffset;
+        var t = y-box.offsetTop-div.offsetHeight/2+window.pageYOffset;
+
+        //边界处理 左边
+        if(l<0){
+            l = 0;
+        }
+        //边界处理 右边
+        if(l>maxLeft){
+            l = maxLeft;
+        }
+
+
+
+        //边界处理 上边
+        if(t<0){
+            t = 0;
+        }
+
+        //边界处理 下边
+        if(t>maxTop){
+            t = maxTop;
+        }
+
+
+
+        //设置放大镜的位置
+        div.style.left = l +'px';
+        div.style.top = t +'px';
+
+
+    };
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

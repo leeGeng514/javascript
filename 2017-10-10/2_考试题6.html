@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击增加</button>
+    <ul id="ul"></ul>
+<script>
+    var ul = document.getElementById('ul');
+    var btn = document.getElementById('btn');
+    //var lis = ul.querySelectorAll('li') //getElementsByTagName('li');
+    var lis = ul.getElementsByTagName('li');
+
+    /*
+        
+        只要遇到了innerHTML+='元素' 就要注意是否有事件被覆盖
+
+        ul.innerHTML += ''
+
+        ul.innerHTML = ul.innerHTML + '';
+
+        obj.abc = 1;
+        obj.abc = 3;
+
+    */
+    for(var i=0;i<2;i++){
+        // ul.innerHTML += '<li>'+i+'</li>';
+
+        var li = document.createElement('li');
+        li.innerHTML = i;
+        li.onclick = function(){
+            alert(this.innerHTML);
+        };
+
+        ul.appendChild(li);
+
+        // lis[i].onclick = function(){
+        //     alert(this.innerHTML);
+        // }
+    }
+    // for(var i=0;i<2;i++){
+    //     lis[i].onclick = function(){
+    //         alert(this.innerHTML);
+    //     }
+    // }
+
+
+
+    /*
+        通过get（children）方式获取一组元素它们都是动态的。
+        querySelectorAll : 静态获取
+    */
+    // btn.onclick = function(){
+    //     var li = document.createElement('li');
+    //     li.innerHTML = 1;
+    //     ul.appendChild(li);
+    //     alert(lis.length);
+    // }
+
+
+</script>
+</body>
+</html>

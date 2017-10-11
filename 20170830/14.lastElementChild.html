@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<script>
+
+
+
+
+
+    /*
+     * parentNode.firstElementChild
+     *
+     * 找子元素的第一个
+     *
+     * parentNode.lastElementChild
+     *
+     * 找子元素的最后一个
+     *
+     *
+     * 注意：  直接在父级元素中找子元素的 第一个  或者 最后一个
+     *
+     *
+     *
+     * */
+
+
+
+    var box = document.querySelector('#box');
+
+    var dives = box.querySelectorAll('div');
+
+    //第一个
+//    console.log(dives[0]);
+
+//    console.log(dives.firstElementChild);
+//    console.log(box.firstElementChild);
+
+    //最后一个
+//    console.log(dives[dives.length-1])
+    console.log(box.lastElementChild)
+
+
+
+
+</script>
+</body>
+</html>

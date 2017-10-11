@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 截取数组中的值
+    *
+    * array.slice(start[,end]);
+    *
+    * 永远都是从左往又找
+    *
+    * 作用：截取数组内容
+    *
+    * 参数
+    *   start 截取的开始位置
+    *   end  截取到的位置  不包括自己  如果不填默认到最后
+    *
+    * 返回值：
+    *     被截取数组
+    *
+    *     不改变源数据
+    *
+    * */
+
+    var arr = [1,2,3,4,55,8,6,7,88];
+
+    console.log(arr.slice());
+    console.log(arr.slice(1));
+    console.log(arr.slice(1,4));
+    console.log(arr.slice(-1));
+    console.log(arr.slice(-1,-8));
+    console.log(arr.slice(-8,-1));
+    console.log(arr.slice(-8,8));
+    console.log(arr);
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+    function sum(a,b){
+        console.log(a+b);
+    }
+//
+//    function sum(a,b,c){
+//        console.log(a+b+c);
+//    }
+
+    /*
+    * 闭包是一个开发思想 更好的保护变量名和函数名
+    *
+    * */
+
+
+    function yw(a,b){
+        var a = 1;
+        function fn1(){
+
+        }
+
+        function sum(a,b){
+            console.log(a+b);
+        }
+
+        var obj = {
+            sum:sum,
+            mines:function(a,b){
+                console.log(a-b);
+            },
+            abc:1,
+            x:0
+        };
+        return obj;
+    }
+    var a = yw();
+
+    a.sum(1,2); //3
+    a.mines(1,2); //-1
+
+
+    console.log(a);
+
+    function momo(){
+        function sum(a,b,c){
+            console.log(a+b+c);
+        }
+        function mines(a,b,c){
+            console.log(a-b-c);
+        }
+        return sum;
+    }
+
+
+
+    var b = momo();
+
+//    console.log(a(1,3)); //因为a这个函数体并没有return值
+//    console.log(a); //因为a这个函数体并没有return值
+//    a(1,3);
+
+</script>
+
+</body>
+</html>

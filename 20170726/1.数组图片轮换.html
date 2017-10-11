@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<input id="prev" type="button" value="上一张">
+<img id="img-box" src="img/a.jpg" alt="">
+<input id="next" type="button" value="下一张">
+
+<script>
+
+    //获取元素
+    var prevBtn = document.getElementById('prev');
+    var nextBtn = document.getElementById('next');
+    var imgBox = document.getElementById('img-box');
+
+    //默认显示的第一张图的位置
+    var index = 0;
+
+    //整理数据
+    var imgs = ['img/a.jpg','img/b.jpg','img/c.jpg','img/d.jpg','img/e.jpg','img/f.jpg'];
+
+
+
+    //添加下一张按钮事件
+    nextBtn.onclick = function(){
+        index++; //让图片位置递增变化
+
+        //边界出去，超过数组最大下标，返回第0个
+        if(index>imgs.length-1){
+            index = 0;
+        }
+
+        imgBox.src = imgs[index];
+    };
+
+    //添加上一张按钮事件
+    prevBtn.onclick = function(){
+        index--;
+        if(index<0){
+            index = imgs.length-1;
+        }
+        imgBox.src = imgs[index];
+    };
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 合并数组
+    *
+    * array.concat(item1,item2....,itemX);
+    *
+    * 参数：
+    *    可以是多个数据
+    *
+    *
+    * 返回值：
+    *
+    *   返回一个新的合并之后的数组  ， 原始数据未发生变化
+    *
+    *
+    * */
+
+    var arr1 = [1,2,35];
+    var arr2 = [10,11,12];
+
+//    for(var i=0;i<arr2.length;i++){
+//       arr1.push(arr2[i]);
+//    }
+
+//    arr1.push(arr2);
+
+    arr1.concat(arr2,1);
+
+    console.log(arr1.concat(arr2,1,function (){}));
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+
+    var date = new Date();
+
+    date.setMonth(11);  //设置想要显示的月份
+
+    //显示某个月份的日期数
+
+    //到底根据什么来循环  --  根据月份最后一天循环
+
+    //找月份最后一天 setDate(0)
+    date.setMonth(date.getMonth()+1);
+    date.setDate(0);//获取的是上一个月的最后一天
+    console.log(date);
+    var dayNum = date.getDate();
+    console.log(dayNum);
+
+
+    for(var i=0;i<dayNum;i++){
+        document.body.innerHTML += i+1+'--';
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+    /*
+    * ele.addEventListener()
+     给ele的指定事件添加一个指定的事件处理函数。
+     参数：
+     1.事件类型（click，mouseover...）
+     2.要添加的事件处理函数（可以是匿名函数也可以是有名字的函数）
+     3.在捕获阶段添加还是冒泡阶段添加
+     添加时，事件类型前边不能加on，例如click
+
+
+     //手动添加的事件  需要自己删除
+
+
+
+     第三个参数： 是一个布尔值
+
+     true  表示在捕获阶段添加事件
+     false 表示在冒泡阶段添加事件
+
+
+     注意：在哪个阶段添加的事件  就必须在哪个阶段删除
+
+
+
+    *
+    *
+    * */
+
+    function fn1(){
+        console.log('我是document44444(冒泡)');
+
+    }
+
+    function fn2(){
+        console.log('我是document3333（捕获）');
+    }
+
+
+    //冒泡阶段添加
+    document.addEventListener('click',fn1,false);
+
+    document.removeEventListener('click',fn1,true);
+
+
+
+    //捕获阶段添加
+    document.addEventListener('click',fn2,true);
+
+
+
+
+</script>
+</body>
+</html>

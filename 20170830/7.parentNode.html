@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="box1">
+    <h2>123123123</h2>
+</div>
+<header id="box2">
+    <h2>212222</h2>
+</header>
+
+
+<script>
+
+
+    /*
+    * node.parentNode  只能找到一个 父级元素
+    * */
+
+    var h2s = document.querySelectorAll('h2');
+
+    //点击h2显示父级的nodeName
+
+    for(var i=0;i<h2s.length;i++){
+        h2s[i].onclick = function(){
+
+            //找到父级的nodeName
+            console.log(this.parentNode.nodeName);
+
+
+        };
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

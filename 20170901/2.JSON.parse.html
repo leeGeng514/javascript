@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<name>lilei</name>
+<age>18</age>
+
+<script>
+
+
+    /*
+     * 1.什么是json   xml
+     *   json是前端与服务端交互的一种数据格式
+     *   字符串 --  是有 [] 或者 {} 并且有键和键值格式的字符串
+     *
+     *   json中的引号必须是双引号
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     * */
+
+    //    var json = "{'key1':'value1','key2':'value2'}"
+    //    var json = "[{'key1':'value1','key2':'value2'},{'key1':'value1','key2':'value2'},{'key1':'value1','key2':'value2'}]";
+
+
+    //必须是双引号
+
+    var json = '[{"key1":"value1","key2":"value2"},{"key1":"value1","key2":"value2"},{"key1":"value1","key2":"value2"}]';
+
+
+    /*
+    * JSON.parse(jsonStr)
+    *
+    * 作用：把json数据转成可以操作的js对象
+    *
+    * 参数：  jsonStr  是一个具有特殊格式的字符串
+    *
+    * */
+
+    var obj = JSON.parse(json);
+
+    console.log(obj);
+
+
+
+
+</script>
+</body>
+</html>

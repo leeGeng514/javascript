@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<br />
+<input type="button" value="+">
+<input type="button" value="-">
+<input type="button" value="*">
+<input type="button" value="/">
+<input type="button" value="=">
+<script>
+
+    var text = document.querySelector('input[type="text"]');
+    var btns = document.querySelectorAll('input[type="button"]');
+
+    var fh = '';
+    var numArr = ['','']; //存要运算的数字
+
+    for(var i=0;i<btns.length;i++){
+        btns[i].onclick = function(){
+            if(this.value!='='){
+                fh = this.value;
+            }
+            total(Number(text.value));
+        };
+    }
+
+
+    //运算
+    function total(num){
+
+        //自己输入的数字没办法即时存入到数组，运算会出问题
+
+        if(numArr[0]==''){
+            numArr[0] = num;
+            console.log(numArr);
+        }else if(numArr[1]==''){
+            numArr[1] = num;
+            console.log(numArr);
+        }else{
+            if(fh=='+'){
+                text.value = numArr[0]+numArr[1];
+            }
+            if(fh=='-'){
+                text.value = numArr[0]-numArr[1];
+            }
+            if(fh=='*'){
+                text.value = numArr[0]*numArr[1];
+            }
+            if(fh=='/'){
+                text.value = numArr[0]/numArr[1];
+            }
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

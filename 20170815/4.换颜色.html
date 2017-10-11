@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="MTween.js"></script>
+    <style>
+        div {
+            width: 400px;
+            height: 400px;
+            background-color: red;
+            margin: auto;
+            transform: rotateY(0deg);
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+
+    window.onload = function () {
+
+        //获取元素
+        var div = document.querySelector('div');
+        var timer = 0;
+        var color = ['red', 'green', 'blue', 'yellow', 'pink'];
+        var n = 0;  //当前要显示的颜色
+        //颜色获取的值是不规律 ， 也不是预期的值
+//        console.log(getCss(div,'backgroundColor'));
+
+
+        //迷彩灯
+        timer = setInterval(function () {
+            n++;
+            if (n > color.length - 1) {
+                n = 0;
+            }
+            div.style.backgroundColor = color[n];
+        }, 500)
+    };
+
+</script>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

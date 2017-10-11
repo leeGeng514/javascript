@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            border:1px solid #000;
+            margin:200px auto auto;
+        }
+        span{
+            display: block;
+            width:40px;
+            height:40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div><span>+1</span></div>
+<script>
+
+    //获取元素
+    var span = document.querySelector('span');
+    var timer = 0;
+
+    var top1 = 0;//初始位置   top不能用作变量名
+    var opa = 100;//透明度的初始值
+
+    span.onclick = function(){
+
+        //动画效果
+        timer = setInterval(function(){
+
+            //每隔30毫秒让span往上走一点
+            top1 -= 2;
+            opa -= 2;
+            if(top1<-100){
+                top1 = -100;
+                span.style.display = 'none';
+            }
+//            console.log(top1);
+            span.style.marginTop = top1+'px';
+            span.style.opacity = opa/100;
+        },30)
+    };
+
+</script>
+</body>
+</html>

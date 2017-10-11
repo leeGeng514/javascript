@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 类型的隐式转换：
+    *   js代码执行的时候，自动做的数据类型转换
+    *
+    * */
+
+    //(加号)当字符串遇上数字的情况，会把数字转换成字符串
+//    console.log(String(1)+'a'); //1a
+
+    //除了+号 ，其他的数学运算符，都是强制转换成数字在做运算
+    console.log(1*'a');//NaN
+    console.log(1/'a');//NaN
+    console.log(1-'a');//NaN
+    console.log(1%'a');//NaN
+    // Number('a')   NaN
+    // 1-NaN   NaN
+
+    // ASCII
+
+//    var num = 1;
+//    var str = '2';
+
+    if('A'<'a'){
+        alert(1);
+    }
+
+//    var bool = '';  //Boolean(1)  true;
+//    if(bool){
+//        alert(1);
+//    }else{
+//        alert(2);
+//    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

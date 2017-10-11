@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        body{
+            background-color:#9E9BF6;
+        }
+
+        #box{
+            width:800px;
+            height:600px;
+            overflow: hidden;
+            margin:auto;
+            position: relative;
+        }
+
+        .df,.sf{
+            width:50px;
+            height:50px;
+            padding:15px;
+            text-align:center;
+            border-radius:40px;
+            color:#fff;
+            position: absolute;
+            left:120px;
+            z-index: 10;
+        }
+        .df{
+            top:80px;
+            background-color: green;
+        }
+        .sf{
+            top:170px;
+            background-color: gray;
+        }
+
+        a{
+            display: block;
+            position: absolute;
+            bottom:50px;
+            left:380px;
+            width:120px;
+            height:40px;
+            border-radius: 10px;
+            text-align: center;
+            line-height:40px;
+            color:#fff;
+            background-color: #7168C9;
+            border:1px solid #fff;
+            text-decoration: none;
+        }
+
+        .main{
+            border:5px solid #fff;
+            height:560px;
+            margin-left:100px;
+            margin-right:20px;
+            margin-top:20px;
+            background-color:#7169C9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main div{
+            width:50px;
+            height:50px;
+            background-color: red;
+            position: absolute;
+            top:-50px;
+            left:100px;
+        }
+
+        .mark{
+            position: absolute;
+            width:300px;
+            padding-bottom:50px;
+            left:300px;
+            top:-210px;
+            border:1px solid #fff;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px #fff;
+        }
+        input{
+            background-color: transparent;
+            border:1px solid #fff;
+            color:#fff;
+            padding:10px;
+            border-radius: 5px;
+            cursor:pointer;
+        }
+        strong{
+            color:#fff;
+            display: inline-block;
+            line-height: 100px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+
+    <!--得分-->
+    <div class="df">
+        <span>0</span>分<br />得分
+    </div>
+
+    <!--失分-->
+    <div class="sf">
+        <span>0</span>分<br />失分
+    </div>
+
+    <div class="main"></div>
+
+    <a href="javascript:;">开始游戏</a>
+
+    <div class="mark">
+        <strong>游戏结束！！！！</strong><br />
+        <input type="button" value="重新开始">
+        <input type="button" value="结束游戏">
+    </div>
+
+</div>
+
+
+<script src="MTween.js"></script>
+<script>
+
+    /*
+    * 1.工具条动画
+    *
+    *
+    * 2.往游戏框添加掉落的小表情
+    *
+    *
+    * 3.点击小表情 ， 表情抖动一下然后消失  +1
+    *
+    *
+    * 4.小表情掉落到游戏框外 游戏框抖动一下 -1
+    *
+    *
+    * 5.失分大于5时  结束游戏
+    *
+    *
+    *
+    *
+    *  关键思路：在哪里做什么事情
+    *
+    *
+    * */
+
+    //1.工具条动画
+    var sf = document.querySelector('.sf');
+    var df = document.querySelector('.df');
+    var a = document.querySelector('a');
+    var sfBox = sf.querySelector('span');
+    var dfBox = df.querySelector('span');
+    //获取游戏框
+    var main = document.querySelector('.main');
+
+    var mark = document.querySelector('.mark');
+
+    var btns = document.querySelectorAll('input');
+
+
+    var color = ['red','green','yellow','blue','black','pink'];
+
+    var box = document.querySelector('#box');
+
+
+    //重新开始
+    btns[0].onclick = function(){
+
+        MTween(mark,-410,300,'top','easeOut',function(){
+            sfBox.innerHTML = 0;
+            dfBox.innerHTML = 0;
+            addFace();
+        });
+
+    };
+
+
+    //结束游戏
+    btns[1].onclick = function(){
+
+        MTween(mark,-410,300,'top','easeOut',function(){
+
+            sfBox.innerHTML = 0;
+            dfBox.innerHTML = 0;
+
+
+            MTween(sf,110,300,'left','linear');
+            MTween(df,110,300,'left','linear');
+            MTween(a,200,300,'bottom','linear');
+
+        });
+
+    };
+
+
+
+
+    //开始游戏的点击事件
+    a.onclick = function(){
+
+        //工具条动画
+        MTween(sf,-110,300,'left','linear');
+        MTween(df,-110,300,'left','linear');
+        MTween(a,-200,300,'bottom','linear',function(){
+            addFace();
+        });
+
+    };
+
+
+    //封装添加小表情的函数
+    function addFace(){
+
+
+        //2.往游戏框添加掉落的小表情
+
+
+        //随机生成left值
+        var left = Math.round(Math.random()*620);
+        //随机获取颜色值下标
+        var colorIndex = Math.round(Math.random()*(color.length-1));
+
+        //创建放表情的元素 ，并设置left值和 背景颜色
+        var div = '<div style="left:'+left+'px;background-color: '+color[colorIndex]+';"></div>';//字符串的div
+
+        //往游戏框里添加
+        main.innerHTML = div;
+
+        //获取真正要操作的div（小表情）
+        var main_div = main.querySelector('div');
+
+        //表情掉落动画
+        MTween(main_div,620,2000,'top','linear',function(){
+
+
+                //4.小表情掉落到游戏框外 游戏框抖动一下 -1
+
+                //抖动之前要清除下落动画的定时器
+
+                //抖动和下落的定时器都在元素的timer属性中，因此这里不用单独清除
+
+                shake(box,'marginTop',50,5,function(){
+
+                    //-分
+
+                    sfBox.innerHTML = parseFloat(sfBox.innerHTML)+1;
+
+                    if(sfBox.innerHTML>=5){
+                        MTween(mark,410,300,'top','easeOut');
+                    }else{
+                        addFace();
+                    }
+
+
+
+                });
+
+
+
+        });
+
+
+
+        //3.点击小表情 ， 表情抖动一下然后消失  +1
+        main_div.onclick = function(){
+
+            //+分
+            var _this = this;
+
+            //表情抖动
+            shake(this,'left',50,5,function(){
+
+                //消失
+                _this.style.display = 'none';
+
+
+
+                //+分
+                dfBox.innerHTML = parseFloat(dfBox.innerHTML)+1;
+
+                //释放下一个小表情
+                addFace();
+
+            });
+
+
+        };
+
+
+    }
+
+
+
+</script>
+</body>
+</html>

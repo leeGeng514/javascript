@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #img-box{
+            width: 500px;
+            height: 300px;
+            border:1px solid #000;
+            overflow: hidden;
+        }
+        img{
+            width:500px;
+            height:300px;
+            display: block;
+            float: left;
+        }
+        #scroll{
+            width:2500px;
+            overflow: hidden;
+            transition:1s;
+        }
+
+    </style>
+</head>
+<body>
+<div id="img-box">
+    <div id="scroll">
+        <img src="img/a.jpg" alt=""><img src="img/b.jpg" alt=""><img src="img/c.jpg" alt=""><img src="img/d.jpg" alt=""><img src="img/e.jpg" alt="">
+    </div>
+</div>
+<script>
+
+    var scorllBox = document.getElementById('scroll');
+
+    var imgs = document.querySelectorAll('img');
+
+    var index = 0;
+
+    scorllBox.onclick = function(){
+        index++;
+        if(index>imgs.length-1) index = 0;
+        scorllBox.style.marginLeft = '-'+(500*index)+'px';
+    };
+
+</script>
+</body>
+</html>

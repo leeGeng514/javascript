@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        li{
+            width:200px;
+            height:40px;
+            line-height: 40px;
+            border:1px solid #000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<input type="text">
+<input type="button" value="提交">
+<ul>
+    <li>001</li>
+    <li>002</li>
+    <li>003</li>
+    <li>004</li>
+    <li>005</li>
+</ul>
+<ul>
+    <li>006</li>
+    <li>007</li>
+    <li>008</li>
+    <li>009</li>
+    <li>010</li>
+</ul>
+<script>
+
+    /*
+     * parentNode.appendChild(参数);
+     *
+     * 作用： 往父节点的最后一位添加一个新的元素
+     *
+     * 也可以用来移动元素
+     *
+     * 参数： 元素对象
+     *
+     *
+     *
+     *
+     * */
+
+    var inputs = document.querySelectorAll('input');
+    var ul = document.querySelectorAll('ul');
+
+    var lis0 = ul[0].querySelectorAll('li');
+    var lis1 = ul[1].querySelectorAll('li');
+
+
+    inputs[1].onclick = function(){
+        ul[0].appendChild(lis1[1]);
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

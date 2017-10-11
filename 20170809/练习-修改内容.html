@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        ul{
+            margin: 0;
+            padding: 20px;
+            list-style: none;
+            background-color: #ccc;
+            width:500px;
+            margin:auto;
+            overflow: hidden;
+        }
+        li{
+            overflow: hidden;
+            position: relative;
+            height:40px;
+        }
+        p{
+            float: left;
+            line-height: 40px;
+            padding: 0;
+            margin: 0;
+        }
+        p+input{
+            margin-top:10px;
+            margin-left:10px;
+        }
+        li div{
+            display: none;
+            position: absolute;
+            top:0;
+            width:100%;
+            height:40px;
+            background-color: #fff;
+
+        }
+
+    </style>
+</head>
+<body>
+
+
+<ul>
+    <li>
+        <p>欢迎来到妙味课堂</p><input type="button" value="修改">
+        <div><input type="text"><input type="button" value="确定"><input type="button" value="取消"></div>
+    </li>
+    <li>
+        <p>欢迎来到妙味课堂</p><input type="button" value="修改">
+        <div><input type="text"><input type="button" value="确定"><input type="button" value="取消"></div>
+    </li>
+    <li>
+        <p>欢迎来到妙味课堂</p><input type="button" value="修改">
+        <div><input type="text"><input type="button" value="确定"><input type="button" value="取消"></div>
+    </li>
+    <li>
+        <p>欢迎来到妙味课堂</p><input type="button" value="修改">
+        <div><input type="text"><input type="button" value="确定"><input type="button" value="取消"></div>
+    </li>
+</ul>
+
+<script>
+
+//获取要操作的元素
+    //修改按钮
+    var btns = document.querySelectorAll('li>input');
+    var dives = document.querySelectorAll('div');
+    var p = document.querySelectorAll('p');
+
+    for(var i=0;i<btns.length;i++){
+        btns[i].index = i;
+        btns[i].onclick = function(){
+            dives[this.index].style.display = 'block';
+            //修改内容的方法
+            changeText(this.index);
+        }
+    }
+
+    function changeText(index){
+        var btns = dives[index].querySelectorAll('input[type="button"]');
+        var text = dives[index].querySelector('input[type="text"]');
+        btns[0].onclick = function(){
+            //获取修改的内容
+            if(text.value==''){
+                alert('没有获取到修改的内容');
+            }else{
+                p[index].innerHTML = text.value;
+                dives[index].style.display = 'none';
+                text.value = '';//用完了的数据清空掉
+            }
+        };
+        btns[1].onclick = function(){
+            dives[index].style.display = 'none';
+        };
+    }
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+/*
+* 函数：包装行为，重复利用
+*
+* function 函数名(){  //命名函数
+*   some code...
+* }
+*
+* 匿名函数：function(){}
+*
+* 函数的调用方法： 函数名();
+*
+* 函数不是立刻执行
+*
+* 函数命名规则  和  变量命名规则一致
+*
+*
+*
+*
+* */
+
+//function fn(){
+//    alert(123);
+//}
+//
+//fn();
+
+//function(){}
+    //函数表达式
+    var fn1 = function(){
+        alert('fn1');
+    };
+
+    fn1 = 0; //把函数注销
+
+    fn1();
+
+</script>
+</body>
+</html>

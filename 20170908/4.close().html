@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<input type="button" value="打开页面">
+<input type="button" value="关闭页面">
+<script>
+
+
+    /*
+    * window.close() --- 关闭当前窗口
+     不同的浏览器表现形式不一样
+     在ff/O下， 只允许关闭由window.open方法所打开的窗口。
+
+     * */
+
+    var btn = document.querySelectorAll('input');
+
+    var openWin = null;
+
+    btn[0].onclick = function(){
+
+        openWin = window.open('http://www.miaov.com','_blank','width=200,height=300,left=100,top=200');
+
+        console.log(openWin);
+
+
+
+    };
+
+    btn[1].onclick = function(){
+
+//        openWin.close();
+
+        window.close();
+
+
+    };
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

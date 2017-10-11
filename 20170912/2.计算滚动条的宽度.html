@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body style="height:2000px;margin:0;">
+<script>
+
+
+
+    /*
+    * 可视区尺寸
+     window.innerWidth / window.innerHeight
+
+     包括滚动条的宽度
+     *
+    * */
+
+    console.log(window.innerWidth);
+//    console.log(window.innerHeight);
+
+    console.log(document.body.offsetWidth);
+    console.log(document.documentElement.offsetWidth);
+
+    //计算滚动条宽度
+    var sW = window.innerWidth - document.body.offsetWidth;
+
+    console.log(sW);
+
+
+    //计算滚动条能滚动的高度
+//    var sHeight = document.body.offsetHeight - window.innerHeight;
+//
+//    console.log(sHeight);
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<a href="http://www.baidu.com">跳转到百度</a>
+<script>
+
+    /*
+    *
+    *
+    *浏览器的默认行为是指非js添加的默认就有的一些功能
+     例如：右键菜单，图片/文字/链接的拖拽
+     这些浏览器默认提供的功能有时我们并不需要，反而会带来一些小问题
+     如：拖拽应用中，如果拖拽目标是图片则无法实现拖拽效果
+     如：自定义右键菜单功能在我们触发右键事件时系统默认的菜单也会出现
+
+
+
+     注意：自己定义的事件函数比默认行为更先执行
+
+     *
+    * */
+
+    var a = document.querySelector('a');
+
+    a.onclick = function(){
+//        alert(1); //阻断代码执行
+
+        document.write('即将跳转到百度，请选择 <a href="http://www.baidu.com">是否允许</a>');
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

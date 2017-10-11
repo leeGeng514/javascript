@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: #FFD400;
+        }
+        #img-box{
+            width:500px;
+            height:380px;
+            margin:100px auto;
+            box-shadow: 0 0 20px #ccc;
+            background-color:#fff;
+            padding:20px;
+            position:relative;
+        }
+        .imgs{
+            height:320px;
+            overflow: hidden;
+            border:1px solid #eee;
+        }
+        .imgs img{
+            position: absolute;
+            width:500px;
+            height:320px;
+            opacity: 0;
+            transition:.5s;
+        }
+        .point img{
+            width:50px;
+            height:40px;
+            display: none;
+            position: absolute;
+            top:-45px;
+            border:2px solid #fff;
+            left:-16px;
+        }
+        .point{
+            height:50px;
+            text-align: center;
+        }
+        .point div{
+            width:20px;
+            height:20px;
+            background: #ccc;
+            display: inline-block;
+            margin-top:15px;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+        .prev,.next{
+            font-size:48px;
+            color:#fff;
+            position: absolute;
+            top:130px;
+            cursor:pointer;
+        }
+        .prev{
+            left:15px;
+        }
+        .next{
+            right:15px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!--布局-->
+<div id="img-box">
+    <div class="imgs">
+        <img src="1.jpg" alt="">
+        <img src="2.jpg" alt="">
+        <img src="3.jpg" alt="">
+        <img src="4.jpg" alt="">
+        <img src="5.jpg" alt="">
+    </div>
+    <div class="point">
+        <div><img src="1.jpg" alt=""></div>
+        <div><img src="2.jpg" alt=""></div>
+        <div><img src="3.jpg" alt=""></div>
+        <div><img src="4.jpg" alt=""></div>
+        <div><img src="5.jpg" alt=""></div>
+    </div>
+    <div class="prev">&lt;</div>
+    <div class="next">&gt;</div>
+</div>
+
+<script>
+
+    //获取要操作的元素
+    var btns = document.querySelectorAll('.prev,.next');
+    var imgs = document.querySelectorAll('.imgs img');
+    var points = document.querySelectorAll('.point div');
+
+
+    //图片位置（默认位置）
+    var index = 0;
+
+    //初始化
+    imgs[index].style.opacity = 1;
+    points[index].style.backgroundColor = 'pink';
+
+
+
+    //添加事件
+    btns[0].onclick = function(){ //上一张
+        //图片切换
+        index--;
+        if(index<0){
+            index = imgs.length-1;
+        }
+        changeImage();
+    };
+    btns[1].onclick = function(){ //下一张
+        //图片切换
+        index++;
+        if(index>imgs.length-1){
+            index = 0;
+        }
+        changeImage();
+    };
+
+
+    //小点的点击事件
+    for(var i=0;i<points.length;i++){
+
+        points[i].index = i;//设置点的索引值
+
+        //添加事件
+
+        //点击事件
+        points[i].onclick = function(){
+            index = this.index;
+            changeImage();
+        };
+
+        //移入事件
+        points[i].onmouseover = function(){
+            this.querySelector('img').style.display = 'block';
+        };
+        //移出事件
+        points[i].onmouseout = function(){
+            this.querySelector('img').style.display = 'none';
+        };
+
+
+    }
+
+
+    //改变图片函数
+    function changeImage(){ //函数在任何位置定义
+        for(var i=0;i<imgs.length;i++){
+            imgs[i].style.opacity = 0;
+            points[i].style.backgroundColor = '';
+        }
+        imgs[index].style.opacity = 1;
+        points[index].style.backgroundColor = 'pink';
+    }
+
+
+
+</script>
+</body>
+</html>

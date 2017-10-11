@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<ul>
+    <li></li>
+</ul>
+<div>
+    <a href=""></a>
+</div>
+<script src="MTween.js"></script>
+<script>
+
+    var json = [
+
+        {
+            id:0,
+            title:'000000000000000000000000000'
+        },
+        {
+            id:1,
+            title:'111111111111111111'
+        },
+        {
+            id:2,
+            title:'22222222222222222222'
+        },
+        {
+            id:3,
+            title:'33333333333333333333333'
+        },
+        {
+            id:4,
+            title:'4444444444444444444444444'
+        },
+        {
+            id:5,
+            title:'555555555555555555'
+        },
+        {
+            id:6,
+            title:'66666666666666666666'
+        },
+        {
+            id:7,
+            title:'777777777777777777777777777'
+        },
+        {
+            id:8,
+            title:'8888888888888888888888888'
+        },
+        {
+            id:9,
+            title:'999999999999999999999'
+        }
+    ];
+
+    //分页数据
+    var limte = 2;
+    var count = json.length;
+
+
+    //分析页数
+    var num = count/limte;
+
+    //创建页码按钮
+    var div = document.querySelector('div');
+    var as = '';
+    for(var i=1;i<=num;i++){
+        as += '<a href="?page='+i+'">'+i+'</a>';
+    }
+    div.innerHTML = as;
+
+    //上一页 下一页按钮放进去
+    var preva = document.createElement('a');
+
+    preva.innerHTML = '&lt;'
+    preva.onclick = function(){
+        var url = window.location.href;
+        var search = searchToJson(window.location.search);
+        //修改page的值
+        if(search.page==1){
+            search.page = 1;
+        }else{
+            search.page = search.page-1;
+        }
+        //拼接成字符串
+        var str = setSearch('page',search.page);
+        //把search值给到a标签
+        this.href = str;
+    };
+    div.insertBefore(preva,div.children[0]);
+
+
+    //下一页
+    var nexta = document.createElement('a');
+
+    nexta.innerHTML = '&gt;'
+    nexta.onclick = function(){
+
+        var search = searchToJson(window.location.search);
+        //修改page的值
+        if(search.page==num){
+            search.page = num;
+        }else{
+            search.page = search.page - -1;
+        }
+        //拼接成字符串
+        var str = setSearch('page',search.page);
+        //把search值给到a标签
+        this.href = str;
+    };
+    div.appendChild(nexta);
+
+
+
+
+
+
+    //把所有数据显示在页面上
+
+    var search = searchToJson(window.location.search);
+
+    var pageNum = search.page;
+
+    console.log(pageNum);
+
+    //var list = json.slice(0,2);
+    //var list = json.slice(2,4);
+    //var list = json.slice(4,6);
+
+    console.log((pageNum-1)*limte,((pageNum-1)*limte+limte));
+
+    var start = (pageNum-1)*limte;
+    var end = start+limte;
+
+    var list = json.slice(start,end);
+
+    var ul = document.querySelector('ul');
+    var html = '';
+    for(var i=0;i<list.length;i++){
+        html += '<li>'+list[i].title+'</li>'
+    }
+    //把列表放到盒子里
+    ul.innerHTML = html;
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

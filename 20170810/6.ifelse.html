@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<input type="button" value="检查">
+<script>
+
+    /*
+    * 流程控制-- if..else..
+    *
+    * //检查手机号码
+    *       1.不予许0开头
+    *       2.11位
+    *       3.是数字
+    *
+    * 获取字符串某个位置的字符
+    * string.chaAt(index);index是查找字符串中字符的位置
+    * */
+
+//    console.dir(window);
+
+
+    var inputs = document.querySelectorAll('input');
+
+    inputs[1].onclick = function(){
+
+        var text = inputs[0].value;
+
+//        console.log(text.charAt(0));
+
+//        if(text.charAt(0)==0){
+//            console.log('不能0开头');
+//        }else if(text.length!=11){
+//            console.log('手机号要11位');
+//        }else if(isNaN(text)){
+//            console.log('只能是数字');
+//        }
+
+        if(text.charAt(0)==0){
+            console.log('不能0开头');
+        }
+        if(text.length!=11){
+            console.log('手机号要11位');
+        }
+        if(isNaN(text)){
+            console.log('只能是数字');
+        }
+
+
+
+
+    };
+    
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        #box{
+            width:800px;
+            height:600px;
+            overflow: hidden;
+            border:1px solid #000;
+            margin:auto;
+        }
+        #box div{
+            width:70px;
+            height:50px;
+            margin:5px;
+            background-color: red;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+</div>
+
+
+<script>
+
+    //修改一列的颜色
+    var dives = document.querySelectorAll('#box div');
+
+    var domArr = []; //根据坐标存的div
+
+    //给div添加点击事件
+    for(var i=0;i<dives.length;i++){
+        //保存索引值
+        dives[i].index = i;
+        //添加点击事件
+        dives[i].onclick = function () {
+
+            //找到当前小标，分析出xy位置
+            var x = this.index%10;
+            var y = parseInt(this.index/10);
+
+            changeBg(domArr,x,y,'green');
+        }
+    }
+
+    //递归的函数
+    function changeBg(objes,x,y,color){
+
+        //根据xy找到对应的div改变颜色
+        objes[y][x].style.backgroundColor = color;
+
+        //设置成以改变状态
+        objes[y][x].isChange = true;
+
+
+        setTimeout(function(){
+            if(y>0&&!objes[y-1][x].isChange){
+                changeBg(objes,x,y-1,color);
+            }
+
+            if(y<9&&!objes[y+1][x].isChange){
+                changeBg(objes,x,y+1,color);
+            }
+
+            if(x>0&&!objes[y][x-1].isChange){
+                changeBg(objes,x-1,y,color);
+            }
+
+            if(x<9&&!objes[y][x+1].isChange){
+                changeBg(objes,x+1,y,color);
+            }
+        },300);
+
+    }
+
+
+
+    //对应坐标放入元素
+    for(var i=0;i<10;i++){
+
+        var arr = []; //行内容
+
+        for(var j=0;j<10;j++){
+            arr.push(dives[j+(i*10)]);
+        }
+
+        domArr.push(arr);
+
+    }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

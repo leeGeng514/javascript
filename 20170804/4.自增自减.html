@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+<script>
+
+    var num = '0';
+    var dives = document.querySelectorAll('div');
+    for(var i=0;i<dives.length;i++){
+        dives[i].style.left = i*60+'px';
+//        dives[i].style.top = ++num*60+'px';
+        dives[i].style.top = num*60+'px';
+    }
+
+
+    /*
+    * 前自增   先增后运算
+    * 后自增   先运算后增
+    *
+    * 前自减，后自减同理
+    *
+    * */
+
+    //自增 ++
+
+    var num = 1;
+
+//    console.log(num++ == ++num); false
+//    console.log( ++num == num++ ); true
+
+        console.log( ++num == ++num ); //false
+        console.log( num++ == num++ ); //false
+
+
+
+
+
+
+
+        //1.  num = 2;
+        //2.  num = 3;
+        //3.  2 == 3;
+
+//    ++num;
+//    num = num+1;
+//
+//    console.log(num);
+
+//    num : 1
+//    1 == 2; //false;
+//    num++:  3;
+
+//    num++;
+    ++num;
+//    num = num+1;
+
+//    ++num == num++;
+//    num = num+1; //2
+//    2 == num++;//++暂不运算
+//    2==2;//true
+//    num++;3
+
+    console.log(num)
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

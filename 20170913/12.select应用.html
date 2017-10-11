@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<input type="text">
+<input type="text">
+
+<input type="button" value="提交">
+
+<script>
+
+    var inputs = document.querySelectorAll('input[type=text]');
+    var btn = document.querySelector('input[type=button]');
+
+
+    btn.onclick = function(){
+
+        //要求是必须是数字内容
+        //当点击提交按钮  遍历检查每一个 input内容是否符合要求
+        for(var i=0;i<inputs.length;i++){
+            var  text = inputs[i].value;
+
+            if(isNaN(text)){
+                inputs[i].style.border = '1px solid red';
+                inputs[i].select();
+            }else{
+                inputs[i].style.border = '';
+            }
+
+        }
+
+
+    };
+
+
+
+
+
+
+    
+
+
+
+
+</script>
+
+</body>
+</html>

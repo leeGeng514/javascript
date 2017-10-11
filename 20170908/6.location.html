@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input href="http://www.baidu.com" type="button" value="切换页面">
+<script>
+
+
+    /*
+    * window.location --- 地址栏信息
+
+     * window.location.href  获取/设置地址栏的url
+     *
+     * url结构：
+     *  https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd=163&oq=16%2526lt%253B&rsv_pq=f56fcf6600016f9d&rsv_t=9654WlhnLSpj3%2FtXFKFSWdsrhz3oJsfXRPHKmD2lbDO3EOJXNsKzj%2BvamXA&rqlang=cn&rsv_enter=0&prefixsug=16%2526lt%253B&rsp=1
+     *
+     *  https://  数据传输协议
+     *
+     *  www.baidu.com/s ：  host  要访问的地址
+     *  百度服务器 下 叫 s的文件夹
+    *
+    * */
+
+    var btn = document.querySelector('input');
+
+    btn.onclick =function(){
+
+        window.location.href = this.getAttribute('href');
+
+        console.log(window.location.href);
+
+    };
+
+
+    
+
+
+
+</script>
+</body>
+</html>

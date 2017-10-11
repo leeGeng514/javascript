@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="MTween.js"></script>
+    <style>
+        div{
+            width:400px;
+            height:400px;
+            background-color: red;
+            margin:auto;
+            transform: rotateY(0deg);
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<script>
+
+    //getComputedStyle  获取的是人为设置的属性 无论是css还是行间，必须要有设置才能获取
+
+    //获取元素
+    var div = document.querySelector('div');
+    var divAll = document.querySelectorAll('div');
+
+    var timer = 0;
+
+    console.log(getComputedStyle(div).transform);//矩阵数列
+//    console.log(getCss(div,'transform'));
+
+    var degY = 0;
+    var degX = 0;
+//    timer = setInterval(function(){
+//        degY += 10;
+//        degX += 20;
+//        div.style.transform = 'rotateY('+degY+'deg) rotateX('+degX+'deg)';
+//    },100);
+
+    //给每个元素的变化设置默认值 通过自定义属性
+    //灵活使用自定义属性，可以避免不必要的变量的申明
+    for(var i=0;i<divAll.length;i++) {
+        divAll[i].deg = [0, 0];
+    }
+
+    timer = setInterval(function(){
+        for(var i=0;i<divAll.length;i++){
+            divAll[i].deg[0] += 10;
+            divAll[i].deg[1] += 20;
+            divAll[i].style.transform = 'rotateY('+divAll[i].deg[0]+'deg) rotateX('+divAll[i].deg[1]+'deg)';
+        }
+    },100);
+
+</script>
+</body>
+</html>

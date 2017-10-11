@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+    /*
+    * 数组是什么：
+    *   1.存放一堆数据的集合，0-n数据的集合
+    *   2.数组中可以存放任何数据，包括所有类型的数据
+    *   3.数组是有序的集合  默认是0-n顺序
+    *   4.数组是有长度 length
+    *   5.数组的最大下标总是数组长度-1（length-1）
+    *
+    *
+    * */
+
+    var arr = [
+        1,
+        'a',
+        function(){},
+        {},
+        []
+    ];//下标是 0-arr.length-1
+
+
+    //申明数组的方式
+//    var arr1 = [];//空数组
+//    var arr1 = [1,2,3,5,6];//有默认值的数组
+    var arr1 = [10];
+    console.log(arr1);
+    console.log(arr1.length);
+
+    //数组是js中的一个对象 Array()
+
+//    var arr2 = new Array();//申明的是一个空数组
+//    var arr2 = new Array(1,2,3,5,5);
+    var arr2 = new Array(10);//单独填写一个数字，将会设置数组长度为10，所有长度内的内容都由undefined代替
+    console.log(arr2,arr2.length);//[10]
+
+    //往申明后的数组中添加内容
+    arr2.push(10);
+    arr2[0] = 1;
+    arr2[1] = 1;
+    arr2[2] = 1;
+    arr2[3] = 1;
+    arr2[4] = 1;
+    console.log(arr2,arr2.length);//[10]
+
+
+
+
+
+
+</script>
+</body>
+</html>

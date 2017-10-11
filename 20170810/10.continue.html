@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            height:40px;
+            background-color: yellow;
+            margin-top:5px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+
+/*
+* continue   跳过某一次循环
+*
+* 和break的区别
+*   break 是跳出整个代码块
+*   continue 跳过当前循环
+*
+* */
+var dives = document.querySelectorAll('div');
+//for(var i=0;i<dives.length;i++){
+//    if(i==5) continue;
+//    dives[i].style.backgroundColor = 'green';
+//}
+for(var i=0;i<dives.length;i++){
+    if(i==5) break;
+    dives[i].style.backgroundColor = 'green';
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            color:#000;
+            text-decoration: none;
+        }
+
+        body,html{
+            width:100%;
+            height:100%;
+            overflow: hidden;
+        }
+
+        #header{
+            background-color: #F5F6F9;
+            border-bottom: 1px solid #E6E7EC;
+            position: relative;
+            height: 60px;
+        }
+        #wrap{
+
+        }
+        #nav{
+            width:199px;
+            border-right:1px solid red;
+            background-color: #fff;
+            overflow: hidden;
+            float: left;
+        }
+
+
+        #nav dt{
+            padding: 0 0 0 64px;
+            color: #74787C;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        #nav dd.active{
+            color:#00A4FF;
+        }
+
+        #nav dl{
+            margin-top:20px;
+        }
+
+        #nav dd a{
+            position: relative;
+            height: 32px;
+            line-height: 32px;
+            display: block;
+            padding: 0 0 0 80px;
+            color: #020202;
+        }
+        #nav dd a:hover{
+            text-decoration: none;
+            background: red;
+            transition: ease all;
+            transition-duration: .3s;
+        }
+        .main-icon-model{
+            padding:10px;
+            overflow: hidden;
+        }
+
+        .main-icon-model li{
+            margin:10px;
+            position: relative;
+            display: block;
+            height: 48px;
+            width:200px;
+            padding: 0 18px 0 7px;
+            border: 1px solid #D5D7DF;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border-radius: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            z-index: 3;
+            box-shadow: 0 5px 5px #ccc;
+            float: left;
+        }
+        .main-icon-model li em{
+            display: none;
+            color:#fff;
+            font-style: normal;
+            text-align: center;
+            cursor:pointer;
+            font-family: Consolas;
+        }
+
+        .main-icon-model li.active{
+            border-color:red;
+            display: block;
+        }
+        .main-icon-model li.active em{
+            position: absolute;
+            border: 1px solid red;
+            top:-1px;
+            right:-1px;
+            display: block;
+            width:20px;
+            height:20px;
+
+        }
+        .main-icon-model li.checked em{
+            background-color: red;
+        }
+
+        #main{
+            margin-left:200px;
+            overflow: hidden;
+        }
+
+        .currAddress{
+            height:40px;
+            line-height:40px;
+            padding:0 20px;
+        }
+        .currAddress div{
+            float: left;
+        }
+        .checkAll input{
+            width:20px;
+            height:20px;
+            vertical-align: middle;
+        }
+
+        #check-box-info{
+            display: none;
+            position: absolute;
+            background-color: dodgerblue;
+            border-bottom: 1px solid #E6E7EC;
+            height: 60px;
+            color:#fff;
+            text-align: center;
+            font-size:18px;
+            top:0;
+            left:0;
+            width: 100%;
+            line-height:60px;
+        }
+
+        .mark{
+            background-color: #6DE0FD;
+            opacity: .3;
+            position: absolute;
+        }
+
+
+        #header a,#check-box-info a{
+            display: block;
+            padding:10px 20px;
+            border:1px solid #0066FF;
+            background-color: #6DE0FD;
+            float: right;
+            margin-right:10px;
+            margin-top:8px;
+            border-radius:10px;
+            color:#fff;
+        }
+        #check-box-info a{
+            width:auto;
+            height: auto;
+            line-height: normal;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<div id="header">头部
+    <a class="delete-file" href="javascript:;">删除文件</a>
+    <a class="create-file" href="javascript:;">创建文件</a>
+</div>
+<div id="wrap">
+    <div id="nav">
+        <dl class="nav-menu">
+            <dd><a href="javascript:;">最近</a></dd>
+        </dl>
+    </div>
+    <div id="main">
+
+        <!--面包屑-->
+        <div class="currAddress">
+            <div class="checkAll"><input type="checkbox"> |&nbsp;</div>
+            <div class="breadcrumb">
+                <a href="javascript:;">微云</a> /
+                <a href="javascript:;">qq</a> /
+                <a href="javascript:;">收到的文件</a>
+            </div>
+        </div>
+
+        <ul class="main-icon-model">
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+</div>
+
+<div id="check-box-info"><a class="rename-file" href="javascript:;">重命名</a><a class="delete-file" href="javascript:;">删除文件</a>选中了 <span>0</span> 个</div>
+
+<script src="data.js"></script>
+<script>
+
+
+    /*
+    * 做一些事情的方式：
+    *   比如：删除内容
+    *
+    *   步骤：
+    *       1.找要被删除的元素
+    *       2.通过遍历找
+    *       3.当遍历找到其中一个就删除一个
+    *
+    *
+    *   另外一种方式：
+    *     创建一个存储要操作的数据的盒子
+    *     比如：删除内容
+    *        创建一个  var delObj = []
+    *
+    *        delObj.push(obj); 把要删除的对象存在这个盒子里
+    *
+    *        delObj.splice(0,1)
+    *
+    *
+    *
+    *
+    * */
+
+
+    //定义的盒子--用来存储当前页面被选中的内容
+    var checkedContent = []; //存内容的地址  route属性
+
+    //当前的列表数据
+    var currList = findDataByRoute('0_0');
+
+
+
+
+    //生成页面   数据在data中
+
+    //1生成侧栏列表
+
+    var navBox = document.querySelector('#nav');
+
+    for(var i=0;i<data.length;i++){
+
+        var navHtml = document.createElement('dl');
+
+        navHtml.className = 'nav-menu';
+
+        var dtHtml = '<dt>'+data[i].title+'</dt>';
+
+        //通过for循环来添加子集
+        for(var j=0;j<data[i].child.length;j++){
+            dtHtml += '<dd route="'+data[i].child[j].route+'"><a href="javascript:;">'+data[i].child[j].title+'</a></dd>';
+        }
+        navHtml.innerHTML = dtHtml;
+        navBox.appendChild(navHtml);
+    }
+
+    //点击侧栏菜单，要在右边显示对应的内容
+
+    //需要给侧栏菜单  dd  添加点击事件
+
+    /*
+    * 说明：由于dd是通过字符串拼接出来的，所以无法再当时添加点击事件，
+    * 解决方案： 通过事件代理解决无法添加事件的问题
+    *
+    * 事件代理中的问题：  如何找到dd这个元素
+    *
+    * */
+
+    //把dd的事件代理给到祖父级
+    navBox.onclick = function(ev){
+
+        var dd = findEle(ev.target,'nodeName','dd');
+
+        var childDir = dd&&dd.getAttribute('route');
+
+        if(childDir){
+
+            //找到当前数据
+            var obj = findDataByRoute(childDir);
+            showBreadcrumb(obj.breadcrumb);
+            //把数据中的列表显示出来
+            showContent(obj.content.child);
+
+        }
+
+    };
+
+    //全选功能
+    /*
+    * 1.获取全选按钮
+    *
+    * */
+
+    var checkAllBox = document.querySelector('.checkAll input');
+    //根据checkAllBox的状态来处理列表的状态
+    /*
+    * 如果checkAllBox为真  列表状态也要为真（给所有的li加上active checked样式名）
+    *
+    * 否则
+    *
+    * checkAllBox为假  列表状态也要为假（给所有的li删除active checked样式名）
+    * */
+
+    checkAllBox.onmousedown = function(ev){
+        ev.cancelBubble = true;
+        ev.stopPropagation();
+    };
+    checkAllBox.onchange = function(){
+
+        //在全选框变化的时候获取最新的列表
+        var list = document.querySelectorAll('#main li');
+
+        var currState = this.checked;
+
+
+        //当找到了全选框的状态，把这个状态赋值给所有列表
+        if(currState){
+            //列表所有内容为真
+            checkedContent = [];
+            for(var i=0;i<list.length;i++){
+                list[i].className = 'active checked';
+                list[i].isClick = true;
+                checkedContent.push(list[i].getAttribute('route'));
+            }
+        }else{
+            //列表所有内容为假
+            for(var i=0;i<list.length;i++){
+                list[i].className = '';
+                list[i].isClick = false;
+            }
+            checkedContent = [];
+        }
+
+        showCheckedInfo();//显示被选中信息
+
+    };
+
+
+
+    //在列表父级盒子上 鼠标点下的时候 会清除所有选中状态
+    var mainBox = document.querySelector('#main');
+
+    mainBox.onmousedown = function(){
+
+        var list = this.querySelectorAll('li');
+        var checkAllBox = document.querySelector('.checkAll input');
+
+        for(var i=0;i<list.length;i++){
+            list[i].className = '';
+            list[i].isClick = false;
+        }
+        checkAllBox.checked = false;
+
+        //清空被选中的内容
+        checkedContent = [];
+
+        showCheckedInfo();//显示被选中信息
+    };
+
+    //创建框选功能
+    mark(mainBox);
+
+
+    //创建新文件
+    var createBtn = document.querySelectorAll('#header a');
+
+    for(var i=0;i<createBtn.length;i++){
+        createBtn[i].onclick = function(){
+            var type = this.className;
+            if(type=='create-file'){
+
+//                console.log('这是创建');
+
+                /*
+                * 在当前页面的列表中加入一个li
+                *
+                * */
+
+                var li = document.createElement('li');
+                li.innerHTML = '<em>√</em>';
+
+                var input = document.createElement('input');
+                input.type = 'text';
+
+                //阻止出现选择框
+                input.onmousedown = function(ev){
+                    ev.cancelBubble = true;
+                    ev.stopPropagation();
+                };
+
+                li.insertBefore(input,li.children[0]);
+
+                //放到当前页面中
+                var ul = document.querySelector('#main ul');
+                ul.appendChild(li);
+
+                input.focus();//当他显示在页面上时  默认获取焦点
+                //失去焦点 如果内容为空就要删除li
+                input.onblur = function(){
+
+                    var val = input.value;
+
+                    if(val.trim()==''){
+                        ul.removeChild(li);
+                    }else{
+                        //有内容  让元素保持位置
+                        //把input删除   insterBefor 一个 span标签
+
+                        //处理显示的界面
+                        var span = document.createElement('span');
+                        span.innerHTML = val;
+                        li.insertBefore(span,li.children[0]);
+                        li.removeChild(input);
+
+                        //处理保存的数据
+                        var currData = {
+                                "id":'',
+                                "route":"",
+                                "parent":"",
+                                "title":val,
+                                "type":"abc",
+                                "child":[
+
+                                ]
+                            };
+
+                        var currPageContent = currList.content;
+
+                        //计算id
+                        currData.id = currPageContent.child.length;
+                        //计算route
+                        currData.route = currPageContent.route+'_'+currData.id;
+                        //父级类型
+                        currData.parent = currPageContent.type;
+
+                        currPageContent.child.push(currData);
+
+                        //currData 发送到数据库  永久保存
+
+                        li.setAttribute('route',currData.route);
+
+                        console.log(currList);
+
+                    }
+                };
+
+
+                listHover();
+
+
+
+
+            }
+        }
+    }
+
+
+
+    //删除文件：
+    var delBtn = document.querySelectorAll('.delete-file')
+    for(var i=0;i<delBtn.length;i++){
+        delBtn[i].onclick = function(){
+            var currPageContent = currList.content;
+
+            for(var i=0;i<checkedContent.length;i++){
+
+                //找到被选中的第一个内容，在数据中遍历查找对应的内容，如果存在就删除，并进行下一次对比
+                for(var j=0;j<currPageContent.child.length;j++){
+                    if(currPageContent.child[j].route==checkedContent[i]){
+                        currPageContent.child.splice(j,1);
+                        break;
+                    }
+                }
+            }
+
+
+
+
+//            for(var i=0;i<currPageContent.child.length;i++){
+//
+//                //再逐个删除checkedContent
+//                for(var j=0;j<checkedContent.length;j++){
+//                    if(checkedContent[j]==currPageContent.child[i].route){
+//                        //从数组中删除数据
+//                        currPageContent.child.splice(i,1);
+//                        //如果成功删除，那么数组中的下一位会向前移，但是i还是继续往下一位，为了不跳过每一个对比的值，需要让i也往前移一位
+//                        i--;
+//                    }
+//                }
+//            }
+
+            checkedContent=[];
+
+            showContent(currPageContent.child);
+
+            checkAll();
+
+            console.log(data);
+        };
+    }
+
+    //重命名
+    var renameBtn = document.querySelectorAll('.rename-file');
+    for(var i=0;i<renameBtn.length;i++){
+
+        renameBtn[i].onclick = function(){
+
+            var list = document.querySelectorAll('#main li');
+            //找到对应被选中的文件
+            for(var i=0;i<list.length;i++){
+                if(list[i].isClick){
+                    var span = list[i].querySelector('span');
+                    var text = span.innerHTML;
+                    var input = document.createElement('input');
+                    input.type = 'text';//设置input的类型
+                    input.value = text;//设置input的值
+
+
+                    input.onmousedown = function(ev){
+                        ev.cancelBubble = true;
+                    };
+                    input.onclick = function(ev){
+                        ev.cancelBubble = true;
+                    };
+
+                    //失去焦点 修改名字
+//                    input.onblur = function(){
+//
+//
+//                    };
+
+                    (function(input){
+
+                        var mainBox = document.querySelector('#main')
+                        mainBox.addEventListener('mousedown',function(){
+
+                            var currPageContent = currList.content;
+
+                            for(var i=0;i<currPageContent.child.length;i++){
+
+                                if(currPageContent.child[i].route==input.parentNode.getAttribute('route')){
+                                    currPageContent.child[i].title = input.value;
+                                }
+                            }
+
+                            showContent(currPageContent.child);
+
+                        },false);
+
+                    })(input);
+
+                    list[i].removeChild(span);
+                    list[i].insertBefore(input,list[i].children[0]);
+
+                }
+            }
+
+        };
+
+    }
+
+
+    //页面刷新
+    countHeight();
+
+
+    //页面大小变化的时候
+    window.onresize = countHeight;
+
+
+    //列表移入移出交互效果
+    listHover();
+
+    //显示默认内容
+    var obj = findDataByRoute('0_0');
+    showBreadcrumb(obj.breadcrumb);
+    showContent(obj.content.child);
+
+
+
+    //计算内容高度
+    function countHeight(){
+        //头部高度
+        var headerH = document.querySelector('#header').offsetHeight;
+        var bodyH = document.querySelector('body').clientHeight;
+
+
+        //侧栏
+        var nav = document.querySelector('#nav');
+        var main = document.querySelector('#main')
+
+        nav.style.height = main.style.height = bodyH-headerH+'px';
+
+    }
+
+
+
+    /*************************************/
+
+    //框选
+    function mark(element){
+
+
+        element.addEventListener('mousedown',function(ev){
+
+
+            //当不是鼠标左键点击的时候  退出函数
+            if(ev.button!=0) return;
+
+            //找到当前鼠标点下的位置  作为创建的div 定位样式
+            var x1 = ev.clientX;
+            var y1 = ev.clientY;
+
+            //创建的框选器
+            var div = document.createElement('div');
+
+            div.className = 'mark';
+
+            //定位框选器
+            div.style.left = x1+'px';
+            div.style.top = y1+'px';
+            document.body.appendChild(div);
+
+            document.onmousemove = function(ev){
+
+                //鼠标移动后的位置
+                var x2 = ev.clientX;
+                var y2 = ev.clientY;
+
+                //计算框选器的宽高
+                var currW = x2-x1;
+                var currH = y2-y1;
+
+                div.style.width = Math.abs(currW)+'px';
+                div.style.height = Math.abs(currH)+'px';
+
+                //Math.min(num,num....)  选择最小值
+
+                //如果框选器宽高小于0  需要改变定位值
+
+                div.style.left = Math.min(x1,x2)+'px';
+                div.style.top = Math.min(y1,y2)+'px';
+
+                var e1 = document.querySelectorAll('#main li');
+                var e2 = div;
+
+                boom(e1,e2,function(element){
+                    //碰上了就加class
+                    element.className = 'active checked';
+                    element.isClick = true;
+
+                    //检测是否存在
+                    var onoff = false;
+                    for(var i=0;i<checkedContent.length;i++){
+                        if(element.getAttribute('route')==checkedContent[i]){
+                            onoff = true;
+
+                        }
+                    }
+                    if(!onoff){
+                        checkedContent.push(element.getAttribute('route'));
+                    }
+
+                },function(element){
+                    //没有碰上
+                    element.className = '';
+                    element.isClick = false;
+
+                    //删除被存储的当前内容
+                    for(var i=0;i<checkedContent.length;i++){
+                        if(element.getAttribute('route')==checkedContent[i]){
+                            //数组删除内容的分方式
+                            checkedContent.splice(i,1);
+                        }
+                    }
+
+                });
+
+                return false;
+            };
+
+
+
+            document.onmouseup = function(){
+
+                //检测全部选中
+                checkAll();
+
+                //显示被选中的信息
+                showCheckedInfo();
+
+                //鼠标抬起时需要删除当前的框选器，否则会在页面出现多个同名div
+                document.body.removeChild(div);
+
+                document.onmousemove = null;
+                document.onmouseup = null;//解决点击其他按钮找不到删除的元素的错误
+
+            };
+        },false);
+    }
+
+    //碰撞检测
+    function boom(e1,e2,callback1,callback2){
+
+        //必须在元素属性稳定后才检测碰撞
+
+        /*
+         * 碰撞检测过程：
+         *       1.e1表示元素1   e2表示元素2
+         *       2.最小碰撞距离： minW = e1.offsetWidth/2+e2.offsetWidth/2
+         *                       minH = e1.offsetHeight/2+e2.offsetHeight/2
+         *
+         *       3.e1的中心点：   x1 = e1.offsetLeft+e1.offsetWidth/2
+         *                       y1 = e1.offsetTop+e1.offsetHeight/2
+         *
+         *       4.e2的中心点：  x2 = e2.offsetLeft+e2.offsetWidth/2
+         *                      y2 = e2.offsetTop+e2.offsetHeight/2
+         *
+         *       5.检测是否碰撞到：
+         *           判断条件：Math.abs(x1-x2)<minW&&Math.abs(y1-y2)<minH
+         *           true  =>  碰上了
+         *           false =>  没碰上
+         *
+         *
+         *
+         * */
+
+
+        //如果e1没有length 说明不是一个集合
+        //为了下面的for循环可以正常执行  需要把不是集合的e1改成数组
+        if(!e1.length){
+            e1 = [e1];
+        }
+
+        var e2_x2 = e2.offsetLeft+e2.offsetWidth/2;
+        var e2_y2 = e2.offsetTop+e2.offsetHeight/2;
+
+        for(var i=0;i<e1.length;i++){
+
+            var e1_x1 = e1[i].offsetLeft+e1[i].offsetWidth/2;
+            var e1_y1 = e1[i].offsetTop+e1[i].offsetHeight/2;
+            var minW = e1[i].offsetWidth/2+e2.offsetWidth/2;
+            var minH = e1[i].offsetHeight/2+e2.offsetHeight/2;
+
+            if(Math.abs(e1_x1-e2_x2)<minW&&Math.abs(e1_y1-e2_y2)<minH){
+                callback1&&callback1(e1[i]);
+            }else{
+                callback2&&callback2(e1[i]);
+            }
+
+        }
+    }
+
+    //显示选中信息
+    function showCheckedInfo(){
+
+        var checkedInfoBox = document.querySelector('#check-box-info');
+        var span = checkedInfoBox.querySelector('span');
+
+        if(checkedContent.length>0){
+            checkedInfoBox.style.display = 'block';
+            span.innerHTML = checkedContent.length;
+        }else{
+            checkedInfoBox.style.display = 'none';
+        }
+    }
+
+    //检测是否全选
+    function checkAll(){
+
+        //找到要检查的列表
+        var list = document.querySelectorAll('#main li');
+        var checkAllBox = document.querySelector('.checkAll input');
+
+
+        if(list.length<=0){
+            checkAllBox.checked = false;
+            return;
+        }
+
+        //假设已全选
+        checkAllBox.checked = true;
+
+        //检查是否有没有被选中的
+        for(var i=0;i<list.length;i++){
+            if(!list[i].isClick){
+                checkAllBox.checked = false;
+            }
+        }
+
+    }
+
+
+    //显示内容
+    function showContent(childList){
+
+        console.log(1);
+
+        //找到放内容的地方
+        var ul = document.querySelector('#main ul');
+
+        //拼接li
+        var liHtml = '';
+        for(var i=0;i<childList.length;i++){
+            liHtml += '<li route="'+childList[i].route+'">'+
+                '<span>'+childList[i].title+'</span>'+
+                '<em>√</em>'+
+                '</li>';
+        }
+        ul.innerHTML = liHtml;
+
+        listHover();
+
+        checkedContent = [];//新内容 清空一下被选择的内容
+        //重置一下被选中的显示框
+        showCheckedInfo();
+
+        checkAll();
+    }
+
+
+
+    //列表移入移出的交互效果
+    function listHover(){
+
+        //图标模式的移入移出效果
+        var iconList = document.querySelectorAll('#main li');
+
+        for(var i=0;i<iconList.length;i++){
+            iconList[i].onmouseover = function(){
+                if(this.isClick) return;//如果被点击过  就不操作
+                this.className = 'active';
+            };
+            iconList[i].onmouseout = function(){
+                if(this.isClick) return;//如果被点击过  就不操作
+                this.className = '';
+            };
+
+            //标记点击
+            iconList[i].onclick = function(ev){
+
+                if(ev.target.nodeName.toLocaleLowerCase()=='em'){
+                    //被点击过
+                    if(this.isClick){
+                        //取消状态
+                        this.isClick = false;
+                        this.className = 'active';
+                        //删除被存储的当前内容
+                        for(var i=0;i<checkedContent.length;i++){
+                            if(this.getAttribute('route')==checkedContent[i]){
+                                //数组删除内容的分方式
+                                checkedContent.splice(i,1);
+                            }
+                        }
+                    }else{
+                        this.isClick = true;
+                        this.className = this.className+' checked';
+                        checkedContent.push(this.getAttribute('route'));
+
+                    }
+
+//                    console.log(checkedContent);
+
+                    showCheckedInfo();//显示被选中信息
+
+                    checkAll();//检查是否全选
+
+                }else{
+
+                    //找route属性值
+                    var childDir = this.getAttribute('route');
+                    if(childDir){
+                        //根据route属性获取内容
+                        var obj = findDataByRoute(childDir);
+
+                        showBreadcrumb(obj.breadcrumb);
+                        //根据获取的内容，渲染页面
+                        showContent(obj.content.child);
+                    }
+                }
+            };
+
+            //找到em 阻止mousedown的冒泡
+            var em = iconList[i].querySelector('em');
+
+            em.onmousedown = function(ev){
+                ev.cancelBubble = true;
+                ev.stopPropagation();
+            };
+
+        }
+
+    }
+
+
+    //通过route找内容  同时记录当前文件的路径
+    function findDataByRoute(route){
+
+        route = route.split('_');
+
+        var obj={
+            content:'', //要被显示的内容对象
+            breadcrumb:'<a route="0_0" href="javascript:;">微云</a> &gt; ' //当前被显示内容的路径
+        };
+
+        findData(data,0);
+
+        //递归函数
+        function findData(dataJson,index){
+
+            if(index>1){
+                obj.breadcrumb += '<a route="'+dataJson[route[index]].route+'" href="javascript:;">'+dataJson[route[index]].title+'</a> &gt; ';
+            }
+
+
+            if(index<route.length-1){
+                findData(dataJson[route[index]].child,index+1);
+            }else{
+                obj.content = dataJson[route[index]];
+            }
+
+        }
+
+//        console.log(obj);
+
+        //去掉多余的 >
+        obj.breadcrumb = obj.breadcrumb.slice(0,-5);
+
+
+        return  obj; //把data传出去
+
+    }
+
+    //显示面包屑的方法
+    function showBreadcrumb(html){
+        var box = document.querySelector('.breadcrumb');
+        box.innerHTML = html;
+
+        var breadA = box.querySelectorAll('a');
+
+        for(var i=0;i<breadA.length;i++){
+            breadA[i].onclick = function(){
+
+                //找route
+                var route = this.getAttribute('route');
+                if(route){
+                    var obj = findDataByRoute(route);
+                    showBreadcrumb(obj.breadcrumb);
+                    showContent(obj.content.child);
+                }
+
+            };
+        }
+
+
+    }
+
+
+    //找对应元素的方法
+    function findEle(ele,attr,value){
+
+        //如果父级不存在或者父级不是一个元素  说明找不到了 返回 undefined
+        if(ele==null||ele.nodeType!=1) return;
+
+
+        if(ele[attr].toLocaleLowerCase()==value.toLocaleLowerCase()){
+            return ele;
+        }
+
+        return findEle(ele.parentNode,attr,value);
+
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

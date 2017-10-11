@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background:#ccc;
+        }
+        #banner{
+            width:960px;
+            height:402px;
+            position: relative;
+            margin:100px auto;
+            border:5px solid #fff;
+        }
+        a{
+            display: block;
+            width:36px;
+            height:36px;
+            position: absolute;
+            top:180px;
+            background-image:url(btn.png);
+            opacity: 0;
+        }
+        a.prev{
+            left:10px;
+            background-position: 0 0;
+        }
+        a.next{
+            right:10px;
+            background-position: -50px 0;
+        }
+        .img-box{
+            position: relative;
+            height:402px;
+            overflow: hidden;
+        }
+        img{
+            position: absolute;
+            left:0;
+            top:0;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <div class="img-box">
+            <img src="1.webp" alt="">
+            <img src="2.webp" alt="">
+            <img src="3.webp" alt="">
+            <img src="4.webp" alt="">
+        </div>
+        <!--javascript:;  用js代替跳转链接，js中不执行任何代码-->
+        <a href="javascript:;" class="prev"></a>
+        <a href="javascript:;" class="next"></a>
+    </div>
+
+
+    <script>
+
+        //获取元素
+        var btns = document.getElementsByTagName('a');
+        var bannerBox = document.getElementById('banner');
+        var imgBox = document.querySelector('.img-box');
+        var imgs = document.getElementsByTagName('img');
+
+        //添加事件
+        imgBox.onmouseover = function(){
+            for(var i=0;i<btns.length;i++){
+                btns[i].style.opacity = '.5';
+            }
+        };
+        imgBox.onmouseout = function(){
+            for(var i=0;i<btns.length;i++){
+                btns[i].style.opacity = '0';
+            }
+        };
+        //a 的hover
+        /*
+        * for 批量添加事件
+        *   1.通过for循环添加的事件内的循环变量时最终值
+        *       当前例子：  事件内的 i = 2
+        *
+        *   2.
+        *
+        *
+        * */
+
+
+        var index = 0;
+
+
+        for(var i=0;i<btns.length;i++){
+            btns[i].onmouseover = function(){
+                for(var i=0;i<btns.length;i++){
+                    btns[i].style.opacity = '.5';
+                }
+                this.style.opacity = '.8';
+            };
+            btns[i].onclick = function(){
+
+                index++;
+
+                if(index>imgs.length-1){
+                    index = 0;
+                }
+
+
+                for(var i=0;i<imgs.length;i++){
+                    imgs[i].style.transition = '0s';
+                }
+
+                for(var i=0;i<imgs.length;i++){
+                    imgs[i].style.left = '180px';
+                    imgs[i].style.opacity = '0';
+                }
+
+                setTimeout(function(){
+                    imgs[index].style.transition = '1s';
+                    imgs[index].style.left = '0';
+                    imgs[index].style.opacity = '1';
+                },200)
+
+            };
+        }
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:300px;
+            height:200px;
+            line-height: 200px;
+            text-align: center;
+            color:#666;
+            font-size:32px;
+            border:1px solid #ccc;
+            margin:auto;
+            font-size:0;
+        }
+        span{
+            cursor:pointer;
+            font-size:42px;
+            padding:0 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span>*</span>
+    <span>*</span>
+    <span>*</span>
+    <span>*</span>
+    <span>*</span>
+</div>
+<p></p>
+
+<script>
+
+    //获取要操作的元素
+    var star = document.querySelectorAll('span');
+    var p = document.querySelector('p');
+
+    var currIndex = -1; //是否有点击了星星
+
+    //添加事件
+    for(var i=0;i<star.length;i++){
+        star[i].index = i;
+        star[i].onmouseover = function(){
+            //鼠标移入的时候让星星变颜色
+//            this.style.color = 'pink';
+            for(var i=0;i<=this.index;i++){
+                star[i].style.color = 'pink';
+            }
+            for(var i=this.index+1;i<star.length;i++){
+                star[i].style.color = '';
+            }
+            p.innerHTML = '我是移入';
+        };
+
+        star[i].onmouseout = function(){
+            if(currIndex<0){ //当没有星星被点击的时候清除颜色
+                for(var i=0;i<=this.index;i++){
+                    star[i].style.color = '';
+                }
+            }else{
+                for(var i=0;i<=currIndex;i++){
+                    star[i].style.color = 'pink';
+                }
+                for(var i=currIndex+1;i<star.length;i++){
+                    star[i].style.color = '';
+                }
+            }
+            //鼠标移出的时候让星星颜色消失
+            p.innerHTML = '我是移出';
+        };
+
+        star[i].onclick = function(){
+
+            currIndex = this.index;//让程序记录我点的位置
+//            for(var i=0;i<=currIndex;i++){
+//                star[i].style.color = 'red';
+//            }
+            p.innerHTML = '我是点击';
+        };
+    }
+
+</script>
+
+</body>
+</html>

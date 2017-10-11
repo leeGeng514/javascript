@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            color:#000;
+            text-decoration: none;
+        }
+
+        body,html{
+            width:100%;
+            height:100%;
+            overflow: hidden;
+        }
+
+        #header{
+            background-color: #F5F6F9;
+            border-bottom: 1px solid #E6E7EC;
+            position: relative;
+            height: 60px;
+        }
+        #wrap{
+
+        }
+        #nav{
+            width:199px;
+            border-right:1px solid red;
+            background-color: #fff;
+            overflow: hidden;
+            float: left;
+        }
+
+
+        #nav dt{
+            padding: 0 0 0 64px;
+            color: #74787C;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        #nav dd.active{
+            color:#00A4FF;
+        }
+
+        #nav dl{
+            margin-top:20px;
+        }
+
+        #nav dd a{
+            position: relative;
+            height: 32px;
+            line-height: 32px;
+            display: block;
+            padding: 0 0 0 80px;
+            color: #020202;
+        }
+        #nav dd a:hover{
+            text-decoration: none;
+            background: red;
+            transition: ease all;
+            transition-duration: .3s;
+        }
+        .main-icon-model{
+            padding:10px;
+            overflow: hidden;
+        }
+
+        .main-icon-model li{
+            margin:10px;
+            position: relative;
+            display: block;
+            height: 48px;
+            width:200px;
+            padding: 0 18px 0 7px;
+            border: 1px solid #D5D7DF;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border-radius: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            z-index: 3;
+            box-shadow: 0 5px 5px #ccc;
+            float: left;
+        }
+        .main-icon-model li em{
+            display: none;
+        }
+
+        .main-icon-model li.active{
+            border-color:red;
+            display: block;
+        }
+        .main-icon-model li.active em{
+            position: absolute;
+            border: 1px solid red;
+            top:-1px;
+            right:-1px;
+            display: block;
+            width:20px;
+            height:20px;
+
+        }
+        .main-icon-model li.checked em{
+            background-color: red;
+        }
+
+        #main{
+            margin-left:200px;
+            overflow: hidden;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<div id="header">头部</div>
+<div id="wrap">
+    <div id="nav">
+
+        <dl class="nav-menu">
+            <dd><a href="javascript:;">最近</a></dd>
+        </dl>
+
+        <dl class="nav-menu">
+            <dt>文件</dt>
+            <dd><a href="javascript:;">全部</a></dd>
+            <dd><a href="javascript:;">文档</a></dd>
+            <dd><a href="javascript:;">图片</a></dd>
+            <dd><a href="javascript:;">视频</a></dd>
+            <dd><a href="javascript:;">笔记</a></dd>
+            <dd><a href="javascript:;">音乐</a></dd>
+        </dl>
+
+        <dl class="nav-menu">
+            <dt>照片</dt>
+            <dd><a href="javascript:;">全部</a></dd>
+            <dd><a href="javascript:;">文档</a></dd>
+            <dd><a href="javascript:;">图片</a></dd>
+            <dd><a href="javascript:;">视频</a></dd>
+            <dd><a href="javascript:;">笔记</a></dd>
+            <dd><a href="javascript:;">音乐</a></dd>
+        </dl>
+
+        <dl class="nav-menu">
+            <dt>我的</dt>
+            <dd><a href="javascript:;">全部</a></dd>
+            <dd><a href="javascript:;">文档</a></dd>
+            <dd><a href="javascript:;">图片</a></dd>
+            <dd><a href="javascript:;">视频</a></dd>
+            <dd><a href="javascript:;">笔记</a></dd>
+            <dd><a href="javascript:;">音乐</a></dd>
+        </dl>
+
+
+
+
+    </div>
+    <div id="main">
+
+        <ul class="main-icon-model">
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+</div>
+
+
+<script>
+
+
+    //页面刷新
+    countHeight();
+
+    //页面大小变化的时候
+    window.onresize = countHeight;
+
+
+
+    //图标模式的移入移出效果
+    var iconList = document.querySelectorAll('.main-icon-model li');
+
+    for(var i=0;i<iconList.length;i++){
+        iconList[i].onmouseover = function(){
+            if(this.isClick) return;//如果被点击过  就不操作
+            this.className = 'active';
+        };
+        iconList[i].onmouseout = function(){
+            if(this.isClick) return;//如果被点击过  就不操作
+            this.className = '';
+        };
+
+        //标记点击
+        iconList[i].onclick = function(ev){
+
+            if(ev.target.nodeName.toLocaleLowerCase()=='em'){
+                //被点击过
+                if(this.isClick){
+                    //取消状态
+                    this.isClick = false;
+                    this.className = 'active';
+                }else{
+                    this.isClick = true;
+                    this.className = this.className+' checked';
+                }
+            }
+
+
+
+        };
+    }
+
+
+
+
+
+    //计算内容高度
+    function countHeight(){
+        //头部高度
+        var headerH = document.querySelector('#header').offsetHeight;
+        var bodyH = document.querySelector('body').clientHeight;
+
+
+        //侧栏
+        var nav = document.querySelector('#nav');
+
+        nav.style.height = bodyH-headerH+'px';
+
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

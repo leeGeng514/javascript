@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="button" value="切换内容">
+<script src="MTween.js"></script>
+<script>
+
+
+    /*
+    * window.location.search
+    *   url中  ？ -- # 之间的内容 包括？
+    *
+    *   http://2017.miaov.com/question/show/index?cat=1&sub=new&page=2
+    *
+    *
+    *   b.html?str=a
+    *
+    *
+    * */
+
+    console.log(window.location.search);
+
+
+    //获取的search是字符串，需要通过自定义的方法把它转成可以操作的对象
+    var search = searchToJson(window.location.search);
+
+    console.log(search);
+
+
+
+    var json = {
+        a:'123',
+        b:'你好',
+        c:'leo'
+    };
+
+    console.log(json[search.str]);//str
+
+
+    var btn = document.querySelector('input');
+
+    //点击按钮 重新设置search值
+    btn.onclick = function(){
+
+
+        setSearch('page','1');
+
+
+    };
+
+
+    //设置search中的某一个值的方法
+    function setSearch(key,value){
+
+        search[key] = value;
+
+        //把改完的值拼接成字符串
+        var str = '?';
+        for(var k in search){
+            str += k+'='+search[k]+'&';
+        }
+        str = str.slice(0,-1);
+
+//        console.log(str); //?str=b&page=1&cat=11
+                          //?str=c&page=1&cat=11&
+
+
+        window.location.search = str;  //?str=b&page=1
+    }
+
+
+
+
+</script>
+</body>
+</html>

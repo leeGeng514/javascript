@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+<ul>
+    <li>
+        <h2>菜单</h2>
+        <ul style="display: none;">
+            <li>
+                <h2>菜单2</h2>
+                <ul style="display: none;">
+                    <li>
+                        <h2>菜单3</h2>
+                        <ul style="display: none">
+                            <li>12222</li>
+                            <li>12222</li>
+                            <li>12222</li>
+                            <li>12222</li>
+                            <li>12222</li>
+                            <li>12222</li>
+                        </ul>
+                    </li>
+                    <li>1233</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+
+    //获取所有的li
+    var li = document.querySelectorAll('li');
+
+    //给li添加点击事件  打开或者关闭对应的菜单
+    for(var i=0;i<li.length;i++){
+
+        li[i].onclick = function(ev){
+
+            var ul = this.querySelector('ul');
+            //如果li中存在ul，表示有子菜单
+            if(ul){
+                //如果子菜单存在就才做该菜单的打开和关闭
+                if(ul.style.display=='none'){
+                    ul.style.display = 'block';
+                } else{
+                    ul.style.display = 'none';
+                }
+
+            }
+            //阻止冒泡，避免父级菜单被关闭
+            //以前是只有IE支持，后来火狐和chrome都支持
+            ev.cancelBubble = true;
+            ev.stopPropagation();
+
+
+
+
+
+
+        };
+
+
+    }
+
+
+
+</script>
+
+</body>
+</html>

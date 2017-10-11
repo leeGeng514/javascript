@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #inputs{
+            width:800px;
+            height:auto;
+            padding:20px 10px;
+            margin:auto;
+            box-shadow: 0 0 4px #ccc;
+            border-radius:20px;
+        }
+        #inputs div{
+            margin:5px;
+        }
+        input{
+            width:150px;
+            border-radius:10px;
+            border:1px solid #0066FF;
+            outline: none;
+            padding:5px 10px;
+            vertical-align: middle;
+        }
+        .select{
+            display: inline-block;
+            height:28px;
+            border:1px solid #0066FF;
+            border-radius:10px;
+            width:150px;
+            vertical-align: middle;
+            position: relative;
+        }
+        .select ul{
+            position: absolute;
+            display: block;
+            margin:0;
+            width:150px;
+            height:0px;
+            background-color: rgba(0,0,0,.5);
+            border-radius: 20px;
+            list-style: none;
+            padding: 0;
+            top:28px;
+        }
+        .select ul li{
+            color:#fff;
+            float: left;
+            width:50px;
+            height:30px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .val{
+            height:100%;
+            text-align: center;
+            line-height: 100%;
+            cursor: pointer;
+        }
+
+        #infos{
+            width:800px;
+            margin:50px auto auto;
+        }
+        td,th{
+            border-bottom:3px solid #fff;
+            text-align: center;
+            background-color: #9E9BF6;
+            padding:10px;
+            color:#fff;
+        }
+        a{
+            display: inline-block;
+            padding: 0px 20px;
+            color:#fff;
+        }
+        span{
+            display: inline-block;
+            width:20px;
+            height:20px;
+            border:1px solid #fff;
+            vertical-align: middle;
+            margin-right:10px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div id="inputs">
+    <div>姓名：<input class="name" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年龄：<input class="age" type="text"></div>
+    <div>性别：<div class="select">
+
+        <div class="val">选择性别</div>
+        <ul>
+            <li>男</li>
+            <li>女</li>
+            <li>保密</li>
+        </ul>
+    </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="add" value="添加"></div>
+</div>
+
+<table id="infos" cellspacing="0">
+    <thead>
+    <tr>
+        <th><span></span>全选</th>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--<tr>-->
+        <!--<td><span></span></td>-->
+        <!--<td>1</td>-->
+        <!--<td>LEO</td>-->
+        <!--<td>18</td>-->
+        <!--<td>保密</td>-->
+        <!--<td>-->
+            <!--<a href="javascript:;">↑</a>-->
+            <!--<a href="javascript:;">↓</a>-->
+            <!--<a href="javascript:;">删除</a>-->
+        <!--</td>-->
+    <!--</tr>-->
+    </tbody>
+</table>
+
+
+
+<script src="MTween.js"></script>
+
+<script>
+
+    /*
+    * 1.收集数据
+    *
+    * 2.创建内容 根据收集的数据来创建
+    *       给span添加点击事件 （全选功能）
+    *       给a标签添加事件 （上移 下移 删除）
+    *
+    * 3.把创建好的内容放到tbody中
+    *
+    * */
+
+    //设计数据结构    如果这些数据不需要传到服务器 ，那么key可以不用双引号包裹
+    var id = 1;
+    var tdInfo = {
+        id:id,
+        name:"",
+        age:"",
+        sex:""
+    };
+
+
+
+    //收集数据
+    //获取元素
+    var addBtn = document.querySelector('.add');
+    var nameBox = document.querySelector('.name');
+    var ageBox = document.querySelector('.age');
+    var sexBox = document.querySelector('.val');
+
+    var tbody = document.querySelector('#infos tbody');
+
+    var allCheckBox = document.querySelector('thead span');
+
+    //给添加按钮写事件
+    addBtn.onclick = function(){
+
+        tdInfo = {
+            id:id,
+            name:nameBox.value,
+            age:ageBox.value,
+            sex:sexBox.innerHTML
+        };
+
+
+
+        if(!tdInfo.name){
+            alert('姓名不能为空');
+            return;
+        }else if(!tdInfo.age){
+            alert('年龄不能为空');
+            return;
+        }else if(tdInfo.sex=='选择性别'){
+            alert('性别不能为空');
+            return;
+        }
+
+        id++;
+
+
+        /************点击成功获取内容之后 开始生成元素****************/
+        var tr = document.createElement('tr');
+
+        var html = '<td>'+tdInfo.id+'</td><td>'+tdInfo.name+'</td><td>'+tdInfo.age+'</td><td>'+tdInfo.sex+'</td>';
+
+        tr.innerHTML = html;
+
+
+        var td0 = document.createElement('td');
+        var span = document.createElement('span');
+
+        span.onclick = function(){
+
+            //-------处理全选事宜---------------------
+
+            if(this.ischecked){
+                this.style.backgroundColor = '';
+                this.ischecked = false;
+            }else{
+                this.style.backgroundColor = 'red';
+                this.ischecked = true;
+            }
+
+            //处理全选按钮的变化
+            //获取所有tbody>span元素
+            var spans = tbody.querySelectorAll('span');
+
+
+            //假设已经被全选
+            allCheckBox.ischecked = true;
+            allCheckBox.style.backgroundColor = 'red';
+            for(var i=0;i<spans.length;i++){
+                if(!spans[i].ischecked){
+                    //找到某个没有变选中的
+                    allCheckBox.ischecked = false;
+                    allCheckBox.style.backgroundColor = '';
+                    break;
+                }
+            }
+
+//            var n = 0;
+//
+//            for(var i=0;i<spans.length;i++){
+//                if(spans[i].ischecked) n++;
+//            }
+//
+//            if(n==spans.length){
+//                allCheckBox.ischecked = true;
+//                allCheckBox.style.backgroundColor = 'red';
+//            }else{
+//                allCheckBox.ischecked = false;
+//                allCheckBox.style.backgroundColor = '';
+//            }
+
+
+        };
+
+        td0.appendChild(span);
+
+        tr.insertBefore(td0,tr.cells[0]);
+
+        var td1 = document.createElement('td');
+        var a1 = document.createElement('a');
+        a1.innerHTML = '↑';
+        a1.href = 'javascript:;';
+        var a2 = document.createElement('a');
+        a2.innerHTML = '↓';
+        a2.href = 'javascript:;';
+        var a3 = document.createElement('a');
+        a3.innerHTML = '删除';
+        a3.href = 'javascript:;';
+
+        //上移按钮
+        a1.onclick = function(){
+            //处理上移
+
+            var thisTr = this.parentNode.parentNode;
+            var prevTr = thisTr.previousElementSibling;
+
+            //思路：父级的父级（当前的tr）  插入到tr的上一个兄弟级tr的前面
+            if(!prevTr){
+                //如果没有上一个兄弟节点了  直接跳出函数
+                alert('到达顶部');
+                return;
+            }
+
+
+            //对换id
+            var a = thisTr.cells[1].innerHTML;
+            var b = prevTr.cells[1].innerHTML;
+
+            thisTr.cells[1].innerHTML = b;
+            prevTr.cells[1].innerHTML = a;
+
+
+
+            var tbody = thisTr.parentNode;
+            tbody.insertBefore(thisTr,prevTr);
+
+
+            //重置id
+//            var trs = tbody.querySelectorAll('tr');
+//
+//            var n = 0;
+//            for(var i=0;i<trs.length;i++){
+//                trs[i].cells[1].innerHTML = ++n;
+//            }
+//            id = ++n;
+
+
+        };
+
+        //下移按钮
+        a2.onclick = function(){
+            var thisTr = this.parentNode.parentNode;
+            var nextTr = thisTr.nextElementSibling;
+
+            //思路：父级的父级（当前的tr）  插入到tr的下下一个兄弟级tr的前面
+            if(!nextTr){
+                //如果没有上一个兄弟节点了  直接跳出函数
+                alert('到达底部');
+                return;
+            }
+
+
+            //对换id
+            var a = thisTr.cells[1].innerHTML;
+            var b = nextTr.cells[1].innerHTML;
+
+            thisTr.cells[1].innerHTML = b;
+            nextTr.cells[1].innerHTML = a;
+
+
+
+            var tbody = thisTr.parentNode;
+            tbody.insertBefore(thisTr,nextTr.nextElementSibling);
+
+
+            //重置id
+//            var trs = tbody.querySelectorAll('tr');
+//
+//            var n = 0;
+//            for(var i=0;i<trs.length;i++){
+//                trs[i].cells[1].innerHTML = ++n;
+//            }
+//            id = ++n;
+        };
+
+        //删除按钮
+        a3.onclick = function(){
+
+            var tbody = this.parentNode.parentNode.parentNode;
+            //找到父级的父级的父级 删除tr
+            this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+
+
+            if(tbody.rows.length==0){
+                allCheckBox.ischecked = false;
+                allCheckBox.style.backgroundColor = '';
+                return;
+            }
+
+
+
+
+            //重置id
+//            var trs = tbody.querySelectorAll('tr');
+//
+//            var n = 0;
+//            for(var i=0;i<trs.length;i++){
+//                trs[i].cells[1].innerHTML = ++n;
+//            }
+//            id = ++n;
+
+
+            //获取所有tbody>span元素
+            var spans = tbody.querySelectorAll('span');
+
+            //假设已经被全选
+            allCheckBox.ischecked = true;
+            allCheckBox.style.backgroundColor = 'red';
+            for(var i=0;i<spans.length;i++){
+                if(!spans[i].ischecked){
+                    //找到某个没有变选中的
+                    allCheckBox.ischecked = false;
+                    allCheckBox.style.backgroundColor = '';
+                    break;
+                }
+            }
+
+
+
+        };
+
+        td1.appendChild(a1);
+        td1.appendChild(a2);
+        td1.appendChild(a3);
+
+        tr.appendChild(td1);
+
+        //把创建好的tr 放到tbody中
+        tbody.appendChild(tr);
+
+        //获取所有tbody>span元素
+        var spans = tbody.querySelectorAll('span');
+
+
+        //假设已经被全选
+        allCheckBox.ischecked = true;
+        allCheckBox.style.backgroundColor = 'red';
+        for(var i=0;i<spans.length;i++){
+            if(!spans[i].ischecked){
+                //找到某个没有变选中的
+                allCheckBox.ischecked = false;
+                allCheckBox.style.backgroundColor = '';
+                break;
+            }
+        }
+
+
+        allCheckBox.onclick = function(){
+
+            //判断全选按钮的状态
+            if(this.ischecked){
+
+                //取消选中的标记
+                this.style.backgroundColor = '';
+                this.ischecked = false;
+
+                for(var i=0;i<spans.length;i++){
+                    spans[i].style.backgroundColor = '';
+                    spans[i].ischecked = false;
+                }
+
+            }else{
+
+                //添加选中的标记
+                this.style.backgroundColor = 'red';
+                this.ischecked = true;
+
+                for(var i=0;i<spans.length;i++){
+                    spans[i].style.backgroundColor = 'red';
+                    spans[i].ischecked = true;
+                }
+
+            }
+
+
+        };
+
+
+
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    * 选择性别的控件效果
+    * */
+
+    //获取控件的元素
+    var valBox = document.querySelector('.val');
+    var selectList = document.querySelector('ul');
+    var lis = selectList.querySelectorAll('li');
+
+    //点击li获取内容
+    for(var i=0;i<lis.length;i++){
+
+        lis[i].onclick =  function(){
+            valBox.innerHTML = this.innerHTML;
+            selectList.style.height = 0;
+
+        };
+
+    }
+
+
+    //选择框的显示和隐藏
+    valBox.onclick = function(){
+        if(getCss(selectList,'height')==30){
+            MTween(selectList,-30,200,'height','linear');
+        }
+        if(getCss(selectList,'height')==0){
+            MTween(selectList,30,200,'height','linear');
+        }
+
+    };
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

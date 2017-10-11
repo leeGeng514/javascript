@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>无标题文档</title>
+    <style>
+        body, ul, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: none;
+            float: left;
+        }
+
+        #box {
+            width: 314px;
+            height: 148px;
+            margin: 30px auto;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #list2 {
+            display: none;
+        }
+
+        #box div {
+            width: 292px;
+            height: 104px;
+            border: 1px solid #c6c6c6;
+            padding: 10px 0 0 10px;
+        }
+
+        #top {
+            height: 30px;
+        }
+
+        span {
+            display: block;
+            width: 80px;
+            height: 30px;
+            border: 1px solid #c6c6c6;
+            float: left;
+            font-size: 14px;
+            line-height: 30px;
+            text-align: center;
+            color: #737373;
+            border-bottom: none;
+        }
+
+        .show {
+            width: 80px;
+            height: 30px;
+            border: 1px solid #c6c6c6;
+            margin-top: -1px;
+            color: #000;
+            background: #fff;
+        }
+
+        .video {
+            width: 80px;
+            height: 30px;
+            border: 1px solid #c6c6c6;
+            margin-top: -1px;
+            color: #000;
+            background: #fff;
+        }
+
+        ul {
+            float: left;
+            width: 170px;
+            height: 96px;
+        }
+
+        li {
+            width: 170px;
+            height: 31px;
+            font-size: 12px;
+            line-height: 30px;
+            margin: 0 0 1px 1px;
+            background: #dee7e7;
+            list-style: none;
+        }
+
+        li a {
+            text-decoration: none;
+            color: inherit;
+            padding-left: 7px;
+        }
+
+        .active {
+            background: #636363;
+            display: block;
+        }
+
+        .active a {
+            color: #fff;
+        }
+
+        .show1 {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .select {
+            background-color: lightskyblue;
+            border-bottom: 1px solid #ffffff;
+            height: 31px;
+        }
+
+        .onOver {
+            background-color: yellow;
+            color: red;
+        }
+
+        .liActive {
+            background-color: #636363;
+            color: white;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+
+<body>
+
+<div id="tags">
+
+</div>
+
+<div id="box">
+    <p id="top">
+        <span class="show select">专题</span>
+        <span class="video">视频</span>
+    </p>
+    <div class="show1 oDiv" id="bottom">
+        <img class="active" src="image_two/list1.jpg" alt=""/>
+        <img src="image_two/list2.jpg" alt=""/>
+        <img src="image_two/list1.jpg" alt=""/>
+        <!-- <img src="image_two/list2.jpg" alt="" /> -->
+        <ul>
+            <li class=""><a href="#">奇虎360纽交所上市11</a></li>
+            <li><a href="#">2011年IT领袖峰会</a></li>
+            <li><a href="#">CCBN召开 助三网融合</a></li>
+            <!-- <li><a href="#">CCBN召开 助三网融合</a></li> -->
+        </ul>
+    </div>
+    <div class="hide oDiv" id="bottom1">
+        <img src="image_two/list2.jpg" alt="" class="active"/>
+        <img src="image_two/list1.jpg" alt=""/>
+        <img src="image_two/list2.jpg" alt=""/>
+        <ul>
+            <li class=""><a href="#">奇虎360纽交所上市22</a></li>
+            <li><a href="#">CCBN召开 助三网融合</a></li>
+            <li><a href="#">CCBN召开 助三网融合</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    //获取专题切换按钮
+    var newBtn = document.querySelector('.show');
+    //获取视频切换按钮
+    var videoBtn = document.querySelector('.video');
+    //获取专题板块 容器
+    var newContiner = document.querySelector('.show1');
+    //获取视频板块 容器
+    var videoContainer = document.querySelector('.hide');
+    //获取所有li
+    var lis = document.querySelectorAll('li');
+    //获取页面的ul
+    var uls = document.querySelectorAll('ul');
+    console.log(uls);
+    //定时器
+    var timer = null;
+
+    //初始化 默认显示
+    var lastLi = newContiner.querySelector('ul li');
+    newContiner.style.display = 'block';
+    lastLi.className = 'onOver';
+    lastLi.isClick = true;
+
+    //自动播放函数
+    var n = 0;
+    var num = 0;
+
+    function autoPlay() {
+        num++;
+        var obj = uls[n].children[num];
+
+        obj.previousElementSibling.className = '';
+        obj.previousElementSibling.isClick = false;
+        obj.className = 'onOver';
+        obj.isClick = true;
+        if (num>=uls[n].children.length) {
+            num=0;
+            n++;
+            obj.className = '';
+            obj.isClick = false;
+        }
+    }
+
+//    setInterval(autoPlay, 1000);
+
+    //所有li移入 移出 事件
+    for (var i = 0; i < lis.length; i++) {
+
+        lis[i].onmouseover = function () {
+            if (!this.isClick) this.className = 'liActive';
+
+        };
+
+        lis[i].onmouseout = function () {
+            if (!this.isClick) this.className = '';
+        };
+
+        lis[i].onclick = function () {
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].isClick = false;
+                lis[i].className = '';
+            }
+            this.isClick = true;
+            this.className = 'onOver';
+        }
+    }
+
+
+    newBtn.onmouseenter = function () {
+        videoBtn.className = 'video';
+        this.className = 'show select';
+        newContiner.style.display = 'block';
+        videoContainer.style.display = 'none';
+    };
+
+    videoBtn.onmouseenter = function () {
+        newBtn.className = 'show';
+        this.className = 'video select';
+        videoContainer.style.display = 'block';
+        newContiner.style.display = 'none';
+    };
+
+
+</script>
+</body>
+</html>

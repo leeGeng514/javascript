@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form id="form" action="http://api.miaov.com/xxx" method="post">
+
+    <input name="username" type="text" value="">
+
+    <input name="a" type="checkbox" value="1">
+    <input name="a" type="checkbox" value="1">
+    <input name="b" type="checkbox" value="2">
+    <input name="c" type="checkbox" value="3">
+    <input name="f" type="checkbox" value="41">
+
+    <input name="d" type="radio" value="1">男
+    <input name="d" type="radio" value="0">女
+
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+
+    <select>
+        <option value="1">第一</option>
+        <option value="2">第二</option>
+        <option value="3">第三</option>
+    </select>
+
+    <input type="submit" id="send" value="提交">
+
+    <input type="reset" value="重置">
+    
+</form>
+
+
+
+
+
+<script>
+
+    var json = {
+        "username":"",
+        "a":"1",
+        "b":"2",
+        "d":1,
+    }
+
+    /*
+    * 表单     form 元素
+    *
+    *
+    * 表单的事件：
+    *    form.onsubmit  提交数据时触发
+    *
+    *    form.onreset  重置数据时触发
+    *
+    *
+    * 表单元素的事件：
+    *
+    *  表单元素.onchange  当内容发生变化的时候触发
+    *
+    *  表单元素.oninput   输入内容的时候触发
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+    var send = document.querySelector('#send');
+
+    var form = document.querySelector('#form');
+
+    var inputs = form.querySelectorAll('input');
+    var select = form.querySelector('select');
+
+    inputs[0].onchange = function(){
+        console.log(this.value);
+    };
+
+    inputs[0].oninput = function(){
+        console.log(this.value);
+        if(this.value.length>20){
+            console.log('字数太多');
+        }
+    };
+
+    select.onchange = function(){
+        console.log(this.value);
+    };
+
+
+
+    form.onsubmit = function(){
+
+        //验证。。。。
+
+
+        //不通过
+        return false;
+    };
+
+    form.onreset = function(){
+
+        alert(2222)
+        return false;
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

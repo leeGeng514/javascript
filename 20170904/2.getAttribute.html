@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="box" c="abc" style="width:100px;" index="5" class="a"></div>
+
+
+<script>
+
+
+    /*
+    * 属性节点的操作方法  attributes
+    *
+    * 1.获取属性
+    *
+    * node.getAttribute(属性名)  一次只能获取一个属性
+    *
+    * 作用： 根据传入的属性名获取节点的属性
+    *
+    * 参数：
+    *  属性名  -- string
+    *
+    *
+    * 返回值：
+    *   属性值
+    *
+    *
+    * //js直接设置的属性实   js的自定义属性
+    * //html页面上写的属性  是属性节点
+    *
+    *
+    * 注意：  只能获取页面中的行间属性
+    *
+    *
+    *
+    *
+    * */
+
+    var div = document.querySelector('div');
+
+    div.index = 123;//不属于属性节点
+
+//    div.className = 'abc';
+
+    console.dir(div);
+
+
+
+    //属性和属性节点不是同一个东西
+    console.log(div.index);//123;
+    console.log(div.getAttribute('index'));//5
+    console.log(div.getAttribute('class'));//a
+
+
+
+    console.log();
+
+
+
+</script>
+
+</body>
+</html>

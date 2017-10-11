@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        div {
+            height:600px;
+            margin:10px;
+            border:10px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+<div id="box">
+    <div>
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="MTween.js"></script>
+<script>
+
+
+    /*
+    * 递归处理高度
+    * */
+
+
+    var box = document.querySelector('#box');
+
+    setH(box.querySelector('div'),getCss(box,'height'),40);
+
+
+
+    //定义一个函数来设置高度
+
+    //obj 要设置高度的元素
+    //h  是要设置的高度
+    //d  高度的变化量
+    function setH(obj,h,d){
+
+        obj.style.height = h-d+'px';
+
+        console.log(h-d);
+
+        //obj.querySelector('div') 没有就是undefined
+        if(obj.querySelector('div')){
+            setH(obj.querySelector('div'),getCss(obj,'height'),d);
+        }
+
+    }
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

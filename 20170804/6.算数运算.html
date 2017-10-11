@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * +号运算：
+    *   1.只要左右任何一个运算值是字符串，就做字符串拼接
+    *   2.如果没找到字符串，就直接做数字加法的算数运算
+    *
+    * */
+
+    //算数运算  + - * / %
+
+        /*
+        * 1.若两个操作数之一为NaN，结果为NaN。
+        * 2.无穷大被零乘、除结果是NaN
+        * 3.零被零除结果是NaN
+        * */
+
+//    var a = 1+2; //3
+//    var b = '1'+2; //'12'
+//    var c = 'abc'+2;//abc2
+//    console.log({}+{});//[object object][object object]
+//    console.log(true+true);//2
+
+
+    var a = 2-1; //1
+    var b = '2'-1;//1
+    var c = {}-{};//NaN
+
+//    console.log(c);
+//    console.log(true-true);//0
+
+//    console.log('a'/1);
+    console.log(1.7976931348623157e+308*10); //Infinity +无穷大
+    console.log(-1.7976931348623157e+308*10); //-Infinity -无穷大
+
+
+    //取模 %
+
+    /*
+    * 1.结果的符号等于被除数。 -10%3  -1
+    * 2.若被除数是无穷大或者除数是零，或者两者皆是，结果就是NaN。
+    *       0%3  0;
+    *       Infinity%3  NaN;
+    *       10%0    NaN;
+    * */
+
+    console.log(-10%3);  //-1
+    console.log(10%0);  //NaN
+    console.log(10%Infinity);  //10
+
+
+
+
+
+
+</script>
+</body>
+</html>

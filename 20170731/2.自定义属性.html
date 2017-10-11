@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="div1" index="11" class="box"></div>
+<script>
+
+    //自定义属性 :  通过js设置的 自己命名的元素属性（命名要按照变量命名规则）
+
+    //1.只要是js中存在的数据，都可以通过自定义属性来存储
+    //2.获取自定义属性：元素.自定义属性名
+
+    //获取div
+    var box = document.querySelector('.box');
+
+
+
+    //设置
+    box.index = 1;
+    box.arr = [1,2,3,5];
+    box.str = '我是自定义属性';
+    box.fn = function(){
+        console.log(this);
+    };
+
+    //获取
+    console.log(box.index);
+    console.log(box.arr);
+    console.log(box.str);
+
+    box.fn();
+
+
+</script>
+</body>
+</html>

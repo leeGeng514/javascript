@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+<input type="button" value="动画">
+<div></div>
+<script>
+    var div = document.querySelector('div');
+    var btn = document.querySelector('input');
+
+    btn.onclick = function(){
+        setInterval(function(){
+            div.style.height = parseFloat(getCss(div,'height'))+10+'px';
+            div.style.width = parseFloat(getCss(div,'width'))+10+'px';
+        },20);
+
+    };
+
+    function getCss(obj,attr){
+        return getComputedStyle(obj)[attr];
+    }
+
+</script>
+</body>
+</html>

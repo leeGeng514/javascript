@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            color:#fff;
+            text-align: center;
+            line-height: 50px;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+    //10*10  div    for嵌套模式
+
+    for(var i=0;i<10;i++){ //i  行标
+
+        for(var k=0;k<10;k++){ //k 列标
+            if(k==0){
+                document.body.innerHTML += '<div style="top:'+(i*60)+'px;left:'+(k*60)+'px;">'+i+'(i)</div>';
+            }else{
+                document.body.innerHTML += '<div style="top:'+(i*60)+'px;left:'+(k*60)+'px;">'+k+'</div>';
+            }
+
+        }
+
+    }
+
+</script>
+</body>
+</html>

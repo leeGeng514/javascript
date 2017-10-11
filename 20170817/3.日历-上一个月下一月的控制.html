@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<input type="button" value="上个月">
+<input type="button" value="下个月">
+<div></div>
+<script>
+
+
+    var btns = document.querySelectorAll('input');
+    var div = document.querySelector('div');
+//    console.log(btns);
+
+    var num = 0;
+
+    var date = new Date(); //全局变量
+
+//    date.setMonth(1);  //设置想要显示的月份
+
+    btns[0].onclick = function(){
+
+
+
+        num--;
+
+        var date = new Date();
+        //找上个月
+        date.setMonth(date.getMonth()+num);
+
+        console.log(date.getMonth()+1);
+
+        //显示某个月份的日期数
+
+        //到底根据什么来循环  --  根据月份最后一天循环
+
+        //找月份最后一天 setDate(0)
+        date.setMonth(date.getMonth()+1);
+        date.setDate(0);//获取的是上一个月的最后一天
+        var dayNum = date.getDate();
+        console.log(dayNum);
+
+        div.innerHTML = '['+(date.getMonth()+1)+']';
+        for(var i=0;i<dayNum;i++){
+            div.innerHTML += i+1+'--';
+        }
+    };
+
+    btns[1].onclick = function(){
+        //找下个月
+        num++;
+
+        var date = new Date();
+        //找上个月
+        date.setMonth(date.getMonth()+num);
+
+        console.log(date.getMonth()+1);
+
+        //显示某个月份的日期数
+
+        //到底根据什么来循环  --  根据月份最后一天循环
+
+        //找月份最后一天 setDate(0)
+        date.setMonth(date.getMonth()+1);
+        date.setDate(0);//获取的是上一个月的最后一天
+        var dayNum = date.getDate();
+        console.log(dayNum);
+
+        div.innerHTML = '['+(date.getMonth()+1)+']';
+        for(var i=0;i<dayNum;i++){
+            div.innerHTML += i+1+'--';
+        }
+    };
+
+
+
+    //显示某个月份的日期数
+
+    //到底根据什么来循环  --  根据月份最后一天循环
+
+    //找月份最后一天 setDate(0)
+    date.setMonth(date.getMonth()+1);
+    date.setDate(0);//获取的是上一个月的最后一天
+    console.log(date);
+    var dayNum = date.getDate();
+    console.log(dayNum);
+
+//    document.body.innerHTML += '<br />';
+    for(var i=0;i<dayNum;i++){
+//        document.body.innerHTML += i+1+'--';
+        div.innerHTML += i+1+'--';
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

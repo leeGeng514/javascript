@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 关系运算  < > >= <= == !=  ===  !==
+    *
+    * 1.运算结果只有布尔值  true false
+    * 2.=== !== 真等 真不等  会对比数据类型，凡是数据类型不同的直接返回false
+    * 3.字符串对比 先对比length  在对比ASCII大小
+    * 4.ASCII是所有字符串的数字对照表
+    *
+    * */
+
+//    console.log(1<2);// true
+//    console.log(1>2);// false
+//    console.log(1<=1);//true 1<1||1==1
+//    console.log(1>=1);//true
+//    console.log(1>1);//false
+//    console.log(1<1);//false
+
+//    console.log([1,1,3,5]>[1,2,3,4,6]);//逐个对比数组中的内容，无论返回true或者false，马上停止对比
+//    var a = {};
+//    var b = {};
+//    console.log({}=={});//false
+//    console.log({}>{});//false
+//    console.log({}<{});//false
+
+    console.log('abc'=='abc'); //true;
+    console.log('aBc'=='abc'); //false;
+    console.log('a'>'A'); //true
+    //字符串的比较运算  通过长度，转ASCII码之后的数字对比
+
+
+
+
+//    console.log(1==1); //true;
+//    console.log(1!=1); //false;
+//    console.log(1=='1'); //true;
+//    console.log('1'==1); //true;
+//
+//    var obj = {};
+//    var obj2 = obj;
+//    var obj3 = obj2;
+//
+//    var a;
+//    var b = null;
+//
+//    console.log(a==b);
+
+    /*
+      x标识左边值  y表示右边值
+    * 1.如果两边都是数字   直接对比数字大小
+    * 2.如果遇到字符串
+    *       a.对比字符串长度
+    *       b.如果长度相等就对比字符串
+    * 3.若x为null且y为undefined， 返回true。
+    *
+    * */
+
+
+//    console.log('1'===1); //false;
+    /*
+    * === !==
+    * 这种判断不会发生隐式转换
+    *
+    * */
+
+//    if(a=='1'){
+//        alert(111);
+//    }
+//
+//    console.log(1==='1');//false
+
+
+
+
+
+
+</script>
+</body>
+</html>

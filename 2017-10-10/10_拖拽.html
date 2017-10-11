@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}    
+</style>
+</head>
+<body>
+   <div id="box"></div>
+<script>
+    
+    function Drag(id){
+        var box = document.getElementById(id);
+        var disX = 0;
+        var disY = 0;
+        box.addEventListener('mousedown',down);
+        function down(ev){
+            disX = ev.clientX - this.offsetLeft;
+            disY = ev.clientY - this.offsetTop;
+
+            document.addEventListener('mousemove',move);
+            document.addEventListener('mouseup',up);
+            function move(ev){
+                box.style.left = ev.clientX - disX + 'px'; 
+                box.style.top = ev.clientY - disY + 'px';
+            }
+            function up(){
+                document.removeEventListener('mousemove',move);
+                document.removeEventListener('mouseup',up);
+                // alert(1);
+            }
+        }
+    }
+
+    Drag('box');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+    /*
+    * 数组有长度：length
+    *
+    * array.length 数组属性
+    *
+    * 数组的长度是可以设置
+    *
+    *
+    *
+    * */
+
+    var arr = [1,2,3,4,5];
+
+//    arr2 = arr;
+//
+//     arr2.length = 2;
+
+    //传值  传址
+    //基本数据类型是传值
+    //复合数据类型是传址
+
+     var arr2 = [];
+     //浅拷贝
+     for(var i=0;i<arr.length;i++){
+        arr2[i] = arr[i];
+     }
+
+    arr2.length = 2;
+
+    console.log('arr2--'+arr2);
+    console.log('arr --'+arr);
+
+    console.log(arr.length);
+
+
+    arr.length = 10;//[1, 2, 3, 4, 5, undefined × 5]
+
+    console.log(arr);
+
+    arr.length = 2;//[1, 2, 3, 4, 5, undefined × 5]
+
+    console.log(arr);
+
+    console.log(arr[1]);
+
+    arr.length = 5;
+
+    console.log(arr);
+
+    console.log(arr[1]);
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

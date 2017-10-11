@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="box">
+    <div class="a1">
+        <div class="a1"></div>
+        <ul>
+            <li>
+                <div>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="a1"></div>
+    <div class="a2"></div>
+    <ul>
+        <li></li>
+    </ul>
+    123
+</div>
+<div id="box2">
+    <div>2222</div>
+</div>
+<script>
+
+
+    /*
+    * node.children  获取节点的子元素
+    *
+    *
+    *
+    * */
+
+    var color = ['red','green']
+    var n = 0;
+
+    var dives = document.querySelectorAll('div');
+
+    console.log(dives[0].children[1].children);
+
+    findChild(dives[0]);
+
+
+
+    function findChild(obj){
+        n++;
+        obj.style.backgroundColor = color[n%2];
+
+        if(obj.children.length!=0){
+            for(var i=0;i<obj.children.length;i++){
+                findChild(obj.children[i]);
+            }
+
+        }
+
+
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

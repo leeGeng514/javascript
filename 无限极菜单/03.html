@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <style>
+    body,html,ul,li,h2 {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      list-style: none;
+    }
+    .menu-list {
+      position: absolute;
+      left: 100px;
+      top: 40px;
+      border: 1px solid #000;
+      padding: 0 4px;
+    }
+    .menu-list ul ul {
+      padding-left: 30px;
+      display: none;
+    }
+    .menu-list ul ul.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-list">
+    
+  </div>
+  <script src="data.js"></script>
+  <script>
+    var data = menuData;
+    var menuList = document.querySelector('.menu-list');
+    
+    menuList.innerHTML = createMenuList(data);
+    
+    // 利用数据生成所有的dom结构
+    function createMenuList(data){
+      var str = '<ul>';
+      // xxxxxxx
+      for(var i=0,len=data.length; i<len; i++){
+        str += '<li><h2><span>+</span>'+data[i].name+'</h2>';
+        
+        // 如果说这级菜单有子菜单，那么意味着当前data[i]的数据中有children并且这个children.length不是0
+        if(data[i].children && data[i].children.length){
+          str += createMenuList(data[i].children);
+        }
+        
+        str += '</li>';
+      }
+      
+      str += '</ul>';
+      return str;
+    }
+  
+    // --------------------------------------------
+    
+    // 获取到所有的标题
+    var captions = document.querySelectorAll('.menu-list h2');
+    
+    for(var i=0, len=captions.length; i<len; i++){
+      captions[i].onclick = function (){
+        // 获取到当前点击的这个标题的下一个列表
+        var nextSibling = this.nextElementSibling;
+        // 因为这个子菜单有可能不存在，如果不存在那么就终止代码继续执行
+        if(!nextSibling) return;
+        var menuStatus = this.firstElementChild;
+        // 找到同级别的所有的子菜单
+        var otherList = this.parentNode.parentNode.querySelectorAll('ul');
+
+        if(nextSibling.className === 'active'){
+          nextSibling.className = '';
+          menuStatus.innerHTML = '+';
+        }else{  // 先关闭所有，当当前的展开
+          for(var i=0,len=otherList.length; i<len; i++){
+            otherList[i].className = '';
+            otherList[i].previousElementSibling.firstElementChild.innerHTML = '+';
+          }
+          nextSibling.className = 'active';
+          menuStatus.innerHTML = '-';
+        }
+      };
+    }
+  
+  
+  
+  
+  </script>
+</body>
+</html>

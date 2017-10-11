@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+//函数自执行：  自动执行函数的方法 (匿名函数)()
+
+//(function(){alert(1)})();
+var i=10;
+(function(index){alert(index)})(i);
+
+i = 10;
+
+function fn1(index){
+    alert(index);
+}
+
+fn1(i);
+
+</script>
+</body>
+</html>

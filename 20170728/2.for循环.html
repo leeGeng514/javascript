@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:50px;
+            height:50px;
+            background:red;
+            text-align: center;
+            line-height: 50px;
+            color:#fff;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+    //10*10 div排列
+
+
+    var num=100;
+
+    var rowNum = -1;
+
+//    for(var i=0;i<num;i++){
+//        if(i%10==0){
+//            rowNum++;
+//        }
+//        document.body.innerHTML += '<div style="left:'+(i*60)+'px;top:'+(rowNum*60)+'px;"></div>';
+//
+//    }
+
+    for(var i=0;i<num;i++){
+        document.body.innerHTML += '<div style="left:'+(i%10*60)+'px;top:'+(parseInt(i/10)*60)+'px;"></div>';
+    }
+
+    /*
+    * i  :   00  01  02  03  04  05  06  07  08  09
+    *
+    *
+    *        10  11  12  13  14  15  16  17  18  19
+    *
+    *
+    *        20  21  22  23  24  25  26  27  28  29
+    *
+    * parseInt(1.1)  //1
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width:800px;
+            height:500px;
+            margin:auto;
+            overflow: hidden;
+        }
+        ul{
+            list-style: none;
+            overflow: hidden;
+            height:500px;
+            margin: 0;
+            padding:0;
+        }
+        li {
+            float: left;
+            width:800px;
+            height:500px;
+            position: relative;
+        }
+        p{
+            margin: 0;
+            background-color: rgba(0,0,0,.5);
+            text-align: center;
+            line-height: 100px;
+            height:100px;
+            position: absolute;
+            bottom:-100px;
+            width:100%;
+            color:#fff;
+            font-size:60px;
+        }
+        img{
+            display: block;
+            width:100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <ul>
+        <li>
+            <img src="img/1.jpg" alt="">
+            <p>1</p>
+        </li>
+        <li>
+            <img src="img/2.jpg" alt="">
+            <p>2</p>
+        </li>
+        <li>
+            <img src="img/3.jpg" alt="">
+            <p>3</p>
+        </li>
+        <li>
+            <img src="img/4.jpg" alt="">
+            <p>4</p>
+        </li>
+        <li>
+            <img src="img/5.jpg" alt="">
+            <p>5</p>
+        </li>
+        <li>
+            <img src="img/6.jpg" alt="">
+            <p>6</p>
+        </li>
+    </ul>
+</div>
+
+
+<script>
+
+
+    var ul = document.querySelector('ul');
+    var p = document.querySelectorAll('p');
+
+    var num = 0;//存当前显示的图片位置
+
+    //初始化ul宽度
+    ul.style.width = p.length*800+'px';
+
+    animForP();
+
+
+    //ul动画
+    function animForUl(){
+
+        var timer = 0;//定时器
+        var currSite = getCss(ul,'marginLeft');//运动前的位置
+        var speed = 10;     //'速度'  控制每次定时器调用时运动距离变化的值
+        var s = 0;//运动距离
+
+        timer = setInterval(function(){
+            s -= speed;//每20ms走10的距离
+            console.log(s);
+            if(s<=-800){
+                clearInterval(timer);
+                num++;
+                animForP();
+            }
+            ul.style.marginLeft = currSite+s+'px';
+        },20);
+    }
+
+
+    //p标签的动画
+    function animForP(){
+        var timer = 0;//定时器
+        var currSite = getCss(p[num],'bottom');//运动之前的位置
+        var speed = 2;//运动速度
+        var s = 0;//即将运动的总路程
+
+        timer = setInterval(function(){
+            s += speed;//每次运动到的位置
+            if(s>100){
+                s = 100;
+                clearInterval(timer);
+
+                if(num<p.length-1){
+                    //运动到位置，需要向下走,并且延时500ms
+                    setTimeout(function(){
+                        timer = setInterval(function(){
+                            s -= speed;//每次运动到的位置
+                            if(s<0){
+                                s = 0;
+                                clearInterval(timer);
+                                //当p标签消失的时候开始运动图片
+                                animForUl();
+                            }
+                            p[num].style.bottom = currSite+s+'px';
+                        },20)
+                    },1000);
+                }
+            }
+            p[num].style.bottom = currSite+s+'px';
+        },20)
+    }
+
+
+
+    //获取元素属性
+    function getCss(obj,attr){
+        return parseFloat(getComputedStyle(obj)[attr]);
+    }
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

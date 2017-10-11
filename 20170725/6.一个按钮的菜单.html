@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            border:2px solid #000;
+            width:300px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="显示/隐藏" id="toggle">
+<ul id="menu">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<script>
+    /*
+     * 需求：做一个能显示和隐藏的菜单
+     *
+     *
+     * */
+    //获取元素
+    var toggle = document.getElementById('toggle');
+    var menu = document.getElementById('menu');
+    var isShow = true; //保存菜单的初识状态
+
+    //添加事件
+//    menu.style.display='block';
+    toggle.onclick = function(){
+        //通过判断语句来分辨不同的情况
+        if(isShow==true){
+            menu.style.display = 'none';
+            isShow = false;
+        }else{
+            menu.style.display = 'block';
+            isShow = true;
+        }
+    };
+
+    //只用一个按钮？  如果 否则
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<span></span>
+<script>
+
+    /*
+    * e.oninput  输入框内容发生变化的时候触发
+    *
+    *
+    * */
+    var input = document.querySelector('input');
+    var span = document.querySelector('span');
+
+    input.oninput = function(){
+
+        /*
+        * 不能少于5个字符，
+        * 必须是数字
+        * */
+        if(this.value.length<5){
+            span.innerHTML = '不能少于5个字符，目前'+this.value.length+'个字符';
+        }else if(isNaN(this.value)){
+            span.innerHTML = '只能是数字，目前不是数字';
+        }else{
+            span.innerHTML = '';
+        }
+
+        console.log(this.value);
+
+    };
+    
+
+
+
+</script>
+</body>
+</html>

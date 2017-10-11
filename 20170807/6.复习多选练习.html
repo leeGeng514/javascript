@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background: mediumpurple;
+        }
+        #check-box{
+            width:800px;
+            height:auto;
+            margin:100px auto auto;
+            padding-bottom:20px;
+            background: #fff;
+            border:1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #000;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            height:60px;
+            line-height: 60px;
+            padding:0 15px;
+            overflow: hidden;
+        }
+        li .point{
+            float: left;
+            width: 50px;
+            height: 100%;
+        }
+        span{
+            display: inline-block;
+            width:20px;
+            height:20px;
+            border:4px solid #fff;
+            box-shadow: 0 0 1px red;
+            margin:16px 15px;
+            border-radius: 14px;
+            vertical-align: middle;
+            background: #fff;
+        }
+        span.active{
+            background: red;
+        }
+        li .music-name{
+            margin-left:60px;
+            margin-right:90px;
+            font-size:20px;
+        }
+        li .singer{
+            float: right;
+            width:80px;
+            height:100%;
+            font-size:20px;
+        }
+        .tool{
+            border-top:1px solid red;
+            height:50px;
+            padding:0 15px ;
+            line-height:50px;
+        }
+
+
+    </style>
+</head>
+<body>
+<!--布局-->
+<div id="check-box">
+    <ul>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class=""></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class=""></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class=""></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class=""></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class=""></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+        <li>
+            <div class="singer">邓紫棋</div>
+            <div class="point"><span class=""></span></div>
+            <div class="music-name">泡沫</div>
+        </li>
+    </ul>
+    <div class="tool">
+        <div class="check-all"><span></span> 全选</div>
+    </div>
+</div>
+<script>
+
+
+    //获取操作的元素
+    var list = document.querySelectorAll('li');
+    var checkAllBtn = document.querySelector('.check-all');
+
+    var checkNum = 0;
+
+    for(var i=0;i<list.length;i++){
+
+        //隔行变色
+        if(i%2){
+            list[i].style.backgroundColor = 'pink';
+            list[i].oldColor = 'pink';
+        }else{
+            list[i].style.backgroundColor = '#fff';
+            list[i].oldColor = '#fff';
+        }
+
+
+        list[i].onmouseover = function(){
+            this.style.backgroundColor = 'red';
+        };
+
+        list[i].onmouseout = function(){
+            if(!this.isClick){
+                this.style.backgroundColor = this.oldColor;
+            }
+        };
+
+        list[i].onclick = function(){
+            if(this.isClick){
+                this.isClick = false;
+                checkNum--;
+            }else{
+                this.isClick = true;
+                checkNum++;
+            }
+
+            if(checkNum==list.length){
+                checkAllBtn.querySelector('span').className='active';
+            }else{
+                checkAllBtn.querySelector('span').className='';
+            }
+//            this.querySelector('span').className = 'active';
+        };
+
+    }
+
+    checkAllBtn.onclick = function(){
+        if(checkNum==list.length){
+            for(var i=0;i<list.length;i++){
+                list[i].style.backgroundColor = list[i].oldColor;
+                list[i].isClick = false;
+            }
+            checkNum = 0;
+            this.querySelector('span').className = '';
+        }else{
+            for(var i=0;i<list.length;i++){
+                list[i].style.backgroundColor = 'red';
+                list[i].isClick = true;
+            }
+            checkNum = list.length;
+            this.querySelector('span').className = 'active';
+        }
+    };
+
+//    list[0].onmouseover = function(){
+//        list[0].style.backgroundColor = 'red';
+//    };
+//    list[0].onmouseout = function(){
+//        list[0].style.backgroundColor = '';
+//    };
+//    list[1].style.backgroundColor = 'pink';
+//    list[1].onmouseover = function(){
+//        list[1].style.backgroundColor = 'red';
+//    };
+//    list[1].onmouseout = function(){
+//        list[1].style.backgroundColor = 'pink';
+//    };
+
+</script>
+</body>
+</html>

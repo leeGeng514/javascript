@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin:100px auto auto;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script src="MTween.js"></script>
+<script>
+
+
+  var div = document.querySelector('div');
+
+
+  document.onclick = function(){
+      shake(div,'marginTop',20,5);
+  };
+
+
+  /*
+  * 抖动函数 shake(obj,attr,s,d)
+  *
+  * 被抖动的元素  obj
+  *
+  * 改变的属性  attr
+  *
+  * 偏移量    s
+  *
+  * 衰退值    d
+  *
+  *
+  * */
+
+  function shake(obj,attr,s,d){
+      //初始位置
+      var currSite = getCss(obj,attr);
+//      var arr = [30,-30,20,-20,10,-10,0];
+      var  arr = [];
+//      var d = 5;//衰退值
+      while(s-d>=0){
+
+          arr.push(s);
+          arr.push(-s);
+
+          //s的衰退
+          s = s-d;
+
+      }
+      arr.push(0);
+
+      var m = 0;
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+          m++;
+          if(m==arr.length-1){
+              clearInterval(obj.timer);
+          }
+          obj.style[attr] = currSite+arr[m]+'px';
+      },30)
+  }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

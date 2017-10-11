@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        body{
+            background-color: #7168C9;
+        }
+
+        #box{
+            width:800px;
+            overflow: hidden;
+            border:1px solid #fff;
+            border-radius:10px;
+            padding:10px;
+            margin:auto;
+        }
+        textarea{
+            width:780px;
+            padding:10px;
+            font-size:18px;
+            border:2px solid #666;
+            border-radius:10px;
+        }
+        input{
+            width:120px;
+            font-size:18px;
+            font-weight:600;
+            outline:none;
+            border:2px solid #fff;
+            line-height:40px;
+            background-color:#6DE0FD;
+            color:#fff;
+            border-radius:5px;
+            float: right;
+            margin-top:20px;
+        }
+        ul{
+            list-style: none;
+            padding:20px;
+            margin-top:50px;
+        }
+        li{
+            padding:10px 0;
+
+        }
+        img{
+            width:40px;
+            height:40px;
+            border-radius:20px;
+            vertical-align: middle;
+            float: left;
+        }
+        span{
+            position: relative;
+            line-height: 40px;
+            display: block;
+            background-color: #6DE0FD;
+            padding:0 5px;
+            border-radius:5px;
+            margin-left:50px;
+            color:#fff;
+            word-break: break-all;
+        }
+        em{
+            display: block;
+            width:10px;
+            height:10px;
+            background-color: #6DE0FD;
+            transform:rotateZ(45deg);
+            position:absolute;
+            top:15px;
+            left:-5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <textarea name="" cols="30" rows="10"></textarea>
+    <input type="button" value="提交">
+
+
+    <ul>
+        <!--<li><img src="1.jpg" alt=""><span>1234 <em>&nbsp;</em></span></li>-->
+        <!--<li><img src="2.jpg" alt=""><span>1234 <em>&nbsp;</em></span></li>-->
+        <!--<li><img src="1.jpg" alt=""><span>1234 <em>&nbsp;</em></span></li>-->
+    </ul>
+</div>
+
+
+
+
+
+<script>
+
+    /*
+      思路：
+    * 1.获取元素    textarea   button  ul
+    *
+    * 2. button 添加点击事件
+    *       a.获取textarea.value
+    *       b.创建li   img   span  em
+    *       c.li放到ul中  insertBefore
+    * */
+
+    //获取元素
+    var textBox = document.querySelector('textarea');
+    var btn = document.querySelector('input');
+    var ul = document.querySelector('ul');
+
+    //存储图片地址
+    var imgs = ['1.jpg','2.jpg'];
+
+    //当前要显示的头像地址
+    var avaSrc = imgs[0];//默认显示的头像图片地址
+
+    //添加按钮的事件
+    btn.onclick = function(){
+
+        //获取text内容
+        var text = textBox.value;
+
+
+        //留言盒子
+        var li = document.createElement('li');
+        //头像盒子
+        var img = document.createElement('img');
+        //文字框
+        var span = document.createElement('span');
+        //文字框的小尖尖
+        var em = document.createElement('em');
+
+        li.onclick = function(){
+            alert('我是之间就添加好的li');
+        };
+
+
+        //切换头像的功能
+        if(avaSrc=='1.jpg'){
+            avaSrc = '2.jpg';
+        }else{
+            avaSrc = '1.jpg';
+        }
+
+        //设置头像
+        img.src = avaSrc;
+
+        //把内容填到文字框
+        span.innerHTML = text;
+
+        //把小尖尖放到span中装饰起来
+        span.appendChild(em);
+//        span.insertBefore(em,null);//效果一样
+
+
+        //把内容组装到li中
+        li.appendChild(img);
+        li.appendChild(span);
+
+
+        //把组装好的元素对象 放到ul中
+//        ul.innerHTML = li;  错误的做法
+//        ul.appendChild(li);
+        //新的要放上面
+        ul.insertBefore(li,ul.firstElementChild);
+
+        //清空输入框
+        textBox.value = '';
+
+
+
+
+
+
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

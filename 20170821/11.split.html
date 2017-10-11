@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div>
+    通过一个指定的字符串把原字符串分割成一个数组
+</div>
+<script>
+
+
+    /*
+    * split
+     作用
+     通过一个指定的字符串把原字符串分割成一个数组
+     语法
+     array string.split([separator] [, limit])
+     参数
+     separator
+     分割符
+     limit
+     指定最多分割的数量，默认为全部
+     返回值
+     返回一个数组
+     当没有分割符的时候，整个字符串将作为一个整体保存到数组中
+
+     *
+    *
+    * */
+
+
+    var str = '妙味课堂';
+
+    console.log(str.split(''));//["妙", "味", "课", "堂"]
+    console.log(str.split('',2));//["妙", "味"]
+
+    console.log(str.split());//["妙味课堂"]
+
+
+    var div = document.querySelector('div');
+
+    var text = div.innerHTML;
+
+    var arr = text.split('分割');
+
+    console.log(arr);
+
+//    var str = '通过一个指定的字符串把原字符串'+'<span style="color:red;">分割</span>'+'成一个数组';
+    var str = '';
+
+
+//    div.innerHTML = str;
+
+    for(var i=0;i<arr.length;i++){
+        if(i==arr.length-1){
+
+            str += arr[i];
+        }else{
+            str += arr[i]+'<span style="color:red;">分割</span>';
+        }
+
+
+    }
+
+    div.innerHTML = str;
+
+
+
+
+
+
+</script>
+</body>
+</html>

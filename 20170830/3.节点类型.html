@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div style="background-color: red;" title="123" index="1">
+    内容
+    <!--注释-->
+</div>
+
+<script>
+
+    /*
+    * node.nodeType 节点类型
+    *
+    * 返回值是  ：  数字
+    *
+    * http://www.w3school.com.cn/jsref/prop_node_nodetype.asp
+    * 对照表
+    *
+    * 元素节点类型 -- 1
+    * 属性节点类型 -- 2
+    * 文本节点类型 -- 3
+    * 注释节点类型 -- 8
+    * 文档节点类型 -- 9
+    *
+    * node.attributes    节点的属性集合
+    *
+    * node.childNodes  子节点的集合
+    *
+    *
+    * */
+
+    var div = document.getElementsByTagName('div')[0];
+
+    //元素节点类型  --  1
+    console.log(div.nodeType);
+
+    //属性节点类型 -- 2
+    //attributes 是元素节点的属性集合
+    var attrs = div.attributes;
+
+    console.log(attrs[0].nodeType);  //2
+    console.log(attrs);  //2
+
+
+    //获取子节点  node.childNodes
+
+    console.log(div.childNodes);
+    var child = div.childNodes;
+
+    //文本节点类型  -- 3
+    console.log(child[0].nodeType);
+
+    //注释节点类型  -- 8
+    console.log(child[1].nodeType);
+
+    //文档节点类型  -- 9
+    console.log(document.nodeType);
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            color:#000;
+            text-decoration: none;
+        }
+
+        body,html{
+            width:100%;
+            height:100%;
+            overflow: hidden;
+        }
+
+        #header{
+            background-color: #F5F6F9;
+            border-bottom: 1px solid #E6E7EC;
+            position: relative;
+            height: 60px;
+        }
+        #wrap{
+
+        }
+        #nav{
+            width:199px;
+            border-right:1px solid red;
+            background-color: #fff;
+            overflow: hidden;
+            float: left;
+        }
+
+
+        #nav dt{
+            padding: 0 0 0 64px;
+            color: #74787C;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        #nav dd.active{
+            color:#00A4FF;
+        }
+
+        #nav dl{
+            margin-top:20px;
+        }
+
+        #nav dd a{
+            position: relative;
+            height: 32px;
+            line-height: 32px;
+            display: block;
+            padding: 0 0 0 80px;
+            color: #020202;
+        }
+        #nav dd a:hover{
+            text-decoration: none;
+            background: red;
+            transition: ease all;
+            transition-duration: .3s;
+        }
+        .main-icon-model{
+            padding:10px;
+            overflow: hidden;
+        }
+
+        .main-icon-model li{
+            margin:10px;
+            position: relative;
+            display: block;
+            height: 48px;
+            width:200px;
+            padding: 0 18px 0 7px;
+            border: 1px solid #D5D7DF;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border-radius: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            z-index: 3;
+            box-shadow: 0 5px 5px #ccc;
+            float: left;
+        }
+        .main-icon-model li em{
+            display: none;
+            color:#fff;
+            font-style: normal;
+            text-align: center;
+            cursor:pointer;
+            font-family: Consolas;
+        }
+
+        .main-icon-model li.active{
+            border-color:red;
+            display: block;
+        }
+        .main-icon-model li.active em{
+            position: absolute;
+            border: 1px solid red;
+            top:-1px;
+            right:-1px;
+            display: block;
+            width:20px;
+            height:20px;
+
+        }
+        .main-icon-model li.checked em{
+            background-color: red;
+        }
+
+        #main{
+            margin-left:200px;
+            overflow: hidden;
+        }
+
+        .currAddress{
+            height:40px;
+            line-height:40px;
+            padding:0 20px;
+        }
+        .currAddress div{
+            float: left;
+        }
+        .checkAll input{
+            width:20px;
+            height:20px;
+            vertical-align: middle;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<div id="header">头部</div>
+<div id="wrap">
+    <div id="nav">
+        <dl class="nav-menu">
+            <dd><a href="javascript:;">最近</a></dd>
+        </dl>
+    </div>
+    <div id="main">
+
+        <!--面包屑-->
+        <div class="currAddress">
+            <div class="checkAll"><input type="checkbox"> |&nbsp;</div>
+            <div class="breadcrumb">
+                <a href="javascript:;">微云</a> /
+                <a href="javascript:;">qq</a> /
+                <a href="javascript:;">收到的文件</a>
+            </div>
+        </div>
+
+        <ul class="main-icon-model">
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+
+    //生成页面   数据在data中
+
+    //1生成侧栏列表
+
+    var navBox = document.querySelector('#nav');
+
+    for(var i=0;i<data.length;i++){
+
+        var navHtml = document.createElement('dl');
+
+        navHtml.className = 'nav-menu';
+
+        var dtHtml = '<dt>'+data[i].title+'</dt>';
+
+        //通过for循环来添加子集
+        for(var j=0;j<data[i].child.length;j++){
+            dtHtml += '<dd route="'+data[i].child[j].route+'"><a href="javascript:;">'+data[i].child[j].title+'</a></dd>';
+        }
+        navHtml.innerHTML = dtHtml;
+        navBox.appendChild(navHtml);
+    }
+
+    //点击侧栏菜单，要在右边显示对应的内容
+
+    //需要给侧栏菜单  dd  添加点击事件
+
+    /*
+    * 说明：由于dd是通过字符串拼接出来的，所以无法再当时添加点击事件，
+    * 解决方案： 通过事件代理解决无法添加事件的问题
+    *
+    * 事件代理中的问题：  如何找到dd这个元素
+    *
+    * */
+
+    //把dd的事件代理给到祖父级
+    navBox.onclick = function(ev){
+
+        var dd = findEle(ev.target,'nodeName','dd');
+
+        var childDir = dd&&dd.getAttribute('route');
+
+        if(childDir){
+
+            //找到当前数据
+            var obj = findDataByRoute(childDir);
+            showBreadcrumb(obj.breadcrumb);
+            //把数据中的列表显示出来
+            showContent(obj.content.child);
+
+        }
+
+    };
+
+
+
+
+
+
+
+    /*
+    * 显示内容的逻辑
+    *
+    *   1.找要显示的数据
+    *       根据元素身上的route属性来查找数据
+    *
+    *
+    *   2.遍历显示数据
+    *
+    * */
+
+    //假设获取了route属性
+
+    var route = '0_0';
+
+    route = route.split('_');
+
+    console.log(route);
+
+    //根据route找内容
+    var showCon = data[route[0]].child[route[1]];
+//    console.log(showCon);
+
+//    findRoute(0)
+
+    //递归找到route的每一个值
+    //index 指route的下标
+
+    //递归过程
+       //route = [0,1,2];  length-1 = 2;
+    /*
+    * findRoute(0)
+    *    index(0)<length-1(2) --true-->
+    * findRoute(index(0)+1)  传入 1
+    *    index(1)<length-1(2) --true-->
+    * findRoute(index(1)+1)  传入 2
+    *    index(2)<length-1(2) --false-->
+    * console.log(route[index]);
+    *
+    *
+    *
+    * */
+
+
+    function findRoute(index){
+        if(index<route.length-1){
+            index += 1;
+            findRoute(index);
+        }else{
+            console.log(route[index]);
+        }
+    }
+
+    //根据找route的递归 实现找数据
+
+    route = '0_0';
+    route = route.split('_');
+//    findData(data,0);
+    /*
+    * 查找过程
+    *
+    * data  整个数据的集合
+    *
+    * route = [0,0,1]  2
+    *
+    * 1.
+    * findData(data,0);
+    *   dataJson = data;
+    *   index<route.length-1 -- true -->
+    *
+    * 2.
+    * findData(data[0].child,1);
+    *   dataJson = data[route[0]].child (data[0].child)
+    *
+    *   index<route.length-1 -- true -->
+    *
+    * 3.
+    * findData(data[0].child[0].child,2);
+     *   dataJson = data[0].child[0].child
+     *
+     *   index<route.length-1 -- false -->
+     *
+     *     console.log(dataJson[1]);
+     *
+     *
+    *
+    *
+    * */
+
+    function findData(dataJson,index){
+
+        if(index<route.length-1){
+            findData(dataJson[route[index]].child,index+1);
+        }else{
+            console.log(dataJson[route[index]]);
+        }
+
+    }
+
+
+
+    //页面刷新
+    countHeight();
+
+
+    //页面大小变化的时候
+    window.onresize = countHeight;
+
+
+    //列表移入移出交互效果
+    listHover();
+
+    //显示默认内容
+    var obj = findDataByRoute('0_0');
+    showBreadcrumb(obj.breadcrumb);
+    showContent(obj.content.child);
+
+
+
+
+
+    //计算内容高度
+    function countHeight(){
+        //头部高度
+        var headerH = document.querySelector('#header').offsetHeight;
+        var bodyH = document.querySelector('body').clientHeight;
+
+
+        //侧栏
+        var nav = document.querySelector('#nav');
+        var main = document.querySelector('#main')
+
+        nav.style.height = main.style.height = bodyH-headerH+'px';
+
+    }
+
+
+
+    /*************************************/
+
+
+    //显示内容
+    function showContent(childList){
+        //找到放内容的地方
+        var ul = document.querySelector('#main ul');
+
+        //拼接li
+        var liHtml = '';
+        for(var i=0;i<childList.length;i++){
+            liHtml += '<li route="'+childList[i].route+'">'+
+                '<span>'+childList[i].title+'</span>'+
+                '<em>√</em>'+
+                '</li>';
+        }
+        ul.innerHTML = liHtml;
+
+        listHover();
+    }
+
+
+
+    //列表移入移出的交互效果
+    function listHover(){
+
+        //图标模式的移入移出效果
+        var iconList = document.querySelectorAll('#main li');
+
+        for(var i=0;i<iconList.length;i++){
+            iconList[i].onmouseover = function(){
+                if(this.isClick) return;//如果被点击过  就不操作
+                this.className = 'active';
+            };
+            iconList[i].onmouseout = function(){
+                if(this.isClick) return;//如果被点击过  就不操作
+                this.className = '';
+            };
+
+            //标记点击
+            iconList[i].onclick = function(ev){
+
+                if(ev.target.nodeName.toLocaleLowerCase()=='em'){
+                    //被点击过
+                    if(this.isClick){
+                        //取消状态
+                        this.isClick = false;
+                        this.className = 'active';
+                    }else{
+                        this.isClick = true;
+                        this.className = this.className+' checked';
+                    }
+                }else{
+
+                    //找route属性值
+                    var childDir = this.getAttribute('route');
+                    if(childDir){
+                        //根据route属性获取内容
+                        var obj = findDataByRoute(childDir);
+
+                        showBreadcrumb(obj.breadcrumb);
+                        //根据获取的内容，渲染页面
+                        showContent(obj.content.child);
+                    }
+                }
+            };
+        }
+
+    }
+
+
+    //通过route找内容  同时记录当前文件的路径
+    function findDataByRoute(route){
+
+        route = route.split('_');
+
+        var obj={
+            content:'', //要被显示的内容对象
+            breadcrumb:'<a route="0_0" href="javascript:;">微云</a> &gt; ' //当前被显示内容的路径
+        };
+
+        findData(data,0);
+
+        //递归函数
+        function findData(dataJson,index){
+
+            if(index>1){
+                obj.breadcrumb += '<a route="'+dataJson[route[index]].route+'" href="javascript:;">'+dataJson[route[index]].title+'</a> &gt; ';
+            }
+
+
+            if(index<route.length-1){
+                findData(dataJson[route[index]].child,index+1);
+            }else{
+                obj.content = dataJson[route[index]];
+            }
+
+        }
+
+        console.log(obj);
+
+        //去掉多余的 >
+        obj.breadcrumb = obj.breadcrumb.slice(0,-5);
+
+
+        return  obj; //把data传出去
+
+    }
+
+    //显示面包屑的方法
+    function showBreadcrumb(html){
+        var box = document.querySelector('.breadcrumb');
+        box.innerHTML = html;
+
+        var breadA = box.querySelectorAll('a');
+
+        for(var i=0;i<breadA.length;i++){
+            breadA[i].onclick = function(){
+
+                //找route
+                var route = this.getAttribute('route');
+                if(route){
+                    var obj = findDataByRoute(route);
+                    showBreadcrumb(obj.breadcrumb);
+                    showContent(obj.content.child);
+                }
+
+            };
+        }
+
+
+    }
+
+
+    //找对应元素的方法
+    function findEle(ele,attr,value){
+
+        //如果父级不存在或者父级不是一个元素  说明找不到了 返回 undefined
+        if(ele==null||ele.nodeType!=1) return;
+
+
+        if(ele[attr].toLocaleLowerCase()==value.toLocaleLowerCase()){
+            return ele;
+        }
+
+        return findEle(ele.parentNode,attr,value);
+
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

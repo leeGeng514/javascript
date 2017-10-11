@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 随机函数
+    *
+    * number Math.random();
+    *
+    * 默认返回 0~1 之间的小数
+    *
+    * 0~x-1  parseInt(Math.random()*x)
+    *
+    * 0-x    Math.round(Math.random()*x)
+    *
+    * x~y    Math.round( Math.random()*(y-x)+x )
+    *
+    * 1~x    Math.ceil(Math.random()*x)
+    *
+    *
+    *
+    *
+    * */
+
+    console.log(Math.random());//0-1之间的小数
+
+    //0,1
+    console.log(Math.round(Math.random()));
+
+    //0-8
+    console.log(Math.random()*9);
+
+    //0-10  0-x Math.round(Math.random()*x)
+    console.log(Math.round(Math.random()*10));
+
+    //5-10
+    console.log(Math.round( Math.random()*5+5 ));
+
+    //10-100
+    console.log(Math.round( Math.random()*90+10 ));
+
+    //32-78  x~y Math.round( Math.random()*(y-x)+x )
+    console.log(Math.round( Math.random()*46+32 ));
+
+
+    //1-10
+    console.log(Math.ceil(Math.random()*10));
+
+
+    console.log(Math.floor(Math.random()*10));
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

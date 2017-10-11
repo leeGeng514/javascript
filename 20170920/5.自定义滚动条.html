@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .scrollBox {
+            width:500px;
+            height:400px;
+            overflow: hidden;
+            border:1px solid #000;
+            position: relative;
+        }
+
+        .content{
+            background-color: #6DE0FD;
+            position: absolute;
+            top:0;
+            left:0;
+            right:20px;
+        }
+
+        .scrollTool{
+            position: absolute;
+            width:2px;
+            right:9px;
+            top:20px;
+            bottom:20px;
+            background-color: #000;
+        }
+
+        .scroll{
+            width:10px;
+            height:100px;
+            background-color: red;
+            position: absolute;
+            top:0;
+            left:-4px;
+            border-radius: 5px;
+        }
+
+        a{
+            position: absolute;
+            display: block;
+            width:18px;
+            height:18px;
+            border: 1px solid #000;
+            right:0;
+            top:0;
+            text-align: center;
+            line-height: 18px;
+        }
+        a:nth-of-type(2){
+            top: auto;
+            bottom:0;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="scrollBox">
+
+    <div class="content">
+
+        <ul>
+            <li style="background-color: yellow;">000000000001</li>
+            <li>000000000002</li>
+            <li>000000000003</li>
+            <li>000000000004</li>
+            <li>000000000005</li>
+            <li>000000000006</li>
+            <li>000000000007</li>
+            <li>000000000008</li>
+            <li>000000000009</li>
+            <li>000000000010</li>
+            <li>000000000011</li>
+            <li>000000000012</li>
+            <li>000000000013</li>
+            <li>000000000014</li>
+            <li>000000000015</li>
+            <li>000000000016</li>
+            <li>000000000017</li>
+            <li>000000000018</li>
+            <li>000000000019</li>
+            <li>000000000020</li>
+            <li>000000000021</li>
+            <li>000000000022</li>
+            <li>000000000023</li>
+            <li>000000000024</li>
+            <li>000000000025</li>
+            <li>000000000026</li>
+            <li>000000000027</li>
+            <li>000000000028</li>
+            <li>000000000029</li>
+            <li>000000000030</li>
+            <li>000000000031</li>
+            <li>000000000032</li>
+            <li>000000000033</li>
+            <li>000000000034</li>
+            <li>000000000035</li>
+            <li>000000000036</li>
+            <li>000000000037</li>
+            <li>000000000038</li>
+            <li>000000000039</li>
+            <li>000000000040</li>
+            <li>000000000041</li>
+            <li>000000000042</li>
+            <li>000000000043</li>
+            <li>000000000044</li>
+            <li>000000000045</li>
+            <li>000000000046</li>
+            <li>000000000047</li>
+            <li>000000000048</li>
+            <li>000000000049</li>
+            <li>000000000050</li>
+            <li>000000000051</li>
+            <li>000000000052</li>
+            <li>000000000053</li>
+            <li>000000000054</li>
+            <li>000000000055</li>
+            <li>000000000056</li>
+            <li>000000000057</li>
+            <li>000000000058</li>
+            <li>000000000059</li>
+            <li>000000000060</li>
+            <li>000000000061</li>
+            <li>000000000062</li>
+            <li>000000000063</li>
+            <li>000000000064</li>
+            <li>000000000065</li>
+            <li>000000000066</li>
+            <li>000000000067</li>
+            <li>000000000068</li>
+            <li>000000000069</li>
+            <li>000000000070</li>
+            <li>000000000071</li>
+            <li>000000000072</li>
+            <li>000000000073</li>
+            <li>000000000074</li>
+            <li>000000000075</li>
+            <li>000000000076</li>
+            <li>000000000077</li>
+            <li>000000000078</li>
+            <li>000000000079</li>
+            <li>000000000080</li>
+            <li>000000000081</li>
+            <li>000000000082</li>
+            <li>000000000083</li>
+            <li>000000000084</li>
+            <li>000000000085</li>
+            <li>000000000086</li>
+            <li>000000000087</li>
+            <li>000000000088</li>
+            <li>000000000089</li>
+            <li>000000000090</li>
+            <li>000000000091</li>
+            <li>000000000092</li>
+            <li>000000000093</li>
+            <li>000000000094</li>
+            <li>000000000095</li>
+            <li>000000000096</li>
+            <li>000000000097</li>
+            <li>000000000098</li>
+            <li>000000000099</li>
+            <li>000000000100</li>
+            <li>000000000001</li>
+            <li>000000000002</li>
+            <li>000000000003</li>
+            <li>000000000004</li>
+            <li>000000000005</li>
+            <li>000000000006</li>
+            <li>000000000007</li>
+            <li>000000000008</li>
+            <li>000000000009</li>
+            <li>000000000010</li>
+            <li>000000000011</li>
+            <li>000000000012</li>
+            <li>000000000013</li>
+            <li>000000000014</li>
+            <li>000000000015</li>
+            <li>000000000016</li>
+            <li>000000000017</li>
+            <li>000000000018</li>
+            <li>000000000019</li>
+            <li>000000000020</li>
+            <li>000000000021</li>
+            <li>000000000022</li>
+            <li>000000000023</li>
+            <li>000000000024</li>
+            <li>000000000025</li>
+            <li>000000000026</li>
+            <li>000000000027</li>
+            <li>000000000028</li>
+            <li>000000000029</li>
+            <li>000000000030</li>
+            <li>000000000031</li>
+            <li>000000000032</li>
+            <li>000000000033</li>
+            <li>000000000034</li>
+            <li>000000000035</li>
+            <li>000000000036</li>
+            <li>000000000037</li>
+            <li>000000000038</li>
+            <li>000000000039</li>
+            <li>000000000040</li>
+            <li>000000000041</li>
+            <li>000000000042</li>
+            <li>000000000043</li>
+            <li>000000000044</li>
+            <li>000000000045</li>
+            <li>000000000046</li>
+            <li>000000000047</li>
+            <li>000000000048</li>
+            <li>000000000049</li>
+            <li>000000000050</li>
+            <li>000000000051</li>
+            <li>000000000052</li>
+            <li>000000000053</li>
+            <li>000000000054</li>
+            <li>000000000055</li>
+            <li>000000000056</li>
+            <li>000000000057</li>
+            <li>000000000058</li>
+            <li>000000000059</li>
+            <li>000000000060</li>
+            <li>000000000061</li>
+            <li>000000000062</li>
+            <li>000000000063</li>
+            <li>000000000064</li>
+            <li>000000000065</li>
+            <li>000000000066</li>
+            <li>000000000067</li>
+            <li>000000000068</li>
+            <li>000000000069</li>
+            <li>000000000070</li>
+            <li>000000000071</li>
+            <li>000000000072</li>
+            <li>000000000073</li>
+            <li>000000000074</li>
+            <li>000000000075</li>
+            <li>000000000076</li>
+            <li>000000000077</li>
+            <li>000000000078</li>
+            <li>000000000079</li>
+            <li>000000000080</li>
+            <li>000000000081</li>
+            <li>000000000082</li>
+            <li>000000000083</li>
+            <li>000000000084</li>
+            <li>000000000085</li>
+            <li>000000000086</li>
+            <li>000000000087</li>
+            <li>000000000088</li>
+            <li>000000000089</li>
+            <li>000000000090</li>
+            <li>000000000091</li>
+            <li>000000000092</li>
+            <li>000000000093</li>
+            <li>000000000094</li>
+            <li>000000000095</li>
+            <li>000000000096</li>
+            <li>000000000097</li>
+            <li>000000000098</li>
+            <li>000000000099</li>
+            <li style="background-color: green">000000000100</li>
+        </ul>
+
+
+
+
+
+
+
+    </div>
+
+    <div class="scrollTool">
+        <div class="scroll"></div>
+    </div>
+    <a href="javascript:;">上</a>
+    <a href="javascript:;">下</a>
+
+
+
+
+
+
+</div>
+
+
+
+
+<script>
+
+    var scrollBox = document.querySelector('.scrollBox');
+    var contentBox = scrollBox.querySelector('.content');
+    var scrollToolBox = scrollBox.querySelector('.scrollTool');
+
+    //滚动条
+    var tool = scrollToolBox.querySelector('.scroll');
+
+    //滚动条的滚动速度
+    var speed = 100;
+
+
+
+
+    /*
+    * 1.设置滚动条高度
+    * scrollH = scrollBoxH/contentH*scrollToolH
+    * */
+    tool.style.height = scrollBox.clientHeight/contentBox.offsetHeight*scrollToolBox.clientHeight+'px';
+
+console.log(scrollBox.clientHeight/contentBox.offsetHeight);
+    //最大可滚动距离（滚动条）
+    var scrollMaxH = scrollToolBox.clientHeight - tool.offsetHeight;
+
+    //最大可滚动距离（内容）
+    var contentMaxH = contentBox.offsetHeight-scrollBox.clientHeight;
+
+
+
+
+    //上下按钮操作
+    var a = document.querySelectorAll('a');
+
+    a[0].onclick = function(){
+        //滚动条的变化
+        var t = tool.offsetTop-speed;
+
+
+        if(t<0){
+
+            t=0;
+
+        }
+
+
+        contentBox.style.top = -t/scrollMaxH*contentMaxH+'px';
+
+
+        tool.style.top = t +'px';
+    };
+
+
+    a[1].onclick = function(){
+        //滚动条的变化
+        var t = tool.offsetTop+speed;
+
+        if(t>scrollMaxH){
+
+            t=scrollMaxH;
+
+        }
+
+        /*
+         滚动条的可滚动距离为  H1 => scrollMaxH   已滚动距离为  h1 => t
+         *
+         *    内容可滚动距离为   H2 => contentMaxH
+         *
+         *h2 = h1/H1*H2  总公式
+         * */
+
+        contentBox.style.top = -t/scrollMaxH*contentMaxH+'px';
+
+
+        tool.style.top = t +'px';
+    };
+
+
+
+    /*
+    * 滚轮操作滚动条运动
+    *
+    *
+    * */
+
+    scroll({
+        obj:scrollBox,
+        down:function(ev){
+
+            //滚动条的变化
+            var t = tool.offsetTop+speed;
+
+            if(t>scrollMaxH){
+
+                t=scrollMaxH;
+
+            }
+
+            /*
+             滚动条的可滚动距离为  H1 => scrollMaxH   已滚动距离为  h1 => t
+             *
+             *    内容可滚动距离为   H2 => contentMaxH
+             *
+             *    h2 = h1/H1*H2  总公式
+            * */
+
+            contentBox.style.top = -t/scrollMaxH*contentMaxH+'px';
+            console.log(-t/scrollMaxH*contentMaxH);
+
+
+            tool.style.top = t +'px';
+        },
+        up:function(ev){
+
+
+            //滚动条的变化
+            var t = tool.offsetTop-speed;
+
+
+            if(t<0){
+
+                t=0;
+
+            }
+
+
+            contentBox.style.top = -t/scrollMaxH*contentMaxH+'px';
+
+
+            tool.style.top = t +'px';
+
+
+        }
+    });
+
+
+    /*
+    * 拖拽控制滚动条
+    *
+    * */
+
+    tool.onmousedown = function(ev){
+
+        //鼠标点下去的位置
+        var y1 = ev.clientY;
+
+        var currSite = this.offsetTop;
+
+        document.onmousemove = function(ev){
+
+            var y2 = ev.clientY;
+
+            var t = y2-y1+currSite;
+
+            if(t<0){
+                t=0;
+            }
+            if(t>scrollMaxH){
+                t = scrollMaxH;
+            }
+
+            contentBox.style.top = -t/scrollMaxH*contentMaxH+'px';
+
+            tool.style.top = t+'px';
+
+            return false;
+
+        };
+
+    };
+
+    document.onmouseup = function(){
+
+        document.onmousemove = null;
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    * 自定义滚动条元素：
+    *
+    * 滚动条滚动了多少距离  内容框就要滚动对应比例的距离
+    *
+    * 已知：
+    *    滚动条的可滚动距离为  H1   已滚动距离为  h1
+    *
+    *    内容可滚动距离为   H2
+    *
+    *    计算内容需要滚动的距离  h2
+    *
+    *    h2 = h1/H1*H2  总公式
+    *
+    *    //获取H1
+    *    H1 = 滚动条的父级高度 - 滚动条高度
+    *
+    *    //获取以滚动高度
+    *    h1 = 滚动条高度.offsetTop;
+    *
+    *
+    *    //内容的可滚动距离
+    *    H2 = contentBox.offsetHeight - contentBoxParent.clientHeight;
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+
+
+
+
+
+
+
+    /*
+    * 鼠标滚轮事件   onmousewheel  (ie ,  chrome)
+    *
+    *               DOMMouseScroll (火狐的滚轮事件)
+    *                   需要通过addEventListener来添加
+    *
+    * wheelDelta  记录的滚动方向  和 滚动距离  （分正负的数字）
+    *
+    * 负数  代表向下滚动
+    * 正数  代表向上滚动
+    *
+    *
+    * ie  wheelDelta -120 向下  120  向上
+    *
+    * chrome  wheelDelta -120  向下  120 向上
+    *
+    *
+    * 火狐：detail  3 -3
+    *
+    * 正数代表 向下   负数 代表向上
+    *
+    *
+    *
+    *
+    * */
+
+
+
+    //滚轮事件函数
+
+    /*
+    * option: 是参数集合 是一个对象
+    *
+    * option:
+    *   {
+    *       obj:null,  //要操作的元素
+    *       down:null, //向下滚动的函数
+    *       up:null //向上滚动的函数
+    *   }
+    *
+    *
+    * */
+
+    function scroll(option){
+
+        //如果用户没有传obj 就默认为document
+        if(option.obj==null){
+            option.obj = document;
+        }
+
+        option.obj.onmousewheel = function(ev){
+
+
+            if(ev.wheelDelta>0){
+                console.log('向上滚动22222');
+
+                if(option.up!=null){
+                    option.up(ev);
+                }
+
+            }
+
+            if(ev.wheelDelta<0){
+                console.log('向下滚动22222222');
+
+                if(option.down!=null){
+                    option.down(ev);
+                }
+
+            }
+
+            //阻止默认行为
+            return false;
+
+
+        };
+
+        option.obj.addEventListener('DOMMouseScroll',function(ev){
+
+            if(ev.detail<0){
+                console.log('向上滚动111111111');
+                if(option.up!=null){
+                    option.up(ev);
+                }
+            }
+            if(ev.detail>0){
+                console.log('向下滚动11111111');
+                if(option.down!=null){
+                    option.down(ev);
+                }
+            }
+
+            //阻止默认行为
+            ev.preventDefault();
+
+
+        },false)
+
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+  div{
+      padding: 100px;
+  }
+  #div1{
+      background: red;
+  }
+  #div2{
+      background: yellow;
+  }
+  #div3{
+      background: green;
+  }
+</style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+<script>
+   
+   var divs = document.getElementsByTagName('div');
+    /*
+        ***到了目标阶段，目标元素绑定事件之后，执行是按照
+        绑定的先后顺序来的，并不是先捕获后冒泡。
+
+        当某个事件被触发的时候，那么会从window由上而下流向
+        目标元素（捕获），到达目标元素之后，从目标元素由下而上
+        流向window的整个过程（冒泡）称为事件模型也称为事件流。
+    */
+//    divs[0].addEventListener('click',function(){
+//        alert('red');
+//    },true);
+//    divs[1].addEventListener('click',function(){
+//        alert('Y');
+//    },true);
+   divs[2].addEventListener('click',gg2,false);
+   divs[2].addEventListener('click',gg,true);
+//    divs[2].addEventListener('click',gg,true);
+   divs[2].addEventListener('click',function(){
+       alert('gg4');
+   },false);
+   divs[2].addEventListener('click',function(){
+       alert('gg3');
+   },true);
+   function gg(){
+       alert('G');
+   }
+   function gg2(){
+       alert('G22');
+   }
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height:100px;
+            background-color: red;
+        }
+    </style>
+    <script src="../../课件/20170814/tween.js"></script>
+</head>
+<body>
+<input type="button" value="向右运动">
+<div></div>
+<script>
+
+    var btn = document.querySelector('input');
+    var div = document.querySelector('div');
+
+    btn.onclick = function(){
+        MTween();
+    };
+
+    /*
+    * 运动函数
+    * */
+
+    function MTween(){
+
+        //开启定时器之前必须先关闭定时
+        clearInterval(div.timer);
+
+        var start =  getCss(div,'marginLeft');
+        var speed = 10;
+        var s = 0;
+
+        div.timer = setInterval(function(){
+            s += speed;
+            if(s>=800){
+                s = 800;
+                clearInterval(div.timer);
+            }
+            div.style.marginLeft = start+s+'px';
+        },30);
+    }
+
+    function getCss(obj,attr){
+        return parseFloat(getComputedStyle(obj)[attr]);
+    }
+    
+</script>
+</body>
+</html>

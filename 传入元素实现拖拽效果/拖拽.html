@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        div{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+    /************** 传入元素 实现拖拽效果 *******************/
+    function drag(obj) {
+        //获取传入元素
+        var box=document.querySelector(obj);
+        //给传入元素添加mousedown事件
+        box.addEventListener('mousedown',down,false);
+        //mousedown事件
+        function down(event) {
+            //计算出鼠标在元素上按下的位置
+            var disY=event.clientY-box.offsetTop;
+            var disX=event.clientX-box.offsetLeft;
+            //在document上添加mousemove事件 防止鼠标移动速度过快 脱离目标元素
+            document.addEventListener('mousemove',move,false);
+            //mousemove事件
+            function move(event) {
+                //设置元素的 lefy top 值   value= 鼠标移动时的坐标 - 鼠标按下时的坐标
+                box.style.left=event.clientX-disX+'px';
+                box.style.top=event.clientY-disY+'px';
+            }
+            //绑定鼠标抬起事件
+            document.addEventListener('mouseup',up,false);
+            function up() {
+                //解绑 move up 事件
+                document.removeEventListener('mousemove',move,false);
+                document.removeEventListener('mouseup',up,false);
+            }
+        }
+    }
+
+    drag('div');
+
+</script>
+</body>
+</html>

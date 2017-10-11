@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<script>
+
+
+    /*
+    *
+    * input.blur()
+     设置input失去焦点
+    *
+    * */
+
+    var input = document.querySelector('input');
+
+    input.oninput = function(){
+
+
+        if(this.value.length>5){
+
+            alert('输入完成');
+            this.blur();
+
+        }
+
+
+    };
+
+    
+
+
+
+</script>
+</body>
+</html>

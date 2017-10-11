@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul,div{
+            float: left;
+        }
+        ul{
+            border:1px solid #000;
+            width:200px;
+            list-style: none;
+            padding:0;
+        }
+        li{
+            border-bottom:1px solid #ccc;
+            padding: 10px;
+        }
+        div{
+            margin-top:100px;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<div>
+    <input type="button" value="左移">
+    <br>
+    <br>
+    <input type="button" value="右移">
+</div>
+<ul>
+    <li>01</li>
+    <li>02</li>
+    <li>03</li>
+    <li>04</li>
+    <li>05</li>
+    <li>06</li>
+    <li>07</li>
+    <li>08</li>
+    <li>09</li>
+    <li>10</li>
+</ul>
+
+
+
+
+<script>
+
+
+/*
+* 左移
+*   1.选择移动的元素
+*       点击元素 标记成要移动的状态
+*       如果已经是要移动的状态，就取消该状态
+*
+*       //给每个添加点击事件
+*           如果被标记  就取消 否则 就标记
+*
+*
+*
+* 右移
+*
+*    1.选择移动的元素
+ *       点击元素 标记成要移动的状态
+ *       如果已经是要移动的状态，就取消该状态
+ *
+ *       //给每个添加点击事件
+ *           如果被标记  就取消 否则 就标记
+*
+*
+*
+* */
+
+    var ul = document.querySelectorAll('ul');
+
+    var btns = document.querySelectorAll('input');
+
+    var leftLi = ul[0].querySelectorAll('li');
+
+    var rightLi = ul[1].querySelectorAll('li');
+//    var lis = document.querySelectorAll('li');
+
+    //添加事件
+    //li  标记是否要移动
+    for(var i=0;i<leftLi.length;i++){
+        leftLi[i].onclick = function(){
+            if(this.ischecked){
+                //为真表示已经被选中，取消该状态
+                this.ischecked = false;
+
+                this.style.backgroundColor = '';
+
+            }else{
+                //没有被选中的时候，就标记为选中状态
+                this.ischecked = true;
+
+                this.style.backgroundColor = '#ccc';
+            }
+
+        };
+    }
+
+    for(var i=0;i<rightLi.length;i++){
+        rightLi[i].onclick = function(){
+            if(this.ischecked){
+                //为真表示已经被选中，取消该状态
+                this.ischecked = false;
+
+                this.style.backgroundColor = '';
+
+            }else{
+                //没有被选中的时候，就标记为选中状态
+                this.ischecked = true;
+
+                this.style.backgroundColor = '#ccc';
+            }
+
+        };
+    }
+
+    btns[1].onclick = function(){
+        //把左边被选中的移动到右边
+        leftLi = ul[0].querySelectorAll('li');
+
+        for(var i=leftLi.length-1;i>=0;i--){
+
+            //判断一下  看看那些事不需要被移动的
+            if(leftLi[i].ischecked){
+
+                leftLi[i].style.backgroundColor = '';
+                leftLi[i].ischecked = false;
+
+                ul[1].insertBefore(leftLi[i],ul[1].firstElementChild);
+
+            }
+        }
+
+    };
+
+btns[0].onclick = function(){
+    //把左边被选中的移动到右边
+    rightLi = ul[1].querySelectorAll('li');
+
+    for(var i=rightLi.length-1;i>=0;i--){
+
+        //判断一下  看看那些事不需要被移动的
+        if(rightLi[i].ischecked){
+
+            rightLi[i].style.backgroundColor = '';
+            rightLi[i].ischecked = false;
+
+            ul[0].insertBefore(rightLi[i],ul[0].firstElementChild);
+        }
+    }
+
+
+
+};
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

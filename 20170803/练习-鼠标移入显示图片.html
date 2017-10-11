@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 80px;
+            height:80px;
+            border:1px solid #000;
+            position: absolute;
+            background-size:800px 800px;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+
+    /*
+    * 需求：
+    *   1.生成10*10的div
+    *   2.每个div都加上同一个背景图片，并且把背景图调整到合适位置
+    *   3.鼠标移入的时候显示背景图
+    *
+    *
+    *
+    *
+    * 注意：
+    *   1.如果是通过字符串 += 的形式添加元素，一定要：先添加完所有元素，再获取，用来做其他的操作
+    *
+    *
+    *
+    * */
+
+    //生成的div
+    for(var i=0;i<10;i++){
+        for(var j=0;j<10;j++){
+            document.body.innerHTML += '<div style="left:'+j*100+'px;top:'+i*100+'px;background-position:'+ (-j*80) +'px '+ (-i*80) +'px"></div>';
+        }
+    }
+
+    //获取元素  必须是在元素生成完之后获取
+    var dives = document.querySelectorAll('div');
+
+    //添加事件
+    for(var i=0;i<dives.length;i++){
+        dives[i].onmouseover = function () {
+            this.style.backgroundImage = 'url(16.jpg)';
+        }
+    }
+
+
+
+//    document.body.innerHTML += '<div style="left:'+0*85+'px;top:'+0*85+'px;background-position:'+ (-0*80) +'px '+ (-0*80) +'px"></div>';
+//    var dives = document.querySelectorAll('div');
+//    dives[0].onmouseover = function(){
+//        this.style.backgroundImage = 'url(16.jpg)';
+//    };
+//
+//    document.body.innerHTML =  '<div style="left: 0px; top: 0px; background-position: 0px 0px; background-image: url(&quot;16.jpg&quot;);"></div>'+'<div style="left:'+1*85+'px;top:'+0*85+'px;background-position:'+ (-1*80) +'px '+ (-0*80) +'px"></div>';
+//
+//    var dives = document.querySelectorAll('div');
+//    dives[1].onmouseover = function(){
+//        this.style.backgroundImage = 'url(16.jpg)';
+//    };
+
+
+
+</script>
+</body>
+</html>

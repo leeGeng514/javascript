@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+    //找到  0~500   100个随机数
+
+    //1.找10个随机数
+    //2.随机范围是 10-20
+    //3.不允许重复
+
+
+    /*
+    * for  100次
+    *
+    * 取 0-500 随机数
+    *
+    * 用数组存
+    *
+    * */
+
+    var arr = [];
+
+//    for(var i=0;i<10;i++){
+//
+//        var num = Math.round( Math.random()*10 );
+//
+//        //默认不存在
+//        var isHas = false;
+//
+//
+//        //查找是否存在
+//        for(var j=0;j<arr.length;j++){
+//            if(arr[j]==num){
+//                isHas = true;
+//            }
+//        }
+//
+//        if(!isHas){
+//            arr.push(num);
+//        }else{
+//            i--;
+//        }
+//
+//    }
+
+    while(arr.length<10){
+
+        var num = Math.round( Math.random()*10 );
+
+//        //默认不存在
+//        var isHas = false;
+//
+//        //查找是否存在
+//        for(var j=0;j<arr.length;j++){
+//            if(arr[j]==num){
+//                isHas = true;
+//            }
+//        }
+
+        if(arrIndexOf(arr,num)==-1){
+            arr.push(num);
+        }
+
+    }
+
+    console.log(arr);
+
+
+//    'abcdefa'.indexOf('a'); //0  -1
+
+    function arrIndexOf(array,par){
+        for(var j=0;j<array.length;j++){
+            if(array[j]==par){
+                return j;
+            }
+        }
+
+        return -1;
+
+    }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

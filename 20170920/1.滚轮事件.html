@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+
+    /*
+    * 鼠标滚轮事件   onmousewheel  (ie ,  chrome)
+    *
+    *               DOMMouseScroll (火狐的滚轮事件)
+    *                   需要通过addEventListener来添加
+    *
+    * wheelDelta  记录的滚动方向  和 滚动距离  （分正负的数字）
+    *
+    * 负数  代表向下滚动
+    * 正数  代表向上滚动
+    *
+    *
+    * ie  wheelDelta -120 向下  120  向上
+    *
+    * chrome  wheelDelta -120  向下  120 向上
+    *
+    *
+    * 火狐：detail  3 -3
+    *
+    * 正数代表 向下   负数 代表向上
+    *
+    *
+    *
+    *
+    * */
+
+    console.log(window.onmousewheel);
+
+    document.onmousewheel = function(ev){
+
+
+        console.log(ev);
+        console.log(ev.wheelDelta);
+
+
+    };
+
+    //火狐必须用
+    document.addEventListener('DOMMouseScroll',function(ev){
+        console.log(ev);
+        console.log(ev.wheelDelta); //detail
+
+                //detail:3
+    },false)
+
+
+
+
+
+
+</script>
+</body>
+</html>

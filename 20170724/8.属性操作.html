@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background:red;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box" index="1" class="box1" style="background-color:red;"><span>1233</span></div>
+<img id="img1" src="1.jpg" alt="">
+<a href="baidu.com"></a>
+<script>
+
+    /*
+    * 属性操作：   获取属性（查），添加属性（增），修改属性（改），删除属性（删）
+    * 增删改查
+    *
+    * 常见的属性： id,class,value,style,innerHTML,src,href
+    *
+    *  查看属性的方式
+    *   1 .  box.style.background
+    *   2 []
+    *
+    *   1.页面上的自定义属性无法获取
+    *   2.src，href 获取的内容是绝对地址
+    *   3.元素身上有很多其他的属性是不会直接显示在页面上
+    *
+    *
+    * */
+    //获取元素
+    var box = document.getElementById('box');
+
+//    box.style.height = '200px'; //增
+//
+//    box.style.height = ''; //删
+
+    console.log(box.style.backgroundColor);
+    console.log(box['style']["background-color"]);
+
+//    box.innerHTML
+    box.index = 1; //元素的自定义属性
+    console.log(box.index);
+
+    //获取图片
+    var img = document.getElementById('img1');
+
+    console.log(img['src']);
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

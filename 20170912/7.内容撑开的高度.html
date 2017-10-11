@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box{
+            width:500px;
+            height:500px;
+            border:10px solid #000;
+            /*overflow: auto;*/
+        }
+
+        #box2{
+            width:500px;
+            height:500px;
+            border:10px solid #000;
+            padding:10px;
+            overflow: scroll;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div id="box">
+        1111122
+    <div id="box2"></div>
+
+</div>
+
+<script>
+
+
+    /*
+    *内容高度 : 被内容所撑出来的高度
+     document.body.scrollHeight
+
+     *
+    *
+    * */
+
+    var box = document.querySelector('#box');
+
+    var box2 = document.querySelector('#box2')
+
+    console.log(box.clientHeight,box.scrollHeight);
+    console.log(box2.offsetWidth,box2.offsetHeight);
+
+
+    //计算滚动高度的方式
+
+    //clientHeight  不包括边框的高度
+    //offsetHeight  包括边框的高度
+
+    //公式： 内容高度 - 可视区域高度
+
+    var st = box.scrollHeight - box.clientHeight;
+    var st2 = box.scrollHeight - box.offsetHeight;//错误的计算
+
+//    console.log(st,st2);
+
+    box.scrollTop = st;
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

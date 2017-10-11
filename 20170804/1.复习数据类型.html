@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 1.有多少种数据类型：6种
+    * 2.分别是什么：
+    *
+    *       基本类型：传值
+    *       字符串类型  引号包起来的数据  'asdf"s:"adf1222数字'
+    *       数字类型    0 1 2 3...   -1 -2 -3
+    *           最大值
+    *           Number.MAX_VALUE 1.7976931348623157e+308
+    *           最小值
+    *           Number.MIN_VALUE 5e-324
+    *           最大安全值
+    *           Number.MAX_SAFE_INTEGER   +9007199254740991
+    *           最小安全值
+    *           Number.MIN_SAFE_INTEGER   -9007199254740991
+    *
+    *           js的小数运算不一定准确
+    *           0.2*0.1 0.020000000000000004
+
+    *       布尔值类型  true false
+    *       空类型      null
+    *       未定义类型  undefined
+    *
+    *       引用类型：传址
+    *       对象类型： {},[],function
+    *           {
+    *               "fun":function(){}, //方法
+    *               "str":"asssd", //属性
+    *               "num":1234,
+    *               "bool":false
+    *           }
+    *
+    *       //typeof
+    *       字符串类型： typeof 'abc';  'string'
+    *       数字类型：   typeof  123;   'number'
+    *       布尔类型：   typeof  true;  'boolean'
+    *       空类型(称之为空对象):      typeof  null;   'object'  特殊的结果
+    *       未定义类型： typeof undefined; 'undefined'
+    *       对象类型：   typeof {};     'object'
+    *                   typeof function(){};  'function'  特殊
+    *
+    *
+    *
+    *
+    *
+    * */
+
+    var arr = [1,'2','abc',function(){},[],{}];
+
+    for(var i=0;i<arr.length;i++){
+        if(typeof arr[i]=='number'){
+            console.log('值:'+arr[i],'下标:'+i);
+        }
+    }
+
+    console.log(typeof arr[3]);
+
+</script>
+</body>
+</html>

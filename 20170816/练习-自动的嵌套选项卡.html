@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*ul{*/
+            /*margin: 0 auto;*/
+            /*list-style: none;*/
+            /*padding: 0;*/
+            /*width:600px;*/
+            /*height:500px;*/
+            /*overflow: hidden;*/
+            /*position: relative;*/
+        /*}*/
+        /*li{*/
+            /*position: absolute;*/
+            /*width:100%;*/
+            /*height:500px;*/
+            /*top:0;*/
+            /*left:0;*/
+            /*margin-top:100px;*/
+        /*}*/
+        h2{
+            width:196px;
+            height:50px;
+            text-align: center;
+            line-height: 50px;
+            border:2px solid #000;
+            float: left;
+        }
+        /*li:nth-of-type(1) h2{*/
+            /*background-color: greenyellow;*/
+        /*}*/
+        /*li:nth-of-type(2) h2{*/
+            /*left:200px;*/
+        /*}*/
+        /*li:nth-of-type(3) h2{*/
+            /*left:400px;*/
+        /*}*/
+        .list-2{
+            height:40px;
+            background-color: yellow;
+            margin-top:5px;
+            padding:10px;
+        }
+        /*.list{*/
+            /*display: none;*/
+        /*}*/
+        /*li:nth-of-type(1) .list{*/
+            /*display: block;*/
+        /*}*/
+
+
+        #nav{
+            width:600px;
+            height:50px;
+            margin:auto;
+        }
+        #menu{
+            width:600px;
+            overflow: hidden;
+            margin:auto;
+        }
+        .list{
+            display: none;
+        }
+        .list:nth-of-type(1){
+            display: block;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+
+<div id="nav">
+    <h2>专题</h2>
+    <h2>专题</h2>
+    <h2>专题</h2>
+</div>
+<div id="menu">
+    <div class="list">
+        <div class="list-2">1</div>
+        <div class="list-2">2</div>
+        <div class="list-2">3</div>
+    </div>
+    <div class="list">
+        <div class="list-2">4</div>
+        <div class="list-2">5</div>
+        <div class="list-2">6</div>
+    </div>
+    <div class="list">
+        <div class="list-2">7</div>
+        <div class="list-2">8</div>
+        <div class="list-2">9</div>
+    </div>
+</div>
+
+<!--<ul>-->
+
+    <!--<li>-->
+
+
+    <!--</li>-->
+    <!--<li>-->
+        <!--<h2>视频</h2>-->
+        <!--<div class="list">-->
+            <!--<div class="list-2">4</div>-->
+            <!--<div class="list-2">5</div>-->
+            <!--<div class="list-2">6</div>-->
+        <!--</div>-->
+    <!--</li>-->
+    <!--<li>-->
+        <!--<h2>图片</h2>-->
+        <!--<div class="list">-->
+            <!--<div class="list-2">7</div>-->
+            <!--<div class="list-2">8</div>-->
+            <!--<div class="list-2">9</div>-->
+        <!--</div>-->
+    <!--</li>-->
+
+<!--</ul>-->
+
+
+<script>
+
+    //两个默认位置
+    var num1 = 0;//大菜单栏默认位置
+    var num2 = 0;//小菜单栏的位置
+
+    //获取要变化元素
+    var h2 = document.querySelectorAll('h2');
+    var list = document.querySelectorAll('.list');
+    var list_2 = document.querySelectorAll('.list-2');
+
+    var timer = 0;
+
+    //默认位置显示
+    h2[num1].style.backgroundColor = 'greenyellow';
+    list[num1].style.display = 'block';
+    list_2[num1].style.backgroundColor = 'greenyellow';
+
+    //存储元素位置
+    for(var i=0;i<h2.length;i++){
+        h2[i].index = i;
+
+
+        //h2的移入效果
+        h2[i].onmouseover = function(){
+
+            clearInterval(timer);
+
+            //清除其他内容
+            for(var i=0;i<h2.length;i++){
+                list[i].style.display = 'none';
+                h2[i].style.backgroundColor = '#fff';
+            }
+
+             num1 = this.index;
+             list[num1].style.display = 'block';
+             h2[num1].style.backgroundColor = 'greenyellow'
+             var menu = list[num1].querySelectorAll('.list-2');
+            menu[num2].style.backgroundColor = 'greenyellow';
+        };
+
+        h2[i].onmouseout = function(){
+            auto();
+        };
+
+
+
+        var menu = list[i].querySelectorAll('.list-2');
+        for(var j=0;j<menu.length;j++){
+            menu[j].index = j;
+
+            //菜单的移入效果
+            menu[j].onmouseover = function(){
+                clearInterval(timer);
+                num2 = this.index;
+                var menu = list[num1].querySelectorAll('.list-2');
+                for(var i=0;i<menu.length;i++){
+                    menu[i].style.backgroundColor = 'yellow';
+                }
+                menu[num2].style.backgroundColor = 'greenyellow';
+            };
+            menu[j].onmouseout = function(){
+                auto();
+            };
+        }
+    }
+
+
+
+
+    auto();
+    //自动执行：
+    function auto(){
+        timer = setInterval(function(){
+
+            var menu = list[num1].querySelectorAll('.list-2');
+            //清除子菜单样式
+            for(var i=0;i<menu.length;i++){
+                menu[i].style.backgroundColor = 'yellow';
+            }
+            for(var i=0;i<h2.length;i++){//清空h2 和 显示的内容
+                list[i].style.display = 'none';
+                h2[i].style.backgroundColor = '#fff';
+            }
+            num2++;
+            if(num2>menu.length-1){
+                num2 = 0;
+                num1++;
+                if(num1>h2.length-1){
+                    num1 = 0;
+                }
+            }
+
+            //h2 的变化
+
+            //当前要显示内容打开
+            h2[num1].style.backgroundColor = 'greenyellow';
+            list[num1].style.display = 'block';
+
+            //当前子菜单显示样式
+            menu[num2].style.backgroundColor = 'greenyellow';
+
+        },1000)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    for(var i=0;i<h2.length;i++){
+//
+//        //自定义属性 存储菜单位置
+//        h2[i].index = i;
+//
+//        h2[i].onmouseover = function(){
+//
+//            //记录当前移入的位置
+//            num1 = this.index;
+//
+//            //清除所有h2档状态
+//            for(var i=0;i<h2.length;i++){
+//                //清除大菜单的样式
+//                h2[i].style.backgroundColor = '#fff';
+//                //清除子菜单的显示状态
+//                list[i].style.display = 'none';
+//            }
+//            this.style.backgroundColor = 'greenyellow';
+//
+//
+//            //显示对应的子菜单
+//            list[this.index].style.display = 'block';
+//
+//        };
+//
+////        //子菜单内的元素操作
+////        var list_2 = list[i].querySelectorAll('div');
+////        for(var j=0;j<list_2.length;j++){
+////            list_2[j].onmouseover = function(){
+////                //清除所有子菜单颜色
+////                for(var i=0;i<){}
+////            }
+////        }
+//    }
+
+    //list_2所有子菜单的移入事件
+//    console.log(list_2);
+//    for(var i=0;i<list_2.length;i++){
+//        list_2[i].index = i;//记录小菜单位置
+//
+//        //小菜单的移入事件
+//        list_2[i].onmouseover = function(){
+//
+//            //记录移入的子菜单位置
+//            num2 = this.index;
+//
+//
+//            //清除所有list-2颜色
+//            for(var i=0;i<list_2.length;i++){
+//                list_2[i].style.backgroundColor = 'yellow';
+//            }
+//            //把当前的颜色加上
+//            this.style.backgroundColor = 'greenyellow';
+//        };
+//    }
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

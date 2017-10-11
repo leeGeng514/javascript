@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        div{
+            padding:50px;
+        }
+        #box{
+            position: absolute;
+            width:100px;
+            height:100px;
+            background-color: #66CC00;
+            top:0px;
+            left:0;
+
+
+        }
+
+    </style>
+</head>
+<body>
+<div color="pink" style="background-color: pink;">
+    <div color="blue" style="background-color: blue;">
+        <div color="black" style="background-color: black;position:absolute; bottom:0;width:100px;height:100px;"></div>
+    </div>
+</div>
+
+<div id="box"></div>
+
+
+<script>
+
+
+    var dives = document.querySelectorAll('div');
+
+    for(var i=0;i<dives.length;i++){
+//        dives[i].onmouseover = function(ev){
+//            this.style.backgroundColor = 'red';
+//            ev.cancelBubble = true;
+//        };
+//
+//        dives[i].onmouseout = function(ev){
+//            this.style.backgroundColor = this.getAttribute('color');
+//            ev.cancelBubble = true;
+//        };
+
+        /*
+        * onmouseenter  只要在元素内部 就不会触发leave
+        *
+        * onmouseleave  只有离开元素范围才会触发
+        *
+        * 只要在元素的范围内就不会触发leave
+        *
+        * onmouseover ,  onmouseout 进入子集也会触发out事件
+        *
+        *
+        * */
+
+        dives[i].onmouseenter = function(ev){
+            this.style.backgroundColor = 'red';
+            ev.cancelBubble = true;
+        };
+
+        dives[i].onmouseleave = function(ev){
+            this.style.backgroundColor = this.getAttribute('color');
+            ev.cancelBubble = true;
+        };
+
+
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

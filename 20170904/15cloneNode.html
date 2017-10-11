@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        li{
+            width:200px;
+            height:40px;
+            line-height: 40px;
+            border:1px solid #000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li style="width:100px;background-color:red;">001 <a href="javascript:;">删除</a></li>
+    <li>002 <a href="javascript:;">删除</a></li>
+    <li>003 <a href="javascript:;">删除</a></li>
+    <li>004 <a href="javascript:;">删除</a></li>
+    <li>005 <a href="javascript:;">删除</a></li>
+</ul>
+<script>
+
+    /*
+     * node.cloneNode(参数);
+     *
+     * 参数：  布尔值  只有 true false
+     *
+     *  默认是false
+     *
+     *  当为true的时候表示深度克隆
+     *
+     *  返回值：  是克隆出来的新元素
+     *
+     *
+     *  注意： 值克隆节点内容  不会克隆js设置的方法和属性
+     *
+     *
+     * */
+
+    var ul = document.querySelector('ul');
+
+    var lis = ul.querySelectorAll('li');
+
+    lis[0].onclick = function(){
+        alert(123);
+    };
+
+    lis[0].index = 1111111;
+
+    console.log(lis[0].cloneNode());
+    console.log(lis[0].cloneNode(true));
+    console.dir(lis[0].cloneNode(true));
+    console.dir(lis[0]);
+
+    ul.appendChild(lis[0].cloneNode(true));
+
+
+
+
+
+</script>
+</body>
+</html>

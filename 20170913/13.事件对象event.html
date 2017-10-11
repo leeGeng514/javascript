@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+
+    /*
+    * 事件函数中  第一个参数 就是事件对象
+    *
+    * document.onclick=function(event){
+        这里event指的就是event对象
+     }
+
+     event对象
+     记录了在事件触发时的一些详细的信息。
+     例如鼠标位置，键盘按键，触发事件的元素等。
+
+     *
+    *
+    *
+    * */
+
+    var box = document.querySelector('div');
+
+    box.onclick = function(i){
+
+
+        console.log(i);
+
+
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 局部作用域 预解析
+    * */
+
+    var a = 10;
+
+    function fn1(){
+        alert(a);//undefined
+        var a = 20;
+    }
+    fn1();
+
+    alert(a); //10
+
+    function fn2(){
+        a = 20;//因为fn2的局部作用域中没有a 所以会往父级去找a变量，并且修改值为20；
+    }
+    fn2();
+
+    alert(a);//20
+
+
+    /*
+    * 预解析：
+    * 全局
+    * a--->undefined
+    *       子集 fn1
+    *       a--->undefined
+    *       子集 fn2
+    *       空
+    *
+    *
+    *
+    *
+    * */
+
+</script>
+</body>
+</html>

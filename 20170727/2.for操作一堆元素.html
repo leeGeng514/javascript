@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            height:40px;
+            margin-top:5px;
+            border:1px solid #000;
+        }
+    </style>
+    <script>
+
+        window.onload = function(){
+
+
+            //获取dives
+            var dives = document.querySelectorAll('div');
+
+//            dives[0].style.background = 'green';
+//            dives[1].style.background = 'green';
+//            dives[2].style.background = 'green';
+//            dives[3].style.background = 'green';
+
+            //大于等于  >=   小于等于 <=      (a=>b  a=<b  错误写法)
+
+            for(var i=1;i<=dives.length-1;i=i+2){
+                dives[i].style.background = 'green';
+            }
+
+
+
+        };
+
+
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

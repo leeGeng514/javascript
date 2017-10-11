@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            height: 40px;
+            background-color:red;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+<script>
+
+    var dives = document.querySelectorAll('div');
+
+    for(var i=0;i<dives.length;i++){
+//        dives[i].onmouseover = function(){
+////            this.style.backgroundColor = 'green';
+//            dives[i].style.backgroundColor = 'green';
+//        };
+
+        (function(index){//通过自执行函数产生一个作用域，作用域中的index不会因为外界的i变化而变化
+            dives[index].onmouseover = function(){
+                dives[index].style.backgroundColor = 'green';
+            };
+        })(i);
+
+
+    }
+
+
+</script>
+
+</body>
+</html>

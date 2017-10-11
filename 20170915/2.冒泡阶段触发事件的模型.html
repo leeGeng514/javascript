@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        div{
+            padding:50px;
+            background-color: #000;
+            color:#fff;
+            font-size:32px;
+        }
+        div>div{
+            background-color: red;
+        }
+        div>div>div{
+            background-color: green;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+
+<div id="box1"> box1
+    <div id="box2"> box2
+        <div id="box3">box3</div>
+    </div>
+</div>
+
+
+<script>
+
+
+    /*
+    * 事件对象中的 target 是只触发事件流的元素
+    *
+    *不论是捕获阶段还是冒泡阶段，在寻找目标元素的过程和向外返回的过程中，所遇到每一个元素身上如果有相同事件的事件处理函数都会被调用。
+
+     *
+    * */
+
+
+    var dives = document.querySelectorAll('div');
+
+    dives[0].onclick = function(ev){
+        console.log("我是绑定了点击事件的元素："+this.id,"我是触发事件流的元素："+ev.target.id);
+    };
+
+    dives[2].onclick = function(ev){
+        console.log("我是绑定了点击事件的元素："+this.id,"我是触发事件流的元素："+ev.target.id);    };
+
+
+</script>
+</body>
+</html>

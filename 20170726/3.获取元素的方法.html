@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            border:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">#div</div>
+<div class="d1">
+    <span>1,</span><span>2,</span><span>3,</span>
+</div>
+<div class="d1">
+    <div>
+        <div></div>
+        <div></div>
+    </div>
+    <div></div>
+    <div></div>
+</div>
+<div class="d1">.d1</div>
+<div class="d1">.d1</div>
+<div class="d1">.d1</div>
+<p><span></span><span></span></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+<script>
+    /*
+    * 获取元素的源文档
+    * document  表示全文
+    * element  指定元素
+    *
+    * getElementById()
+    * getElementsByClassName()
+    * getElementsByTagName()
+    * querySelector()
+    * querySelectorAll()
+    *
+    * */
+
+
+
+    //document.getElementById('id')  通过id获取元素 唯一的元素
+
+//    console.log(document);
+
+    //document.querySelector(); css选择器获取元素   获取的是单个元素 并且是元素集合的第一个
+//    console.log(document.querySelector('#div1'));//通过id获取
+//    console.log(document.querySelector('.d1 span'));//通过class获取
+//    console.log(document.querySelector('div'));//通过tagName获取
+
+    //document.getElementsByClassName(); 通过元素className获取元素 （集合）
+//    console.log(document.getElementsByClassName('d1')); //括号里不是选择器
+
+    //document.getElementsByTagName(); 通过标签名获取元素 （集合）
+//    console.log(document.getElementsByTagName('div'));
+
+    //document.querySelectorAll(); 选择器获取元素  集合
+    console.log(document.querySelectorAll('body>div:nth-of-type(1)'));
+    var d1 = document.querySelector('.d1');
+    console.log(d1.querySelectorAll('span'));
+
+    //获取元素集合中的某一个元素
+    var div1 = document.getElementsByTagName('div');
+    console.log(div1[0]);
+//    div1.style.background = 'blue'; 错误的 集合不能直接修改属性
+    div1[0].innerHTML = 'aaaaaaaa';
+
+    console.log(div1.length);
+    console.dir(div1);
+
+
+</script>
+</body>
+</html>

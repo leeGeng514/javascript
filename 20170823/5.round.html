@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * number Math.round(number)
+    *
+    * 四舍五入  小数点后面的数值  如果 小于5 舍弃  大于等于5进1
+    *
+    * 总结：
+    *   正：  1~4 舍  5~9 进
+    *   负：  -6~-9 退  注意:(-1~-5 舍)
+    *
+    * */
+
+    console.log(Math.round(10));//10
+    console.log(Math.round(10.1));//10  ceil
+    console.log(Math.round(10.5));//11
+
+    //注意负数变化
+    console.log(Math.round(-10.6));//-11
+    console.log(Math.round(-10.9));//-11
+    console.log(Math.round(-10.1));//-10
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        ul{
+            border:1px solid #000;
+            width:500px;
+            padding:20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<ul>
+    <li>123334444</li>
+</ul>
+<div>
+    <select>
+        <option value="enter">enter</option>
+        <option value="enter+ctrl">enter+ctrl</option>
+    </select>
+</div>
+<div>
+    <input type="text">
+    <input type="button" value="提交">
+</div>
+
+
+
+<script>
+
+/*
+* 1.信息框 显示发送的内容
+*
+* 2.选择框 用来选择按键发送的方式（enter  enter+ctrl）
+*
+* 3.按钮发送
+*
+* 4.输入框输入内容
+*
+*
+*
+* */
+
+    //获取输入框
+    var input = document.querySelector('input[type=text]');
+    //获取发送按钮
+    var btn = document.querySelector('input[type=button]');
+    //信息显示框
+    var ul = document.querySelector('ul');
+    //切换按键发送的选择框
+    var select = document.querySelector('select');
+
+
+    //保存当前发送的按键信息
+    var sendMode = 'enter';
+
+    //select选择按键发送方式
+    select.onchange = function(){
+        sendMode = this.value;
+        console.log(sendMode);
+        input.focus();
+    };
+
+
+    //按键发送的功能
+    input.onkeydown = function(ev){
+
+        /*
+        * 判断：
+        *   1.用户选择的哪一种方式
+        *   2.键盘输入是哪一种方式
+        *
+        * */
+        if(sendMode=='enter'&&ev.keyCode==13&&!ev.ctrlKey){
+
+
+            show();
+
+
+
+        }else if(sendMode=='enter+ctrl'&&ev.keyCode==13&&ev.ctrlKey){
+            show();
+        }
+
+
+    };
+
+
+
+
+    //点击按钮发送消息
+    btn.onclick = function(){
+        show();
+    };
+
+
+    //显示消息
+    function show(){
+        //获取要发送的信息
+        var content = input.value;
+        if(content==''){
+            alert('内容不能为空');
+            return;
+        }
+        //把信息显示在ul中
+        ul.innerHTML += '<li>'+content+'</li>';
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

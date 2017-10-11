@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            padding:0;
+            margin:0;
+            list-style:none;
+            width:500px;
+            position: relative;
+        }
+        li{
+            border:1px solid #000;
+            width:480px;
+            padding:10px;
+            border-radius:5px;
+            margin:10px 0;
+            overflow: hidden;
+        }
+        input{
+            float: right;
+        }
+        span{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><input type="button" value="上移"><input type="button" value="下移"><span>1111111</span></li>
+    <li><input type="button" value="上移"><input type="button" value="下移"><span>222222</span></li>
+    <li><input type="button" value="上移"><input type="button" value="下移"><span>333333</span></li>
+    <li><input type="button" value="上移"><input type="button" value="下移"><span>444444</span></li>
+    <li><input type="button" value="上移"><input type="button" value="下移"><span>55555</span></li>
+</ul>
+<script src="MTween.js"></script>
+<script>
+
+
+        /*
+        * 关键点：  必须是绝对定位
+        *
+        * 初始化
+        *   1.布局--绝对定位
+        *          js -   获取top值
+        *          js -  设置 li 为 绝对定位元素
+        *          js -  设置top值
+        *
+        * 思路：
+        *   1.获取按钮   上移  下移
+        *   2.点击上移
+        *       1.node --  要把当前的li元素 插入到 上一个元素的前面
+        *       2.动画 -- 对换位置
+        *       3.如果是第一个元素 将该元素移动到最后一位 ，把其他元素往上移动一位
+        *
+        *
+        * */
+
+        //获取元素
+        var lis = document.querySelectorAll('li');
+
+        var ul = document.querySelector('ul');
+
+        var btns = document.querySelectorAll('input');
+
+
+
+        //初识化布局
+
+        for(var i=0;i<lis.length;i++){
+
+            //js -   获取top值   先获取  保存在自定义属性上
+            lis[i].t = lis[i].offsetTop;
+
+            ul.style.height = ul.offsetHeight+'px';
+
+//            (function(t,i){
+//                setTimeout(function(){
+//                    lis[i].style.position = 'absolute';
+//                    lis[i].style.top = t+'px';
+//                },100);
+//            })(lis[i].t,i)
+
+        }
+
+        for(var i=0;i<lis.length;i++){
+            lis[i].style.position = 'absolute';
+            lis[i].style.top = lis[i].t+'px';
+        }
+
+
+
+        //给按钮添加事件
+        for(var i=0;i<btns.length;i++){
+
+            btns[i].onclick = function(){
+
+                //要操作的节点
+
+                var _thisLi = this.parentNode;
+                var parentUl = this.parentNode.parentNode;
+
+                if(this.value=='上移'){
+
+                    //上移的事情
+
+                    var prevLi = _thisLi.previousElementSibling;
+                    //边界处理
+
+                    //界面上的动画
+                    if(!prevLi){
+                        //获取到边界的时候要移动距离
+                        var b_s = parentUl.lastElementChild.offsetTop-_thisLi.offsetTop;
+                        //获取一次改变后的元素集合
+                        lis = document.querySelectorAll('li');
+
+                        MTween(_thisLi,b_s,300,'top','linear');
+
+                        for(var i=1;i<lis.length;i++){
+                            MTween(lis[i],-55,300,'top','linear');
+                        }
+
+
+                    }else{
+                        //做界面交互动画
+                        //要移动的距离
+                        var s = _thisLi.offsetTop - prevLi.offsetTop;
+
+                        MTween(_thisLi,-s,300,'top','linear');
+                        MTween(prevLi,s,300,'top','linear');
+                    }
+
+
+                    //上移节点
+                    parentUl.insertBefore(_thisLi,prevLi);
+
+                }
+
+
+                if(this.value=='下移'){
+
+                    var nextLi;
+
+                    if(!_thisLi.nextElementSibling){
+
+
+                        nextLi = parentUl.firstElementChild;
+
+
+                        //获取到边界的时候要移动距离
+                        var b_s2 = _thisLi.offsetTop-parentUl.firstElementChild.offsetTop;
+
+                        //获取一次改变后的元素集合
+                        lis = document.querySelectorAll('li');
+
+                        console.log(b_s2);
+
+                        MTween(_thisLi,-b_s2,300,'top','linear');
+
+                        for(var i=0;i<lis.length-1;i++){
+                            MTween(lis[i],55,300,'top','linear');
+                        }
+
+                    }else{
+                        //做界面交互动画
+                        //要移动的距离
+                        //下移的事情
+                        nextLi = _thisLi.nextElementSibling.nextElementSibling;
+
+                        var s = _thisLi.offsetTop - _thisLi.nextElementSibling.offsetTop;
+
+                        MTween(_thisLi,-s,300,'top','linear');
+                        MTween(_thisLi.nextElementSibling,s,300,'top','linear');
+                    }
+
+                    parentUl.insertBefore(_thisLi,nextLi);
+
+
+
+
+
+
+                    console.log('下移');
+
+                }
+
+
+            };
+
+
+        }
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

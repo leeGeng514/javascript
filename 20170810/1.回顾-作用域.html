@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="a.js"></script>
+    <script src="b.js"></script>
+</head>
+<body>
+
+<script>
+
+//    var c = 10;
+
+</script>
+
+<script>
+
+
+    /*
+    * 每一个页面的创建都会产生一个单独的作用域
+    *
+    * 什么是作用域
+    *       是申明变量和函数起作用的区域
+    * */
+
+//    var a = 0;
+
+//    console.log(a,b,c);
+
+
+    /*
+    * 作用域：
+    *   全局作用域 函数外就是全局作用
+    *   局部作用域 函数内部产生局部作用域
+    *
+    *   函数和html页面
+    *
+    *   局部作用域可以使用全局作用域中的所有变量和函数
+    *   全局作用域不能访问局部作用域
+    *   父级作用域不能访问子集作用域
+    *
+    * */
+
+    var a = 0; //全局
+
+
+
+
+    function fn(){
+        console.log(a);
+        var b = 1;//函数中的局部作用域
+    }
+//    fn();
+
+//    console.log(b);//报错
+
+
+    /*
+    * js中没有块级作用域
+    *
+    * */
+    for(var i=0;i<10;i++){
+//        var c = 0;
+    }
+
+    if(a<1){
+        var d = 10;
+    }
+
+//    console.log('for==>'+c);
+//    console.log('if==>'+d);
+
+
+    /**
+     * 同级别的作用域互不影响
+     *
+     * */
+    function fn1(){
+        var a = 10;
+        console.log(a);
+    }
+
+    function fn2(){
+        console.log(a);
+        var a = 5;
+        console.log(a);
+    }
+
+//    fn1();
+//    fn2();
+
+    /*
+    * 函数嵌套形成的作用域关系：作用域链
+    *
+    * 定义了js查找函数和变量的一种方式
+    *
+    *  只能从内向外找
+    *
+    * */
+
+//    function fn3(){
+//        var a = 0;
+//        console.log(b);//报错
+//        console.log(a);//0
+//
+//        function fn1(){
+//            var b = 0;
+//        }
+//        fn1();
+//    }
+//
+//    fn3();
+    console.log(c);//undefined;  找到了定义的c，但是未赋值
+    var c = 10;
+    console.log(c);//10  116行已赋值
+    function fn3(){
+        console.log(c);//10  在自身没有找到c的定义，所以向父级查找
+        console.log(a);//undefined
+        var a =0;
+        console.log(a);//0
+        function fn31(){
+            console.log(a);//undefined
+            var a = 5;
+            console.log(a);//5
+            function fn311(){
+                console.log(a);//5  在当前作用域中没有找到定义a关键字，就向父级查找
+                a = 20;//子集作用域可以操作父级作用域的变量和函数
+                console.log(c);//10
+                c = 30; //修改的是全局的c
+                console.log(a);//20
+            }
+            fn311();
+            console.log(a);//20
+        }
+        fn31();
+    }
+    fn3();
+//    fn31();//报错  只能在当前或者子集作用域中使用
+    console.log(c);//30
+
+
+
+    /*
+    * js预解析
+    *
+    *
+    * js先收集所有 var  function
+    *
+    * 先把所有收集的变量和函数存好，并且给变量赋值：undefined，
+    * 函数：直接存储函数体
+    *
+    * */
+
+    var f = 0;
+
+    function fn10(){
+        console.log(f); //undefined
+//        console.log(ff);报错
+        var f = 10;
+    }
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background:#ccc;
+        }
+        #banner{
+            width:960px;
+            height:402px;
+            position: relative;
+            margin:100px auto;
+            border:5px solid #fff;
+        }
+        a{
+            display: block;
+            width:36px;
+            height:36px;
+            position: absolute;
+            top:180px;
+            background-image:url(img/btn.png);
+            opacity: 0;
+        }
+        a.prev{
+            left:10px;
+            background-position: 0 0;
+        }
+        a.next{
+            right:10px;
+            background-position: -50px 0;
+        }
+        .img-box{
+            position: relative;
+            height:402px;
+            overflow: hidden;
+        }
+        img{
+            position: absolute;
+            left:0;
+            top:0;
+            transition: .5s;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div id="banner">
+    <div class="img-box">
+        <img src="img/1.webp" alt="">
+        <img src="img/2.webp" alt="">
+        <img src="img/3.webp" alt="">
+        <img src="img/4.webp" alt="">
+    </div>
+    <!--javascript:;  用js代替跳转链接，js中不执行任何代码-->
+    <a href="javascript:;" class="prev"><span></span></a>
+    <a href="javascript:;" class="next"></a>
+</div>
+
+
+<script>
+
+    //获取元素
+    var btns = document.getElementsByTagName('a');
+    var bannerBox = document.getElementById('banner');
+    var imgBox = document.querySelector('.img-box');
+    var imgs = document.getElementsByTagName('img');
+
+    //添加事件
+    imgBox.onmouseover = function(){
+        for(var i=0;i<btns.length;i++){
+            btns[i].style.opacity = '.5';
+        }
+    };
+    imgBox.onmouseout = function(){
+        for(var i=0;i<btns.length;i++){
+            btns[i].style.opacity = '0';
+        }
+    };
+    //a 的hover
+    /*
+     * for 批量添加事件
+     *   1.通过for循环添加的事件内的循环变量时最终值
+     *       当前例子：  事件内的 i = 2
+     *
+     *   2.只要for执行不冲突，就可以用同一个循环变量
+     *
+     *   3.同时执行的for循环要区分循环变量，不是同时执行的就可以不用区分。
+     *
+     *
+     *
+     * 函数中的 this
+     * this是指针
+     * 每一个函数中的this都是指向调用这个函数的对象（元素）
+     * (谁调用的函数，this就是谁)
+     *
+     * 注意：
+     *  1.this不能写在函数外面
+     *  2.凡是手动执行的函数 都是window调用的
+     *  3.父元素不要和子元素添加相同的事件
+     *  4.不是同名事件可以同时添加(可以给同一元素添加多个事件)
+     *
+     *
+     *
+     * */
+
+
+
+    function  fn1(){
+        console.log(this);
+
+        function fn2(){
+            console.log(this);
+        }
+        fn2(); //window
+    }
+
+    fn1(); //window
+
+//    this; 错误写法
+
+
+    index = 0; //默认显示位置
+
+
+    for(var i=0;i<btns.length;i++){
+        btns[i].onmouseover = function(){ //定义的函数，还没执行，所以这两个for循环是不同时候执行的，可以用同一个循环变量。
+            for(var i=0;i<btns.length;i++){
+                btns[i].style.opacity = '.5';
+            }
+            this.style.opacity = '.8';
+        };
+
+        btns[i].onclick = function(){
+            if(this.className=='prev'){
+                index--;
+                if(index<0){
+                    index = imgs.length-1;
+                }
+                for(var i=0;i<imgs.length;i++){
+                    imgs[i].style.left = '-180px';
+                    imgs[i].style.opacity = 0;
+                }
+                imgs[index].style.opacity = 1;
+                imgs[index].style.left = 0;
+            }
+            if(this.className=='next'){
+                index++;
+                if(index>imgs.length-1){
+                    index = 0;
+                }
+                for(var i=0;i<imgs.length;i++){
+                    imgs[i].style.left = '-180px';
+                    imgs[i].style.opacity = 0;
+                }
+                imgs[index].style.opacity = 1;
+                imgs[index].style.left = 0;
+
+            }
+        };
+    }
+    console.log(i);
+
+//    btns[0].onmouseover = function(){
+//        //初始化所有按钮的透明度
+//        for(var i=0;i<btns.length;i++){
+//            btns[i].style.opacity = '.5';
+//        }
+////        for(var i=0;i<btns.length;i++){
+////            btns[i].style.opacity = '.5';
+////        }
+//        this.style.opacity = '.8';
+//    };
+//    btns[1].onmouseover = function(){
+//        //初始化所有按钮的透明度
+//        for(var i=0;i<btns.length;i++){
+//            btns[i].style.opacity = '.5';
+//        }
+//        this.style.opacity = '.8';
+//    };
+
+
+</script>
+
+</body>
+</html>

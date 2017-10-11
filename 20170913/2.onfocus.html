@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background-color:red;
+        }
+        img{
+            width:100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+
+
+<input type="text">
+<input type="text">
+<input type="text">
+
+<a href="">123333</a>
+
+<img src="http://miaov.com/static/ie/images/outlineTree/miaov_foot.png" alt="">
+
+<div></div>
+
+<script>
+
+    /*
+    * e.onfocus  元素获取焦点的时候触发
+    *
+    *
+    * */
+
+
+    //获取焦点元素
+    var text = document.querySelectorAll('input');
+    var a = document.querySelector('a');
+    var img = document.querySelector('img');
+
+    img.onfocus = function(){
+        console.log('img');
+    };
+
+
+    a.onfocus = function(){
+        console.log('a');
+    };
+
+    text[0].onfocus = function(){
+        console.log(111);
+    };
+
+    text[1].onfocus = function(){
+        console.log(222);
+    };
+
+    text[2].onfocus = function(){
+        console.log(333);
+    };
+
+    var div = document.querySelector('div');
+
+    div.onfocus = function(){
+        console.log('div');
+    };
+
+
+
+
+
+
+</script>
+</body>
+</html>

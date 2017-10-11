@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div style="width: 400px;border:1px solid #000;padding:20px;">如今的市面上已经存在太多教大家如何 “使用轮子” 的教程，编程界也有 N 多理念告诫大家：会 “使用轮子” 就行啦，不必动手去 “造轮子”。毕竟偷懒是一种天性，懒出境界才是编程最高追求嘛——大家对此深信不疑，许多人再也不提 “造轮子” 的话题，甚至于连 “轮子” 的构造原理也不深究。直到有一天，开发出了问题，手中的 “轮子” 似乎不太好用，纵然满世界有那么多 “轮子”，却没一款用得称心如意！在需求万变的场景下，开发者手中的 “轮子” 用起来越来越别扭，少数 NB 的人早就挽起袖子，或者改造 “轮子”，或者重新制造 “轮子”，在这过程中，少数开发者逐渐成为高手，年薪百万。而更多开发者，仍然笃信 “偷懒是一种天性，懒出境界才是编程最高追求”……殊不知在这个世界上，能够 “懒出境界” 的人，万分之一都不到……</div>
+
+
+<script>
+    var div = document.querySelector('div');
+//    var text = div.innerHTML;
+
+//    var num = 0;
+//    setInterval(function(){
+//        num++;
+//        div.innerHTML = text.slice(num);
+//        console.log(1);
+//    },1000)
+
+        setInterval(function(){
+            div.innerHTML = div.innerHTML.slice(1);
+            console.log(1);
+        },1000)
+
+
+
+
+</script>
+</body>
+</html>

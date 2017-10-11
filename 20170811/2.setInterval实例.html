@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img src="img/1.jpg" alt="">
+<input type="button" value="开始切换">
+<script>
+
+    var img = document.querySelector('img');
+    var btn = document.querySelector('input');
+
+    //点击按钮 开始图片自动切换
+
+    var num = 1;
+
+    btn.onclick = function(){
+        setInterval(function(){
+            num++;
+            if(num==7){
+                num = 1;
+            }
+            img.src = 'img/'+num+'.jpg';
+        },1000);
+    };
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

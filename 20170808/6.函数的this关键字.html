@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="height: 400px;">
+<script>
+    /*
+    * 函数内部有一个特殊的指针  关键字 this
+
+     在函数内部调用this，就能读取到调用函数的对象
+
+     直接执行的函数，通常是默认被window调用的
+
+
+
+     *
+    * */
+
+    var body1 = document.body;
+
+//    console.log(body1);
+
+    body1.onclick = fn1;
+
+    fn1();
+
+
+
+
+    function fn1(){
+        console.log(this);
+
+        function fn2(){
+            console.log(this);
+        }
+        fn2();
+    }
+
+
+</script>
+</body>
+</html>

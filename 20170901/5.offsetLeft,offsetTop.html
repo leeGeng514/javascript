@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        div{
+            width:100px;
+            height:100px;
+            border:10px solid #000;
+            margin-left:80px;
+            background-color: red;
+            line-height: 20px;
+        }
+
+    </style>
+</head>
+<body style="margin:100px;">
+<div id="box1" style="position: relative;margin-left:100px;padding:20px;">1
+    <div id="box2" style="border:20px solid #000;">1
+        <div id="box3">
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    /*
+    * offsetLeft
+    *
+    * offsetTop
+    *
+    * 除了body 其他作为定位父级的元素 margin值不会影响左边距和上边距
+    * padding会影响
+    *
+    * 计算方式：
+    *    元素的外边框到定位父级的内边框距离
+    *
+    *
+    * 获取距离定位父级的 左边距  和 上边距
+    *
+    *
+    * 当找到定位父级是body的时候  是按照window的边框来计算位置
+    *
+    * */
+
+    var box3 = document.querySelector('#box3');
+    var box1 = document.querySelector('#box1');
+
+    console.log(box3.offsetLeft);
+    console.log(box3.offsetTop); //70
+
+
+
+//    console.log(box1.offsetLeft);
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

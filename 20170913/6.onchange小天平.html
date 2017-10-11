@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        div{
+            width:1000px;
+            height:40px;
+            margin:200px auto auto;
+            background-color: black;
+            transition:0.2s;
+            /*transform:rotateZ(30deg);*/
+        }
+
+        input{
+            text-align: center;
+            transition: .2s;
+        }
+
+        #left{
+            float: left;
+        }
+
+        #right{
+            float:right;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+
+    <input type="text" id="left">
+
+    <input type="text" id="right">
+
+</div>
+
+<script>
+
+
+    /*
+     * 思路：
+     *
+     * 获取天平两边的质量
+     *
+     * 根据质量来换算角度
+     *
+     *
+     * 给天平设置旋转角度
+     *
+     *
+     *
+     *
+     * */
+
+    //获取元素
+    var input = document.querySelectorAll('input');
+    var div = document.querySelector('div');
+
+    input[0].onchange = input[1].onchange = function(){
+
+        //获取天平两边的质量
+        var l = input[0].value||0;
+        var r = input[1].value||0;
+
+        //根据质量来换算角度
+        var deg = r-l;
+
+        //给天平设置旋转角度
+        div.style.transform = 'rotateZ('+deg+'deg)';
+
+        input[0].style.transform = 'rotateZ('+ -deg +'deg)';
+        input[1].style.transform = 'rotateZ('+ -deg +'deg)';
+
+    };
+
+
+
+</script>
+</body>
+</html>

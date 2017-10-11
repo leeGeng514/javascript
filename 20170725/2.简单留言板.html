@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<input type="text" id="content">
+<input type="button" id="btn" value="留言">
+<br>
+<br>
+<div>留言板</div>
+<ul id="msg-box">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+
+<script>
+
+/*
+ 思路：
+* 1.获取元素 按钮，输入框，留言板
+* 2.添加事件
+* 3.获取输入框内容
+* 4.把内容显示在留言板
+*
+*
+* E.innerHTML  替换所有E的内容
+* */
+
+    //获取元素
+    var btn = document.getElementById('btn');
+    var content = document.getElementById('content');
+    var ul = document.getElementById('msg-box');
+
+    //添加事件
+    btn.onclick = function(){
+        //获取输入框内容
+//        var conVal = content.value;
+        //往留言板放内容
+//        ul.innerHTML = ul.innerHTML+'<li>'+content.value+'</li>';
+        ul.innerHTML += '<li>'+content.value+'</li>';
+//        ul.innerHTML = '<li>'+content.value+'</li>'+ul.innerHTML;
+    };
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            color:#000;
+            text-decoration: none;
+        }
+
+        body,html{
+            width:100%;
+            height:100%;
+            overflow: hidden;
+        }
+
+        #header{
+            background-color: #F5F6F9;
+            border-bottom: 1px solid #E6E7EC;
+            position: relative;
+            height: 60px;
+        }
+        #wrap{
+
+        }
+        #nav{
+            width:199px;
+            border-right:1px solid red;
+            background-color: #fff;
+            overflow: hidden;
+            float: left;
+        }
+
+
+        #nav dt{
+            padding: 0 0 0 64px;
+            color: #74787C;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        #nav dd.active{
+            color:#00A4FF;
+        }
+
+        #nav dl{
+            margin-top:20px;
+        }
+
+        #nav dd a{
+            position: relative;
+            height: 32px;
+            line-height: 32px;
+            display: block;
+            padding: 0 0 0 80px;
+            color: #020202;
+        }
+        #nav dd a:hover{
+            text-decoration: none;
+            background: red;
+            transition: ease all;
+            transition-duration: .3s;
+        }
+        .main-icon-model{
+            padding:10px;
+            overflow: hidden;
+        }
+
+        .main-icon-model li{
+            margin:10px;
+            position: relative;
+            display: block;
+            height: 48px;
+            width:200px;
+            padding: 0 18px 0 7px;
+            border: 1px solid #D5D7DF;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border-radius: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            z-index: 3;
+            box-shadow: 0 5px 5px #ccc;
+            float: left;
+        }
+        .main-icon-model li em{
+            display: none;
+        }
+
+        .main-icon-model li.active{
+            border-color:red;
+            display: block;
+        }
+        .main-icon-model li.active em{
+            position: absolute;
+            border: 1px solid red;
+            top:-1px;
+            right:-1px;
+            display: block;
+            width:20px;
+            height:20px;
+
+        }
+        .main-icon-model li.checked em{
+            background-color: red;
+        }
+
+        #main{
+            margin-left:200px;
+            overflow: hidden;
+        }
+
+        .currAddress{
+            height:40px;
+            line-height:40px;
+            padding:0 20px;
+        }
+        .currAddress div{
+            float: left;
+        }
+        .checkAll input{
+            width:20px;
+            height:20px;
+            vertical-align: middle;
+        }
+
+
+
+
+    </style>
+    <script src="data.js"></script>
+</head>
+<body>
+
+<div id="header">头部</div>
+<div id="wrap">
+    <div id="nav">
+        <dl class="nav-menu">
+            <dd><a href="javascript:;">最近</a></dd>
+        </dl>
+    </div>
+    <div id="main">
+
+        <!--面包屑-->
+        <div class="currAddress">
+            <div class="checkAll"><input type="checkbox"> |&nbsp;</div>
+            <div class="breadcrumb">
+                <a href="javascript:;">微云</a> /
+                <a href="javascript:;">qq</a> /
+                <a href="javascript:;">收到的文件</a>
+            </div>
+        </div>
+
+
+        <ul class="main-icon-model">
+
+            <li data-file="0_0">
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+
+    //测试一个递归
+
+
+    var data1 = [
+        {
+        "id":1,
+        "title": "",
+        "type":"latelyFile",
+        "children": [{
+            "id":99,
+            "name": "最近",
+            "type": "lately",
+            "icon": "lately-icon",
+            "children": [
+                {
+                "id":100,
+                "name": "QQ"
+                },
+                {
+                    "id":101,
+                    "name": "网络收藏夹"
+                },
+                {
+                    "id":102,
+                    "name": "QQ收藏夹",
+                    "children": []
+                }
+            ]
+        }]
+    },
+        {
+            "id":2,
+            "title": "文件",
+            "type":"file",
+            "children": [{
+                "id":103,
+                "pid":2,
+                "name": "全部",
+                "type": "all",
+                "icon": "icon-all",
+                "children": [{
+                    "name": "QQ",
+                    "id":1031,
+                    "pid":103,
+                    "children":[
+                        {
+                            "name":"asd",
+                            "id":10311,
+                            "pid":1031
+
+                        },{
+                            "name":"asd22",
+                            "id":10312,
+                            "pid":1031
+
+                        },{
+                            "name":"asd33",
+                            "id":10312,
+                            "pid":1031
+
+                        }]
+                },
+                    {
+                        "name": "网络收藏夹",
+                        "id":1032,
+                        "pid":103
+                    },
+                    {
+                        "name": "QQ收藏夹",
+                        "id":1033,
+                        "pid":103,
+                        "children": []
+                    }
+                ]
+            },
+                {
+                    "id":104,
+                    "name": "文档",
+                    "type": "doc",
+                    "icon": "icon-doc"
+                },
+                {
+                    "id":105,
+                    "name": "图片",
+                    "type": "pic",
+                    "icon": "icon-pic",
+                    "children": [{}]
+                },
+                {
+                    "id":106,
+                    "name": "视频",
+                    "type": "video",
+                    "icon": "icon-video",
+                    "children": [{}]
+                },
+                {
+                    "id":107,
+                    "name": "笔记",
+                    "type": "note",
+                    "icon": "icon-note",
+                    "children": [{}]
+                },
+                {
+                    "id":108,
+                    "name": "音乐",
+                    "type": "music",
+                    "icon": "icon-music",
+                    "children": [{}]
+                }
+            ]
+        },
+        {
+            "id":3,
+            "title": "照片",
+            "type":"lately",
+            "children": [{
+                "id":109,
+                "name": "时间",
+                "type": "time",
+                "icon": "icon-time",
+                "children": []
+            }]
+        },
+        {
+            "id":4,
+            "title": "我的",
+            "type":"my",
+            "children": [{
+                "id":110,
+                "name": "保险箱",
+                "type": "safebox",
+                "icon": "icon-add-safebox",
+                "children": []
+            },{
+                "id":111,
+                "name": "分享链接",
+                "type": "share",
+                "icon": "icon-share",
+                "children": []
+            },{
+                "id":112,
+                "name": "回收站",
+                "type": "trash",
+                "icon": "icon-trash",
+                "children": []
+            }]
+        }
+    ];
+
+
+    console.log(getChildByid(data1, 103));
+
+//    getChildByid(data1, 103);
+
+
+
+
+
+
+    function getChildByid(dataArr, id) {
+
+        for(var i = 0; i < dataArr.length; i++) {
+
+            if(dataArr[i].id!=id){
+
+
+                if(dataArr[i].children){
+                    return getChildByid(dataArr[i].children, id)
+                }
+
+            }else{
+                return dataArr[i];
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+
+    function fn(data,type){
+        for(var i=0;i<data.length;i++){
+            if(data[i].child.length>0&&data[i].type!=type){
+                return fn(data[i].child,type);
+            }else{
+                return data[i];
+            }
+        }
+    }
+//    console.log(fn(data,'all'));
+
+
+
+
+
+
+
+
+
+
+    /*
+    * 数据来源：
+    *
+    * 数据库 -->  数据逻辑处理（拼装数据结构）--> 重构数据结构（根据业务逻辑） -->根据数据结构渲染页面
+    *
+    *
+    * 数据处理的位置
+    *
+    *     服务端  ---输入（可修改数据）--- 页面 ---输出（修改数据）--- 渲染页面
+    *
+    *
+    *
+    * */
+
+
+    //面包屑内容
+    var breadcrumb = '';
+    /*
+    * 面包屑内容
+    * <a href="javascript:;">微云</a> /
+     <a href="javascript:;">qq</a> /
+     <a href="javascript:;">收到的文件</a>
+    * */
+
+
+
+
+
+
+    //生成页面   数据在data中
+
+    //1生成侧栏列表
+
+    var navBox = document.querySelector('#nav');
+
+    for(var i=0;i<data.length;i++){
+
+        var navHtml = document.createElement('dl');
+
+        navHtml.className = 'nav-menu';
+
+        var dtHtml = '<dt>'+data[i].title+'</dt>';
+
+        //通过for循环来添加子集
+        for(var j=0;j<data[i].child.length;j++){
+            dtHtml += '<dd data-file="'+data[i].child[j].route+'"><a href="javascript:;">'+data[i].child[j].title+'</a></dd>';
+        }
+        navHtml.innerHTML = dtHtml;
+        navBox.appendChild(navHtml);
+    }
+
+    //点击侧栏菜单，要在右边显示对应的内容
+
+    //需要给侧栏菜单  dd  添加点击事件
+
+    /*
+    * 说明：由于dd是通过字符串拼接出来的，所以无法再当时添加点击事件，
+    * 解决方案： 通过事件代理解决无法添加事件的问题
+    *
+    * 事件代理中的问题：  如何找到dd这个元素
+    *
+    * */
+
+    //把dd的事件代理给到祖父级
+    //已经把data-file元素事件单独管理了 。这块就不需要了
+
+//    navBox.onclick = function(ev){
+//
+//        //通过ev.target 目标元素判断  做对应的事情
+//
+//        //找到dd
+//        var dd = findEle(ev.target,'nodeName','dd');
+//
+//        //在页面上显示当前菜单下的内容 child
+//        //如何找到child
+//
+//        /*
+//        * 已知 父级地址  数据在data
+//        *
+//        * data-file =  'file_0'
+//        *
+//        *
+//        *  把 file_0  拆分   ['file','0']
+//        *
+//        *
+//        * */
+//
+////        var childDir = dd&&dd.getAttribute('data-file');
+////
+////
+////        //渲染页面内容
+////        showContent(childDir);
+//
+//        console.log(breadcrumb);
+//
+////        if(childDir){
+////            //转成数组
+////            childDir = childDir.split('_');
+////
+////            console.log(childDir); // ["0", "1"]
+////
+////            // data[childDir[0]].child[childDir[1]]
+////            // data['0']['1']
+////
+////            var child = data[childDir[0]].child[childDir[1]];
+////            var childList = child.child;
+////
+////            //找到放内容的地方
+////            var ul = document.querySelector('#main ul');
+////
+////            //拼接li
+////            var liHtml = '';
+////            for(var i=0;i<childList.length;i++){
+////                liHtml += '<li data-file="'+childList[i].route+'">'+
+////                    '<span>'+childList[i].title+'</span>'+
+////                    '<em></em>'+
+////                    '</li>';
+////            }
+////            ul.innerHTML = liHtml;
+//
+//
+////        }
+//
+//
+//
+//
+//    };
+
+
+
+
+
+    //页面刷新
+    countHeight();
+
+    //页面大小变化的时候
+    window.onresize = countHeight;
+
+
+
+    //图标模式的移入移出效果
+    listHover();
+
+
+
+
+
+    //计算内容高度
+    function countHeight(){
+        //头部高度
+        var headerH = document.querySelector('#header').offsetHeight;
+        var bodyH = document.querySelector('body').clientHeight;
+
+
+        //侧栏
+        var nav = document.querySelector('#nav');
+
+        nav.style.height = bodyH-headerH+'px';
+
+    }
+
+
+
+    clickOnDataFiles();//初识化执行一次
+
+    document.onclick = function(){
+
+        clickOnDataFiles();//找到页面新加的元素
+
+    };
+
+    function clickOnDataFiles(){
+        //给所有添加过data-file的元素添加点击事件 获取对应要显示的内容  方便统一管理
+
+        var routeBox = getByAttrName('data-file');
+
+        function getDateFile(){
+
+            //找到route内容
+            var childDir = this.getAttribute('data-file');
+            showContent(childDir);
+
+
+            this.removeEventListener('click',getDateFile,false);
+        }
+
+        for(var i=0;i<routeBox.length;i++){
+            routeBox[i].addEventListener('click',getDateFile,false);
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /*************************************/
+
+
+    //渲染页面内容的函数
+    function showContent(route){
+
+        breadcrumb = '<a href="javascript:;">微云</a> / ';
+
+        //渲染页面内容
+        if(route){
+            //转成数组
+            route = route.split('_');
+
+            // data[childDir[0]].child[childDir[1]]
+            // data['0']['1']
+
+//            var child = data[route[0]].child[route[1]];
+
+            var child;
+
+            findData(data,0);
+
+            console.log(child);
+
+
+            var childList = child.child;
+
+
+
+            /*
+            * route的层级是不是一样多？ 不是一样  0  0_0  0_0_0
+            *
+            *
+            *   是一个无限延伸的菜单地址
+            *
+            *   只能通过递归来找到内容
+            * */
+
+            console.log(route);
+
+            /*
+            *dataJson 找数据的位置
+            *
+            * index  指的是route数组的下标
+            *
+            * */
+            function findData(dataJson,index){
+
+
+
+                //处理面包屑
+                if(index>1){
+                    breadcrumb += '<a data-file="'+dataJson[route[index]].route+'" href="javascript:;">'+dataJson[route[index]].title+'</a>'+' / ';
+                }
+                //route = ["0", "0", "0"]
+
+                if(index<route.length-1){
+                    findData(dataJson[route[index]].child,index+1)
+                }else{
+                    child = dataJson[route[index]];
+                }
+
+            }
+
+
+            //找到放内容的地方
+            var ul = document.querySelector('#main ul');
+
+            //拼接li
+            var liHtml = '';
+            for(var i=0;i<childList.length;i++){
+                liHtml += '<li data-file="'+childList[i].route+'">'+
+                    '<span>'+childList[i].title+'</span>'+
+                    '<em></em>'+
+                    '</li>';
+            }
+            ul.innerHTML = liHtml;//内容加入到了页面
+
+            //面包屑也要放到页面上
+            var breadcrumbBox = document.querySelector('.breadcrumb');
+
+            breadcrumb = breadcrumb.slice(0,-2);
+            breadcrumbBox.innerHTML = breadcrumb;
+
+
+
+//            if(liHtml==''){
+//                ul.parentNode.innerHTML = '内容为空';
+//            }
+
+            listHover();
+        }
+
+    }
+
+
+    //给内容列表添加交互事件
+    function listHover(){
+        //图标模式的移入移出效果
+        var iconList = document.querySelectorAll('#main li');
+
+        for(var i=0;i<iconList.length;i++){
+            iconList[i].onmouseover = function(){
+                if(this.isClick) return;//如果被点击过  就不操作
+                this.className = 'active';
+            };
+            iconList[i].onmouseout = function(){
+                if(this.isClick) return;//如果被点击过  就不操作
+                this.className = '';
+            };
+
+            //标记点击
+            var em = iconList[i].querySelector('em');
+            em.onclick = function(ev){
+                console.log(this.parentNode);
+
+                //被点击过
+                if(this.parentNode.isClick){
+                    //取消状bggbbgb态
+                    this.parentNode.isClick = false;
+                    this.parentNode.className = 'active';
+                }else{
+                    this.parentNode.isClick = true;
+                    this.parentNode.className = this.parentNode.className+' checked';
+                }
+
+                ev.cancelBubble = true;
+
+
+            };
+        }
+    }
+
+
+
+    //找对应元素的方法
+    function findEle(ele,attr,value){
+
+        //如果父级不存在或者父级不是一个元素  说明找不到了 返回 undefined
+        if(ele==null||ele.nodeType!=1) return;
+
+
+        if(ele[attr].toLocaleLowerCase()==value.toLocaleLowerCase()){
+            return ele;
+        }
+
+        return findEle(ele.parentNode,attr,value);
+
+    }
+
+    //通过属性名找元素
+    function getByAttrName(attrName){
+        if(!attrName){
+            console.log('请输入属性名');
+            return;
+        }
+
+        var elements = document.getElementsByTagName('*');
+
+        var arr = [];
+        for(var i=0;i<elements.length;i++){
+            var attrs = elements[i].attributes;
+            for(var j=0;j<attrs.length;j++){
+                if(attrs[j].nodeName==attrName){
+
+                    arr.push(elements[i]);
+                    break;
+                }
+            }
+
+        }
+
+        return arr;
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

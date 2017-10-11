@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+    /*
+    * 定时器 (毫秒)
+    *   1.间隔定时器
+    *       setInterval(fn,1000);
+    *       间隔一段时间，执行函数，会一直执行
+    *   2.延时定时器
+    *       setTimeout(fn,1000);
+    *       间隔一段时间，执行一次函数，然后停止
+    *
+    *
+    *       注意：   函数和间隔时间是逗号分隔
+    *
+    *
+    *     1s = 1000ms
+    * */
+
+    var num = 1;
+
+    //匿名函数的使用方式
+//    setInterval(function(){
+//        console.log(num++);
+//    },500);
+
+    function fn(){
+        console.log(num++);
+    }
+//    function fn(a,b){
+//        console.log(a+b);
+//    }
+//    setInterval(fn,500);
+
+    //字符串方式函数使用
+//    setInterval('fn(1,2)',500);//不推荐使用
+
+    //如果函数要传值，建议使用匿名函数调用其他函数
+//    setInterval(function(){
+//        fn(1,2);
+//    },500);
+
+    //setTimeout(fn,time)
+
+    setTimeout(fn,1000);
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

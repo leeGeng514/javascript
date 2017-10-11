@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #9E9BF6;
+        }
+        #box{
+            width:900px;
+            height:600px;
+            border:5px solid #fff;
+            margin:100px auto auto;
+        }
+        .btn{
+            padding:10px 0;
+            text-align: center;
+        }
+        a{
+            display: inline-block;
+            width:120px;
+            height:40px;
+            line-height:40px;
+            margin:10px;
+            border:1px solid #fff;
+            color:#fff;
+            text-decoration: none;
+            border-radius:5px;
+        }
+        .list{
+            padding:10px;
+        }
+        .list div{
+            float: left;
+            width:200px;
+            height:200px;
+            line-height: 200px;
+            margin:20px 10px;
+            border-radius: 10px;
+            text-align: center;
+            color:#fff;
+            background-color: #93d09D;
+            position: relative;
+            font-size:42px;
+        }
+        .list div p{
+            position: absolute;
+            bottom:-10px;
+            width:180px;
+            height:40px;
+            left:10px;
+            background-color:#93df9D;
+            line-height:40px;
+            border-radius:5px;
+            font-size:16px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="btn">
+        <a href="javascript:;">从大到小</a>
+        <a href="javascript:;">随机排序</a>
+    </div>
+    <div class="list">
+        <div>1
+            <p>标题1</p>
+        </div>
+        <div>2
+            <p>标题2</p>
+        </div>
+        <div>3
+            <p>标题3</p>
+        </div>
+        <div>4
+            <p>标题4</p>
+        </div>
+        <div>5
+            <p>标题5</p>
+        </div>
+        <div>6
+            <p>标题6</p>
+        </div>
+        <div>7
+            <p>标题7</p>
+        </div>
+        <div>8
+            <p>标题8</p>
+        </div>
+    </div>
+</div>
+<script src="MTween.js"></script>
+<script>
+
+
+    /*
+    * 思路：
+    *   1.获取按钮
+    *   2.获取要随机排列的元素  元素集合 （能通过下标获取）
+    *   3.点击随机排列的按钮
+    *       a.产生一个 0-元素length-1随机数
+    *       b.元素length-1个不重复的下标
+    *       c.通过下标获取对应的元素
+    *       d.把元素按照数组中的顺序放到页面上
+    *
+    * */
+
+    // 1.获取按钮
+    //第0个是从小到大排列  第1个是随机排列
+    var a = document.querySelectorAll('a');
+
+    //要排列的元素
+    var dives = document.querySelectorAll('.list div');
+
+    //框
+    var listBox = document.querySelector('.list');
+
+
+    //从小到大 顺序排序
+    a[0].isClick = true;
+    a[0].onclick = function(){
+
+        var arr = [];
+
+        for(var i=0;i<dives.length;i++){
+            arr.push(i);
+        }
+
+
+
+        //当arr成功生成 根据isClick状态值来排列顺序
+        if(this.isClick){
+            //把状态值改成false
+            this.isClick = false;
+            this.innerHTML = '从小到大';
+            arr.reverse();
+        }else{
+            //把状态值改成true
+            this.isClick = true;
+            this.innerHTML = '从大到小';
+        }
+
+
+
+
+        //清空一下父级
+        listBox.innerHTML = '';
+
+        //原始数据并没有发生变化  还是 从小到大的排序
+
+        //根据原始数据排序  重新生成内容
+        for(var i=0;i<arr.length;i++){
+
+            listBox.innerHTML += '<div>'+dives[arr[i]].innerHTML+'</div>';
+        }
+
+
+    };
+
+
+
+    //随机排序按钮  添加点击事件
+    a[1].onclick = function(){
+
+
+
+            //创建一个数组 保存随机产生的下标
+            var arr = [];
+
+            while(arr.length<dives.length){
+
+                // a.产生一个 0-元素length-1随机数
+                //每次循环产生一个新的随机数
+//        var num = Math.round(Math.random()*7);
+                var num = Math.round(Math.random()*(dives.length-1));
+
+                //每次循环都创建一个默认的状态值，来保存数组中是否存在相同的num的状态
+                //false表示没有重复num
+                //true表示存在相同的num
+                var state = false;
+
+                //只要arr没有达到dives.length个 就继续往arr中放数组
+//                arr.push(num);
+
+                //去重处理
+                for(var i=0;i<arr.length;i++){
+                    if(arr[i]==num){
+                        state = true;//说明有重复的
+                    }
+                }
+
+                //state 为 true时说明有重复的
+//                if(state){
+//                    //有重复的  什么都不做
+//                }else{
+//                    //没有重复的num才往arr中放
+//                    arr.push(num);
+//                }
+
+                if(!state){
+                    arr.push(num);
+                }
+
+
+            }
+
+            console.log(arr);
+
+            //清空一下父级
+            listBox.innerHTML = '';
+
+            //对应随机的小标已经获取的到了
+            for(var i=0;i<arr.length;i++){
+//                console.log(dives[arr[i]]);
+                //元素是一个对象，通过+的方式会转换成字符串
+                //对象转换成字符串 ==> [object xxxx]
+//                listBox.innerHTML += dives[arr[i]];
+                listBox.innerHTML += '<div>'+dives[arr[i]].innerHTML+'</div>';
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    };
+
+
+
+
+
+
+</script>
+</body>
+</html>

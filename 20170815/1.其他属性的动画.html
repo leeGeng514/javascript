@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            opacity: .8;
+        }
+    </style>
+    <script src="MTween.js"></script>
+</head>
+<body>
+
+<div></div>
+
+<script>
+
+    //获取元素
+    var div = document.querySelector('div');
+
+    /*
+    *  obj --> div 要运动的元素
+    *  count - - >  总共要运动的数值
+    *  duration -->  整个动画完成需要的总时间  毫秒 1s = 1000 ms
+    *  attr -->  运动要改变的属性
+    *  fx -->  运动的方式   linear 匀速
+    *  fn-> 回调函数  可以省略
+    *           ---> 当动画结束的时候你想做的事情就可以在回调函数中申明
+    *
+    * */
+//    MTween(div,1,500,'opacity','linear',function(){
+//        alert('动画已完成');
+//    });
+
+    console.log(getCss(div,'opacity'));
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+            margin:5px;
+        }
+    </style>
+    <script src="MTween.js"></script>
+    <script>
+        window.onload = function(){
+
+            //获取元素
+            var btn = document.querySelector('input');
+            var dives = document.querySelectorAll('div');
+            btn.isClick = true;//默认可以开始动画
+            var num =  0;
+
+            btn.onclick = function(){
+                //当动画队列正在执行时，不做其他动作
+//                console.log(btn.isClick);
+                if(!btn.isClick) return;
+                btn.isClick = false;
+                for(var i=0;i<dives.length;i++){
+                    (function(index){
+                        setTimeout(function(){
+                            if(!dives[index].isClick){
+                                MTween(dives[index],500,800,'marginTop','linear',function(){
+                                    dives[index].isClick = true;
+                                    num++;
+                                    if(num>=dives.length-1){
+                                        num = 0;
+                                        btn.isClick = true;
+                                    }
+                                });
+                            }else{
+                                MTween(dives[index],-500,800,'marginTop','linear',function(){
+                                    dives[index].isClick = false;
+                                    num++;
+                                    if(num>=dives.length-1){
+                                        num = 0;
+                                        btn.isClick = true;
+                                    }
+                                });
+                            }
+                        },200*index);
+                    })(i);
+                }
+
+            };
+
+
+        };
+    </script>
+</head>
+<body>
+<input type="button" value="开始">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

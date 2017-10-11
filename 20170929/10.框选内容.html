@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .mark{
+            background-color: #6DE0FD;
+            opacity: .3;
+            position: absolute;
+        }
+
+        .box{
+            float: left;
+            margin:10px;
+            width:100px;
+            height:50px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">1</div>
+
+
+<script>
+
+
+
+
+
+        /*
+        * 1.创建div  鼠标点下的时候创建
+        *
+        * 2.鼠标移动的时候修改  width height
+        *
+        *
+        * */
+
+        document.onmousedown = function(ev){
+
+            //当不是鼠标左键点击的时候  退出函数
+            if(ev.button!=0) return;
+
+            //找到当前鼠标点下的位置  作为创建的div 定位样式
+            var x1 = ev.clientX;
+            var y1 = ev.clientY;
+
+            //创建的框选器
+            var div = document.createElement('div');
+
+            div.className = 'mark';
+
+            //定位框选器
+            div.style.left = x1+'px';
+            div.style.top = y1+'px';
+
+            document.body.appendChild(div);
+
+            document.onmousemove = function(ev){
+
+
+
+
+                //鼠标移动后的位置
+                var x2 = ev.clientX;
+                var y2 = ev.clientY;
+
+                //计算框选器的宽高
+                var currW = x2-x1;
+                var currH = y2-y1;
+
+
+
+                div.style.width = Math.abs(currW)+'px';
+                div.style.height = Math.abs(currH)+'px';
+
+                //Math.min(num,num....)  选择最小值
+
+
+
+                //如果框选器宽高小于0  需要改变定位值
+
+                div.style.left = Math.min(x1,x2)+'px';
+//                if(x2<x1){
+//                    div.style.left = x2+'px';
+//                }else{
+//                    div.style.left = x1+'px';
+//                }
+
+                div.style.top = Math.min(y1,y2)+'px';
+//                if(y2<y1){
+//                    div.style.top = y2+'px';
+//                }else{
+//                    div.style.top = y1+'px';
+//                }
+
+
+                //必须在元素属性稳定后才检测碰撞
+
+                /*
+                 * 碰撞检测过程：
+                 *       1.e1表示元素1   e2表示元素2
+                 *       2.最小碰撞距离： minW = e1.offsetWidth/2+e2.offsetWidth/2
+                 *                       minH = e1.offsetHeight/2+e2.offsetHeight/2
+                 *
+                 *       3.e1的中心点：   x1 = e1.offsetLeft+e1.offsetWidth/2
+                 *                       y1 = e1.offsetTop+e1.offsetHeight/2
+                 *
+                 *       4.e2的中心点：  x2 = e2.offsetLeft+e2.offsetWidth/2
+                 *                      y2 = e2.offsetTop+e2.offsetHeight/2
+                 *
+                 *       5.检测是否碰撞到：
+                 *           判断条件：Math.abs(x1-x2)<minW&&Math.abs(y1-y2)<minH
+                 *           true  =>  碰上了
+                 *           false =>  没碰上
+                 *
+                 *
+                 *
+                 * */
+
+                var e1 = document.querySelector('.box');
+                var e2 = div;
+
+                var e2_x2 = e2.offsetLeft+e2.offsetWidth/2;
+                var e2_y2 = e2.offsetTop+e2.offsetHeight/2;
+
+                var e1_x1 = e1.offsetLeft+e1.offsetWidth/2;
+                var e1_y1 = e1.offsetTop+e1.offsetHeight/2;
+
+                var minW = e1.offsetWidth/2+e2.offsetWidth/2;
+                var minH = e1.offsetHeight/2+e2.offsetHeight/2;
+
+
+
+                if(Math.abs(e1_x1-e2_x2)<minW&&Math.abs(e1_y1-e2_y2)<minH){
+                    e1.style.backgroundColor = 'green';
+                }else{
+                    e1.style.backgroundColor = 'red';
+                }
+
+
+                return false;
+
+            };
+
+
+
+            document.onmouseup = function(){
+
+                //鼠标抬起时需要删除当前的框选器，否则会在页面出现多个同名div
+                document.body.removeChild(div);
+
+                document.onmousemove = null;
+                document.onmouseup = null;//解决点击其他按钮找不到删除的元素的错误
+
+            };
+
+
+        };
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+
+    var div = document.querySelectorAll('div');
+
+
+        //移动元素
+//    document.onmousemove = function(ev){
+//
+//        //获取鼠标的当前位置
+//        var divLeft = ev.clientX;
+//        var divTop = ev.clientY;
+//
+//        //设置div的位置
+//        div.style.left = divLeft-50 +'px';
+//        div.style.top = divTop-50 +'px';
+//
+//    }
+
+    //扩展： 拖拽
+    /*
+    * 先鼠标按下  选择要移动元素
+    *
+    * 添加移动事件
+    *
+    * */
+
+    for(var i=0;i<div.length;i++){
+
+        div[i].onmousedown = function(ev){
+
+            //这个时候选择元素
+            var _this = this;
+
+            var x = ev.clientX - _this.offsetLeft;
+            var y = ev.clientY - _this.offsetTop;
+
+            console.log(x,y);
+
+            //添加移动事件
+            document.onmousemove = function(ev){
+
+                //获取鼠标的当前位置
+                var divLeft = ev.clientX;
+                var divTop = ev.clientY;
+
+
+                //设置div的位置
+                _this.style.left = divLeft-x +'px';
+                _this.style.top = divTop-y +'px';
+
+            }
+
+        };
+
+
+        div[i].onmouseup = function(){
+            document.onmousemove = null;
+        };
+
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img src="img/1.jpg" alt="">
+<input type="button" value="开始切换">
+<script>
+
+    var img = document.querySelector('img');
+    var btn = document.querySelector('input');
+
+    //点击按钮 开始图片自动切换
+
+    var num = 1;
+
+    /*
+    * 如果要停止一个定时器，必须申明一个变量存储这个定时器的id，以便停止的时候找到对应的定时器
+    *
+    * 停止间隔定时器的方法：clearInterval(timer);
+    * timer是要停止的定时器id
+    * 每一个定时器的开启都会由一个新id
+    * */
+
+    var timer = 0;
+
+    btn.onclick = function(){
+        autoPlay();
+        console.log(timer);//1  是定时器的id
+    };
+
+    img.onmouseover = function(){
+        clearInterval(timer);
+    };
+
+    img.onmouseout = function(){
+//        timer();  // 1()
+        autoPlay();
+        console.log(timer);
+    };
+
+
+    //定时器封装
+    function autoPlay(){
+        timer = setInterval(function(){
+            num++;
+            if(num==6){
+                clearInterval(timer);//关闭定时不不会阻断代码执行
+            }
+            img.src = 'img/'+num+'.jpg';
+        },1000);
+    }
+
+    //定时器和函数表达式的区别
+    var fn = function(){
+//        alert(1);
+    };
+
+    console.log(fn);
+
+    fn();
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

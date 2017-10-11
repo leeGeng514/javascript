@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        预解析：
+            fn1 = function(){}
+            newFn = undefined
+
+        逐行解读代码：
+
+        闭包特性:
+            函数嵌套函数
+            子级引用父级的变量或者参数
+
+    */
+
+    // function fn1(){
+    //     var a = 0;
+    //     function fn2(){
+    //         ++ a;
+    //         alert(a);
+    //     }
+    //     return fn2;
+    // }
+    // fn1()();//1
+    // var newFn = fn1();
+    // newFn();//1
+    // newFn();//2
+
+    function fn(){
+       var a = 10;
+       return function (){
+          //a++;
+          alert(a);
+      };
+    }
+
+    var n = fn();
+
+
+
+
+
+    console.dir(n);
+    
+
+   
+
+</script>
+</body>
+</html>

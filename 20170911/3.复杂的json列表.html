@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li><span>内容：1111</span><span>作者：尹巍</span><span>上传时间：2017-09-11</span></li>
+    <li><span>内容：1111</span><span>作者：尹巍</span><span>上传时间：2017-09-11</span></li>
+    <li><span>内容：1111</span><span>作者：尹巍</span><span>上传时间：2017-09-11</span></li>
+    <li><span>内容：1111</span><span>作者：尹巍</span><span>上传时间：2017-09-11</span></li>
+</ul>
+<script>
+
+
+//    var json = [
+//        '内容12345,作者尹巍,上传时间2017-09-11',
+//        '12345,尹巍,2017-09-11',
+//        '12345,尹巍,2017-09-11',
+//        '12345,尹巍,2017-09-11',
+//        '12345,尹巍,2017-09-11'
+//    ];
+
+var json = [
+    ['尹巍','1233','2017-09-11'],
+    [12345,'尹巍','2017-09-11'],
+    [12345,'尹巍','2017-09-11'],
+    [12345,'尹巍','2017-09-11'],
+    [12345,'尹巍','2017-09-11']
+];
+
+
+
+/*
+
+ 详细注释
+* content  d....
+*
+* uploadDate .....
+*
+* name  ......
+
+*
+* */
+var json = [
+    {
+        "content":"12345",
+        "name":"yinwei",
+        "uploadDate":"2017-08-11"
+    },
+    {
+        "content":"12345",
+        "name":"yinwei",
+        "uploadDate":"2017-08-11"
+    },
+    {
+        "content":"12345",
+        "name":"yinwei",
+        "uploadDate":"2017-08-11"
+    }
+];
+
+var ul = document.querySelector('ul');
+
+var html = '';
+//数组套数组写法
+//for(var i=0;i<json.length;i++){
+//    html += '<li><span>内容：'+json[i][0]+'</span><span>作者：'+json[i][1]+'</span><span>时间：'+json[i][2]+'</span></li>'
+//}
+
+//数组套{}
+for(var i=0;i<json.length;i++){
+    html += '<li><span>内容：'+json[i]['content']+'</span><span>作者：'+json[i]['name']+'</span><span>时间：'+json[i]['uploadDate']+'</span></li>'
+}
+
+ul.innerHTML = html;
+
+
+
+
+</script>
+</body>
+</html>

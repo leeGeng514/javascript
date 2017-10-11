@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<a href="?a=0#122">刷新</a>
+<a href="?a=1#122">刷新</a>
+<script src="MTween.js"></script>
+<script>
+
+    //处理页面缓存的方式
+
+    console.log(window.location.search);
+
+
+    var a = document.querySelector('a');
+
+    var search = searchToJson(window.location.search);
+
+    a.onclick = function(){
+
+//        search.a = Math.random();
+
+        //把新的search内容拼接成字符串
+        var str = setSearch('a',new Date().getTime());
+
+        a.href = str;
+
+
+    };
+
+
+    console.log(11111);
+
+
+</script>
+</body>
+</html>

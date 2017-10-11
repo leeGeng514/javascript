@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        body{
+            margin: 0;
+        }
+
+        #box{
+
+            width:100px;
+            height:200px;
+            border:10px solid #000;
+            margin-left:100px;
+            margin-top:100px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="box" index="1" class=""></div>
+
+<script>
+
+    /*
+    * node.getBoundingClientRect()
+    *
+    * 作用： 获取元素在js中计算后的一些属性值  b
+    *
+    * 边距：是到可视区域的距离   不是定位父级
+    *
+    *
+    * 返回值： 一个对象
+    *
+    * left:  到可视区域的左边距
+    * top:  到可是区域的上边距
+    * right:右外边框到可视区域的左边距离
+    * bottom: 下外边框到可视区域的顶部距离
+    * width:除了margin值之外的宽度
+    * height:除了margin值之外的高度
+    *
+    * 注意：ie下不兼容
+    *
+    * */
+
+    var div = document.querySelector('div');
+
+    console.log(div.getBoundingClientRect());
+
+    console.log('left:'+div.offsetLeft);
+    console.log('top:'+div.offsetTop);
+
+
+
+
+
+</script>
+</body>
+</html>

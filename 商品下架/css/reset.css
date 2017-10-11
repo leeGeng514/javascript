@@ -1,0 +1,62 @@
+/* 重置样式 */
+body, h1, h2, h3, h4, h5, p, dl, dd{
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+}
+
+body {
+    font-size: 14px;
+    font-family: "microsoft yahei", sans-serif;
+    background: #9266e6;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    vertical-align: top;
+}
+
+a{
+    text-decoration: none;
+}
+
+img {
+    vertical-align: top;
+    border: none;
+}
+
+input {
+    padding: 0;
+    border: 0;
+    background: none;
+    outline: none;
+}
+
+em {
+    font-style: normal;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
+
+.clearfix{
+    *zoom:1;
+}
+
+.clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+}

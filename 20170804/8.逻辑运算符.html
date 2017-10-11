@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    //逻辑运算符  &&  ||  !   只作用在布尔值
+
+    // &&   左右两边同时为真  才为真
+//    if(1<2&&2<3&&4<5&&4<5&&4<5){
+//        alert(123);
+//    }
+//    if(1<2){
+////        alert(1);
+//        if(2<3){
+//            alert(2);
+//        }
+//    }
+//    if(1<2&&2<3){
+//        alert(2);
+//    }
+
+    // ||   左右两边只要有一个为真  就为真
+//    if(4<3||1<2||1<2||1<2||1<2||1<2){
+//        alert(123);
+//    }
+
+    if((2<3&&3<4)||(3>4&&4<5)){
+        console.log(123);
+    }
+
+
+
+    //!（否）  取反   !true=>false   !false=>true
+    var onoff = false;
+//    if(onoff){
+//
+//    }else{
+//        alert('我是判断条件为假的时候出现的');
+//    }
+//    //改写方式
+//    if(!onoff){
+//        alert('我是判断条件为假的时候出现的');
+//    }
+
+    console.log(!1);  // Boolean(1)=>true !true=>false
+    console.log(3*!2);  // 0
+
+
+
+
+</script>
+</body>
+</html>

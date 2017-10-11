@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    *函数默认返回值 undefined
+
+     可以通过函数内的return关键字来改变返回值
+
+     没有设置return返回内容时，函数默认返回undefined
+
+     如果设置了return，这根据return后面的内容来决定返回值
+
+     return会中断函数继续执行，无论在函数中的任何位置使用return，那么return后面的所有代码都将不予执行
+
+     return  只在函数内部生效
+
+     *
+    *
+    * */
+
+    //求和函数
+    function fn1(a,b){
+//        alert(a+b);
+
+        return a+b;
+    }
+
+    for(var i=0;i<10;i++){
+        console.log(i);
+
+    }
+
+    var sum = fn1(1,2);
+
+    console.log(fn1(1,2),sum);
+
+    function fn2(){
+        console.log(1);
+//        return 1;
+        return;
+        console.log(2);
+        console.log(3);
+        console.log(4);
+    }
+
+
+    fn2();
+
+</script>
+</body>
+</html>

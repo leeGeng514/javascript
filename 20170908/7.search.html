@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<a href="?page=page1&name=yinwei">第一页</a>
+<a href="?page=page2&name=yinwei">第二页</a>
+<a href="?page=page3&name=yinwei">第三页</a>
+<div id="box"></div>
+<script>
+
+    var json = {
+        page1:'111111',
+        page2:'22222222',
+        page3:'333333'
+    };
+
+    var searchInfo = window.location.search;
+
+    //?page=page2
+
+    var arr = searchInfo.slice(1).split('&');
+
+    arr1=arr[0].split('=');
+    arr2=arr[1].split('=');
+
+    console.log(arr2);
+
+    console.log(arr1);
+
+    fullArr=arr1.concat(arr2);
+//    arr2=arr[1].split('=');
+//
+//    arr1.concat(arr2);
+//
+//    console.log(arr1);
+
+
+    var searchJson = {};
+
+    searchJson[fullArr[0]] = fullArr[1];
+    searchJson[fullArr[2]] = fullArr[3];
+
+
+    console.log(searchJson);
+
+    //判断是否有page的值
+
+    var box = document.getElementById('box');
+
+    box.innerHTML = json.page1;
+
+    for(var i in searchJson){
+
+        if(i=='page'){
+            box.innerHTML = json[searchJson[i]];
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+    /*
+     * window.location --- 地址栏信息
+
+     * window.location.href  获取/设置地址栏的url
+     *
+     *
+     *
+     *  window.location.search
+     地址栏查询信息 （问号到#号之间的所有内容）
+     *
+     * */
+
+//    console.log(window.location.search);
+
+
+    </script>
+</body>
+</html>

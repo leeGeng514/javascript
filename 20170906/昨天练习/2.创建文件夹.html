@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width:800px;
+            min-height:100px;
+            overflow: hidden;
+            border:1px solid #000;
+            padding:10px;
+        }
+        #box div{
+            width:100px;
+            height:100px;
+            line-height: 100px;
+            text-align: center;
+            border:1px solid #ccc;
+            box-shadow: 0 0 5px #eee;
+            position: relative;
+            float: left;
+        }
+        #box div input{
+            width:20px;
+            height:20px;
+            position: absolute;
+            left:5px;
+            top:5px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+
+</div>
+<input type="button" value="新建">
+<input type="button" value="删除">
+<script>
+
+
+    /*
+    * 1.获取元素  box  button
+    *
+    * 2.新建的点击事件：
+    *       1.创建一个div元素
+    *           添加 名字
+    *           添加事件  onmouseover  onmouseout
+    *       2.创建一个checkbox元素
+    *           添加事件  onclick
+    *
+    *       3.把checkbox放到div
+    *       4.把 div 放到box
+    *
+    *
+    *
+    *
+    * */
+
+    var box = document.querySelector('#box');
+    var btns = document.querySelectorAll('input[type=button]');
+
+    var delArr = []; //存要删除的元素
+
+    var n = 0;
+
+
+    btns[1].onclick = function(){
+
+        for(var i=0;i<delArr.length;i++){
+//            delArr[i].parentNode.removeChild(delArr[i]);
+            box.removeChild(delArr[i]);
+
+        }
+        delArr = [];
+
+
+    };
+
+
+    //新建按钮的点击事件：
+    btns[0].onclick = function(){
+
+        //1.创建一个div元素
+
+        n++;
+
+        var div = document.createElement('div');//已经是节点
+
+        div.innerHTML = '文件夹'+n;
+
+        div.onmouseover = function(){
+            this.style.backgroundColor = 'rgba(0,0,0,.5)';
+        };
+        div.onmouseout = function(){
+            this.style.backgroundColor = '';
+        };
+
+        var checkBox = document.createElement('input');
+
+        checkBox.type = 'checkbox';
+
+        checkBox.onclick = function(){
+
+            //收集要删除的数据
+
+            //把要删除的内容放到数组中
+            if(this.checked){
+                //被选中  就要放到删除的数组中
+                delArr.push(this.parentNode);
+            }else{
+                //取消选中
+
+                for(var i=0;i<delArr.length;i++){
+                    if(this.parentNode==delArr[i]){
+                        delArr.splice(i,1);//从数组中删除第i个数据
+                    }
+                }
+
+
+            }
+
+
+        };
+
+        div.appendChild(checkBox);
+        box.appendChild(div);
+
+
+    };
+
+
+
+
+
+
+</script>
+</body>
+</html>

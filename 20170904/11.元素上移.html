@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        li{
+            width:200px;
+            height:40px;
+            line-height: 40px;
+            border:1px solid #000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<input type="text">
+<input type="button" value="提交">
+<ul>
+    <li>001</li>
+    <li>002</li>
+    <li>003</li>
+    <li>004</li>
+    <li>005</li>
+</ul>
+<script>
+
+    /*
+     * parentNode.insertBefore(参数1--被插入元素,参数2--定位元素);
+     *
+     * 作用： 往参数1元素前面插入参数2这个元素
+     *
+     * 也可以用来移动元素
+     *
+     * 参数：
+     *  参数2： 用来定位的元素
+     *  参数1： 用来插入元素
+     *
+     *  parentNode.insertBefore(参数1,null)
+     *
+     *  ==  appendChild()
+     *
+     *
+     *
+     *
+     * */
+
+    var inputs = document.querySelectorAll('input');
+    var ul = document.querySelector('ul');
+
+    var lis = ul.querySelectorAll('li');
+
+
+    for(var i=0;i<lis.length;i++){
+
+        lis[i].onclick = function(){
+
+            var parent = this.parentNode;
+
+            parent.insertBefore(this,this.previousElementSibling)
+
+        }
+
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

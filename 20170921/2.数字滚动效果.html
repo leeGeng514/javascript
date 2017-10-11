@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box{
+            overflow: hidden;
+        }
+
+        .num-box{
+            float: left;
+            width:50px;
+            height:70px;
+            border:1px solid #000;
+            overflow: hidden;
+            margin-top:100px;
+        }
+        .scroll-box{
+            margin-top:-70px;
+
+        }
+        .scroll-box img{
+            display: block;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <div id="box">
+        <div class="num-box">
+            <div class="scroll-box">
+                <img src="img/1.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="num-box">
+            <div class="scroll-box">
+                <img src="img/1.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="num-box">
+            <div class="scroll-box">
+                <img src="img/1.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="num-box">
+            <div class="scroll-box">
+                <img src="img/1.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="num-box">
+            <div class="scroll-box">
+                <img src="img/1.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="num-box">
+            <div class="scroll-box">
+                <img src="img/1.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="num-box">
+            <div class="scroll-box">
+                <img src="img/1.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="num-box">
+            <div class="scroll-box">
+                <img src="img/1.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script src="MTween.js"></script>
+    <script>
+
+
+
+        /*
+        * 获取元素
+        *
+        * */
+
+//        var numBox = document.querySelector('.num-box');
+        var numBox = document.querySelectorAll('.num-box');
+
+//        var num = 0;  //当前显示的数字
+
+
+
+//        numBox.onoff = true;//默认允许动画执行
+//        numBox.onclick = function(){
+//
+//            down(this);
+//
+//
+//
+//        };
+
+
+        for(var i=0;i<numBox.length;i++){
+
+            (function(index){
+                numBox[index].num = 0;
+                numBox[index].onoff = true;
+                scroll({
+                    obj:numBox[index],
+                    up:function(){
+                        up(numBox[index]);
+                    },
+                    down:function(){
+                        down(numBox[index]);
+                    }
+                });
+            })(i);
+
+
+
+        }
+
+        //把上下的动画放到滚轮事件中
+
+//        scroll({
+//            obj:numBox,
+//            up:function(){
+//                up(numBox);
+//            },
+//            down:function(){
+//                down(numBox);
+//            }
+//        });
+
+
+
+        function scroll(option){
+
+
+            //如果用户没有传obj 就默认为document
+            if(option.obj==null){
+                option.obj = document;
+            }
+
+            option.obj.onmousewheel = function(ev){
+
+
+                if(ev.wheelDelta>0){
+                    console.log('向上滚动22222');
+
+                    if(option.up!=null){
+                        option.up(ev);
+                    }
+
+                }
+
+                if(ev.wheelDelta<0){
+                    console.log('向下滚动22222222');
+
+                    if(option.down!=null){
+                        option.down(ev);
+                    }
+
+                }
+
+                //阻止默认行为
+                return false;
+
+
+            };
+
+            option.obj.addEventListener('DOMMouseScroll',function(ev){
+
+                if(ev.detail<0){
+                    console.log('向上滚动111111111');
+                    if(option.up!=null){
+                        option.up(ev);
+                    }
+                }
+                if(ev.detail>0){
+                    console.log('向下滚动11111111');
+                    if(option.down!=null){
+                        option.down(ev);
+                    }
+                }
+
+                //阻止默认行为
+                ev.preventDefault();
+
+
+            },false)
+
+        }
+
+
+
+        function up(obj){
+
+            if(!obj.onoff) return;
+            obj.onoff = false;
+
+
+            var scrollBox = obj.querySelector('.scroll-box');
+
+            var imgs = scrollBox.querySelectorAll('img');
+
+
+            MTween(scrollBox,-70,300,'marginTop','linear',function(){
+                scrollBox.style.marginTop = '-70px';
+
+                obj.num++;
+                console.log(obj.num);
+
+                if(obj.num>9){
+                    obj.num = 0;
+                }
+
+                imgs[1].src = 'img/'+obj.num+'.jpg';
+
+                var n = obj.num+1;
+
+                if(n>9){
+                    n = 0;
+                }
+
+                console.log(n);
+                imgs[2].src = 'img/'+n+'.jpg';
+
+                obj.onoff = true;
+
+            });
+
+        }
+
+
+        function down(obj){
+
+            if(!obj.onoff) return;
+            obj.onoff = false;
+
+
+            var scrollBox = obj.querySelector('.scroll-box');
+
+            var imgs = scrollBox.querySelectorAll('img');
+
+            var n = obj.num-1;
+            if(n<0){
+                n = 9;
+            }
+            imgs[0].src = 'img/'+n+'.jpg';
+
+            MTween(scrollBox,70,300,'marginTop','linear',function(){
+                scrollBox.style.marginTop = '-70px';
+
+                obj.num--;
+
+                if(obj.num<0){
+                    obj.num = 9;
+                }
+
+                imgs[1].src = 'img/'+obj.num+'.jpg';
+
+                obj.onoff = true;
+
+            });
+
+        }
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

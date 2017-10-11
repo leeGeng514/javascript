@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .mark{
+            background-color: #6DE0FD;
+            opacity: .3;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+
+        /*
+        * 1.创建div  鼠标点下的时候创建
+        *
+        * 2.鼠标移动的时候修改  width height
+        *
+        *
+        * */
+
+        document.onmousedown = function(ev){
+
+            //当不是鼠标左键点击的时候  退出函数
+            if(ev.button!=0) return;
+
+            //找到当前鼠标点下的位置  作为创建的div 定位样式
+            var x1 = ev.clientX;
+            var y1 = ev.clientY;
+
+            //创建的框选器
+            var div = document.createElement('div');
+
+            div.className = 'mark';
+
+            //定位框选器
+            div.style.left = x1+'px';
+            div.style.top = y1+'px';
+
+            document.body.appendChild(div);
+
+            document.onmousemove = function(ev){
+
+
+
+
+                //鼠标移动后的位置
+                var x2 = ev.clientX;
+                var y2 = ev.clientY;
+
+                //计算框选器的宽高
+                var currW = x2-x1;
+                var currH = y2-y1;
+
+
+
+                div.style.width = Math.abs(currW)+'px';
+                div.style.height = Math.abs(currH)+'px';
+
+                //Math.min(num,num....)  选择最小值
+
+
+
+                //如果框选器宽高小于0  需要改变定位值
+
+                div.style.left = Math.min(x1,x2)+'px';
+//                if(x2<x1){
+//                    div.style.left = x2+'px';
+//                }else{
+//                    div.style.left = x1+'px';
+//                }
+
+                div.style.top = Math.min(y1,y2)+'px';
+//                if(y2<y1){
+//                    div.style.top = y2+'px';
+//                }else{
+//                    div.style.top = y1+'px';
+//                }
+
+            };
+
+
+
+            document.onmouseup = function(){
+
+                //鼠标抬起时需要删除当前的框选器，否则会在页面出现多个同名div
+                document.body.removeChild(div);
+
+                document.onmousemove = null;
+                document.onmouseup = null;//解决点击其他按钮找不到删除的元素的错误
+
+            };
+
+
+        };
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

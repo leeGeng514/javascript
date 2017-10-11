@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--<input type="button" index="0" value="内容1">-->
+<!--<input type="button" index="1" value="内容2">-->
+<!--<input type="button" index="2" value="内容3">-->
+<ul>
+    <li>123123</li>
+    <li>123123</li>
+    <li>123123</li>
+    <li>123123</li>
+</ul>
+
+
+<script>
+
+    var json = {
+        "menu":[
+            "水果",
+            "蔬菜",
+            "大米"
+        ],
+        "content":[
+            [
+                {
+                    "author":"yinwei",
+                    "content":"11111111111111111111111111"
+                },
+                {
+                    "author":"yinwei",
+                    "content":"11111111111111111111111111"
+                },
+                {
+                    "author":"yinwei",
+                    "content":"11111111111111111111111111"
+                }
+            ],
+            [
+                {
+                    "author":"yinwei",
+                    "content":"222222222222222"
+                },
+                {
+                    "author":"yinwei",
+                    "content":"2222222222222222222222222"
+                },
+                {
+                    "author":"yinwei",
+                    "content":"2222222222222"
+                }
+            ],
+            [
+                {
+                    "author":"yinwei",
+                    "content":"33333333333333333333"
+                },
+                {
+                    "author":"yinwei",
+                    "content":"333333333333333333"
+                },
+                {
+                    "author":"yinwei",
+                    "content":"3333333333333333333"
+                }
+            ]
+        ]
+    };
+
+
+    //生成按钮
+    var html = '';
+    for(var i=0;i<json['menu'].length;i++){
+         html += '<input type="button" index="'+i+'" value="'+json['menu'][i]+'"> ';
+    }
+    document.body.innerHTML = html + document.body.innerHTML;
+
+
+
+
+    var btns = document.querySelectorAll('input');
+
+    //要显示列表内容的框
+    var ul = document.querySelector('ul');
+
+
+    //初始化显示：
+    var n = 0;//默认显示的数据
+    showList(json['content'][n]);
+
+
+
+
+    for(var i=0;i<btns.length;i++){
+        btns[i].onclick = function(){
+
+            //显示对应内容
+//            console.log(this.index,this.getAttribute('index'));
+
+            showList(json['content'][this.getAttribute('index')])
+//            showList(json)
+
+        };
+    }
+
+
+    //渲染列表
+    function showList(list) {
+
+            console.log(list);
+        var html = '';
+        for(var i=0;i<list.length;i++){
+            html += '<li><span>作者：'+list[i]["author"]+'</span><span>内容：'+
+                list[i]["content"]+'</span></li>'
+        }
+        ul.innerHTML = html;
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

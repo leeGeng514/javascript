@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<table id="table" border="1" cellpadding="10" cellspacing="10">
+
+    <thead>
+
+        <tr>
+            <th colspan="7">总头</th>
+        </tr>
+
+        <tr>
+            <th>头部1</th>
+            <th>头部2</th>
+            <th>头部3</th>
+            <th>头部4</th>
+            <th>头部</th>
+            <th>头部</th>
+            <th>头部</th>
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+        <tr>
+            <th colspan="2">1</th>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>1111</td>
+        </tr>
+    </tbody>
+
+    <tfoot>
+
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+
+    </tfoot>
+
+
+
+</table>
+
+<table>
+
+<tbody>
+<tr>
+    <td>001</td>
+    <td>002</td>
+    <td>003</td>
+    <td>004</td>
+    <td>005</td>
+    <td>006</td>
+    <td>007</td>
+</tr>
+
+</tbody>
+
+
+
+</table>
+
+
+<script>
+
+  var table = document.querySelector('#table');
+//  var thead = table.querySelector('thead');
+//  var tr = thead.querySelector('tr');
+//  var th = tr.querySelector('th');
+
+//  table.tHead.rows[0].cells[0];
+
+  /*
+  * table -- 通过dom节点直接获取
+  *
+  * table.tHead  获取头部的节点
+  *
+  * table.tFoot  获取底部节点
+  *
+  * table.tBodies[n] 获取主体节点  (集合)
+  *
+  * table.rows[n]   获取行节点  tr  （集合）
+  *
+  * table.rows[n].cells[n]  获取列节点  td/th （集合）
+  *
+  *
+  * tr 必须写在tbody 或者 thead  tfoot 中
+  *
+  * 如果没有写在以上几个元素中  默认会被放在tbody
+  *
+
+  *
+  *
+  *
+  *
+  * */
+
+  table.style.backgroundColor = 'yellow';
+
+  table.tHead.style.backgroundColor = 'red';
+  table.tBodies[0].style.backgroundColor = 'green';
+
+  table.tHead.rows[0].style.backgroundColor = 'blue';
+  table.tBodies[0].rows[0].style.backgroundColor = 'blue';
+  table.tFoot.rows[0].style.backgroundColor = 'blue';
+
+  table.tBodies[0].rows[1].cells[2].style.backgroundColor = 'red';
+
+  table.rows[0].style.backgroundColor = 'red';
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>多级菜单</title>
+<meta charset="utf-8">
+<style>
+	ul, h2 {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		list-style: none;
+	}
+	#nav {
+		border: 1px solid #333;
+		float: left;
+		padding: 5px 0;
+		background: #ccf;
+	}
+	#nav ul {
+		padding-left: 20px;
+		display: none;
+	}
+	#nav h2 {
+		font-size: 16px;
+		height: 25px;
+		line-height: 25px;
+		padding: 0 15px;
+		cursor: pointer;
+	}
+	#nav h2:hover { color: red; }
+	#nav ul.active { display: block; }
+</style>
+<script>
+
+window.onload = function(){
+	var h2s=document.getElementsByTagName('h2');
+  var i;
+
+  for(i=0;i<h2s.length;i++){
+      h2s[i].onclick=function(){
+        //获取当前点击的h2旁边的ul；
+        var ul=this.parentNode.children[1];
+        //当前点击的h2上边的ul下边的ul
+        var uls=this.parentNode.parentNode.getElementsByTagName('ul');
+
+        if(!ul)return;//如果ul不存在说明下边没有列表可以展开。
+        //判断ul的显示状态。
+        if(ul.className=='active'){
+          //如果是显示的就隐藏。
+          ul.className='';
+          this.children[0].innerHTML="+";
+        }else{
+          //如果不是显示的就显示出来。
+
+          //清除同级所以的ul
+          for(var i=0;i<uls.length;i++){
+            uls[i].className='';
+            uls[i].parentNode.children[0].children[0].innerHTML='+';
+          }
+          //给当前的添加。
+          this.children[0].innerHTML='-';
+          ul.className='active';
+        }
+        
+      }
+  }
+
+};
+</script>
+</head>
+
+<body>
+    <ul id="nav">
+      <li>
+        <h2><span>+</span> 第一级菜单 </h2>
+        <ul>
+          <li>
+            <h2><span>+</span> 第二级菜单 </h2>
+            <ul>
+              <li>
+                <h2><span>+</span>第三级菜单 </h2> <ul>
+                  <li>
+                      <h2><span>+</span>第四级菜单</h2>
+                      <ul>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                      </ul>
+                  </li> 
+                  <li>
+                      <h2><span>+</span>第四级菜单</h2>
+                      <ul>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                      </ul>
+                  </li><li>
+                      <h2><span>+</span>第四级菜单</h2>
+                      <ul>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                      </ul>
+                  </li><li>
+                      <h2><span>+</span>第四级菜单</h2>
+                      <ul>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                        <li>
+                            <h2>第五级菜单</h2>
+                        </li>
+                      </ul>
+                  </li>
+                </ul>   
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2><span>+</span> 第二级菜单 </h2>
+            <ul>
+              <li>
+                <h2>第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2> 第二级菜单 </h2>
+          </li>
+          <li>
+            <h2> 第二级菜单 </h2>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2><span>+</span> 第一级菜单 </h2>
+        <ul>
+          <li>
+            <h2><span>+</span> 第二级菜单 </h2>
+            <ul>
+              <li>
+                <h2>第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2><span>+</span> 第二级菜单 </h2>
+            <ul>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2> 第二级菜单 </h2>
+          </li>
+          <li>
+            <h2> 第二级菜单 </h2>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2><span>+</span> 第一级菜单 </h2>
+        <ul>
+          <li>
+            <h2><span>+</span> 第二级菜单 </h2>
+            <ul>
+              <li>
+                <h2>第三级菜单 </h2> 
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2><span>+</span> 第二级菜单 </h2>
+            <ul>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2> 第二级菜单 </h2>
+          </li>
+          <li>
+            <h2> 第二级菜单 </h2>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2><span>+</span> 第一级菜单 </h2>
+        <ul>
+          <li>
+            <h2><span>+</span> 第二级菜单 </h2>
+            <ul>
+              <li>
+                <h2>第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2><span>+</span> 第二级菜单 </h2>
+            <ul>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2> 第三级菜单 </h2>
+              </li>
+              <li>
+                <h2>第三级菜单 </h2>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2> 第二级菜单 </h2>
+          </li>
+          <li>
+            <h2> 第二级菜单 </h2>
+          </li>
+        </ul>
+      </li>
+    </ul>
+</body>
+</html>

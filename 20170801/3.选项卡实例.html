@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:300px;
+            height:300px;
+            border:5px solid #000;
+            text-align: center;
+            line-height: 300px;
+            font-size:48px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+<div>1</div>
+<div>2</div>
+<div>3</div>
+
+
+<script>
+
+
+    //获取元素
+
+    //获取按钮
+    var btns = document.querySelectorAll('input');
+    //获取div
+    var dives = document.querySelectorAll('div');
+
+
+    //默认显示的元素位置
+    var index = 0;
+
+    //初始化
+    btns[index].style.backgroundColor = 'yellow';
+    dives[index].style.display = 'block';
+
+    //选项卡操作
+    for(var i=0;i<btns.length;i++){
+        //自定义索引值
+        btns[i].index = i;
+
+
+        btns[i].onclick = function(){
+
+            //清除样式
+            for(var i=0;i<btns.length;i++){
+                btns[i].style.backgroundColor = '';
+                dives[i].style.display = 'none';
+            }
+
+
+            //当前按钮要变黄
+            this.style.backgroundColor = 'yellow';
+            //找到对应的div并且显示出来
+            dives[this.index].style.display = 'block';
+            /*
+            * dives[this.index].style.display = 'block';
+            * this.index = 0;
+            * dives[0].style.display = 'block';
+            * undefined.style.display = 'block'; //报错
+            *
+            * */
+        };
+
+    }
+
+
+</script>
+</body>
+</html>

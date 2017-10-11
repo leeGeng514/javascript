@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            padding:50px;
+            border: 2px solid #000;
+            font-size:32px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box1">box1
+    <div id="box2">box2
+        <div id="box3">box3
+            <div id="box4">box4
+                <div id="box5">box5<br><span style="background-color: red;">span11111</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+    //找一个id是box3的元素
+    document.onclick = function(ev){
+
+        var obj = findEle(ev.target,'id','box3');
+
+        console.log(obj);
+
+
+    };
+
+
+    /*
+    *递归找元素
+    *
+    * 找一个 属性 attr = value 值 的元素
+    * */
+
+    function findEle(ele,attr,value){
+
+        //如果父级不存在或者父级不是一个元素  说明找不到了 返回 undefined
+        if(ele==null||ele.nodeType!=1) return;
+
+
+        if(ele[attr].toLocaleLowerCase()==value.toLocaleLowerCase()){
+            return ele;
+        }
+
+        return findEle(ele.parentNode,attr,value);
+
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

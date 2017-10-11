@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+<div></div>
+
+
+<script>
+
+
+
+
+    /*
+    * 找到要拖拽的元素 鼠标按下
+    *
+    *
+    * 鼠标移动的过程中让元素跟着鼠标移动
+    *
+    * 鼠标抬起的时候清除移动事件
+    *
+    *
+    * */
+
+    var div = document.querySelector('div');
+
+
+    //在需要移动的元素身上添加down事件
+    div.onmousedown = function(ev){
+
+        //找到鼠标down的位置
+        var downX = ev.clientX; //x1
+        var downY = ev.clientY; //y1
+
+        //找到元素的初始位置
+        var _left = div.offsetLeft;
+        var _top = div.offsetTop;
+
+
+        document.onmousemove = function(ev){
+
+            //找到鼠标的移动位置
+            var moveX = ev.clientX;//x2
+            var moveY = ev.clientY;//y2
+
+            //根据移动位置计算元素需要移动的距离
+            var l = moveX - downX + _left;
+            var t = moveY - downY + _top;
+
+            //拖拽吸附效果的核心
+            if(l<=200){
+                l = 0;
+            }
+
+
+            //把计算完的结果设置给元素
+            div.style.left = l + 'px';
+            div.style.top = t + 'px';
+
+
+
+        };
+
+
+
+    };
+
+    //鼠标抬起时需要清空move事件
+    document.onmouseup = function(){
+        document.onmousemove = null;//清除事件
+    }
+
+
+
+</script>
+</body>
+</html>

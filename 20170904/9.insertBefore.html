@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        li{
+            width:200px;
+            height:40px;
+            line-height: 40px;
+            border:1px solid #000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<input type="text">
+<input type="button" value="提交">
+<ul>
+    <li>001</li>
+    <li>002</li>
+    <li>003</li>
+    <li>004</li>
+    <li>005</li>
+</ul>
+<ul>
+    <li>006</li>
+    <li>007</li>
+    <li>008</li>
+    <li>009</li>
+    <li>010</li>
+</ul>
+<script>
+
+    /*
+     * parentNode.insertBefore(参数1-要插入的元素,参数2--定位元素[就是在这个元素之前插入参数1]);
+     *
+     * 作用： 往参数2元素前面插入参数1这个元素
+     *
+     * 也可以用来移动元素
+     *
+     * 参数：
+     *  参数2： 用来定位的元素
+     *  参数1： 用来插入元素
+     *
+     *
+     *  parentNode.insertBefore(参数1,null)
+     *
+     *  如果第二个参数是null  就会把元素添加到父级的子元素的最后一个
+     *
+     *
+     *
+     *
+     * */
+
+    var inputs = document.querySelectorAll('input');
+    var ul = document.querySelectorAll('ul');
+
+    var lis0 = ul[0].querySelectorAll('li');
+    var lis1 = ul[1].querySelectorAll('li');
+
+
+    inputs[1].onclick = function(){
+//        var li = document.createElement('li');
+//        li.innerHTML = 'aaaaaa';
+        ul[0].insertBefore(lis0[0],lis0[2]);
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

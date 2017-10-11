@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<div style="height:100px;">123444444</div>
+<button>回到顶部</button>
+
+
+<script>
+
+    //获取元素
+    var btn = document.querySelector('button');
+
+    var timer = 0;
+
+    btn.onclick = function(){
+        //获取当前的滚动高度
+        var sT = window.pageYOffset;
+        console.log(sT);
+        //动画：
+        clearInterval(timer);
+        timer = setInterval(function(){
+            sT -= 100;
+            if(sT<=0){
+                sT = 0;
+                clearInterval(timer);
+            }
+            window.scrollTo(0,sT);
+        },30);
+    };
+
+
+
+
+</script>
+</body>
+</html>

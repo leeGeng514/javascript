@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * for..in
+    *
+    * for(var i in object){
+    *   console.log(i);
+    * }
+    *
+    *  1. 索引不是0-n数字 就只能用 for.in
+    *
+    * */
+
+    var obj = {
+        x:1,
+        y:0,
+        fn:function(){},
+        arr:[1,2,3],
+        str:'1223'
+    };
+
+    var arr = [
+        1,
+        2,
+        3
+    ];
+    for(var i in arr){
+        console.log('键名:'+i+' 键值:'+arr[i]); //i是对象的键名
+    }
+
+//    console.log(obj.length);
+
+    //统计对象中的属性个数
+//    for(var i=0;i<obj.length;i++){
+//
+//    }
+    var num = 0;
+    for(var i in obj){
+        console.log('键名:'+i+' 键值:'+obj[i]); //i是对象的键名
+        num++;
+    }
+    console.log('obj的属性有'+num+'个');
+
+
+</script>
+</body>
+</html>

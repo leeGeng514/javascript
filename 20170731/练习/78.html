@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:300px;
+            overflow: hidden;
+            border:1px solid #000;
+            margin:50px auto;
+        }
+        dl{
+            margin:0;
+            border-bottom:5px solid #fff;
+        }
+        dt h2{
+            margin:0;
+            line-height:40px;
+            background-color:#333;
+            color:#fff;
+            padding:10px;
+        }
+        dd{
+            margin:0;
+        }
+        dd a{
+            display: block;
+            line-height:40px;
+            padding:5px;
+            text-indent: 2em;
+            border-bottom:1px solid #333;
+            background-color:#f3f3f3;
+            margin:0;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <dl>
+        <dt><h2>菜单1</h2></dt>
+        <dd>
+            <a href="javascript:;">菜单1.1</a>
+            <a href="javascript:;">菜单1.2</a>
+            <a href="javascript:;">菜单1.3</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><h2>菜单2</h2></dt>
+        <dd>
+            <a href="javascript:;">菜单2.1</a>
+            <a href="javascript:;">菜单2.2</a>
+            <a href="javascript:;">菜单2.3</a>
+            <a href="javascript:;">菜单2.4</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><h2>菜单3</h2></dt>
+        <dd>
+            <a href="javascript:;">菜单3.1</a>
+            <a href="javascript:;">菜单3.2</a>
+        </dd>
+    </dl>
+</div>
+<script>
+
+    //获取元素
+    var dts = document.querySelectorAll('dt');
+    var dds = document.querySelectorAll('dd');
+
+    //批量添加点击事件
+    for(var i=0;i<dts.length;i++){
+
+        //初始化
+        dts[i].index = i; //设置菜单按钮的下标
+        dds[i].style.display = 'none';
+
+
+        dts[i].onclick = function(){
+            /*
+            * 1.打开/关闭 相应的子菜单
+            * 2.关闭其他的子菜单
+            *
+            *
+            *
+            *
+            * ==   判断相等
+            * !=   判断不等
+            *
+            * for循环中： continue ：跳出本次循环 继续下一次循环
+            *
+            *
+            * */
+            console.dir(this.index);
+
+            if(dds[this.index].style.display=='block'){
+                dds[this.index].style.display = 'none';
+            }else{
+                dds[this.index].style.display = 'block';
+            }
+
+            for(var i=0;i<dds.length;i++){
+                if(i==this.index){
+                   continue;
+                }
+                dds[i].style.display = 'none';
+            }
+
+
+
+        };
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="box" info="我是妙味讲师" c="abc" style="width:100px;">加载中..</div>
+
+
+<script>
+
+
+    /*
+    * 属性节点的操作方法  attributes
+    *
+    * 1.删除属性
+    *
+    * node.removeAttribute(属性名);
+    *
+    * 作用： 删除一个属性节点
+    *
+    * 参数：
+    *  属性名：  要删除的属性节点名
+    *
+    *
+    * */
+
+    var div = document.querySelector('div');
+
+
+    div.removeAttribute('style');
+
+    console.dir(div);
+
+
+
+
+</script>
+
+</body>
+</html>

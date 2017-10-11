@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box{
+
+            overflow: hidden;
+            border-radius: 20px;
+            border:1px solid red;
+            padding:20px;
+            float: left;
+
+        }
+
+        ul{
+            list-style: none;
+            padding:10px 0;
+            margin:0;
+            display: none;
+
+        }
+        li{
+            height:40px;
+            line-height:40px;
+            border-radius: 20px;
+            padding:0 10px;
+        }
+        li:hover,li.red{
+            background-color: red;
+            color:#fff;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div id="box">
+    <div class="text">
+        <input type="text">
+        <input type="button" value="go">
+    </div>
+    <ul>
+        <li>html+css</li>
+        <li>html5+css3</li>
+        <li>javascript</li>
+        <li>angular</li>
+        <li>html+css</li>
+        <li>react</li>
+        <li>vue</li>
+        <li>jquery</li>
+        <li>nodeJs</li>
+    </ul>
+</div>
+
+
+<script>
+
+
+
+    /*
+    * 思路：
+    *
+    * 1.点击box 显示ul
+    *
+    * 2.点击li选择内容
+    *       在input中显示被选中的内容
+    *       把ul隐藏
+    *
+    *
+    * */
+
+
+    var ul = document.querySelector('ul');
+
+    var box = document.querySelector('#box');
+
+    var li = ul.querySelectorAll('li');
+
+    var input = document.querySelector('input[type=text]');
+
+    //* 1.点击box 显示ul
+    box.onclick = function(){
+
+        ul.style.display = 'block';
+        input.focus();
+
+        //在列表打开时 标红输入框中已有的内容
+
+        for(var i=0;i<li.length;i++){
+            if(li[i].innerHTML.trim()==input.value.trim()){
+                li[i].className = 'red';
+            }else{
+                li[i].className = '';
+            }
+        }
+
+
+    };
+
+    //li点击选择内容之后要隐藏ul
+    for(var i=0;i<li.length;i++){
+        li[i].onclick = function(ev){
+
+            console.log(111);
+
+            //在input中显示被选中的内容
+            input.value = this.innerHTML;
+
+            //       把ul隐藏
+            console.log(ul);
+            ul.style.display = 'none';
+
+            //以下是阻止冒泡行为的几个方法
+            ev.cancelBubble = true;
+            ev.stopPropagation();
+
+        };
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            height:40px;
+            margin:10px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+
+    /*
+    * 递归：  函数自己调用自己
+    *
+    * 很容出现死循环  必须在符合的条件中调用自己
+    *
+    * 循环
+    *
+    * */
+
+    //改变一堆div的背景颜色
+    var dives = document.querySelectorAll('div');
+
+//    for(var i=0;i<dives.length;i++){
+//        dives[i].style.backgroundColor = 'green';
+//    }
+
+    changeBg(dives,0);
+
+
+    function changeBg(obj,n){
+
+        obj[n].style.backgroundColor = 'green';
+
+        if(n<obj.length-1){
+            changeBg(obj,n+1);
+        }
+
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

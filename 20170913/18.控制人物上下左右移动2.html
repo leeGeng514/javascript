@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div></div>
+
+<script>
+
+
+    /*
+    *
+    * 上下左右移动人物
+    *
+    * 回车     13
+     左键     37
+     上键     38
+     右键     39
+     下键     40
+     空格     32
+    *
+    * */
+
+    var div = document.querySelector('div');
+
+
+    var timer = 0;
+
+    var obj = {
+
+        left:false,
+        top:false,
+        right:false,
+        bottom:false
+
+    };
+
+    timer = setInterval(function(){
+
+        if(obj.left){
+            var left = div.offsetLeft - 10;
+            if(left<=0){
+                left = 0;
+                clearInterval(div.leftTimer);
+            }
+            div.style.left = left + 'px';
+        }
+
+        if(obj.right){
+            var right = div.offsetLeft + 10;
+            if(right>=window.innerWidth-div.offsetWidth){
+                right = window.innerWidth-div.offsetWidth;
+                clearInterval(div.rightTimer);
+            }
+
+            div.style.left = right + 'px';
+        }
+
+        if(obj.top){
+            var _top = div.offsetTop - 10;
+            if(_top<=0){
+                _top = 0;
+                clearInterval(div.topTimer);
+            }
+            div.style.top = _top + 'px';
+        }
+
+        if(obj.bottom){
+            var bottom = div.offsetTop + 10;
+            if(bottom>=window.innerHeight-div.offsetHeight){
+                bottom = window.innerHeight-div.offsetHeight;
+                clearInterval(div.bottomTimer);
+            }
+
+            div.style.top = bottom + 'px';
+        }
+
+    },10);
+
+    document.onkeydown = function(ev){
+
+        if(ev.keyCode==37){
+            obj.left = true;
+        }
+        if(ev.keyCode==38){
+            obj.top = true;
+        }
+        if(ev.keyCode==39){
+            obj.right = true;
+        }
+        if(ev.keyCode==40){
+            obj.bottom = true;
+        }
+
+    };
+
+    document.onkeyup = function(ev){
+
+        if(ev.keyCode==37){
+            obj.left = false;
+        }
+        if(ev.keyCode==38){
+            obj.top = false;
+        }
+        if(ev.keyCode==39){
+            obj.right = false;
+        }
+        if(ev.keyCode==40){
+            obj.bottom = false;
+        }
+
+    }
+
+
+
+</script>
+
+</body>
+</html>

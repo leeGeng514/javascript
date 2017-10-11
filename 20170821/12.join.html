@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div>
+    通过一个指定的字符串把原字符串分割成一个数组
+</div>
+<script>
+
+
+    /*
+    * arr.join()
+     作用
+     将数组中的所有元素连接成一个字符串
+     语法
+     string  arr.join([separator = ','])
+     参数
+     separator
+     可选，用于指定连接每个数组元素的分隔符。分隔符会被转成字符串类型；如果省略的话，默认为一个逗号。如果 seprator 是一个空字符串，那么数组中的所有元素将被直接连接。
+     返回值
+     拼接后的字符串
+
+
+
+     *
+    *
+    * */
+
+
+    var str = '妙味课堂';
+
+    console.log(str.split(''));//["妙", "味", "课", "堂"]
+    console.log(str.split('',2));//["妙", "味"]
+
+    console.log(str.split());//["妙味课堂"]
+
+
+    var div = document.querySelector('div');
+
+    var text = div.innerHTML;
+
+    var arr = text.split('分割');
+
+    console.log(arr);
+
+//    var str = '通过一个指定的字符串把原字符串'+'<span style="color:red;">分割</span>'+'成一个数组';
+    var str = '';
+
+
+//    div.innerHTML = str;
+
+    console.log(typeof arr);
+
+    str = arr.join('<span style="color:green;">分割</span>');
+
+    console.log(typeof str);
+//    for(var i=0;i<arr.length;i++){
+//        if(i==arr.length-1){
+//
+//            str += arr[i];
+//        }else{
+//            str += arr[i]+'<span style="color:red;">分割</span>';
+//        }
+//
+//
+//    }
+
+    div.innerHTML = str;
+
+
+
+
+
+
+</script>
+</body>
+</html>

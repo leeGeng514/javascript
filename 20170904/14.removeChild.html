@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        li{
+            width:200px;
+            height:40px;
+            line-height: 40px;
+            border:1px solid #000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>001 <a href="javascript:;">删除</a></li>
+    <li>002 <a href="javascript:;">删除</a></li>
+    <li>003 <a href="javascript:;">删除</a></li>
+    <li>004 <a href="javascript:;">删除</a></li>
+    <li>005 <a href="javascript:;">删除</a></li>
+</ul>
+<script>
+
+    /*
+     * parentNode.removeChild(参数--node);
+     *
+     * 注意：只有父级能删子集
+     *
+     * */
+
+    var ul = document.querySelector('ul');
+
+    var lis = ul.querySelectorAll('li');
+
+    for(var i=0;i<lis.length;i++){
+
+        lis[i].children[0].onclick = function(){
+            //点击删除按钮 删除当前li元素
+
+            var ul = this.parentNode.parentNode;//具有删除权限的父级
+            var li = this.parentNode;//将要被删除的子元素
+
+//            this.parentNode.parentNode.removeChild(this.parentNode);
+            ul.removeChild(li);
+
+        };
+
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

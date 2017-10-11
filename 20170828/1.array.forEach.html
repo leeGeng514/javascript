@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * array.forEach(callback)
+    *
+    * 作用 ：遍历数组
+    *
+    * 参数：回调函数
+    *
+    * 回调函数  两个默认形参
+    *       第一个 代表的是数组的值
+    *       第二个 代表的是数组的下标
+    *
+    *
+    *       和for循环最大的区别
+    *           forEach 会过滤无效值
+    *
+    *
+    *
+    * */
+
+    var arr = [,,,1,2,3,,,,4,5,6,7,,,,];
+
+//    for(var i=0;i<arr.length;i++){
+//        console.log(arr[i]);
+//    }
+
+//    arr.forEach(function(value,index){
+//
+//        console.log('value:'+value+' index:'+index);//打印数组的值 和  下标
+//
+//    });
+
+//    arr.length = 10;
+
+    for(var i=0;i<arr.length;i++){
+        console.log(arr[i]);
+    }
+
+    arr.forEach(function(value,index){
+
+//        console.log('value:'+value+' index:'+index);//打印数组的值 和  下标
+        console.log(value);
+
+    });
+
+
+
+
+
+
+</script>
+</body>
+</html>

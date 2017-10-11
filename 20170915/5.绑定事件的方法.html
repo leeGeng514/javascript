@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    *
+    * le.on事件名称= 函数
+     通过on的方式绑定函数的问题
+     同一个元素的同一个事件同时只能绑定一个函数
+     后面绑定的函数会覆盖前面绑定的函数
+
+     *
+    * */
+
+
+    document.onclick = function(){
+
+
+            console.log('我是document');
+
+    };
+
+    document.onclick = function(){
+
+
+        console.log('我是docuemnt2222222');
+
+    };
+
+
+
+
+</script>
+</body>
+</html>

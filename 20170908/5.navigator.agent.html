@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+
+    /*
+    * window.navigator.userAgent --- 用户代理信息
+     操作系统 、 浏览器内核 、浏览器版本等
+
+
+     主要作用：判断浏览器类型 和浏览器版本
+     *
+    *
+    *
+    * */
+
+    //Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E)
+
+
+
+    console.log(window.navigator.userAgent);
+
+    console.log(typeof window.navigator.userAgent);
+
+    console.log(window.navigator.userAgent.indexOf('IE'));
+
+    if(window.navigator.userAgent.indexOf('Chrome')!=-1){
+        alert('我是谷歌浏览器');
+    }
+
+    if(window.navigator.userAgent.indexOf('MSIE')!=-1){
+        alert('我是IE浏览器');
+    }
+
+
+
+</script>
+</body>
+</html>

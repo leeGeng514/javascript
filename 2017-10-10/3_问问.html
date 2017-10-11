@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击增加</button>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script>
+    /*
+        A:12345
+        B:54321
+        C:24351
+        D:23451
+        E:24153
+
+        [1,2,3,4,5]
+
+        [2,4,1,5,3]
+
+        splice
+
+    */
+    var ul = document.getElementById('ul');
+    var btn = document.getElementById('btn');
+    var lis = ul.querySelectorAll('li');
+    btn.onclick = function(){
+       for(var i=0;i<lis.length;i++){
+        ul.appendChild(lis[i]);
+       }
+    }
+
+
+</script>
+</body>
+</html>

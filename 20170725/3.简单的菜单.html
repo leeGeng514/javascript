@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            border:2px solid #000;
+            width:300px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="显示" id="show-btn">
+<input type="button" value="隐藏" id="hide-btn">
+<ul id="menu">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<script>
+    /*
+    * 需求：做一个能显示和隐藏的菜单
+    *
+    *
+    * */
+    //获取元素
+    var showBtn = document.getElementById('show-btn');
+    var hideBtn = document.getElementById('hide-btn');
+    var menu = document.getElementById('menu');
+
+    //添加事件
+    showBtn.onclick = function(){
+        menu.style.display = 'block';
+    };
+    hideBtn.onclick = function(){
+        menu.style.display = 'none';
+    };
+
+    //只用一个按钮？  如果 否则
+
+
+</script>
+</body>
+</html>

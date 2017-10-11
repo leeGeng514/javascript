@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * array.join(参数);  //toString String
+    *
+    * 作用：把数组拼接成字符串
+    *
+    * 参数：用来拼接数组的连接字符串
+    *       参数不填的情况下    默认用 逗号拼接
+    *
+    * 返回值：
+    *   拼接好的字符串
+    *
+    *
+    *   join方法 不会改变源数据
+    *
+    *
+    *
+    * */
+
+    var  arr = ['2017','8','28'];
+
+    console.log(arr.join()); //a,b,c
+    console.log(arr.join(''));//abc
+    console.log(arr.join('123'));
+    console.log(arr.join('-'));
+    console.log(arr.join('/'));
+    console.log(arr.join('<span style="color: red;">/</span>'));
+    document.body.innerHTML=arr.join('<span style="color: red;">/</span>');
+
+
+    console.log(arr.toString());
+    console.log(String(arr));
+
+    console.log(arr);
+
+
+
+
+
+
+</script>
+</body>
+</html>

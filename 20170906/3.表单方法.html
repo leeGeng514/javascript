@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form id="form" action="http://api.miaov.com/xxx" method="post">
+
+    <input name="username" type="text" value="">
+
+    <input name="a" type="checkbox" value="1">
+    <input name="a" type="checkbox" value="1">
+    <input name="b" type="checkbox" value="2">
+    <input name="c" type="checkbox" value="3">
+    <input name="f" type="checkbox" value="41">
+
+    <input name="d" type="radio" value="1">男
+    <input name="d" type="radio" value="0">女
+
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+
+    <input type="button" id="send" value="提交">
+
+    <input type="reset" value="重置">
+    
+</form>
+
+
+
+
+
+<script>
+
+    var json = {
+        "username":"",
+        "a":"1",
+        "b":"2",
+        "d":1,
+    }
+
+    /*
+    * 表单     form 元素
+    *
+    *
+    * 表单的方法：
+    *    form.submit()  用来提交数据
+    *
+    *    form.reset()  重置
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+    var send = document.querySelector('#send');
+
+    var form = document.querySelector('#form');
+
+    send.onclick = function(){
+
+        //表单验证 。。。。
+
+
+//        form.submit()
+
+        form.reset();
+
+
+
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

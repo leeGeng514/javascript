@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box {
+            width: 1000px;
+            background-color: #555;
+            color: #ccc;
+            margin: auto;
+            padding: 10px;
+            border-radius: 10px;
+            height: 500px;
+        }
+
+        .menu {
+            float: left;
+            width: 100px;
+            height: 100%;
+            border-right: 1px solid #ccc;
+            padding: 0 10px;
+        }
+
+        .menu a {
+            display: block;
+            text-align: right;
+            height: 50px;
+            line-height: 50px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 0 50px;
+        }
+
+        .menu a.active {
+            color: red;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0 120px;
+        }
+
+        li {
+            padding: 20px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        li:hover {
+            background-color: #333;
+        }
+
+        li a {
+            display: block;
+            margin: 0 0 0 -1px;
+            padding: 0;
+            font-size: 14px;
+            color: #ccc;
+            text-decoration: none;
+            padding: 0 20px;
+            overflow: hidden;
+
+        }
+
+        li:hover a {
+            border-left: 2px solid red;
+        }
+
+        li span {
+            float: left;
+
+        }
+
+        li span:nth-of-type(3) {
+            float: right;
+        }
+
+        #page {
+            margin-left: 120px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #page a {
+            color: #ccc;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+
+    <div class="menu">
+        <!--<a class="active" href="?type=sociology#1">社会招聘</a>-->
+        <!--<a href="?type=school#1">校园招聘</a>-->
+    </div>
+
+    <ul class="list">
+        <!--<li>-->
+        <!--<a href="#">-->
+        <!--<span>01</span>-->
+        <!--<span>职位要求：职位要求：前端工程师111 【社会招聘】 需求人数：2名</span>-->
+        <!--<span>2017-08-13<br>查看详情..</span>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<a href="#">-->
+        <!--<span>01</span>-->
+        <!--<span>职位要求：职位要求：前端工程师111 【社会招聘】 需求人数：2名</span>-->
+        <!--<span>2017-08-13<br>查看详情..</span>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<a href="#">-->
+        <!--<span>01</span>-->
+        <!--<span>职位要求：职位要求：前端工程师111 【社会招聘】 需求人数：2名</span>-->
+        <!--<span>2017-08-13<br>查看详情..</span>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<a href="#" >-->
+        <!--<span>01</span>-->
+        <!--<span>职位要求：职位要求：前端工程师111 【社会招聘】 需求人数：2名</span>-->
+        <!--<span>2017-08-13<br>查看详情..</span>-->
+        <!--</a>-->
+        <!--</li>-->
+    </ul>
+
+    <div id="page">
+    </div>
+
+</div>
+
+<script src="jquery-3.2.1.js"></script>
+<script src="MTween.js"></script>
+<script>
+
+
+    /*
+    * 1.显示侧边栏
+    *       遍历 data中的list
+    *
+    *
+    * 2.显示对应内容列表
+    *
+    *
+    *
+    *
+    *
+    * */
+
+    var hash = window.location.hash.slice(1);
+
+    //    console.log(hash);
+
+    if (!hash) {
+        hash = 1;
+    }
+
+    var content = searchToJson(window.location.search);
+
+    //设置默认值
+    if (!content.type) {
+        content.type = 'sociology';
+    }
+
+    console.log(content);
+
+    var data;
+    $.get('data.json', function (data) {
+        window.data = data;
+        // 1.显示侧边栏
+        //       遍历 data中的list
+
+        //获取list
+        var list = data.list;
+
+        //获取容器
+        var menu = document.querySelector('.menu');
+
+        //创建侧栏列表内容
+        var html = '';
+        for (var i = 0; i < list.length; i++) {
+            //标红当前内容
+            var class_name = '';
+            if (content.type == list[i].type) {
+                class_name = 'active';
+            }
+            html += '<a class="' + class_name + '" href="?type=' + list[i].type + '">' + list[i].name + '</a>';
+        }
+        menu.innerHTML = html;
+
+
+//    console.log(window.location.search);
+
+        //内容列表
+        //当前要显示的内容名称
+
+//    console.log(content);
+
+
+        var contentList = data[content.type];
+
+
+        //分页： 一页只显示3条
+        var PAGE_NUM = 3;
+
+        //总条数
+        var pageCount = contentList.length;
+
+        //计算总共多少页 总条数/每页条数 =  页数
+        var num = Math.ceil(pageCount / PAGE_NUM);
+
+        //创建页码按钮
+        var pageBox = document.querySelector('#page');
+        html = '';
+        for (var i = 0; i < num; i++) {
+            html += '<a href="?type=' + content.type + '&a=' + i + '#' + (i + 1) + '">' + (i + 1) + '</a>';
+        }
+        pageBox.innerHTML = html;
+
+        //上一页 下一页按钮
+        var prev = document.createElement('a');
+        prev.innerHTML = '&lt;';
+        prev.onclick = function () {
+
+//        console.log(hash,window.location.href);
+            var arr = window.location.href.split('#');
+
+            hash--;
+
+            if (hash < 1) {
+                alert('到达第一页');
+                hash = 1;
+            }
+
+            if (window.location.search.indexOf('&a=') < 0) {
+                window.location.href = arr[0] + '&a=' + Math.round(Math.random() * 10) + '#' + hash;
+            }else{
+                window.location.href = arr[0] + Math.round(Math.random() * 10) + '#' + hash;
+            }
+
+            return false;
+        };
+        pageBox.insertBefore(prev, pageBox.children[0]);
+
+
+        var next = document.createElement('a');
+        next.innerHTML = '&gt;';
+        next.onclick = function () {
+
+//        console.log(hash,window.location.href);
+            var arr = window.location.href.split('#');
+
+            console.log(typeof hash);
+
+            hash++;
+
+            console.log(hash);
+
+            if (hash > num) {
+                alert('到达最后页');
+                hash = num;
+            }
+
+            if (window.location.search.indexOf('&a=') < 0) {
+                window.location.href = arr[0] + '&a=' + Math.round(Math.random() * 10) + '#' + hash;
+            }else{
+                window.location.href = arr[0]+ Math.round(Math.random() * 10) + '#' + hash;
+            }
+
+            return false;
+        };
+        pageBox.appendChild(next);
+
+
+//    var conList = contentList.slice(0,3);
+//    var conList = contentList.slice(3,6);
+
+        var conList = contentList.slice((hash - 1) * PAGE_NUM, PAGE_NUM * hash);
+
+
+        //显示内容列表
+        var ul = document.querySelector('.list');//显示内容列表的盒子
+        html = '';
+        for (var i = 0; i < conList.length; i++) {
+
+
+            if (conList[i].id < 10) {
+                conList[i].id = '0' + conList[i].id;
+            }
+
+            html += '<li><a href="content.html?type=' + content.type + '#' + i + '" ><span>' + conList[i].id + '&nbsp;&nbsp;&nbsp;&nbsp;</span><span>' + conList[i].title + '</span><span>' + conList[i].time + '<br>查看详情..</span></a></li>';
+        }
+        ul.innerHTML = html;
+    });
+
+
+</script>
+</body>
+</html>

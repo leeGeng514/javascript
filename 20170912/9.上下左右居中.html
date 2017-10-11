@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box{
+            width:1000px;
+            border:10px solid #000;
+            background-color: rgba(0,0,0,.7);
+            position: absolute;
+            text-align: center;
+            color:#fff;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+    11111 <br>
+    11111 <br>
+    11111 <br>
+    11111 <br>
+    11111 <br>
+</div>
+
+<script>
+
+    /*
+    * 上下左右居中
+    *
+    *
+    * (浏览器的可视区域宽高 - 居中元素的宽高) /2
+    *
+    * 1.获取浏览器可视区域宽高  window.innerHeight window.innerWidth
+    *
+    * 2.获取居中元素的宽高  e.offsetHeight  e.offsetWidth
+    *
+    * 3.设置居中元素距离顶部 top值  距离左边的left值
+    * */
+
+    var div = document.querySelector('div');
+
+
+    div.onclick = function(){
+        document.body.removeChild(div);
+    };
+
+
+    //计算距离顶部的位置
+    var divTop = (window.innerHeight - div.offsetHeight)/2;
+
+    //计算距离左边的位置
+    var divLeft = (window.innerWidth - div.offsetWidth)/2;
+
+    console.log(divLeft,divTop);
+
+    div.style.left = divLeft+'px';
+    div.style.top = divTop+'px';
+
+
+
+
+
+
+
+    window.onresize = function(){
+
+
+        //计算距离顶部的位置
+        var divTop = (window.innerHeight - div.offsetHeight)/2;
+
+        //计算距离左边的位置
+        var divLeft = (window.innerWidth - div.offsetWidth)/2;
+
+        console.log(divLeft,divTop);
+
+        div.style.left = divLeft+'px';
+        div.style.top = divTop+'px';
+
+    };
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

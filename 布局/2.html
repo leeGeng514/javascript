@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+        }
+
+        body {
+            background: #2f2a78;
+            overflow: hidden;
+        }
+
+        .warp {
+            width: 101px;
+            height: 387px;
+            background: #fff;
+            margin: 200px auto;
+        }
+
+        #box {
+            width: 88px;
+            height: 387px;
+            float: left;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #div1 {
+            width: 13px;
+            height: 387px;
+            float: right;
+            position: relative;
+            background: #ccc;
+        }
+
+        #div3 {
+            width: 9px;
+            height: 72px;
+            background-color: #ffffff;
+            position: absolute;
+            top: 0;
+            left: 2px;
+        }
+
+        #div2 {
+            width: 13px;
+            height: 367px;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        #top {
+            width: 11px;
+            height: 10px;
+            background: url(bg.png) 0 0 no-repeat;
+            position: absolute;
+            top: 0;
+            left: 1px;
+        }
+
+        #bottom {
+            width: 11px;
+            height: 10px;
+            background: url(bg.png) -12px 0 no-repeat;
+            position: absolute;
+            bottom: 0;
+            left: 1px;
+        }
+
+        #ul {
+            list-style: none;
+            width: 88px;
+            position: absolute;
+            top: 0;
+        }
+
+        li {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<section class="warp">
+    <div id="box">
+        <ul id="ul">
+            <!--<li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>-->
+        </ul>
+    </div>
+    <div id="div1">
+        <div id="top"></div>
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+        <div id="bottom"></div>
+    </div>
+</section>
+<script src="data.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    //渲染数据
+    var data = arrCity;
+    var ul = document.querySelector('ul');
+    var html = '';
+    for (var i = 1; i < data.length; i++) {
+        html += '<li>' + data[i].name + '</li>';
+    }
+    ul.innerHTML = html;
+
+    //获取滚动工具条
+    var scrollBar = document.querySelector('#div3');
+    //获取容器
+    var box = document.querySelector('#box');
+    //获取内容
+    var content = document.querySelector('#ul');
+    //设置滚动条高度
+    scrollBar.style.height = box.clientHeight / content.offsetHeight * scrollBar.parentNode.clientHeight + 'px';
+
+
+    //滚轮滚动事件
+    var warp = document.querySelector('.warp');
+    //最大滚动距离(滚动条)
+    var maxTopBar = scrollBar.parentNode.clientHeight - scrollBar.offsetHeight;
+    //最大滚动距离(内容)
+    var maxTopContent = content.offsetHeight - box.clientHeight;
+
+
+    //向下滚动函数
+    function scrollBottom() {
+        //每次滚动的距离
+        var speed = scrollBar.offsetTop;
+        speed += 10;
+        if (speed >= maxTopBar) speed = maxTopBar;
+
+        scrollBar.style.top = speed + 'px';
+
+        //获取滚动工具条距离父级的top
+        var barTop = scrollBar.offsetTop;
+        //算出比例
+        var ratio = barTop / maxTopBar * maxTopContent;
+
+        content.style.top = -ratio + 'px';
+    }
+
+    //向上滚动函数
+    function scrollTop() {
+        //每次滚动的距离
+        var speed = scrollBar.offsetTop;
+        speed -= 10;
+        if (speed <= 0) speed = 0;
+
+        scrollBar.style.top = speed + 'px';
+
+        //获取滚动工具条距离父级的top
+        var barTop = scrollBar.offsetTop;
+        //算出比例
+        var ratio = barTop / maxTopBar * maxTopContent;
+
+        content.style.top = -ratio + 'px';
+    }
+
+
+    warp.onmousewheel = function (event) {
+
+        if (event.wheelDelta < 0) {
+            scrollBottom();
+        }
+        if (event.wheelDelta > 0) {
+            scrollTop();
+        }
+
+    };
+    //清除默认行为
+    warp.onmousedown = function (event) {
+        event.preventDefault();
+    };
+
+    //按钮滚动事件
+    var topBtn = document.querySelector('#top');
+    var bottomBtn = document.querySelector('#bottom');
+    var timer = null;
+
+    //向上按钮点击事件
+    topBtn.onmousedown = function () {
+        var _this = this;
+        _this.timer = setInterval(scrollTop, 20);
+        document.onmouseup = function () {
+            clearInterval(_this.timer);
+        };
+    };
+
+    //向下按钮点击事件
+    bottomBtn.onmousedown = function () {
+        var _this = this;
+        _this.timer = setInterval(scrollBottom, 20);
+        document.onmouseup = function () {
+            clearInterval(_this.timer);
+        };
+    };
+
+    //拖拽事件
+    scrollBar.onmousedown = function (event) {
+        //鼠标按下的坐标
+        var currY = event.clientY;
+        //鼠标按下时 当前滚动工具条距离顶部的位置
+        var currSite = this.offsetTop;
+
+        document.onmousemove = function (event) {
+            var y = event.clientY - currY + currSite;
+
+            if (y <= 0) y = 0;
+            if (y >= maxTopBar) y = maxTopBar;
+
+            scrollBar.style.top = y + 'px';
+
+            //算出内容滚动的距离
+            var ratio = y / maxTopBar * maxTopContent;
+
+            content.style.top = -ratio + 'px';
+
+        };
+
+        document.onmouseup = function () {
+            document.onmousemove = null;
+        };
+
+        //清除默认行为
+        event.preventDefault();
+    };
+
+    //点击滚动效果
+    var scrollBox = document.querySelector('#div2');
+    //动画数值
+    var boxTimer = null;
+
+    scrollBox.onmousedown = function (event) {
+        clearInterval(boxTimer);
+        if (event.target.id.toLowerCase() == 'div2') {
+            //计算滚动工具条距离顶部距离
+            var countTop = scrollBar.offsetTop + scrollBar.offsetHeight;
+            //当前鼠标Y坐标
+            var currY = event.clientY;
+            //计算出鼠标距离 滚动条盒子的顶部距离
+            var siteTop = currY - warp.offsetTop - this.previousElementSibling.offsetHeight;
+            //获取滚动条距离顶部距离
+            var currTop = scrollBar.offsetTop;
+            //判断，如果鼠标距离滚动条盒子的顶部距离 大于滚动工具条距离顶部距离 说明点击的是滚动工具条下方
+            if (siteTop >= countTop) {
+                //运动距离
+                var t = siteTop - countTop;
+                var speed1 = 0;
+                boxTimer = setInterval(function () {
+                    speed1 += 5;
+                    if (speed1 >= t) {
+                        speed1 = t;
+                        clearInterval(boxTimer);
+                    }
+                    scrollBar.style.top = speed1 + currTop + 'px';
+
+                    var contentValue = scrollBar.offsetTop / maxTopBar * maxTopContent;
+
+                    content.style.top = -contentValue + 'px';
+                }, 14);
+            }
+            //判断，如果鼠标距离滚动条盒子的顶部距离 小于滚动工具条距离顶部距离 说明点击的是滚动工具条上方
+            if (siteTop <= scrollBar.offsetTop) {
+                //运动距离
+                var distTop=scrollBar.offsetTop-siteTop;
+                //速度
+                var speed2=0;
+                boxTimer=setInterval(function () {
+                    speed2+=5;
+                    if(speed2>=distTop){
+                        speed2=distTop;
+                        clearInterval(boxTimer);
+                    }
+                    scrollBar.style.top = -speed2 + currTop + 'px';
+
+                    var contentValue = scrollBar.offsetTop / maxTopBar * maxTopContent;
+
+                    content.style.top = -contentValue + 'px';
+                },14);
+            }
+
+            scrollBox.onmouseup = function () {
+                clearInterval(boxTimer);
+            }
+        }
+    };
+</script>
+</body>
+</html>

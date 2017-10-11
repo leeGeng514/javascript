@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box div{
+            height:50px;
+            width:400px;
+            background-color: red;
+            margin:5px;
+        }
+
+
+    </style>
+    <script>
+
+        window.onload = function(){
+//获取元素
+
+            var box = document.querySelector('#box');
+            var div = box.querySelector('div');
+
+            //点击元素
+            var input = document.querySelectorAll('input');
+
+            div.style.backgroundColor = 'yellow';
+
+            input[1].onclick = function(){
+
+                if(div.nextElementSibling){
+                    div.style.backgroundColor = 'red';
+                    div.nextElementSibling.style.backgroundColor = 'yellow';
+                    div = div.nextElementSibling;
+                }
+            };
+
+
+
+            input[2].onclick = function(){
+                div.style.backgroundColor = 'red';
+                box.firstElementChild.style.backgroundColor = 'yellow';
+                div = box.firstElementChild;
+            };
+
+        };
+
+
+
+    </script>
+</head>
+<body>
+<input type="button" value="上一个">
+<input type="button" value="下一个">
+<input type="button" value="第一个">
+<input type="button" value="最后一个">
+<div id="box">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+
+
+</body>
+</html>

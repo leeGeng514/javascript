@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+    /*
+     * 作用域
+     *   变量和函数的可访问的范围
+     *
+     *   全局作用域
+     *       如果一个变量或者函数不在一个函数内部申明，那么他就是全局可用的
+     *   函数作用域
+     *       在一个函数内部申明的变量或者另外一个函数
+     *       一个函数可以在另外一个函数中被申明，函数可以嵌套函数
+     *       每个函数都有自己的单独的作用域，在该函数内部申明的变量或者函数只能在当前函数内部才能不使用，外部是使用不了的
+     *
+     *   一个变量或者函数是局部的，那么这个变量或者函数只能在定义他的函数内部，包括这个函数嵌套的子函数才能访问
+     * */
+
+    var a = 10; //全局
+    function fn1() {    //全局
+        console.log('fn1');
+    }
+
+    console.log(a); //10
+    fn1();  //'fn1'
+
+    function fn2() {
+        fn1();  //能
+
+        var b = 20;
+
+        function fn3(){
+            console.log('fn2');
+            console.log(b);
+        }
+
+        fn3();
+    }
+
+    fn2();
+
+    console.log(b);
+
+
+</script>
+</body>
+</html>

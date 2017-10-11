@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        预解析：
+            a = undefined
+            test = function test(){}
+        
+        逐行解读代码:
+            a = 10;
+            test();
+
+
+        进了test又预解析： 
+              a = undefined 
+              a = 100
+              this.a
+
+
+    */
+
+    var a = 10;
+    function test(){
+        // alert(a);
+        a = 100;
+        alert(a); //100
+        alert(this.a);//10
+        var a;
+        alert(a);
+    }
+    test();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<input type="text">
+<input type="text">
+<br />
+<input type="button" value="+">
+<input type="button" value="-">
+<input type="button" value="*">
+<input type="button" value="/">
+<input type="button" value="=">
+<script>
+
+    var text = document.querySelectorAll('input[type="text"]');
+    var btns = document.querySelectorAll('input[type="button"]');
+
+    var fh = '';
+
+    for(var i=0;i<btns.length;i++){
+        btns[i].onclick = function(){
+            if(this.value!='='){
+                fh = this.value;
+            }else{
+                total()
+            }
+        };
+    }
+
+
+    //运算
+    function total(){
+        var num1 = Number(text[0].value);
+        var num2 = Number(text[1].value);
+
+        if(fh=='+'){
+            text[2].value = num1+num2;
+        }
+        if(fh=='-'){
+            text[2].value = num1-num2;
+        }
+        if(fh=='*'){
+            text[2].value = num1*num2;
+        }
+        if(fh=='/'){
+            text[2].value = num1/num2;
+        }
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

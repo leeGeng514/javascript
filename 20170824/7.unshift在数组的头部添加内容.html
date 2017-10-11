@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * unshift 往数组的第一个位置添加内容
+    *
+    * array.unshift(content[,content,content]);
+    *
+    * 返回值：
+    *   数组的新长度
+    *
+    * */
+
+
+    var arr = [1,2,3,4,5];
+
+    console.log(arr.unshift(0));//返回新长度
+
+    console.log(arr);
+    console.log(arr.unshift(0,2,2,2,2,2));//返回新长度
+
+    console.log(arr);
+
+    arrUnshift(arr,0,2,2,33);
+    console.log(arr);
+
+
+
+    /*
+    * i = 3
+    *
+    * [1,2,3,4,5]
+    *
+    * [,,,1,2,3,4,5]
+    *
+    * [1,2,3,4,5,,,5]
+    *
+    * 5-- 4+3
+    *
+    *
+    *
+    *
+    * */
+
+
+    function arrUnshift(){
+
+
+        var arr = arguments[0];
+
+
+        //移位置
+        for(var i=arr.length-1;i>=0;i--){
+
+            //计算位移个数
+            var num = i+arguments.length-1;
+
+            arr[num] = arr[i];
+
+            arr[i] = undefined;
+
+        }
+
+        for(var i=0;i<arguments.length-1;i++){
+            arr[i] = arguments[i+1];
+        }
+
+
+
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

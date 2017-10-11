@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="abc.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: mediumpurple;
+        }
+        #pad{
+            border:1px solid #fff;
+            width:600px;
+            height:400px;
+            margin:100px auto;
+            border-radius: 20px;
+            background: #f5f5f5;
+            position: relative;
+        }
+        .pm{
+            background: #000;
+            height:340px;
+            margin-top:30px;
+            margin-left:30px;
+            margin-right:50px;
+            color:#fff;
+        }
+        .tt{
+            background: #666;
+            height:100px;
+            width:4px;
+            border:1px solid #fff;
+            position: absolute;
+            top:150px;
+            left:12px;
+            border-radius: 3px;
+        }
+        .home{
+            width:38px;
+            height:38px;
+            border-radius: 20px;
+            background-color:#f9f9f9;
+            position: absolute;
+            top:180px;
+            right:5px;
+            border:1px solid #ccc;
+        }
+
+        .toggle-btn{
+            overflow: hidden;
+            text-align: center;
+            font-size:0;
+            padding:10px;
+        }
+        .toggle-btn div{
+            width:100px;
+            height:30px;
+            color:#fff;
+            line-height:30px;
+            border:1px solid #fff;
+            display: inline-block;
+            margin-right:-1px;
+            border-radius: 2px;
+            font-size:16px;
+        }
+        .toggle-btn p{
+            font-size:12px;
+            color:#ccc;
+            padding:5px;
+        }
+
+        .img-box{
+            height:260px;
+            overflow: hidden;
+            margin:0 2px;
+            position: relative;
+        }
+        .img-box img,.img-box .imgs{
+            width:100%;
+            height:100%;
+        }
+        .prev{
+            position:absolute;
+            left:5px;
+            width:40px;
+            height:40px;
+            top:110px;
+            text-align: center;
+            line-height:40px;
+            background-color:rgba(0,0,0,.4);
+            cursor: pointer;
+        }
+        .next{
+            position:absolute;
+            right:5px;
+            width:40px;
+            height:40px;
+            top:110px;
+            text-align: center;
+            line-height:40px;
+            background-color:rgba(0,0,0,.4);
+            cursor: pointer;
+        }
+
+        .top-total{
+            height:40px;
+            text-align: center;
+            position: absolute;
+            top:0;
+            width:100%;
+        }
+        .bot-text{
+            position: absolute;
+            width:100%;
+            height:40px;
+            bottom:0;
+            background-color:rgba(0,0,0,.4);
+            line-height:40px;
+            text-align: center;
+        }
+        .toggle-btn .active{
+            background-color:#fff;
+            color:#000;
+        }
+
+        .mark{
+            width:100%;
+            height:100%;
+            position: absolute;
+            top:0;
+            display: none;
+        }
+        .tip-text{
+            position: relative;
+            width:300px;
+            height:150px;
+            border:1px solid #fff;
+            background:rgba(0,0,0,.7);
+            margin:120px auto auto;
+            color:#fff;
+            text-align: center;
+        }
+        .tip-text p{
+            line-height:100px;
+        }
+        .tip-text input{
+            background: transparent;
+            border:1px solid #fff;
+            color:#fff;
+            padding:5px 20px;
+            outline: none;
+            cursor:pointer;
+        }
+        .tip-text span{
+            position: absolute;
+            top:5px;
+            right:5px;
+            cursor: pointer;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div id="pad">
+    <div class="pm">
+
+        <!--循环、顺序的切换按钮-->
+        <div class="toggle-btn">
+            <div class="loop-btn active">循环切换</div>
+            <div class="order-btn">顺序切换</div>
+            <p>图片可以循环切换</p>
+        </div>
+
+        <!--图片框-->
+        <div class="img-box">
+            <div class="imgs"><img src="../img/a.jpg" alt=""></div>
+            <div class="prev">&lt;</div>
+            <div class="next">&gt;</div>
+            <div class="top-total">1/4</div>
+            <div class="bot-text">随便写点什么</div>
+        </div>
+
+
+
+
+    </div>
+    <div class="tt"></div>
+    <div class="home"></div>
+
+    <!--弹窗-->
+    <div class="mark">
+        <div class="tip-text">
+            <p>到头啦..</p>
+            <input class="close" type="button" value="确定">
+            <span class="close">X</span>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * push  往数组的最后一个添加数据
+    *
+    * 语法：  array.push(content[,content,content])
+    *
+    * 返回值：
+    *   返回数组的新长度
+    *
+    * */
+
+    var arr = [1,2,3,5,6];
+    var arr2 = [1,2,3,5,6];
+
+    //往arr中添加内容
+    console.log(arr.push(10));//返回数组的新length
+//    arr.push = ''; 错误语法
+    arr.push(10,11,12,14);
+    arr.length;
+    console.log(arr,arr2);
+
+    arrPush(arr2,10,11,12,14,11,11,111);
+
+    console.log(arr2);
+
+
+    /*
+    * 每次往数组的最后一位添加内容
+    *
+    * 添加的数组是谁？
+    *
+    * 添加的内容是什么？
+    *
+    *
+    *
+    * */
+
+
+
+    //arguments 例子
+
+
+    /*
+    * 参数
+    * 参数1 ：  要操作的数组
+    * 参数2-n: 是要添加的内容
+    * */
+    function arrPush(){
+
+        var arr = arguments[0];
+
+        for(var i=1;i<arguments.length;i++){
+            arr[arr.length] = arguments[i];
+        }
+
+
+    }
+
+
+
+</script>
+</body>
+</html>

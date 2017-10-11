@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    //表带是或者方法会先执行 在保存到数组中
+
+    var arr = [
+        '100px',
+        'adb'-6, //NaN  -- number
+        [],
+        -98765,
+        34,
+        -2,
+        0,
+        '300',
+        ,
+        function(){alert(1)},
+        null,
+        document,
+        [],
+        true,
+        '200px'-30, //NaN
+        '23.45元',
+        5,
+        Number('abc'),//NaN
+        function(){alert(3)},
+        'yxz'-90 //NaN
+    ];
+
+    var  numAll = '';
+
+    var toNumAll = '';
+
+    var maxNum = 0;//假设最大值是0
+
+    var is_nan = '';
+
+    for(var i=0;i<arr.length;i++){
+        if(typeof arr[i]=='number'&&!isNaN(arr[i])){ //是数字类型的并且不是NaN的
+            numAll += arr[i]+'，';
+        }
+        if(typeof parseFloat(arr[i])=='number'&&!isNaN(parseFloat(arr[i]))){
+            toNumAll += arr[i]+'，';
+
+            if(parseFloat(arr[i])>maxNum){
+                maxNum = parseFloat(arr[i]);
+            }
+
+        }
+        if(typeof arr[i]=='number'&&isNaN(arr[i])){
+            is_nan += i+'，';
+        }
+    }
+
+    document.writeln(arr+'<br /><br /><br />');
+    console.log(arr);
+
+
+
+    document.writeln('所有数字：'+numAll+'<br />');
+    document.writeln('可以转成数字的：'+toNumAll+'<br />');
+    document.writeln('可以转成数字的最大值：'+maxNum+'<br />');
+    document.writeln('所有运算结果是NaN的位置：'+is_nan+'<br />');
+
+
+</script>
+</body>
+</html>

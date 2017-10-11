@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+//    var date1 = new Date();//只能获取页面刷新的时候的时间
+
+        var date2 = new Date(2017,8,3,17,25,0);
+    var time2 = date2.getTime();
+    var timer = 0;
+
+    timer = setInterval(function(){
+        var date1 = new Date();//每秒钟获取一次
+
+        //获取时间戳
+        var time1 = date1.getTime();
+
+        document.body.innerHTML = parseInt((time2-time1)/1000);
+
+        if(parseInt((time2-time1)/1000)<=0){
+            clearInterval(timer);
+        }
+
+    },1000)
+
+
+</script>
+</body>
+</html>

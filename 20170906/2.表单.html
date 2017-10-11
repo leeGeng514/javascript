@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="http://api.miaov.com/xxx" method="post">
+
+    <input name="username" type="text" value="">
+
+    <input name="a" type="checkbox" value="1">
+    <input name="a" type="checkbox" value="1">
+    <input name="b" type="checkbox" value="2">
+    <input name="c" type="checkbox" value="3">
+    <input name="f" type="checkbox" value="41">
+
+    <input name="d" type="radio" value="1">男
+    <input name="d" type="radio" value="0">女
+
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+
+    <input type="submit" value="提交">
+
+    <input type="reset" value="重置">
+    
+</form>
+
+<form action="http://api.miaov.com/xxx" method="post">
+
+    <input name="username" type="text" value="">
+
+    <input name="a" type="checkbox" value="1">
+    <input name="a" type="checkbox" value="1">
+    <input name="b" type="checkbox" value="2">
+    <input name="c" type="checkbox" value="3">
+    <input name="f" type="checkbox" value="41">
+
+    <input name="d" type="radio" value="1">男
+    <input name="d" type="radio" value="0">女
+
+
+    <select>
+        <option value="1">第一</option>
+        <option value="2">第二</option>
+        <option value="3">第三</option>
+    </select>
+
+    <textarea name=""  cols="30" rows="10">1212233</textarea>
+
+    <input type="submit" value="提交">
+
+    <input type="reset" value="重置">
+
+</form>
+
+
+
+
+<script>
+
+    var json = {
+        "username":"",
+        "a":"1",
+        "b":"2",
+        "d":1,
+    }
+
+    /*
+    * 表单     form 元素
+    *
+    * 表单元素：
+    *       input
+    *           text/checkbox/radio
+    *       textarea 文本域
+    *
+    *       select  选择下拉框 select.value
+    *
+    *       button  纯按钮 不做任何事情
+    *
+    *       submit   提交按钮
+    *
+    *       reset  重置按钮
+    *
+    *
+    *       表单元素的值 都是通过 value来获取
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+    var select = document.querySelector('select');
+
+    console.log(select.value);
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            padding: 0;
+            width:400px;
+            height:50px;
+            list-style: none;
+            margin:200px auto auto;
+        }
+        li{
+            width:50px;
+            height:50px;
+            float: left;
+            position: relative;
+        }
+        a{
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            line-height: 50px;
+            width: 50px;
+            height: 50px;
+            position: relative;
+            z-index: 10;
+            color:#fff;
+        }
+        div{
+            width:50px;
+            height:50px;
+            position: absolute;
+            top:0;
+        }
+        div:before,li:before{
+            content: '';
+            display: block;
+            width:25px;
+            height:40px;
+            background-color: red;
+            transform: rotateZ(-45deg);
+            position: absolute;
+            top:3px;
+            left:7px;
+            border-radius: 25px 25px 0 0;
+        }
+        div:after,li:after{
+            content: '';
+            display: block;
+            width:25px;
+            height:40px;
+            background-color: red;
+            transform: rotateZ(45deg);
+            position: absolute;
+            top:3px;
+            left:18px;
+            border-radius: 25px 25px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li>
+        <a href="javascript:;">+1</a>
+        <div></div>
+    </li>
+    <li>
+        <a href="javascript:;">+1</a>
+        <div></div>
+    </li>
+    <li>
+        <a href="javascript:;">+1</a>
+        <div></div>
+    </li>
+    <li>
+        <a href="javascript:;">+1</a>
+        <div></div>
+    </li>
+    <li>
+        <a href="javascript:;">+1</a>
+        <div></div>
+    </li>
+</ul>
+
+
+<script>
+
+    /*
+    * li添加点击事件
+    *
+    * 让div往上走，透明度变成0
+    * 让a标签里面的数字+1
+    *
+    *
+    *
+    * */
+
+    //获取要操作的元素
+    var lis = document.querySelectorAll('li');
+
+    //给元素集合添加事件
+    for(var i=0;i<lis.length;i++){
+        lis[i].isClick = true;//初始化一个点击状态，为true是可以点击
+        lis[i].onclick = function(){
+            //如果动画正在执行，就不允许开启新的动画
+            if(!this.isClick){
+                return;
+            }//为false是不能点击
+            this.isClick = false;//如果被点击一次之后，动画开启，此时要禁止开启新的动画
+            //找到要动的元素
+            var div = this.querySelector('div');
+            var a = this.querySelector('a');
+            var _this = this;//把当前点击的li存到_this变量里
+            a.innerHTML = '+'+(Number(a.innerHTML)+1);
+            //心的动画
+            fn(div,function () {
+                //当动画完成之后要做的事情
+                div.style.top = 0;
+                div.style.opacity = 1;
+                _this.isClick = true;
+//                console.log(this);//window
+//                console.log(_this);//父级作用域中的li
+            });
+        };
+    }
+
+    //心的动画效果
+    function fn(obj,fn1){
+
+        //定时器一定要先关闭在开启
+        clearInterval(obj.timer);
+
+        //初始化心的位置和透明度
+        obj.opa = 100; //默认透明度
+        obj.top = 0; //默认顶部距离
+
+        obj.timer = setInterval(function(){
+
+            //让心往上走
+            obj.top -= 5;
+            //透明度变0
+            obj.opa -= 5;
+
+            if(obj.opa<=0){
+                obj.opa = 0;//当透明度为0，或者小于0时，保持为0；
+                clearInterval(obj.timer);
+
+            }
+
+            obj.style.opacity = obj.opa/100;//改变透明度属性
+            obj.style.top = obj.top+'px';//改变top值得属性
+
+            //当动画完成之后想做的一些事情，通过回调函数，让用户自己定义
+            if(obj.opa==0){
+                fn1&&fn1();//如果fn1存在，就执行fn1()
+            }
+
+
+        },30);
+    }
+
+
+
+</script>
+
+
+
+</body>
+</html>

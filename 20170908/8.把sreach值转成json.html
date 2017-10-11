@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+    /*
+    * search 内容转成json
+    *
+    * 思考：
+    *       ?page=page1&name=yinwei&age=18
+    *
+    *       如何从这个字符串中拿到page的值？
+    *       如何从这个字符串中拿到name？
+    *       如何从这个字符串中拿到age？
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+
+
+    //把search内容转成json 以便使用
+    var search1 = window.location.search;
+
+    searchToJson(search1);
+
+    console.log(searchToJson(search1));
+
+    //?page=page1&name=yinwei&age=18
+
+    //去掉问好
+    //page=page1&name=yinwei&age=18
+//    search = search.slice(1);
+
+//    var arr1 = search.split('&');
+//
+//    var searchJson = {};
+//
+//    //进一步通过 = 拆分
+//    for(var i=0;i<arr1.length;i++ ){
+//
+//        arr1[i] = arr1[i].split('=');
+//         //把拆好的内容放到json中
+//        searchJson[arr1[i][0]] = arr1[i][1];
+//
+//    }
+//
+//    console.log(arr1);
+//    console.log(searchJson);
+
+
+
+    //封装成转json函数
+    function searchToJson(search) {
+        //把search内容转成json 以便使用
+//        var search = window.location.search;
+
+        //?page=page1&name=yinwei&age=18
+
+        //去掉问好
+        //page=page1&name=yinwei&age=18
+        search = search.slice(1);
+
+        var arr1 = search.split('&');
+
+        var searchJson = {};
+
+        //进一步通过 = 拆分
+        for(var i=0;i<arr1.length;i++ ){
+
+            arr1[i] = arr1[i].split('=');
+
+            //把拆好的内容放到json中
+            searchJson[arr1[i][0]] = arr1[i][1];
+
+        }
+
+        return searchJson;
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

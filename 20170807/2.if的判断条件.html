@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * if(判断条件){
+    *   当判断条件为真的时候执行的代码
+    * }else{
+    *   当判断条件为假的时候执行的代码
+    * }
+    *
+    * 判断条件：只能是true 或者 false
+    *   1.判断条件的最终值只能是布尔值
+    *       1<2 ===> 通过运算结果来选择执行的代码
+    *   2.判断条件可以是一串运算表达式,也可以是布尔值
+    *      如果是表达式，就会先运算表达式 ，得到结果之后，
+    *      在看一些结果是不是布尔值
+    *       **如果不是布尔值：会隐式转换成布尔值**
+    *       **最终根据布尔值的结果来选择执行的代码**
+    *       if(1<2&&2<3&&3<4){}  //关系表带是运算结果是布尔值
+    *       if(1+2){}  //数学算数运算结果不是布尔值，
+    *       if(3){} //所以要隐式转换成布尔值，在选择要执行的代码
+    *
+    *       this.isClick = true;
+    *
+    *       if(isClick==true){}  if(isClick){}
+    *
+    *       true==true    true;
+    *       false==false  true
+    *
+    *
+    *  3.如果运算条件是其他类型
+    *       a.运算条件是字符串
+    *              把字符串转成布尔值，在选择要执行的代码
+    *       b.运算条件是未定义类型
+    *              把未定义类型转成布尔值，在选择要执行的代码
+    *       c.运算条件是空类型
+    *               把空型转成布尔值，在选择要执行的代码
+    *       d.运算条件是对象
+     *               把对象型转成布尔值，在选择要执行的代码
+    *       e.运算条件是但数字
+     *               把数字成布尔值，在选择要执行的代码
+    *
+    *
+    *
+    * */
+
+//    if(true){
+//        alert(1);
+//    }else{
+//        alert(2);
+//    }
+//
+//    if(false){
+//        alert(1);
+//    }else{
+//        alert(2);
+//    }
+    //    1>3 ==> false
+    //
+    //    if() ==> false
+    //
+    //    else()
+
+
+    if(1+2){
+        alert(1);
+    }else{
+        alert(2);
+    }
+
+    // 1+2 ==> 3
+    // Boolean(3) ==>  true
+    //if(true){alert(1)}else{alert(2)}
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

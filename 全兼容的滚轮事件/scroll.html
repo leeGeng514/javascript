@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /********** 兼容 fire fox,ie,chrome 滚轮事件的方法 ************/
+    function addScrollEvent(obj, fn) {
+
+        if (obj.onmousewheel === null) { //判断 如果元素的滚动事件为null 说明浏览器为 IE 或者 chrome
+            obj.addEventListener('mousewheel', fn1, false);  //添加滚轮事件
+        } else {    //否则为 fire fox
+            obj.addEventListener('DOMMouseScroll', fn1, false); //添加滚轮事件
+        }
+
+        //滚轮事件
+        function fn1(event) {
+
+            var upOrDown = false;  //用来判断向上还是向下滚动的变量
+
+            if (event.wheelDelta) {  //判断事件对象下的wheelDelta属性值 是否存在 如果存在 就是IE或者chrome
+                //判断滚轮是向上还是向下 event.wheelDelta大于0 说明滚轮向上滚动  则将true赋值给 upOrDown 反之 赋值false
+                upOrDown = event.wheelDelta > 0 ? true : false;
+            } else {
+                //判断滚轮是向上还是向下 event.detail小于0 说明滚轮向上滚动  则将true赋值给 upOrDown 反之 赋值false
+                upOrDown = event.detail < 0 ? true : false;
+            }
+            //回调函数存在 执行回调函数 将 upOrDown传入函数内 用来判断向上还是向下滚动
+            fn && fn(upOrDown);
+            //    此 upOrDown 为形参
+        }
+    }
+    //                               此 upOrDown 为形参
+    addScrollEvent(document,function (upOrDown) {
+        if(upOrDown){
+            alert('向上滚动');
+        }else{
+            alert('向下滚动');
+        }
+    });
+</script>
+</body>
+</html>

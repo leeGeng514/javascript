@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            color:#000;
+            text-decoration: none;
+        }
+
+        body,html{
+            width:100%;
+            height:100%;
+            overflow: hidden;
+        }
+
+        #header{
+            background-color: #F5F6F9;
+            border-bottom: 1px solid #E6E7EC;
+            position: relative;
+            height: 60px;
+        }
+        #wrap{
+
+        }
+        #nav{
+            width:199px;
+            border-right:1px solid red;
+            background-color: #fff;
+            overflow: hidden;
+            float: left;
+        }
+
+
+        #nav dt{
+            padding: 0 0 0 64px;
+            color: #74787C;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        #nav dd.active{
+            color:#00A4FF;
+        }
+
+        #nav dl{
+            margin-top:20px;
+        }
+
+        #nav dd a{
+            position: relative;
+            height: 32px;
+            line-height: 32px;
+            display: block;
+            padding: 0 0 0 80px;
+            color: #020202;
+        }
+        #nav dd a:hover{
+            text-decoration: none;
+            background: red;
+            transition: ease all;
+            transition-duration: .3s;
+        }
+        .main-icon-model{
+            padding:10px;
+            overflow: hidden;
+        }
+
+        .main-icon-model li{
+            margin:10px;
+            position: relative;
+            display: block;
+            height: 48px;
+            width:200px;
+            padding: 0 18px 0 7px;
+            border: 1px solid #D5D7DF;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border-radius: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            z-index: 3;
+            box-shadow: 0 5px 5px #ccc;
+            float: left;
+        }
+        .main-icon-model li em{
+            display: none;
+        }
+
+        .main-icon-model li.active{
+            border-color:red;
+            display: block;
+        }
+        .main-icon-model li.active em{
+            position: absolute;
+            border: 1px solid red;
+            top:-1px;
+            right:-1px;
+            display: block;
+            width:20px;
+            height:20px;
+
+        }
+        .main-icon-model li.checked em{
+            background-color: red;
+        }
+
+        #main{
+            margin-left:200px;
+            overflow: hidden;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<div id="header">头部</div>
+<div id="wrap">
+    <div id="nav">
+
+        <dl class="nav-menu">
+            <dd><a href="javascript:;">最近</a></dd>
+        </dl>
+
+
+
+
+
+
+    </div>
+    <div id="main">
+
+        <ul class="main-icon-model">
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+            <li>
+                <span>QQ</span>
+                <em></em>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+
+    //生成页面   数据在data中
+
+    //1生成侧栏列表
+
+    var navBox = document.querySelector('#nav');
+
+    for(var i=0;i<data.length;i++){
+
+        var navHtml = document.createElement('dl');
+
+        navHtml.className = 'nav-menu';
+
+        var dtHtml = '<dt>'+data[i].title+'</dt>';
+
+        //通过for循环来添加子集
+        for(var j=0;j<data[i].child.length;j++){
+            dtHtml += '<dd data-file="'+i+'_'+data[i].child[j].id+'"><a href="javascript:;">'+data[i].child[j].title+'</a></dd>';
+        }
+        navHtml.innerHTML = dtHtml;
+        navBox.appendChild(navHtml);
+    }
+
+    //点击侧栏菜单，要在右边显示对应的内容
+
+    //需要给侧栏菜单  dd  添加点击事件
+
+    /*
+    * 说明：由于dd是通过字符串拼接出来的，所以无法再当时添加点击事件，
+    * 解决方案： 通过事件代理解决无法添加事件的问题
+    *
+    * 事件代理中的问题：  如何找到dd这个元素
+    *
+    * */
+
+    //把dd的事件代理给到祖父级
+    navBox.onclick = function(ev){
+
+        //通过ev.target 目标元素判断  做对应的事情
+
+        //找到dd
+        var dd = findEle(ev.target,'nodeName','dd');
+
+        //在页面上显示当前菜单下的内容 child
+        //如何找到child
+
+        /*
+        * 已知 父级地址  数据在data
+        *
+        * data-file =  'file_0'
+        *
+        *
+        *  把 file_0  拆分   ['file','0']
+        *
+        *
+        * */
+
+        var childDir = dd.getAttribute('data-file');
+
+        //转成数组
+        childDir = childDir.split('_');
+
+        console.log(childDir); // ["0", "1"]
+
+        // data[childDir[0]].child[childDir[1]]
+        // data['0']['1']
+
+        var childList = data[childDir[0]].child[childDir[1]].child;
+
+        //找到放内容的地方
+        var ul = document.querySelector('#main ul');
+
+        //拼接li
+        var liHtml = '';
+        for(var i=0;i<childList.length;i++){
+            liHtml += '<li>'+
+                '<span>'+childList[i].title+'</span>'+
+                '<em></em>'+
+                '</li>';
+        }
+        ul.innerHTML = liHtml;
+
+
+
+
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //页面刷新
+    countHeight();
+
+    //页面大小变化的时候
+    window.onresize = countHeight;
+
+
+
+    //图标模式的移入移出效果
+    var iconList = document.querySelectorAll('.main-icon-model li');
+
+    for(var i=0;i<iconList.length;i++){
+        iconList[i].onmouseover = function(){
+            if(this.isClick) return;//如果被点击过  就不操作
+            this.className = 'active';
+        };
+        iconList[i].onmouseout = function(){
+            if(this.isClick) return;//如果被点击过  就不操作
+            this.className = '';
+        };
+
+        //标记点击
+        iconList[i].onclick = function(ev){
+
+            if(ev.target.nodeName.toLocaleLowerCase()=='em'){
+                //被点击过
+                if(this.isClick){
+                    //取消状态
+                    this.isClick = false;
+                    this.className = 'active';
+                }else{
+                    this.isClick = true;
+                    this.className = this.className+' checked';
+                }
+            }
+
+
+
+        };
+    }
+
+
+
+
+
+    //计算内容高度
+    function countHeight(){
+        //头部高度
+        var headerH = document.querySelector('#header').offsetHeight;
+        var bodyH = document.querySelector('body').clientHeight;
+
+
+        //侧栏
+        var nav = document.querySelector('#nav');
+
+        nav.style.height = bodyH-headerH+'px';
+
+    }
+
+
+
+    /*************************************/
+
+    //找对应元素的方法
+    function findEle(ele,attr,value){
+
+        //如果父级不存在或者父级不是一个元素  说明找不到了 返回 undefined
+        if(ele==null||ele.nodeType!=1) return;
+
+
+        if(ele[attr].toLocaleLowerCase()==value.toLocaleLowerCase()){
+            return ele;
+        }
+
+        return findEle(ele.parentNode,attr,value);
+
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

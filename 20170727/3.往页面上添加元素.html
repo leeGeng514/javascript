@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:50px;
+            height:50px;
+            background:red;
+            margin:5px;
+            color:#fff;
+            text-align: center;
+            line-height:50px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+
+<script>
+
+    //需求： 往页面里添加 10 div
+
+    //取整数：  parseInt()
+    // %  取余数  用法（num%10）   20/10  余数是 0    21/10  余数是 1
+
+
+    var num = 100; //div数量
+
+    for(var i=0;i<num;i++){
+        var top = parseInt(i/10)*60;
+        var left = (i%10)*60;
+        document.body.innerHTML += '<div style="left:'+left+'px;top:'+top+'px;">'+i+'</div>';
+
+        console.log(i%2);
+    }
+
+
+</script>
+</body>
+</html>

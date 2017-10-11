@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box{
+            width:1000px;
+            background-color: #555;
+            color:#ccc;
+            margin:auto;
+            padding:10px;
+            border-radius:10px;
+            height:500px;
+        }
+        .menu{
+            float: left;
+            width:100px;
+            height:100%;
+            border-right:1px solid #ccc;
+            padding:0 10px;
+        }
+        .menu a{
+            display: block;
+            text-align: right;
+            height:50px;
+            line-height: 50px;
+            color:#ccc;
+            text-decoration: none;
+            font-size:18px;
+            margin:0 0 50px;
+        }
+        .menu a.active{
+            color:red;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+            margin:0 0 0 120px;
+        }
+
+        li{
+            padding:20px 0;
+            border-bottom:1px solid #ccc;
+        }
+        li:hover{
+            background-color: #333;
+        }
+
+        li a{
+            display: block;
+            margin:0 0 0 -1px;
+            padding:0;
+            font-size:14px;
+            color:#ccc;
+            text-decoration: none;
+            padding:0 20px;
+            overflow: hidden;
+            border-left:2px solid transparent;
+        }
+
+        li:hover a{
+            border-left:2px solid red;
+        }
+
+        li span{
+            float: left;
+
+        }
+        li span:nth-of-type(3){
+            float: right;
+        }
+
+        #page{
+            margin-left:120px;
+            text-align:center;
+            margin-top:50px;
+        }
+        #page a{
+            color:#ccc;
+            padding:10px;
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+
+    <div class="menu">
+        <!--<a class="active" href="?type=sociology#1">社会招聘</a>-->
+        <!--<a href="?type=school#1">校园招聘</a>-->
+    </div>
+
+    <ul class="list">
+        <!--<li>-->
+            <!--<a href="#">-->
+                <!--<span>01</span>-->
+                <!--<span>职位要求：职位要求：前端工程师111 【社会招聘】 需求人数：2名</span>-->
+                <!--<span>2017-08-13<br>查看详情..</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a href="#">-->
+                <!--<span>01</span>-->
+                <!--<span>职位要求：职位要求：前端工程师111 【社会招聘】 需求人数：2名</span>-->
+                <!--<span>2017-08-13<br>查看详情..</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a href="#">-->
+                <!--<span>01</span>-->
+                <!--<span>职位要求：职位要求：前端工程师111 【社会招聘】 需求人数：2名</span>-->
+                <!--<span>2017-08-13<br>查看详情..</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a href="#" >-->
+                <!--<span>01</span>-->
+                <!--<span>职位要求：职位要求：前端工程师111 【社会招聘】 需求人数：2名</span>-->
+                <!--<span>2017-08-13<br>查看详情..</span>-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
+
+    <div id="page">
+
+    </div>
+
+</div>
+
+
+<script src="data.js"></script>
+<script src="../MTween.js"></script>
+<script>
+
+    //默认显示的内容
+    var defaultInfo = 'sociology';
+
+
+
+    /*------------------生成侧边栏目------------------*/
+    //生成侧栏列表
+    var menu = document.querySelector('.menu');
+
+    //获取侧栏的内容  是一个数组
+    var navList = data.list;
+
+    //通过数组来生成侧栏
+    for(var i=0;i<navList.length;i++){
+        //<a href="?type=sociology#1">社会招聘</a>
+        if(navList[i].type==defaultInfo){
+            var html = '<a class="active" href="?type='+navList[i].type+'">'+navList[i].name+'</a>';
+        }else{
+            var html = '<a href="?type='+navList[i].type+'">'+navList[i].name+'</a>';
+        }
+
+        menu.innerHTML += html;
+
+    }
+    /*--------------------------------*/
+
+    /*-------------选择要生成的列表数据-------------------*/
+    //生成列表
+    var json = searchToJson(window.location.search);
+
+    console.log(json);
+    if(json.type){
+        //如果url中type值 ，就显示url中的type的内容
+        defaultInfo = json.type;
+    }
+
+    console.log(defaultInfo);
+    /*--------------------------------------------*/
+
+
+    /*-----------------显示分页-------------------------*/
+    //分页个数
+    var starNum = 0;
+    var pageNum = 4;
+
+    //总页数
+    var count = data[defaultInfo].length;
+
+    //计算有多少页
+    var pageCount = Math.ceil(count/pageNum);
+
+    console.log(pageCount);
+    //根据页数 生成页码元素
+    /*
+     *
+     * <a href="">&lt;</a>
+     <a href="">1</a>
+     <a href="">2</a>
+     <a href="">&gt;</a>
+     * */
+
+    var pageBox = document.querySelector('#page');
+
+    var html = '<a href="">&lt;</a>';
+    for(var i=0;i<pageCount;i++){
+        html += '<a href="">'+(i+1)+'</a>'
+    }
+    html += '<a href="">&gt;</a>';
+
+    pageBox.innerHTML = html;
+
+    /*------------------------------------------*/
+
+
+
+    /*----------------显示列表-----------------------*/
+    //拿到要显示列表内容
+    var list = data[defaultInfo].slice(starNum,starNum+pageNum);
+
+
+
+
+
+
+
+    console.log(list);
+
+    //放列表的盒子
+    var ul = document.querySelector('ul');
+
+    for(var i=0;i<list.length;i++){
+
+        if(list[i].id<10){
+            list[i].id = '0'+list[i].id;
+        }
+
+        var html = '<li><a href="#"><span>'+list[i].id+'&nbsp;&nbsp;&nbsp;&nbsp;</span><span>'+list[i].title+'</span><span>'+list[i].time+'<br>查看详情..</span></a></li>';
+
+        ul.innerHTML += html;
+
+    }
+    /*---------------------------------------*/
+
+    console.log(data);
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

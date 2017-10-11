@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="动画">
+<div></div>
+<script>
+
+    /*
+     * 定时器管理
+     *
+     * 定时器开启，如果不关闭的会重复多个定时
+     *
+     * 不要在局部作用域定义定时器id存储器
+     *
+     * */
+
+    var btn = document.getElementsByTagName('input')[0];
+    var div = document.getElementsByTagName('div')[0];
+    var num = 0;
+    var timer =0;
+
+    btn.onclick = function(){
+        anim();
+    };
+
+    function anim(){
+//        console.log(timer);//undefined;
+//        clearInterval(timer);
+        clearInterval(div.timer);
+//        var timer = 0;
+        var speed = 10;
+        var s = 0;
+        num++;
+        var curr = parseFloat(getComputedStyle(div).marginLeft);
+//        timer = setInterval(function(){
+//            s += speed;
+//            if(s >= 1000){
+//                s = 1000;
+//                console.log(timer);
+//                clearInterval(timer);
+//            }
+//            console.log(num);
+//            div.style.marginLeft = curr + s +'px';
+//        },1000)
+        div.timer = setInterval(function(){
+            s += speed;
+            if(s >= 1000){
+                s = 1000;
+                console.log(timer);
+                clearInterval(timer);
+            }
+            console.log(num);
+            div.style.marginLeft = curr + s +'px';
+        },1000);
+        console.log(timer);//1
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:200px;
+            height:40px;
+            line-height:40px;
+            border:1px solid #000;
+            margin:200px auto auto;
+            position: relative;
+        }
+        span{
+            display: block;
+            /*float: left;*/
+            position: absolute;
+            top:0;
+            left:0;
+            width:40px;
+            height:40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span>+1</span>
+    <span>+1</span>
+    <span>+1</span>
+    <span>+1</span>
+    <span>+1</span>
+</div>
+<script>
+
+    //获取元素
+    var span = document.querySelectorAll('span');
+    var div = document.querySelector('div');
+
+    //初始化span的位置
+    for(var i=0;i<span.length;i++){
+        span[i].style.left = i*40+'px';
+        //初始化动画的默认值
+        span[i].top1 = 0;
+        span[i].opa = 100;
+    }
+
+
+
+//    var timer = 0;
+
+    var top1 = 0;//初始位置   top不能用作变量名
+    var opa = 100;//透明度的初始值
+
+    div.onclick = function(){
+
+        //动画效果
+        //谁的动画就把定时器加给谁
+        for(var i=0;i<span.length;i++){
+            spanAnim(i);//实参和形参一一对应，形参代表实参值
+        }
+
+//        spanAnim(0);
+//        spanAnim(1);
+//        spanAnim(2);
+//        spanAnim(3);
+
+
+
+//        var name = 1;
+//
+//        name+2;
+
+        //span标签的动画函数
+        function spanAnim(index){
+            //形参相当于局部作用域的变量，没有传值默认是undefined；
+            clearInterval(span[index].timer);//先清除在执行
+            setTimeout(function(){
+                span[index].timer = setInterval(function(){
+                    //每隔30毫秒让span往上走一点
+                    span[index].top1 -= 2;
+                    span[index].opa -= 2;//谁先执行完就用谁做判断
+                    if(span[index].top1<-100){
+                        //当到达位置的时候就定住动画
+                        span[index].top1 = -100;
+                        //到达位置，动画没必要继续执行了，清除定时器
+                        clearInterval(span[index].timer);
+                    }
+//            console.log(top1);
+//                console.log(span[index].top1,span[index].opa);
+                    span[index].style.top = span[index].top1+'px';
+                    span[index].style.opacity = span[index].opa/100;
+                },30)
+            },200*index);
+        }
+
+    };
+
+</script>
+</body>
+</html>

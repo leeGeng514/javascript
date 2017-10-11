@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            height:100px;
+            border:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<!--div1.innerHTML-->
+<div id="div1">111111</div>
+<!--text1.innerHTML（错误的获取方式） -->
+<!--text1.value 正确姿势-->
+<textarea id="text1">3333333</textarea>
+
+<select name="" id="sel1">
+    <option selected value="1">122122221</option>
+</select>
+<!--inp1.value-->
+<input id="inp1" type="text" value="background">
+<script>
+    /*
+    * 关键字：只在定义（申明）数据的时候使用
+    *
+    *  textarea  建议使用 value 操作内容
+    *
+    *
+    *
+    * 1.js做什么的：
+    *   操作浏览器（浏览器脚本语言）
+    *   浏览器中包括的内容：
+    *       a.元素（操作元素属性）
+    *       b.浏览器工具条，浏览器属性
+    *
+    *   创造浏览器和用户友好交互行为
+    *
+    * js的内容：
+    *
+    *
+    *   1.变量：
+    *       作用：用来存储js数据，保存一些需要重复使用数据，合理使用可以提高性能
+    *   2.获取元素方法：
+    *       a、  document[E].getElementById();
+    *       b、  document[E].getElementsByClassName();
+    *       c、  document[E].getElementsByTagName();
+    *       d、  document[E].querySelector();  获取的是元素集合中的第0个
+    *       e、  document[E].querySelectorAll(); 获取的是一个集合
+    *
+    *   3.事件：用户在浏览器上发生的一些行为
+    *       a、  window[E].onload 监测浏览器或者某些元素是否加载完成
+    *       b、  E.onclick  鼠标点下去并且抬起来之后的一瞬间
+    *       c、  E.onmouseover 鼠标指针移入元素的一瞬间
+    *       d、  E.onmouseout 鼠标指针移出元素的一瞬间
+    *
+    *   4.函数： 包裹一堆代码的容器
+    *       function 关键字（定义函数的标识单词）
+    *       结构： function 函数名(){
+    *                   要执行的代码块（代码片段）
+    *             }  命名函数
+    *             function(){}  匿名函数
+    *
+    *   5.属性修改：
+    *       a、   id , className , style ,value,innerHTML,(src,href:获取的是绝对地址，和想象有点不一样)
+    *       b、  .  []
+    *
+    *   6. if(a>=b){} else{}
+    *       关系运算符：  >  <  ==  a>=b
+    *       >=,
+    *       <=,
+    *       算数运算符：
+    *       +=,
+    *       -=,     i = i - 1;
+    *       *=，
+    *       /=,
+    *       %=
+    *  7.for(循环变量，判断变量合不合适继续循环，变量变化){
+    *       代码片段
+    *  }
+    *
+    *  var i=0;i<10;i++
+    *
+    *  //不能写死循环
+    *
+    * */
+
+//    console.log(document.querySelectorAll('#div1'));//虽然是id但也是一个集合
+    var div1 = document.querySelectorAll('#div1')[0];
+    div1.onmouseover = function(){
+        div1.style.backgroundColor = 'green';
+    };
+    div1.onmouseout = function(){
+        div1.style.backgroundColor = '';
+    };
+
+
+    //定义个一命名函数：
+    function getUser(){
+        alert('用户名');
+    }
+    //调用： 函数名();
+//    getUser();
+
+    //匿名函数定义：  1.立即执行时  2.存到变量或者属性方法
+    div1.onclick = function(){alert(1);};
+
+    var c = function(){
+        alert(2);
+    };
+
+//    c=1;
+
+//    c(); //手动执行函数必须加括号
+    console.log(c);
+
+//    console.dir(div1);
+
+
+    var text1 = document.getElementById('text1');
+
+    console.dir(text1);
+
+//    input.value;
+    var inp1 = document.getElementById('inp1');
+    var bgc = 'background-color';
+    div1.style[inp1.value] = 'red';
+    div1.style.backgroundColor;
+
+    var i=10;
+//    console.log(i-=1);
+
+    console.log(i= i%9);
+//    for(var k=0;k<10;k++){
+//        console.log(k%3);
+//    }
+
+//    //k=0
+//    k<10
+//    k%=3   //0
+//    k++  1
+//    k<10
+//    k%=3;   k=1;
+//    k++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+
+
+        #box{
+            margin:auto;
+            border-bottom:1px solid #ccc;
+            overflow: hidden;
+        }
+
+        .nav{
+            float:left;
+            background-color: #333;
+            width:200px;
+        }
+        .logo{
+            width:100%;
+            height:50px;
+        }
+        .logo img{
+            width: 100%;
+            height:100%;
+        }
+        .nav-menu{
+            padding:5px 0;
+        }
+        .nav-menu li{
+            height:40px;
+            margin:5px auto;
+            line-height: 40px;
+        }
+        .nav-menu a{
+            color:#fff;
+            text-decoration: none;
+            display: block;
+            padding-left:30px;
+        }
+
+        .list{
+            margin-left:200px;
+            /*background-color: red;*/
+        }
+        .list-header{
+            background-color: #9E9BF6;
+        }
+        .list-header,.list-info{
+            height:50px;
+            line-height: 50px;
+            padding-left:30px;
+        }
+
+        table{
+            width: 100%;
+        }
+        table tr{
+            position: relative;
+        }
+        table td,th{
+            padding:5px;
+        }
+        table thead tr:nth-of-type(1){
+            background-color: #6DE0FD;
+        }
+        table thead tr:nth-of-type(1) th{
+            text-align: left;
+        }
+        table thead tr:nth-of-type(1) th input{
+            padding:0 10px;
+        }
+        table tbody td{
+            border-top:1px solid #ddd;
+            padding-left:20px;
+        }
+
+
+        .mark{
+            padding:5px;
+            background-color: rgba(0,0,0,.5);
+            color:#fff;
+            position: absolute;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+
+    <div class="nav">
+        <h1 class="logo"><img src="logo.png" alt=""></h1>
+        <ul class="nav-menu">
+            <li><a href="javascript:;">写信</a></li>
+            <li><a href="javascript:;">收信</a></li>
+            <li><a href="javascript:;">通讯录</a></li>
+            <li><a href="javascript:;">收件箱</a></li>
+            <li><a href="javascript:;">星标邮箱</a></li>
+            <li><a href="javascript:;">群邮件</a></li>
+            <li><a href="javascript:;">草稿箱</a></li>
+            <li><a href="javascript:;">已发送</a></li>
+            <li class="deled"><a href="javascript:;">已删除</a></li>
+            <li class="laji"><a href="javascript:;">垃圾箱</a></li>
+        </ul>
+    </div>
+
+    <div class="list">
+
+        <div class="list-header">
+            邮箱首页 | 设置
+            <span>举报成功。。。。。</span>
+            <span>邮件举报中。。。。。</span>
+        </div>
+
+        <div class="list-info">收件箱(共96封，其中未读邮件9封)</div>
+
+        <table cellspacing="0">
+
+            <thead>
+                <tr>
+                    <th colspan="3">
+                        <input class="del" type="button" value="删除">
+                        <input type="button" value="彻底删除">
+                        <input type="button" value="转发">
+                        <input type="button" value="举报">
+                        <input type="button" value="标记已读">
+                        <input type="button" value="标记为">
+                        <input type="button" value="移动到">
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <input type="checkbox"> 全选
+                    </td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>
+                        <h3>妙味课堂1</h3>
+                        <p>js拖拽进一步学习，移动与拉伸拖拽进一步学习</p>
+                    </td>
+                    <td>2017-9-21</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>
+                        <h3>妙味课堂2</h3>
+                        <p>js拖拽进一步学习，移动与拉伸拖拽进一步学习</p>
+                    </td>
+                    <td>2017-9-21</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>
+                        <h3>妙味课堂3</h3>
+                        <p>js拖拽进一步学习，移动与拉伸拖拽进一步学习</p>
+                    </td>
+                    <td>2017-9-21</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>
+                        <h3>妙味课堂4</h3>
+                        <p>js拖拽进一步学习，移动与拉伸拖拽进一步学习</p>
+                    </td>
+                    <td>2017-9-21</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>
+                        <h3>妙味课堂5</h3>
+                        <p>js拖拽进一步学习，移动与拉伸拖拽进一步学习</p>
+                    </td>
+                    <td>2017-9-21</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+</div>
+
+<script>
+
+
+
+
+    /*
+    *
+    * 功能：
+    *   全选/非全选功能
+    *       1、获取全选框
+    *       2、获取单项选择框
+    *       3、点击全选按钮的时候   把所有单项选择的框改成被选中状态 否则  就改成非选中状态
+    *
+    *       4、单项选择框的点击事件  没次点击都要检查所有的单项选择框是否为选中状态
+    *           是：全选框变成选择状态
+    *           否：全选框变成非选中状态
+    *
+    *
+    *   删除功能：
+    *       1.找到所有被选中的列表
+    *       2.找到列表的父级  删除  子集
+    *
+    *
+    *
+    * */
+
+    var timer = 0;//延时定时器的id
+
+    //全选框
+    var checkAllBox = document.querySelector('thead input[type=checkbox]');
+    //单项选择框 集合
+    var checkBoxes = document.querySelectorAll('tbody input');
+
+    /*
+    *  3、点击全选按钮的时候   把所有单项选择的框改成被选中状态 否则  就改成非选中状态
+    * */
+
+    checkAllBox.onclick = function(){
+
+        var currState = this.checked;//全选按钮的当前状态
+
+
+
+        for(var i=0;i<checkBoxes.length;i++){
+            checkBoxes[i].checked = currState;//单项选择框的状态要和全选框保持一致
+            if(currState){
+                checkBoxes[i].parentNode.parentNode.style.backgroundColor = '#C5E8EF';
+            }else{
+                checkBoxes[i].parentNode.parentNode.style.backgroundColor = '';
+            }
+        }
+
+
+    };
+
+
+
+    /*
+    *
+    * 4、单项选择框的点击事件  没次点击都要检查所有的单项选择框是否为选中状态
+     *           是：全选框变成选择状态
+     *           否：全选框变成非选中状态
+    *
+    * */
+    for(var i=0;i<checkBoxes.length;i++){
+
+        checkBoxes[i].onclick = function(){
+
+
+
+            if(this.checked){
+                this.parentNode.parentNode.style.backgroundColor = '#C5E8EF';
+            }else{
+                this.parentNode.parentNode.style.backgroundColor = '';
+            }
+
+
+            //假设被全选
+            checkAllBox.checked = true;
+
+            //检查是否全选
+            for(var i=0;i<checkBoxes.length;i++){
+                if(!checkBoxes[i].checked){
+                    checkAllBox.checked = false;
+                    break;//只要有一个没有被选中，就直接跳出循环，减少代码的执行量
+                }
+            }
+
+
+        };
+
+    }
+
+
+    /*
+    * 找到删除按钮，点击事件中添加删除函数
+    *
+    * */
+    var delBtn = document.querySelector('.del');
+
+    delBtn.onclick = function(){
+
+        //先找到被选中的列表
+        for(var i=0;i<checkBoxes.length;i++){
+
+            var gradeParent = checkBoxes[i].parentNode.parentNode.parentNode;
+            var parent = checkBoxes[i].parentNode.parentNode;
+            if(checkBoxes[i].checked){
+                gradeParent.removeChild(parent);
+            }
+        }
+
+        checkAllBox.checked = false;
+
+        //重新获取一下最新的数据
+        checkBoxes = document.querySelectorAll('tbody input');
+
+
+    };
+
+
+    /*
+    *
+    * 通过碰撞 删除列表
+    *
+    *   //找到被碰撞元素  集合
+    *
+    *
+    * */
+
+    //单个碰撞检测
+
+    var deledBox = document.querySelector('.deled');
+
+    //找到中心点
+    var x1 = deledBox.offsetLeft+deledBox.offsetWidth/2;
+    var y1 = deledBox.offsetTop+deledBox.offsetHeight/2;
+
+    //最小碰撞值
+    var w = deledBox.offsetWidth/2;
+    var h = deledBox.offsetHeight/2;
+
+
+
+
+
+
+    document.onmousedown = function(ev){
+
+
+
+
+
+        //找到tr的方法
+        function findTr(parent){
+
+            if(parent!=null&&parent.nodeName.toLocaleLowerCase()!='tr'){
+                return findTr(parent.parentNode);
+            }else{
+                return parent;
+            }
+        }
+
+        var tr = findTr(ev.target);
+
+
+        //找到当前这一行的checkbox
+        var  checkbox = tr==null?null:tr.querySelector('input');
+
+
+        if(checkbox==null||!checkbox.checked) return;
+
+
+
+        timer = setTimeout(function(){
+
+
+//创建一个提示框
+            var div = document.createElement('div');
+
+            div.className = 'mark';
+
+
+            //计算被选中的邮件数
+            var num = 0;
+            for(var i=0;i<checkBoxes.length;i++){
+                if(checkBoxes[i].checked){
+                    num++;
+                }
+            }
+
+            div.innerHTML = '选中了 '+num+' 封邮件';
+
+            div.style.left = ev.clientX+'px';
+            div.style.top = ev.clientY+'px';
+
+
+
+            document.body.appendChild(div);
+
+
+
+            document.onmousemove = function(ev){
+
+
+                var x2 = ev.clientX+window.pageXOffset;
+                var y2 = ev.clientY+window.pageYOffset;
+
+                div.style.left = x2+'px';
+                div.style.top = y2+'px';
+
+
+                //计算中心点之间的距离
+                var x = Math.abs(x2-x1);
+                var y = Math.abs(y2-y1);
+
+
+                if(x<=w&&y<=h){
+
+                    //当x碰上了  并且 y也碰上了
+
+                    window.state = true;
+
+                }else{
+                    window.state = false;
+                }
+
+                return false;
+
+            };
+
+        },100);
+
+
+
+
+
+
+    };
+
+    document.onclick = function(){
+        clearTimeout(timer);
+    };
+
+
+    document.onmouseup = function(){
+
+        var mark = document.querySelector('.mark');
+        if(mark){
+            document.body.removeChild(mark);
+        }
+
+        if(window.state){
+            //先找到被选中的列表
+            for(var i=0;i<checkBoxes.length;i++){
+
+                var gradeParent = checkBoxes[i].parentNode.parentNode.parentNode;
+                var parent = checkBoxes[i].parentNode.parentNode;
+                if(checkBoxes[i].checked){
+                    gradeParent.removeChild(parent);
+                }
+            }
+
+            checkAllBox.checked = false;
+
+            //重新获取一下最新的数据
+            checkBoxes = document.querySelectorAll('tbody input');
+        }
+
+
+        document.onmousemove = null;
+
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    //找到被碰撞元素  集合
+//    var pengzhuang = [
+//        document.querySelector('.deled'),
+//        document.querySelector('.laji')
+//    ];
+//
+//
+//    //计算碰撞范围的最小距离
+//    var min = [];
+//
+//    for(var i=0;i<pengzhuang.length;i++ ){
+//        min.push(
+//            {
+//                w:pengzhuang[i].offsetWidth/2,
+//                h:pengzhuang[i].offsetHeight/2
+//            }
+//        );
+//    }
+//
+//    //找到碰撞元素的中心点  x1,y1
+//    var centerPoint = [];
+//    for(var i=0;i<pengzhuang.length;i++){
+//        var x1 =  pengzhuang[i].offsetLeft+pengzhuang[i].offsetWidth/2;
+//        var y1 = pengzhuang[i].offsetTop+pengzhuang[i].offsetHeight/2;
+//
+//        //把计算出来的中心点 放到数组中
+//        centerPoint.push(
+//            {
+//                x1:x1,
+//                y1:y1
+//            }
+//        );
+//
+//    }
+//    console.log(centerPoint);
+//
+//
+//    //存储被碰撞的元素
+//    var penged = null;
+//
+//    //碰撞处理
+//    document.onmousedown = function(ev){
+//
+//
+//
+//
+//        document.onmousemove = function(ev){
+//
+//
+//            //鼠标移动的位置就是中心点
+//            var x2 = ev.clientX;
+//            var y2 = ev.clientY;
+//
+//            for(var i=0;i<centerPoint.length;i++){
+//
+//
+//                var x = x2-centerPoint[i].x1;
+//                var y = y2-centerPoint[i].y1;
+//
+//
+//                for(var j=0;j<min.length;j++){
+//                    if(x<=min[j].w&&y<=min[j].h){
+//                        penged = pengzhuang[j];
+//                        break;
+//                    }
+//                }
+//
+//                return false;
+//            }
+//
+//
+//
+//
+//        }
+//
+//
+//
+//    };
+//
+//
+//    document.onmouseup = function(){
+//
+//
+//
+//        if(penged!=null){
+//
+//            console.log(penged);
+//
+//             //找到碰撞的是不是删除按钮
+//            if(penged.className=='deled'){
+//                console.log('我是删除按钮');
+//            }
+//
+//
+//        }
+//
+//
+//
+//    };
+
+
+
+
+
+
+</script>
+</body>
+</html>

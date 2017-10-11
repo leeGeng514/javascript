@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    *slice
+     作用
+     方法提取字符串中的一部分，并返回这个新的字符串
+     语法
+     string string.slice(beginSlice[, endSlice])
+     参数
+     beginSlice
+     起始位置
+     endSlice
+     结束位置，默认为最后一个字符的位置
+     不包括结束位置本身的字符
+     返回值
+     返回截取后的字符串
+
+     *
+    *
+    * */
+
+    var str = '   妙味课堂前端培训   ';
+
+
+
+    
+//    console.log(str.slice(3,-3));
+
+//    console.log(str[3]);
+
+    var str1;
+    //截取前面的空格
+    for(var i=0;i<str.length;i++){
+        if(str.charAt(i)!=' '){
+            str1 = str.slice(i);
+            break;
+        }
+    }
+
+    //截取截取后面的空格
+    for(var i=str1.length-1;i>0;i--){
+        if(str1.charAt(i)!=' '){
+            str1 = str1.slice(0,i+1);
+            break;
+        }
+    }
+
+//    if(str.charAt(0)==' '){
+//        str1 = str.slice(0);
+//    }
+//
+//    if(str.charAt(1)==' '){
+//        str1 = str.slice(1);
+//    }
+//
+//    if(str.charAt(2)==' '){
+//        str1 = str.slice(2);
+//    }
+
+//    if(str.charAt(3)==' '){
+//        str1 = str.slice(2);
+//    }
+
+
+
+    console.log(str1);
+
+
+
+
+
+</script>
+</body>
+</html>

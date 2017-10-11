@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width:600px;
+            margin:auto;
+            overflow: hidden;
+        }
+        .title{
+            overflow: hidden;
+        }
+        h2{
+            margin: 0;
+            padding:0;
+            float: left;
+            width:198px;
+            line-height:50px;
+            text-align: center;
+            border:1px solid #000;
+        }
+        .list{
+            overflow: hidden;
+            border:1px solid #000;
+            display: none;
+        }
+        .list img{
+            float: left;
+            width:200px;
+            height:200px;
+        }
+        .list .list-2{
+            height:50px;
+            line-height: 50px;
+            margin-top:10px;
+            background-color: #eeeeee;
+            margin-right:10px;
+            margin-left:210px;
+            padding:0 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <div class="title">
+        <h2 style="background-color: red;">专题</h2>
+        <h2>视频</h2>
+        <h2>图片</h2>
+    </div>
+    <div class="list" style="display: block;">
+        <img src="img/watch.jpg" alt="">
+        <div class="list-2" style="background-color: red;">奇虎11111</div>
+        <div class="list-2">奇虎11111</div>
+    </div>
+    <div class="list">
+        <img src="img/watch.jpg" alt="">
+        <div class="list-2">奇虎2222</div>
+        <div class="list-2">奇虎22222</div>
+        <div class="list-2">奇虎22222</div>
+    </div>
+    <div class="list">
+        <img src="img/watch.jpg" alt="">
+        <div class="list-2">奇虎333333</div>
+        <div class="list-2">奇虎333333</div>
+        <div class="list-2">奇虎333333</div>
+    </div>
+</div>
+
+
+<script>
+
+
+    /*
+    * 要操作的元素
+    *
+    * */
+
+    var h2 = document.querySelectorAll('h2');
+    var list = document.querySelectorAll('.list');
+    var listMenu = list[0].querySelectorAll('.list-2');
+
+    var box = document.getElementById('box');
+
+
+    /*
+      1.自动切换
+
+      2.鼠标移入移出
+
+
+
+    * 思路：
+    *     先动的是当前面板的子菜单
+    *
+    *     子菜单切换到 最后一个之后 切换面板
+    *
+    *
+    *
+    * */
+
+    //子菜单变化的位置
+    var  smallIndex = 0;
+
+    //面板内容的位置
+    var bigIndex = 0;
+
+    var timer = 0;  //管理定时器的id
+
+    time();
+
+
+    /*
+    * 鼠标移入移出  对定时器的控制
+    *
+    * 移入停止定时器
+    *
+    * 移出开启定时器
+    *
+    * */
+
+    box.onmouseover = function(){
+        clearInterval(timer);
+    };
+
+    box.onmouseout = function(){
+        time();
+    };
+
+
+    /*
+    * 1. h2 大标题  移入移出的效果
+    *
+    * 2. .list-2 小标题的移入移出效果
+    * */
+
+    for(var i=0;i<h2.length;i++){
+        //把所有的h2位置存起来
+        h2[i].index = i;
+
+        /*
+        * 给所有的h2添加移入事件
+        * */
+        h2[i].onmouseover = function(){
+
+            //在位置发生变化之前 把上一次显示的面板隐藏
+            list[bigIndex].style.display = 'none';
+            h2[bigIndex].style.backgroundColor = '';
+
+            listMenu[smallIndex].style.backgroundColor = '';
+
+            bigIndex = this.index;//切换大面板位置
+            //当大面板位置发生变化 ，子菜单要回到第0个
+            smallIndex = 0;
+
+            //修改当前的位置的内容
+            list[bigIndex].style.display = 'block';
+            h2[bigIndex].style.backgroundColor = 'red';
+
+            //保存当前面板的子元素
+            listMenu = list[bigIndex].querySelectorAll('.list-2');
+            listMenu[smallIndex].style.backgroundColor = 'red';
+
+        };
+
+
+
+        //分别找到各个面板下的子菜单
+        //找到当前面板下的所有子菜单
+        var menu = list[i].querySelectorAll('.list-2');
+        for(var j=0;j<menu.length;j++){
+            menu[j].index = j;
+            menu[j].onmouseover = function(){
+                listMenu[smallIndex].style.backgroundColor = '';
+
+                smallIndex = this.index;
+
+                listMenu[smallIndex].style.backgroundColor = 'red';
+            };
+        }
+
+
+
+
+    }
+
+
+
+
+
+    /***********************************************/
+
+
+    //切换的定时器
+    function time(){
+        timer = setInterval(function(){
+
+//        for(var i=0;i<listMenu.length;i++){
+//            listMenu[i].style.backgroundColor = '';
+//        }
+
+            //在smallIndex变化之前，存储正好是上一次的位置
+            //所以可以之前清除上一次位置的样式
+            listMenu[smallIndex].style.backgroundColor = '';
+
+            //在位置发生变化之前 把上一次显示的面板隐藏
+            list[bigIndex].style.display = 'none';
+            h2[bigIndex].style.backgroundColor = '';
+
+
+            smallIndex++;//每秒钟 子菜单切换一次
+
+            //当smallIndex到达子菜单的最后一个位置  要改变面板位置
+            if(smallIndex>listMenu.length-1){
+                bigIndex++;//面板位置变化
+
+                if(bigIndex>list.length-1){
+                    bigIndex = 0;
+                }
+
+                smallIndex = 0; //显示下一个面板的第0个子菜单
+            }
+
+//        console.log(bigIndex);
+
+//        console.log(smallIndex);
+
+
+            //切换面板
+            list[bigIndex].style.display = 'block';
+            h2[bigIndex].style.backgroundColor = 'red';
+
+            //当面板发生变化时，需要把子菜单内容也切换到相同面板下的内容
+            listMenu = list[bigIndex].querySelectorAll('.list-2');
+
+
+//        console.log(listMenu);
+
+
+            //修改变化后的子菜单样式
+            listMenu[smallIndex].style.backgroundColor = 'red';
+
+        },1000);
+    }
+
+
+
+</script>
+
+</body>
+</html>

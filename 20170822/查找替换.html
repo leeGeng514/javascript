@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background-color: #C5E8EF;
+        }
+
+        #box{
+            width:860px;
+            overflow: hidden;
+            margin:100px auto auto;
+
+        }
+        .con-box{
+            overflow: hidden;
+            position: relative;
+            background-color: #fff;
+            padding:30px;
+            border-radius:10px;
+        }
+        .content{
+            width: 580px;
+            height:380px;
+            padding:10px;
+            border:1px solid #B2E2EC;
+            background:#EBF8F9;
+            float: left;
+            font-size:22px;
+        }
+        .tool{
+            position: relative;
+            width:198px;
+            height:400px;
+            float: left;
+        }
+        .tool a{
+            display: block;
+            position: absolute;
+            width:120px;
+            height:120px;
+            background-color: #83DFF1;
+            border-radius:10px;
+            text-align: center;
+            line-height:120px;
+            font-size:24px;
+            color:#fff;
+            font-weight: 500;
+            text-decoration: none;
+            left:60px;
+        }
+        .tool a:nth-of-type(1){
+            z-index: 3;
+            top:0px;
+        }
+        .tool a:nth-of-type(2){
+            z-index: 2;
+            background-color:#9E9BF6;
+            /*top:140px;*/
+        }
+        .tool a:nth-of-type(3){
+            z-index: 1;
+            background-color:#93E69D;
+            /*top:280px;*/
+        }
+
+        .tool-box{
+            width:800px;
+            padding:30px;
+            border-radius:10px;
+            background-color:#fff;
+            margin-top:10px;
+            position: relative;
+            display: none;
+        }
+        .btns{
+            overflow: hidden;
+            margin-bottom:20px;
+        }
+        .btns a{
+            float: left;
+            width:120px;
+            height:50px;
+            text-align: center;
+            line-height: 50px;
+            color:#fff;
+            background-color:#9E9BF6;
+            border-radius:5px;
+            text-decoration: none;
+            font-size:18px;
+        }
+        .btns a:nth-of-type(2){
+            background-color:#93E69D;
+            margin-left:10px;
+        }
+
+        input{
+            padding:5px 10px;
+            border-radius:2px;
+            border:1px solid #000;
+            font-size:18px;
+            outline: 0;
+            height:50px;
+            vertical-align: middle;
+            border:1px solid #B2E2EC;
+            background:#EBF8F9;
+        }
+        input+a{
+            display: inline-block;
+            vertical-align: middle;
+            padding:5px 10px;
+            line-height: 50px;
+            border-radius:2px;
+            font-size:18px;
+            outline: 0;
+            width:100px;
+            text-align: center;
+            background-color:#9E9BF6;
+            color:#fff;
+            height:50px;
+            text-decoration: none;
+        }
+        .lookfor input{
+            width:630px;
+        }
+        .splice input{
+            width:300px;
+        }
+
+        .splice{
+            display: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="con-box">
+        <div class="content">如今的市面上已经存在太多教大家如何 “使用轮子” 的教程，编程界也有 N 多理念告诫大家：会 “使用轮子” 就行啦，不必动手去 “造轮子”。毕竟偷懒是一种天性，懒出境界才是编程最高追求嘛——大家对此深信不疑，许多人再也不提 “造轮子” 的话题，甚至于连 “轮子” 的构造原理也不深究。直到有一天，开发出了问题，手中的 “轮子” 似乎不太好用，纵然满世界有那么多 “轮子”，却没一款用得称心如意！在需求万变的场景下，开发者手中的 “轮子” 用起来越来越别扭，少数 NB 的人早就挽起袖子，或者改造 “轮子”，或者重新制造 “轮子”，在这过程中，少数开发者逐渐成为高手，年薪百万。而更多开发者，仍然笃信 “偷懒是一种天性，懒出境界才是编程最高追求”……殊不知在这个世界上，能够 “懒出境界” 的人，万分之一都不到……</div>
+        <div class="tool">
+            <a href="javascript:;">展开</a>
+            <a href="javascript:;">查找</a>
+            <a href="javascript:;">替换</a>
+        </div>
+    </div>
+    <div class="tool-box">
+        <div class="btns">
+            <a href="javascript:;">查找</a>
+            <a href="javascript:;">替换</a>
+        </div>
+        <div class="lookfor">
+            <input type="text" placeholder="输入查找的内容">
+            <a href="javascript:;">查找</a>
+        </div>
+        <div class="splice">
+            <input type="text" placeholder="输入要替换的内容">
+            <input type="text" placeholder="输入替换的内容">
+            <a href="javascript:;">替换</a>
+        </div>
+    </div>
+</div>
+
+<script src="MTween.js"></script>
+<script>
+
+    /*
+    * 需求：
+    *   1.展开收起的动画
+    *
+    *   2.查找替换的切换
+    *
+    *   3.查找功能
+    *
+    *   4.替换功能
+    *
+    *
+    *
+    *
+    * */
+
+
+    //1.展开收起的动画
+
+    //获取元素
+    var toolA = document.querySelectorAll('.tool a');
+    var toolBox = document.querySelector('.tool-box');
+
+    //点击展开收缩的按钮
+    toolA[0].state = 'hidden';//默认状态 和页面显示要保持一致
+    toolA[0].isAnim = false;//默认动画不执行
+    toolA[0].onclick  =  function(){
+
+        //如果动画正在执行 ，就不允许执行其他代码
+        if(this.isAnim){
+            return; //跳出整个函数
+        }
+
+        //点击之后 动画就会开启
+        this.isAnim = true;
+
+
+        if(this.state=='hidden'){
+            //当前状态是隐藏的  所以点击之后要展开
+            this.innerHTML = '收起';
+
+//            toolA[1].style.top = '140px';
+//            toolA[2].style.top = '140px';
+//            setTimeout(function(){
+//                toolA[2].style.top = '280px';
+//            },300);
+
+//            toolBox.style.display = 'block';
+
+            MTween(toolA[1],140,200,'top','linear');
+            MTween(toolA[2],140,200,'top','linear',function(){
+                //到达140的位置之后 继续向下走140
+                MTween(toolA[2],140,200,'top','linear',function(){
+                    toolA[0].state = 'show';//当到达最终的目标点，把当前状态改成显示
+                    toolA[0].isAnim = false;
+
+                    //显示底部的工具
+                    toolBox.style.display = 'block';
+                });
+            });
+
+        }else{
+
+            this.innerHTML = '展开';
+
+//            toolA[2].style.top = '140px';
+//            setTimeout(function(){
+//                toolA[2].style.top = '0';
+//                toolA[1].style.top = '0';
+//            },300);
+
+            MTween(toolA[2],-140,200,'top','linear',function(){
+                MTween(toolA[1],-140,200,'top','linear');
+                MTween(toolA[2],-140,200,'top','linear',function () {
+                    toolA[0].state = 'hidden';
+                    toolA[0].isAnim = false;
+                    //显示底部的工具
+                    toolBox.style.display = 'none';
+                });
+            });
+
+        }
+    };
+
+
+    //2.查找替换的切换
+    var btns = document.querySelectorAll('.btns a');
+    var lookFor = document.querySelector('.lookfor');
+    var lookForInput = lookFor.querySelector('input');
+    var lookForBtn = lookFor.querySelector('a');
+    var splice = document.querySelector('.splice');
+    var spliceInput = splice.querySelectorAll('input');
+    var spliceBtn = splice.querySelector('a');
+
+    //事件
+//    toolA[1].onclick = btns[0].onclick = function(){
+//
+//        lookFor.style.display = 'block';
+//        splice.style.display = 'none';
+//
+//    };
+    toolA[1].onclick = function(){
+
+        lookFor.style.display = 'block';
+        splice.style.display = 'none';
+        spliceInput[0].value = '';
+        spliceInput[1].value = '';
+
+    };
+
+    btns[0].onclick = function(){
+
+        lookFor.style.display = 'block';
+        splice.style.display = 'none';
+
+        spliceInput[0].value = '';
+        spliceInput[1].value = '';
+
+    };
+
+    toolA[2].onclick = btns[1].onclick = function(){
+
+        lookFor.style.display = 'none';
+        splice.style.display = 'block';
+
+        lookForInput.value = '';
+
+    };
+
+
+
+    // 3.查找功能
+    var contentBox = document.querySelector('.content');
+
+
+    //要操作的内容
+    var content = contentBox.innerHTML;
+
+    /*
+    *
+    * 如今的市面上已经存在太多教大家如何 “使用轮子” 的教程，编程界也有 N 多理念告诫大家：会 “使用轮子” 就行啦，不必动手去 “造轮子”。毕竟偷懒是一种天性，懒出境界才是编程最高追求嘛——大家对此深信不疑，许多人再也不提 “造轮子” 的话题，甚至于连 “轮子” 的构造原理也不深究。直到有一天，开发出了问题，手中的 “轮子” 似乎不太好用，纵然满世界有那么多 “轮子”，却没一款用得称心如意！在需求万变的场景下，开发者手中的 “轮子” 用起来越来越别扭，少数 NB 的人早就挽起袖子，或者改造 “轮子”，或者重新制造 “轮子”，在这过程中，少数开发者逐渐成为高手，年薪百万。而更多开发者，仍然笃信 “偷懒是一种天性，懒出境界才是编程最高追求”……殊不知在这个世界上，能够 “懒出境界” 的人，万分之一都不到……
+    *
+    * */
+
+    lookForBtn.onclick = function(){
+        //获取裁切的内容
+        var text = lookForInput.value;
+
+        contentBox.innerHTML = content.split(text).join('<span style="background-color: green;color:#fff;">'+text+'</span>');
+
+    };
+
+//    lookForBtn.onclick = function(){
+//
+//        var content = contentBox.innerHTML;
+//
+//        //清除多余的标签
+//        content = content.split('<span style="background-color: green;color:#fff;">').join('');
+//
+////        console.log(content);
+//
+//        content = content.split('</span>').join('');
+//
+////        console.log(content);
+//
+//
+//
+//
+//
+//        //获取输入框中内容
+//        var text = lookForInput.value;
+//
+//        contentBox.innerHTML = content.split(text).join('<span style="background-color: green;color:#fff;">'+text+'</span>');
+//
+//
+//
+//    };
+
+
+    // 4.替换功能
+
+    spliceBtn.onclick = function(){
+
+
+        //获取要替换的内容
+        var text = spliceInput[0].value;
+
+        //获取替换成的内容
+        var spliceText = spliceInput[1].value;
+
+
+        contentBox.innerHTML = content.split(text).join('<span style="background-color: green;color:#fff;">'+spliceText+'</span>');
+
+        //记录改变之后的数据
+        content = content.split(text).join(spliceText);
+
+
+    };
+
+
+//    spliceBtn.onclick = function(){
+//
+//
+//        var content = contentBox.innerHTML;
+//
+//        //清除多余的标签
+//        content = content.split('<span style="background-color: green;color:#fff;">').join('');
+//
+////        console.log(content);
+//
+//        content = content.split('</span>').join('');
+//
+////        console.log(content);
+//
+//
+//
+//        //获取输入框中内容
+//        var text = spliceInput[0].value;
+//        var spliceText = spliceInput[1].value;
+//
+//
+//        contentBox.innerHTML = content.split(text).join('<span style="background-color: green;color:#fff;">'+spliceText+'</span>');
+//
+//
+//
+//
+//    };
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

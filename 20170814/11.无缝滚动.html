@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width:200px;
+            height:200px;
+            overflow: hidden;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box li{
+            height:198px;
+            border: 1px solid #000;
+            text-align:center;
+            line-height: 198px;
+            color:#000;
+            font-size:42px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>1</li>
+    </ul>
+</div>
+<script src="MTween.js"></script>
+<script>
+
+    var ul = document.querySelector('ul');
+    var li = document.querySelectorAll('li');
+    var num = 0;
+    setInterval(function(){
+        MTween(ul,-200,500,'marginTop','linear',function(){
+            num++;
+            if(num>=li.length-1){
+                ul.style.marginTop = 0;
+                num = 0;
+            }
+        });
+    },1000);
+
+
+</script>
+</body>
+</html>

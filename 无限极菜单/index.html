@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        body, html, ul, li, h2 {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .menu-list {
+            position: absolute;
+            left: 100px;
+            top: 40px;
+            border: 1px solid #000;
+            padding: 0 4px;
+        }
+
+        .menu-list ul ul {
+            padding-left: 30px;
+            display: none;
+        }
+
+        .menu-list ul ul.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="menu-list">
+
+</div>
+<script src="./data.js"></script>
+<script>
+    var data = menuData;
+    var menuList = document.querySelector('.menu-list');
+
+    menuList.innerHTML = createMenuList(data);
+
+    // 利用数据生成所有的dom结构
+    function createMenuList(data) {
+        var str = '<ul>';
+        // xxxxxxx
+        for (var i = 0, len = data.length; i < len; i++) {
+            str += '<li><h2><span>+</span>' + data[i].name + '</h2>';
+
+            // 如果说这级菜单有子菜单，那么意味着当前data[i]的数据中有children并且这个children.length不是0
+            if (data[i].children && data[i].children.length) {
+                str += createMenuList(data[i].children);
+            }
+
+            str += '</li>';
+        }
+
+        str += '</ul>';
+        return str;
+    }
+
+    // --------------------------------------------
+    //获取到最外层的ul
+    var firstMenuList = menuList.firstElementChild;
+
+    tabMenuList(firstMenuList);
+
+    //将ul传入函数内
+    function tabMenuList(list) {
+        //获取ul下面所有的子级 li
+        var childrenMenu = list.children;
+        //循环 子级 li
+        for (var i = 0, len = childrenMenu.length; i < len; i++) {
+            //获取 li 下面的 h2标签
+            var caption = childrenMenu[i].children[0];
+            //给h2标签添加点击事件
+            caption.onclick = function () {
+                //获取h2下一个相邻的兄弟节点 ul
+                var sibling = this.nextElementSibling;
+                //如果没有 ul 跳出函数
+                if (!sibling) return;
+                //如果有 ul 获取 当前li 的第一个节点 带+号的span
+                var menuStatus = this.firstElementChild;
+                //获取h2 父级的父级 下面所有ul
+                var otherList = this.parentNode.parentNode.querySelectorAll('ul');
+                //如果 ul 为展开状态 将其关闭
+                if (sibling.className === 'active') {
+                    sibling.className = '';
+                    menuStatus.innerHTML = '+';
+                } else {  // 展开操作
+                    for (var i = 0, len = otherList.length; i < len; i++) {
+                        otherList[i].className = '';
+                        otherList[i].previousElementSibling.firstElementChild.innerHTML = '+';
+                    }
+                    sibling.className = 'active';
+                    menuStatus.innerHTML = '-';
+
+                    // 要给当前的子菜单添加点击事件
+                    tabMenuList(sibling);
+                }
+            };
+        }
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:50px;
+            height:50px;
+            background:red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+
+
+<script>
+
+    var div = document.querySelector('div');
+
+
+
+
+    //按键按下的时候开始运动  按键抬起的时候停止运动
+    document.onkeydown = function(ev){
+
+        /*
+         * 向右
+         *
+         * 找向右的按键
+         *
+         * */
+        if(ev.keyCode==39){
+
+            //如果定时器开始过  就不让重复开启
+            if(div.rightOnOff) return;
+
+            //把向右的状态标记为已开启
+            div.rightOnOff = true;
+
+            var maxLeft = window.innerWidth - div.offsetWidth;
+
+            //让div开始向右运动
+            clearInterval(div.timerRigth);
+            div.timerRigth = setInterval(function(){
+
+                var l = div.offsetLeft+10;
+
+                if(l>=maxLeft){
+                    l = maxLeft;
+                }
+
+            },20)
+
+        }
+
+        /*
+        * 向下
+        * */
+        if(ev.keyCode==40){
+
+            //如果定时器开始过  就不让重复开启
+            if(div.bottomOnOff) return;
+
+            //把向右的状态标记为已开启
+            div.bottomOnOff = true;
+
+            var maxTop = window.innerHeight - div.offsetHeight;
+
+            //让div开始向右运动
+            clearInterval(div.timerBottom);
+            div.timerBottom = setInterval(function(){
+
+                var t = div.offsetTop + 10;
+
+                if(t>=maxTop){
+                    t = maxTop;
+                }
+
+                div.style.top = t +'px';
+            },20)
+
+        }
+
+
+        /*
+         * 向左
+         * */
+        if(ev.keyCode==37){
+
+            //如果定时器开始过  就不让重复开启
+            if(div.leftOnOff) return;
+
+            //把向右的状态标记为已开启
+            div.leftOnOff = true;
+
+
+
+            //让div开始向右运动
+            clearInterval(div.timerLeft);
+            div.timerLeft = setInterval(function(){
+
+                var l = div.offsetLeft-10;
+
+                if(l<=0){
+                    //边界超出左边框 让他一直保持在最左边
+                    l = 0;
+                    clearInterval(div.timerLeft);
+                }
+
+                div.style.left = l+'px';
+            },20)
+
+        }
+
+        /*
+         * 向上
+         * */
+        if(ev.keyCode==38){
+
+            //如果定时器开始过  就不让重复开启
+            if(div.topOnOff) return;
+
+            //把向右的状态标记为已开启
+            div.topOnOff = true;
+
+            //让div开始向右运动
+            clearInterval(div.timerTop);
+            div.timerTop = setInterval(function(){
+
+                var t = div.offsetTop-10;
+
+                if(t<=0){
+                    //边界超出上边框 让他一直保持在最上边
+                    t = 0;
+                    clearInterval(div.timerTop);
+                }
+
+
+                div.style.top = t+'px';
+            },20)
+
+        }
+
+
+    };
+
+
+    //按键抬起  动画停止
+    document.onkeyup = function(ev){
+
+
+        if(ev.keyCode==39){
+            //停止向右运动
+            clearInterval(div.timerRigth);
+            //把开关设置到未开启状态
+            div.rightOnOff = false;
+        }
+
+        if(ev.keyCode==40){
+            //停止向下运动
+            clearInterval(div.timerBottom);
+            //把开关设置到未开启状态
+            div.bottomOnOff = false;
+        }
+
+        if(ev.keyCode==37){
+            //停止向左运动
+            clearInterval(div.timerLeft);
+            //把开关设置到未开启状态
+            div.leftOnOff = false;
+        }
+
+        if(ev.keyCode==38){
+            //停止向上运动
+            clearInterval(div.timerTop);
+            //把开关设置到未开启状态
+            div.topOnOff = false;
+        }
+
+
+
+
+
+
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

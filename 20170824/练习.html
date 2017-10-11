@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box {
+            width: 800px;
+            height: 600px;
+            overflow: hidden;
+            margin: auto;
+            background-color: #9E9BF6;
+            position: relative;
+        }
+
+        .df, .sf {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 25px;
+            color: #fff;
+            position: absolute;
+            left: 120px;
+            z-index: 10;
+        }
+
+        .df {
+            top: 50px;
+            background-color: green;
+        }
+
+        .sf {
+            top: 110px;
+            background-color: gray;
+        }
+
+        a {
+            display: block;
+            position: absolute;
+            bottom: 50px;
+            left: 380px;
+            width: 120px;
+            height: 40px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            background-color: #7168C9;
+            border: 1px solid #fff;
+            text-decoration: none;
+        }
+
+        .main {
+            border: 5px solid #fff;
+            height: 560px;
+            margin-left: 100px;
+            margin-right: 20px;
+            margin-top: 20px;
+            background-color: #7169C9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main div {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            top: -50px;
+            left: 100px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+
+    <!--得分-->
+    <div class="df">
+        <span>0</span>分<br/>得分
+    </div>
+
+    <!--失分-->
+    <div class="sf">
+        <span>0</span>分<br/>失分
+    </div>
+
+    <div class="main"></div>
+
+    <a href="javascript:;">开始游戏</a>
+
+</div>
+
+
+<script src="MTween.js"></script>
+
+<script>
+
+
+    /*
+    * 1.得分失分小框 向左移动到合适位置  开始按钮向下消失
+    *
+    * 2.小人往下掉
+    *   1.产生一个元素 放到.main  默认top -
+    *   2.获取产生的元素   做向下运动  MTween top
+    *   3.随机left值  0 - .main宽度-元素宽度
+    *
+    *   4.小元素  被点击   shake display  none
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+    var a = document.querySelector('a');
+
+    a.onclick = function () {
+
+
+        fn();
+
+
+    };
+
+    function fn() {
+        //生成元素
+        var div = '<div></div>';
+
+        var main = document.querySelector('.main');
+
+        main.innerHTML = div;
+
+        var main_div = main.querySelector('div');
+
+        MTween(main_div, 610, 1000, 'top', 'linear', function () {
+            //-分
+            fn();
+        });
+
+        main_div.onclick = function () {
+            shake(this, 'left', 30, 5, function (o) {
+                o.style.display = 'none';
+                //+分
+                fn();
+            });
+        };
+    }
+
+
+</script>
+</body>
+</html>

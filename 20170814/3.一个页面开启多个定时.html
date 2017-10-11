@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color:red;
+            float: left;
+            margin-left:5px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="开始">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+
+    /*
+    * 多个定时的控制
+    *
+    * */
+    var dives = document.querySelectorAll('div');
+    var btn = document.querySelector('input');
+//    var timer = 0;
+
+    btn.onclick = function(){
+
+        for(var i=0;i<dives.length;i++){
+
+            dives[i].onclick = function(){
+                clearInterval(this.timer);
+                console.log(this.timer);
+            };
+
+            //自执行函数
+            (function(index){
+                var speed = 10;
+                var s = 0;
+                var curr = getCss(dives[index],'marginTop');
+                dives[index].timer = setInterval(function(){
+                    s += speed;
+                    if(s>=400){
+                        s = 400;
+                        //到位置停止定时器
+                        clearInterval(dives[index].timer);
+                    }
+                    dives[index].style.marginTop = curr+s+'px';
+                    console.log(getComputedStyle(dives[index]).marginTop);
+                },100);
+            })(i);
+        }
+    };
+
+    //getCss
+    function getCss(obj,attr){
+        return parseFloat(getComputedStyle(obj)[attr]);
+    }
+
+</script>
+</body>
+</html>

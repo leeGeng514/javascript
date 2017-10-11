@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box1{
+
+            width:500px;
+            height:500px;
+            overflow: auto;
+            background-color: red;
+
+        }
+
+        #box2{
+            width:1000px;
+            height:1000px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+
+<div id="box1">
+
+
+    <div id="box2"></div>
+
+
+</div>
+
+
+
+<script>
+
+
+
+    /*
+    * obj.scrollTop
+    *
+    * 滚动条的滚动高度
+    *
+    *
+    * obj.scrollLeft
+    *
+    * 滚动条的左边滚动距离
+    *
+    *
+    *
+    *
+    * */
+
+    var box1 = document.querySelector('#box1');
+
+    var body = document.body;
+    console.log(body.scrollTop);//0
+
+    box1.scrollTop = 200;
+    box1.scrollLeft = 200;
+
+    console.log(box1.scrollTop);//0
+    console.log(box1.scrollLeft);//0
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    123
+    <!--1235-->
+    <span>123</span>
+    <ul>
+        <li>123</li>
+    </ul>
+</div>
+<script>
+
+    /*
+    * 节点名称
+    * node.nodeName
+    *
+    * element  返回元素的【大写】标签名
+    * 文本节点  返回 #text
+    * 注释节点  返回 #comment
+    * 文档节点   返回#document
+    *
+    *
+    * */
+
+    var div = document.querySelector('div');
+
+    var child = div.childNodes;//div的子节点
+
+    console.log(div.nodeName);//DIV
+    console.log(child[3].nodeName);//SPAN
+    console.log(child[0].nodeName);//#text
+    console.log(child[1].nodeName);//#text
+    console.log(document.nodeName);//#text
+
+
+
+
+</script>
+</body>
+</html>

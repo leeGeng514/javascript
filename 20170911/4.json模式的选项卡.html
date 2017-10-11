@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--<input type="button" index="0" value="内容1">-->
+<!--<input type="button" index="1" value="内容2">-->
+<!--<input type="button" index="2" value="内容3">-->
+<ul>
+    <li>123123</li>
+    <li>123123</li>
+    <li>123123</li>
+    <li>123123</li>
+</ul>
+
+
+<script>
+
+
+    /*
+    *
+    * {"result":{"status":{"code":0,"msg":"success"},"date":"2017-09-11 11:15:08","order":[],"words":[],"data":[{"title":"\u57c3\u53ca\u53d1\u73b0\u53e4\u5893","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u57c3\u53ca\u53d1\u73b0\u53e4\u5893"},{"title":"\u9648\u4f1f\u9706\u5927\u79c0\u808c\u8089\u7167","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u9648\u4f1f\u9706\u5927\u79c0\u808c\u8089\u7167"},{"title":"\u5077\u57cb\u75c5\u6b7b\u732a\u901a\u62a5","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u5077\u57cb\u75c5\u6b7b\u732a\u901a\u62a5"},{"title":"\u674e\u6653\u971e\u5927\u5a5a","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u674e\u6653\u971e\u5927\u5a5a"},{"title":"\u6d4e\u5b813.6\u7ea7\u5730\u9707","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u6d4e\u5b813.6\u7ea7\u5730\u9707"},{"title":"\u4fb5\u541e\u767e\u4e07\u4e70\u88c5\u5907","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u4fb5\u541e\u767e\u4e07\u4e70\u88c5\u5907"},{"title":"\u6c34\u4e2d\u62d4\u63d2\u5934\u4e0d\u89e6\u7535","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u6c34\u4e2d\u62d4\u63d2\u5934\u4e0d\u89e6\u7535"},{"title":"\u8c01\u5efa\u7fa4\u8c01\u8d1f\u8d23","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u8c01\u5efa\u7fa4\u8c01\u8d1f\u8d23"},{"title":"\u7f8e\u7f51\u7537\u53cc\u51a0\u519b","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u7f8e\u7f51\u7537\u53cc\u51a0\u519b"},{"title":"\u82f1\u62c9\u4e58\u8f66\u51fa\u9003\u753b\u9762","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u82f1\u62c9\u4e58\u8f66\u51fa\u9003\u753b\u9762"}]}}
+    *
+    *
+    *
+    *
+    * */
+
+
+    console.log(JSON.parse('{"result":{"status":{"code":0,"msg":"success"},"date":"2017-09-11 11:15:08","order":[],"words":[],"data":[{"title":"\u57c3\u53ca\u53d1\u73b0\u53e4\u5893","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u57c3\u53ca\u53d1\u73b0\u53e4\u5893"},{"title":"\u9648\u4f1f\u9706\u5927\u79c0\u808c\u8089\u7167","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u9648\u4f1f\u9706\u5927\u79c0\u808c\u8089\u7167"},{"title":"\u5077\u57cb\u75c5\u6b7b\u732a\u901a\u62a5","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u5077\u57cb\u75c5\u6b7b\u732a\u901a\u62a5"},{"title":"\u674e\u6653\u971e\u5927\u5a5a","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u674e\u6653\u971e\u5927\u5a5a"},{"title":"\u6d4e\u5b813.6\u7ea7\u5730\u9707","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u6d4e\u5b813.6\u7ea7\u5730\u9707"},{"title":"\u4fb5\u541e\u767e\u4e07\u4e70\u88c5\u5907","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u4fb5\u541e\u767e\u4e07\u4e70\u88c5\u5907"},{"title":"\u6c34\u4e2d\u62d4\u63d2\u5934\u4e0d\u89e6\u7535","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u6c34\u4e2d\u62d4\u63d2\u5934\u4e0d\u89e6\u7535"},{"title":"\u8c01\u5efa\u7fa4\u8c01\u8d1f\u8d23","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u8c01\u5efa\u7fa4\u8c01\u8d1f\u8d23"},{"title":"\u7f8e\u7f51\u7537\u53cc\u51a0\u519b","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u7f8e\u7f51\u7537\u53cc\u51a0\u519b"},{"title":"\u82f1\u62c9\u4e58\u8f66\u51fa\u9003\u753b\u9762","url":"http:\/\/www.sina.com.cn\/mid\/search.shtml?q=\u82f1\u62c9\u4e58\u8f66\u51fa\u9003\u753b\u9762"}]}}'));
+
+
+    var json = [
+        [
+            {
+                "author":"yinwei",
+                "content":"11111111111111111111111111"
+            },
+            {
+                "author":"yinwei",
+                "content":"11111111111111111111111111"
+            },
+            {
+                "author":"yinwei",
+                "content":"11111111111111111111111111"
+            }
+        ],
+        [
+            {
+                "author":"yinwei",
+                "content":"222222222222222"
+            },
+            {
+                "author":"yinwei",
+                "content":"2222222222222222222222222"
+            },
+            {
+                "author":"yinwei",
+                "content":"2222222222222"
+            }
+        ],
+        [
+            {
+                "author":"yinwei",
+                "content":"333333333333333333333"
+            },
+            {
+                "author":"yinwei",
+                "content":"333333333333333333333333333"
+            },
+            {
+                "author":"yinwei",
+                "content":"3333333333333333333333"
+            }
+        ],
+        [
+            {
+                "author":"yinwei",
+                "content":"4444444444444444444444444444"
+            },
+            {
+                "author":"yinwei",
+                "content":"333333333333333333333333333"
+            },
+            {
+                "author":"yinwei",
+                "content":"3333333333333333333333"
+            }
+        ],
+        [
+            {
+                "author":"yinwei",
+                "content":"555555555555555555555555"
+            },
+            {
+                "author":"yinwei",
+                "content":"333333333333333333333333333"
+            },
+            {
+                "author":"yinwei",
+                "content":"3333333333333333333333"
+            }
+        ]
+    ];
+
+
+    //生成按钮
+    var html = '';
+    for(var i=0;i<json.length;i++){
+         html += '<input type="button" index="'+i+'" value="按钮'+(i+1)+'"> ';
+    }
+    document.body.innerHTML = html + document.body.innerHTML;
+
+
+
+
+    var btns = document.querySelectorAll('input');
+
+    //要显示列表内容的框
+    var ul = document.querySelector('ul');
+
+
+    //初始化显示：
+    var n = 0;//默认显示的数据
+    showList(json[n]);
+
+
+
+
+    for(var i=0;i<btns.length;i++){
+        btns[i].onclick = function(){
+
+            //显示对应内容
+//            console.log(this.index,this.getAttribute('index'));
+
+            showList(json[this.getAttribute('index')])
+//            showList(json)
+
+        };
+    }
+
+
+    //渲染列表
+    function showList(list) {
+
+//            console.log(list);
+        var html = '';
+        for(var i=0;i<list.length;i++){
+            html += '<li><span>作者：'+list[i]["author"]+'</span><span>内容：'+
+                list[i]["content"]+'</span></li>'
+        }
+        ul.innerHTML = html;
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

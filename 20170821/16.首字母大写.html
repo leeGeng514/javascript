@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div>
+    are you ok
+</div>
+
+
+
+
+<script>
+
+    //获取元素
+    var div =  document.querySelector('div');
+    //获取元素内容
+    var text = div.innerHTML;
+
+
+    /*
+    * are you ok  => Are You Ok
+    * 1.清除前后空格
+    * 2.split 通过空格拆分成数组
+    * 3.把拆出来的每个单词首字母转成大写 得到一个转成大写的返回值
+    * 4.截取每一个单词从1-结尾字符（出去首字母的所有字符） 得到一个出去首字母的所有字符内容
+    * 5.把改成大写的首字母 和 后面的字符重新拼接成一个新的单词
+    * 6.通过join重新组合成一个新的字符串
+    *
+    * */
+
+    text = text.trim();//确保前后不出现空白
+
+//    var a = text.charAt(0).toUpperCase();
+//    var b = text.slice(1);
+
+    var arr = text.split(' ');
+
+    //把数组中每一个单词的首字母大写
+    for(var i=0;i<arr.length;i++){
+//        arr[i] = arr[i].charAt(0).toUpperCase()+arr[i].substring(1);
+        var newText = arr[i].charAt(0).toUpperCase()+arr[i].substring(1);
+        console.log(newText);
+        arr[i] = newText;//修改原来的数据成新内容
+    }
+
+    console.log(arr);
+
+    div.innerHTML =  arr.join(' ');
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

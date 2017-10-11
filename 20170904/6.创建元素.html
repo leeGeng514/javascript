@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        li{
+            width:200px;
+            height:40px;
+            line-height: 40px;
+            border:1px solid #000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<input type="text">
+<input type="button" value="提交">
+<ul></ul>
+
+<div></div>
+<script>
+
+    var inputs = document.querySelectorAll('input');
+    var ul = document.querySelector('ul');
+
+    var div = document.querySelector('div');
+
+
+    inputs[1].onclick = function(){
+        var text = inputs[0].value;
+
+        var li = '<li>'+text+'</li>';
+
+        ul.innerHTML += li;
+
+        var objLi = ul.querySelectorAll('li');
+
+        for(var i=0;i<objLi.length;i++){
+            objLi[i].onmouseover = function(){
+                div.innerHTML = this.innerHTML;
+            };
+        }
+
+    };
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

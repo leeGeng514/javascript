@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            display: none;
+            border:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<a href="?page=1" target="_blank">打开1</a>
+<a href="#2" target="_blank">打开2</a>
+<div>0</div>
+<div>1</div>
+<div>2</div>
+<script src="MTween.js"></script>
+<script>
+
+
+    /*
+    * window.location.hash
+     锚点信息（#号后面的所有内容）
+
+
+     *
+    * */
+
+    var search = searchToJson(window.location.search);
+
+
+
+    var div = document.querySelectorAll('div');
+
+    console.log(window.location.hash);
+
+    if(!search.page){
+        div[0].style.display = 'block';
+    }else{
+        div[search.page].style.display = 'block';
+    }
+
+
+
+
+</script>
+</body>
+</html>

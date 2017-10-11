@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+    //arguments 专门记录函数调用时传入的实参数据
+    // 只能在函数内部有效
+    /*
+    * arguments 是函数的参数集合
+
+     通过下标0-n可以分别获取到函数（）中从左到右的实参
+
+     优点：没有
+
+     缺点：并不清楚每一个参数的具体意义，会使得的函数内部逻辑变得很凌乱，使用函数的人需要通过分析函数内的代码来评估每一个参数的实际意义，所以函数的可移植性不高，重复使用能力不高
+
+     可以通过arguments.length来判断用户是否传实参，如果没有就直接跳出函数，不予执行
+
+     *
+    * */
+
+
+//    function fn1(){
+//        console.log(arguments);
+//        console.log(arguments[0],userName);
+//        console.log(arguments[1]);
+//        console.log(arguments[2]);
+//    }
+//
+//    fn1('a','b','c');
+
+
+    function saveUserName(userName,url){
+        if(arguments.length==2){
+            //.......
+            alert('函数要工作了');
+        }
+    }
+
+    saveUserName();
+    saveUserName('abc','www.baidu.com');
+
+</script>
+
+</body>
+</html>

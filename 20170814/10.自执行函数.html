@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+            margin:5px;
+        }
+    </style>
+    <script src="MTween.js"></script>
+    <script>
+        window.onload = function(){
+
+            //获取元素
+            var btn = document.querySelector('input');
+
+            var dives = document.querySelectorAll('div');
+            var m=0;
+
+            btn.onclick = function(){
+                for(var i=0;i<dives.length;i++){
+//                    (function(index){
+//                        console.log(index);
+//                    })(i);
+
+
+                    fn(i);
+//                    (function(index){})(i);
+
+                    setTimeout(function(){
+                        console.log(i);
+                    },100)
+                }
+
+                function fn(index){
+                    console.log(index);
+                }
+
+            };
+
+
+        };
+    </script>
+</head>
+<body>
+<input type="button" value="开始">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

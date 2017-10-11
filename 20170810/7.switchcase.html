@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<input type="button" value="检查">
+<script>
+
+    /*
+    * switch case  选择判断语句
+    *
+    *   1.判断条件和判断的值  一一对应
+    *   2.判断条件和判断的值  必须是同样的数据类型
+    *   3.代码穿透现象
+    *
+    * switch(判断变量){
+    *    case 变量值1：
+    *       console.log(1);
+    *    case 变量值1：
+     *       console.log(1);
+     *
+     *   case 变量值1：
+     *       console.log(1);
+     *   .
+     *   .
+     *   case 变量值1：
+     *       console.log(1);
+     *   default: //可以省略不写
+     *      console.log(1);
+    * }
+    *
+    * 检查手机号码    判断条件是范围性就不适合用switch
+     *       1.不予许0开头
+     *       2.11位
+     *       3.是数字
+     *
+     *
+     *       温度计监控
+     *          10度     报：温度过低
+     *          60度     报：温度适中
+     *          80度     报：温度过高
+     *          100度     报：温度爆表
+    * */
+
+    var inputs = document.querySelectorAll('input');
+    inputs[1].onclick = function(){
+        var text = inputs[0].value;
+        switch(Number(text)){ // ===
+            case 10:
+                console.log('温度过低');
+                break;
+            case 60:
+                console.log('温度适中');
+                break;
+            case 80:
+                console.log('温度过高');
+                break;
+            case 100:
+                console.log('温度爆表');
+                break;
+        }
+    };
+
+
+
+
+//    var tel = '1233';
+//
+//    switch(tel){
+//        case '1233':
+//            console.log(1);
+//    }
+
+//    if(tel.charAt(0)!=0){
+//        console.log(2);
+//    }
+
+
+
+</script>
+</body>
+</html>

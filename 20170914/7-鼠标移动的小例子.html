@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 10px;
+				height: 10px;
+				background: #000;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var divs = document.getElementsByTagName("div");
+			document.onmousemove = function(ev){
+				var e = ev||event ;
+				var div = document.createElement("div");
+				div.style.left = e.clientX+"px";
+				div.style.top = e.clientY+"px";
+				document.body.appendChild(div)
+				if(divs.length>=10){
+					document.body.removeChild(divs[0])
+				}
+			}
+		</script>
+	</body>
+</html>

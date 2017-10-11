@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 对象是一个符合数据类型
+    *       可以是所有数据类型的集合
+    *
+    *       内容是有花括号包裹起来的一堆 键和键值（键值对）
+    *       键值对 用逗号隔开
+    * */
+    var obj = {
+        x:1, //存的是基本类型  x obj对象的属性
+        y:2,
+        fn:function(){
+            console.log(this);
+        }, //是函数的就叫 obj的对象方法
+        arr:[1,3,5],
+        str:'abc',
+        str1:'abc',
+        obj:{
+            x:2,
+            y:2
+        }
+    };
+    var objName = 'x';
+
+    console.log(obj[objName]);
+//    console.log(obj.objName);
+
+    obj.fn();
+    obj.obj.x;
+    console.log(obj.obj.x); //2
+    console.log(obj.x); //1
+    console.log(obj.fn);
+
+    /*
+    * window是顶级作用域，所以可以省略
+    *
+    * */
+//    alert(1);
+//    window.alert(2);
+
+    var arr = [
+        1,
+        2,
+        3
+    ];
+    console.log(window);
+
+
+</script>
+</body>
+</html>

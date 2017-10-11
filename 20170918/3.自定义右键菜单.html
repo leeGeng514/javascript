@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #rMenu{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border:1px solid #000;
+        }
+        #rMenu li{
+            border-bottom:1px solid #000;
+            padding:10px;
+            margin-bottom:-1px;
+            position: relative;
+        }
+        #rMenu li div{
+            width:100px;
+            height:40px;
+            border:1px solid red;
+            position: absolute;
+            left:100%;
+            top:0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+
+/*
+* 自定义右键菜单
+*
+* 1.添加右键菜单事件
+*
+* 2.创建菜单列表
+*
+* 3.显示菜单  阻止默认行为
+*
+* 4.定位菜单
+*
+*
+*
+*
+* 右键菜单事件：  oncontextmenu
+*
+*
+* */
+
+//document 右键功能
+document.rightMenu = {
+    openFile:'打开',
+    share:'分享',
+    jump:'跳转'
+};
+
+
+
+document.oncontextmenu = function(ev){
+
+//    创建菜单列表
+
+    var ul = document.createElement('ul');//菜单盒子
+    ul.id = 'rMenu';//设置id
+    var rMenu = this.rightMenu;//获取菜单功能列表
+
+    //创建菜单功能：
+//    var html = '';
+    for(var key in rMenu){
+
+//        html += '<li><a href="javascript:;">'+rMenu[key]+'</a><div>我是二级菜单</div></li>';
+
+        var li = document.createElement('li');
+        li.innerHTML = '<a href="javascript:;">'+rMenu[key]+'</a><div>我是二级菜单</div>';
+
+        li.onclick = function(ev){
+
+            console.log(11111);
+//            显示二级菜单
+            var div = this.querySelector('div');//找到li下面的二级菜单 div
+            //设置二级菜单为显示状态
+            div.style.display = 'block';
+
+            //由于祖父级的document身上有同名事件 并且是用来关闭菜单的  所以在打开二级菜单的时候需要组织冒泡
+            ev.cancelBubble = true;
+
+        };
+
+
+        ul.appendChild(li);
+
+    }
+
+//    ul.innerHTML = html;
+
+
+//    创建好的菜单  放到页面上
+    //去重 ,如果页面上已经有右键菜单  ，就要先删除
+    // 标注：页面上一次只能出现一个右键菜单
+    var rm = document.querySelector('#rMenu');
+    if(rm){
+        document.body.removeChild(rm);
+    }
+    document.body.appendChild(ul);
+
+    //添加取消右键菜单的事件
+    document.onclick = function(){
+        document.body.removeChild(ul);
+        console.log(222222);
+    };
+
+
+    //设置显示位置
+    var x = ev.clientX;
+    var y = ev.clientY;
+
+    ul.style.position = 'absolute';
+    ul.style.left = x +'px';
+    ul.style.top = y +'px';
+
+    return false;
+
+};
+
+
+
+
+
+</script>
+</body>
+</html>

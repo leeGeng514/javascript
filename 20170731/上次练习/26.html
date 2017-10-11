@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color:cornflowerblue;
+        }
+        #imgs-box{
+            width:800px;
+            height:500px;
+            margin:100px auto auto;
+        }
+        .imgs-l{
+            width:498px;
+            float: left;
+            border:1px solid #000;
+            background-color:#fff;
+        }
+        .imgs-l img{
+            display: block;
+            width:420px;
+            margin:38px 38px 10px;
+            height:300px;
+        }
+        .imgs-r{
+            width:298px;
+            float: left;
+            border:1px solid #000;
+            background-color:#fff;
+        }
+        .imgs-r img{
+            display: block;
+            width:220px;
+            height:300px;
+            margin:38px 38px 10px;
+        }
+        p{
+            margin:10px 38px;
+        }
+        .btns{
+            margin:10px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="imgs-box">
+
+    <!--图组控制按钮-->
+    <div class="btns">
+        <input type="button" value="上一组">
+        <input type="button" value="下一组">
+    </div>
+
+    <!--图组-->
+    <div class="imgs">
+        <div class="imgs-l">
+            <img src="../img/a.jpg" alt="">
+            <p>1组1张</p>
+            <p>1/4</p>
+        </div>
+        <div class="imgs-r">
+            <img src="../img/b.jpg" alt="">
+            <p>2组1张</p>
+            <p>0/1</p>
+        </div>
+    </div>
+
+
+    <script>
+
+        //数据内容
+
+        //图片
+        var img1Arr = ['../img/a.jpg','../img/b.jpg','../img/c.jpg','../img/d.jpg'];
+        var img2Arr = ['../img/c.jpg','../img/d.jpg','../img/e.jpg'];
+        //文字描述
+        var text1Arr = ['1组1号','1组2号','1组3号','1组4号'];
+        var text2Arr = ['2组1号','2组2号','2组3号'];
+
+        //当前显示图片内容的初始化位置
+        var index = 0; //图组和文字描述的默认位置
+
+        //获取元素
+        var btns = document.querySelectorAll('.btns input');
+        var img1 = document.querySelector('.imgs-l img');
+        var img2 = document.querySelector('.imgs-r img');
+        var text1 = document.querySelectorAll('.imgs-l p');
+        var text2 = document.querySelectorAll('.imgs-r p');
+
+        //初始化图片和数据
+        img1.src = img1Arr[index];
+        img2.src = img2Arr[index];
+        text1[0].innerHTML = text1Arr[index];
+        text1[1].innerHTML = index+1+'/'+img1Arr.length;
+        text2[0].innerHTML = text2Arr[index];
+        text2[1].innerHTML = index+1+'/'+img2Arr.length;
+
+        //添加事件
+        btns[0].onclick = function(){
+            index--;
+            var num1 = index%4;
+            var num2 = index%3;
+
+            if(num1<0){
+                num1 = img1Arr.length+num1; //num1 是负数
+            }
+            if(num2<0){
+                num2 = img2Arr.length+num2; //num2 是负数
+            }
+
+            console.log(num1,num2);
+
+            img1.src = img1Arr[num1];
+            img2.src = img2Arr[num2];
+            text1[0].innerHTML = text1Arr[num1];
+            text1[1].innerHTML = num1+1+'/'+img1Arr.length;
+            text2[0].innerHTML = text2Arr[num2];
+            text2[1].innerHTML = num2+1+'/'+img2Arr.length;
+        };
+        btns[1].onclick = function(){
+
+            index++;
+
+            var num1 = index%4;
+            var num2 = index%3;
+
+            img1.src = img1Arr[num1];
+            img2.src = img2Arr[num2];
+            text1[0].innerHTML = text1Arr[num1];
+            text1[1].innerHTML = num1+1+'/'+img1Arr.length;
+            text2[0].innerHTML = text2Arr[num2];
+            text2[1].innerHTML = num2+1+'/'+img2Arr.length;
+        };
+
+        //图片的点击事件
+
+        //用一个变量的弊端：   图组1和图组2分别变化时会互相影响，导致图片变化顺序发生错乱。
+        //只能通过两个变量来解决   或者 自定义变量（新内容，还没讲）
+
+        img1.onclick = function(){
+            index ++;
+            var num1 = index%4;
+            img1.src = img1Arr[num1];
+            text1[0].innerHTML = text1Arr[num1];
+            text1[1].innerHTML = num1+1+'/'+img1Arr.length;
+        };
+        img2.onclick = function(){
+            index ++;
+            var num2 = index%3;
+            img2.src = img2Arr[num2];
+            text2[0].innerHTML = text2Arr[num2];
+            text2[1].innerHTML = num2+1+'/'+img2Arr.length;
+        };
+
+
+        /*
+        * 图片变化规律
+        *
+        *
+        * 0 1 2 3 4 5 6 7 8 9   ++
+        *
+        * 0 1 2 3 0 1 2 3 0 1  （1组）
+        *
+        * 0 1 2 0 1 2 0 1 2 0   （2组）
+        *
+        *
+        *
+        * --
+        * 0 1 2 3 4 5 6 7 8 9
+        *
+        * -0 -1 -2 -3 -4 -5 -6 -7 -8 -9
+        *
+        * -1 -2 -3 -0 -1 -2 -3 -0
+        *
+        * 3 2 1 0 3 2 1 0
+        *
+        *
+        *
+        *
+        *
+        * */
+
+
+
+    </script>
+
+</div>
+
+
+</body>
+</html>

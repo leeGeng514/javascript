@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="动画">
+<div></div>
+<script>
+
+    /*
+    * 定时器管理
+    *
+    * 定时器开启，如果不关闭的会重复多个定时
+    * */
+
+    var btn = document.getElementsByTagName('input')[0];
+    var div = document.getElementsByTagName('div')[0];
+    var timer = 0;
+    var num = 0;
+
+    btn.onclick = function(){
+        var speed = 10;
+        var v = 0;
+        num++;
+        timer = setInterval(function(){
+            v += speed;
+            if(v >=500){
+                v = 500;
+                console.log(timer);
+                clearInterval(timer);
+                console.log(timer);
+            }
+//            console.log(v);
+            console.log(getComputedStyle(div).marginLeft);
+            div.style.marginLeft = parseFloat(getComputedStyle(div).marginLeft)+v+'px';
+//            console.log(num);
+        },30);
+    };
+
+</script>
+</body>
+</html>

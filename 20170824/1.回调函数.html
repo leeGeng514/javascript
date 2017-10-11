@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 回调函数：
+    *   1.本身就是函数
+    *   2.函数内部执行的函数
+    *   3.通过参数传进去的函数
+    *
+    *
+    *   为什么要用回调函数
+    *           1.自己定义的函数里面只能申明我们已知想要做的事情
+    *
+    *
+    *   概念：用函数作为实参传到另一个函数中去执行的函数就是回调函数
+    *
+    * */
+
+//    a(10,b);//b函数是a函数的回调函数
+
+    a(10,function(){
+        console.log('我是匿名函数');
+    });
+
+    a(10);
+
+
+
+//    b();//b函数在a函数内部的num+到10的时候执行
+
+
+    function b(){
+        console.log('123');
+    }
+
+
+
+    function a(num,fn){
+
+        //已知要做的事情
+        for(var i=0;i<num;i++){
+
+            if(i==2){
+                if(fn){
+                    fn();
+                }
+            }
+            console.log(i);
+        }
+        var num = 0;
+        setInterval(function(){
+            num++;
+            if(num==10){
+                if(fn){
+                    fn();
+                }
+//                fn&&fn();
+            }
+            console.log(num);
+        },1000);
+
+
+
+        //当函数中所有事情做完以后  可以执行其他任务
+
+
+
+    }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

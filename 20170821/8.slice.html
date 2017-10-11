@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    *slice
+     作用
+     方法提取字符串中的一部分，并返回这个新的字符串
+     语法
+     string string.slice(beginSlice[, endSlice])
+     参数
+     beginSlice
+     起始位置
+     endSlice
+     结束位置，默认为最后一个字符的位置
+     不包括结束位置本身的字符
+     返回值
+     返回截取后的字符串
+
+     *
+    *
+    * */
+
+    var str = '妙味课堂前端培训';
+
+    console.log(str.slice(0));//妙味课堂前端培训
+    console.log(str.slice(0,2));//截取的位置是  包括开始位置，不包括结束位置
+    console.log(str.slice('a',2));//如果开始位置不是数字 ，默认从0开始
+    console.log(str.slice(-1)); //允许位置为负数，如果是负数就从最后一个开始截取
+    console.log(str.slice(-3,-1));
+    console.log(str.slice(-3,7));
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

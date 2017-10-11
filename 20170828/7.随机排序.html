@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * array.sort(callback);
+    *
+    * 作用：
+    * 根据callback的返回值来排序
+    *
+    * 参数 a,b
+    *
+    *
+    *
+    *
+    * 如果不写回调函数   sort是以数组内容的第一位字符作为对比值
+    *
+    *
+    * 排序规则
+    *   根据回调函数的返回值是否：
+    *
+    *       1.大于0  交换位置
+    *       2.等于0  不变
+    *       3.小于0  不交换位置
+    *
+    *
+    *
+    * */
+
+
+    var arr = [5,2,122,6,4,2];
+
+    //随机排序
+    arr.sort(function(a,b){
+
+        var rad = Math.random();
+        console.log(rad,a,b);
+
+        return 0.5-rad;
+
+    });
+    console.log(arr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

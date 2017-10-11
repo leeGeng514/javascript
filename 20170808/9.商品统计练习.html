@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li><input type="button" value="-"><input type="text" value="0" size="1" style="text-align: center"><input type="button" value="+"> 单价：<span>12.5元</span> 小计：<em>0</em> 元</li>
+        <li><input type="button" value="-"><input type="text" value="0" size="1" style="text-align: center"><input type="button" value="+"> 单价：<span>10元</span> 小计：<em>0</em> 元</li>
+        <li><input type="button" value="-"><input type="text" value="0" size="1" style="text-align: center"><input type="button" value="+"> 单价：<span>8元</span> 小计：<em>0</em> 元</li>
+        <li><input type="button" value="-"><input type="text" value="0" size="1" style="text-align: center"><input type="button" value="+"> 单价：<span>8.5元</span> 小计：<em>0</em> 元</li>
+        <li><input type="button" value="-"><input type="text" value="0" size="1" style="text-align: center"><input type="button" value="+"> 单价：<span>14.5元</span> 小计：<em>0</em> 元</li>
+    </ul>
+    <div class="total">
+        总件数：<input type="text" size="1" value="0" style="text-align: center">
+        <br>
+        总价格：<input type="text" size="1" value="0" style="text-align: center">
+        <br>
+        最高单价：<input type="text" size="1" value="0" style="text-align: center">
+    </div>
+</div>
+<script>
+
+
+    //获取元素
+    var prevBtn = document.querySelectorAll('input[value="-"]');
+    var nextBtn = document.querySelectorAll('input[value="+"]');
+    var numText = document.querySelectorAll('input[value="-"]+input');
+    var spans = document.querySelectorAll('span');
+    var ems = document.querySelectorAll('em');
+    var totalBox = document.querySelectorAll('.total input');
+
+    var price = [];//最高单价
+
+    for(var i=0;i<nextBtn.length;i++){
+        nextBtn[i].index = i;//设置自定义属性，记录当前点击的
+        prevBtn[i].index = i;//设置自定义属性，记录当前点击的// 位置
+
+
+
+        nextBtn[i].onclick = function(){
+            //记录件数
+            numText[this.index].value = Number(numText[this.index].value)+1;
+
+            price[this.index] = parseFloat(spans[this.index].innerHTML);
+                console.log(price);
+//            console.log(getMaxOfArr());
+
+            totalBox[2].value = getMaxOfArr();
+
+            //记录总件数
+            totalBox[0].value = Number(totalBox[0].value)+1;
+            //计算小计
+            ems[this.index].innerHTML = parseFloat(ems[this.index].innerHTML)+parseFloat(spans[this.index].innerHTML);
+            //计算总价
+            totalBox[1].value = Number(totalBox[1].value)+parseFloat(spans[this.index].innerHTML);
+            //记录最高价格
+//            if(maxPrice<parseFloat(spans[this.index].innerHTML)){
+//                maxPrice = parseFloat(spans[this.index].innerHTML);
+//                totalBox[2].value = maxPrice;
+//            }
+        };
+
+
+        prevBtn[i].onclick = function(){
+
+            //记录件数
+            numText[this.index].value = Number(numText[this.index].value)-1;
+
+            //如果为0，说明商品没有购买，那么就要重新计算最高价格
+//            getMaxPrice(numText,spans);
+            if(numText[this.index].value==0){
+                price[this.index] = 0;
+            }
+            console.log(price);
+            
+            totalBox[2].value = getMaxOfArr();
+
+            //过界处理
+            if(numText[this.index].value<0){
+                numText[this.index].value = 0;
+                return;
+            }
+            //记录总件数
+            totalBox[0].value = Number(totalBox[0].value)-1;
+            //计算小计
+            ems[this.index].innerHTML = parseFloat(ems[this.index].innerHTML)-parseFloat(spans[this.index].innerHTML);
+            //计算总价
+            totalBox[1].value = Number(totalBox[1].value)-parseFloat(spans[this.index].innerHTML);
+
+
+
+        };
+    }
+
+
+    function getMaxPrice(numBox,prices){
+        maxPrice = 0;
+        //遍历所有有购买记录的商品单价
+        for(var i=0;i<numBox.length;i++){
+            if(numBox[i].value>0){
+                if(maxPrice<parseFloat(prices[i].innerHTML)){
+                    maxPrice = parseFloat(prices[i].innerHTML);
+                }
+            }
+        }
+
+        totalBox[2].value = maxPrice;
+
+    }
+
+    function getMaxOfArr(){
+        var maxNum = 0;
+        for(var i=0;i<price.length;i++){
+            if(price[i]>maxNum){
+                maxNum = price[i];
+            }
+        }
+        return maxNum;
+    }
+
+
+//    console.log(1+'+'+2);
+
+
+
+</script>
+</body>
+</html>

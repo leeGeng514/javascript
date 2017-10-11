@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    123
+    <!--1235-->
+    <span>123</span>
+    <ul>
+        <li>123</li>
+    </ul>
+</div>
+<script>
+
+
+    var div = document.querySelector('div');
+
+    //只能获取单独的某一种元素
+//    var span = div.querySelector('span')
+//    var ul = div.querySelector('ul')
+
+    //node.childNodes 所有子节点
+
+    //希望获取到所有子元素
+    var child = div.childNodes;
+
+    console.log(child);
+
+//    var childElements = [];
+//    for(var i=0;i<child.length;i++){
+//        //判断是元素节点类型的才push
+//        if(child[i].nodeType==1){
+//            childElements.push(child[i]);
+//        }
+//    }
+    //要想改变元素的背景
+    //找到所有元素
+    var childs = getChildElements(div);
+    for(var i=0;i<child.length;i++){
+        child[i].style.backgroundColor = 'red';
+    }
+
+
+
+    function getChildElements(obj){
+        //获取一堆子节点
+        var child = obj.childNodes;
+        var childElements = [];
+        for(var i=0;i<child.length;i++){
+            //判断是元素节点类型的才push
+            if(child[i].nodeType==1){
+                childElements.push(child[i]);
+            }
+        }
+        return childElements;
+    }
+
+    console.log(getChildElements(div));//undefined
+
+
+
+</script>
+</body>
+</html>

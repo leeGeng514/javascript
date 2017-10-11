@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        div{
+            height:40px;
+            background-color: red;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div style="height:100px;"></div>
+<div style="height:10px;"></div>
+<div style="height:20px;"></div>
+<div style="height:40px;"></div>
+<div style="height:60px;"></div>
+<div style="height:50px;"></div>
+<div style="height:30px;"></div>
+<div style="height:5px;"></div>
+<div style="height:1px;"></div>
+<div style="height:15px;"></div>
+
+<script src="MTween.js"></script>
+<script>
+
+
+
+    /*
+    * 1.获取元素
+    * 2.获取高度
+    * 3.元素存到数组里 sort
+    *
+    * outerHTML   获取整个元素的内容
+    *
+    *
+    * */
+
+    var dives = document.querySelectorAll('div');
+
+
+    var eArr = [];
+
+    for(var i=0;i<dives.length;i++){
+        eArr.push(dives[i]);//把div放到数组中
+    }
+
+    eArr.sort(function(a,b){
+
+        var h1 = getCss(a,'height');
+        var h2 = getCss(b,'height');
+
+//        return h1-h2;
+        return h2-h1;
+
+    });
+
+    console.log(eArr);
+
+    console.dir(eArr[0]);
+
+
+    document.body.innerHTML = '';
+
+    for(var i=0;i<eArr.length;i++){
+        document.body.innerHTML += eArr[i].outerHTML;
+    }
+
+
+
+</script>
+
+
+
+</body>
+</html>

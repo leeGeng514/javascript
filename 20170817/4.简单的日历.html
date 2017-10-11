@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #box{
+            width:280px;
+            overflow: hidden;
+            margin: auto;
+            padding:10px;
+            border:1px solid #000;
+        }
+        ul{
+            padding: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        li{
+            float: left;
+            width:40px;
+            height:40px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .red{
+            color:red;
+        }
+
+        .year{
+            overflow: hidden;
+        }
+        a{
+            display: block;
+            height:50px;
+            line-height: 50px;
+            width:50px;
+            text-align: center;
+            text-decoration: none;
+            color:#000;
+            border:1px solid #000;
+        }
+        a:first-of-type{
+            float: left;
+        }
+        a:last-of-type{
+            float: right;
+        }
+        h2{
+            margin: 0;
+            height:50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .gray{
+            color:gray;
+        }
+        .border{
+            border:1px solid blue;
+            width:38px;
+            height:38px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="year">
+        <a href="javascript:;">&lt;</a>
+        <a href="javascript:;">&gt;</a>
+        <h2>2017</h2>
+
+    </div>
+    <ul class="week">
+        <li class="red">日</li>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li class="red">六</li>
+    </ul>
+    <ul class="day"></ul>
+</div>
+
+<script>
+
+    //获取元素
+    var  h2 = document.querySelector('h2');
+    var ulHtml = document.querySelector('.day');
+
+
+
+
+
+    //显示标题内容
+    var date = new Date();
+
+    var num = date.getMonth();
+
+    date.setMonth(num);//显示设置的月份
+
+    h2.innerHTML = date.getFullYear()+'年'+(date.getMonth()+1)+'月';
+
+
+    //计算1号对应周几
+    date = new Date();
+    date.setMonth(num);//设置想要显示的月份
+    date.setDate(1);//把日期设置成1号
+    console.log(date);
+    var week = date.getDay();//找到1号对应的星期
+//    console.log(week);
+
+    for(var i=0;i<week;i++){
+        ulHtml.innerHTML += '<li></li>' ;
+    }
+//    ulHtml.innerHTML += '<li></li>' ;
+//    ulHtml.innerHTML += '<li></li>' ;
+
+
+
+
+    //找上个月
+//    date.setMonth(date.getMonth()+num);
+
+//    console.log(date.getMonth()+1);
+
+    //显示某个月份的日期数
+
+    //到底根据什么来循环  --  根据月份最后一天循环
+
+    //找月份最后一天 setDate(0)
+    date = new Date();
+    //切换月份
+
+    date.setMonth(num); //设置想要显示的月份
+
+    date.setMonth(date.getMonth()+1);
+    date.setDate(0);//获取的是上一个月的最后一天
+    var dayNum = date.getDate();
+//    console.log(dayNum);
+
+//    div.innerHTML = '['+(date.getMonth()+1)+']';
+    for(var i=0;i<dayNum;i++){
+        ulHtml.innerHTML += '<li>'+(i+1)+'</li>' ;
+    }
+
+
+
+    //逢周末标红
+    var li = ulHtml.querySelectorAll('li');
+    for(var i=0;i<li.length;i++){
+        if(i%7==0||i%7==6){
+            li[i].className = 'red';
+        }
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#div{
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+    <div id="div" abc="1"></div>
+    <!-- <input type="text" id="ina"> -->
+<script>
+
+    var div = document.getElementById('div');
+    /*
+        所有的非空对象（元素）都可以设置属性或者是方法
+        如果没有设置过，那么都会为undefined
+
+        元素、{}、[]、function
+
+        null
+
+        **只有空字符串被split分割之后才会是空数组。
+    */
+
+    // console.log(div.abc);
+
+    // var a = null;
+
+    var obj = [];
+
+    obj.abc = 2;
+
+    console.log(obj.abc);
+
+
+
+    /*
+        1.C、D
+        2.B、D
+        3.A、C
+        4.C
+        5.B
+        6.D
+        7.A、C
+        8.A
+        9.A、C、B
+        10.B、A、C
+        11.A、C
+        12.B
+        13.C
+        14.B
+        15.B、C、D
+        16.C、E
+        17.C
+        18.C
+        19.B
+        20.A
+        21.D
+        22.C
+        23.D
+        24.B、A、B
+        25.A、A、B
+
+    */
+
+    div.onmousedown = function(ev){
+        console.log(ev.which);
+    }
+
+</script>
+</body>
+</html>

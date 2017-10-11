@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 1.设置到期时间
+    *   new Date(年,月,日,时,分,秒);
+    *   new Date(1502934883072);
+    *
+    * 2.获取当前的时间
+    *
+    *
+    * 3.设置的时间戳 - 当前的时间戳  （算出时间差 毫秒）
+    *
+    *
+    * 4.通过时间差计算 天数，时，分，秒
+    *
+    *
+    *
+    *
+    * */
+
+
+
+    //1.设置到期时间  月份数字-1
+    var endTime = new Date(2017,8,17,0,0,0);
+
+
+
+
+
+    //2.获取当前的时间
+    var currTime = new Date();
+
+    //计算时间差 设置的时间戳 - 当前的时间戳
+    //  getTime()  获取时间戳的方法
+    var time = endTime.getTime() - currTime.getTime();
+
+    console.log(time);
+
+    //计算天数：  一天   86400000  毫秒
+    //        var d = time/(24*60*60*1000);
+    var d =  parseInt(time/86400000);
+    console.log(d);
+
+    //计算 时
+    //取模一天的毫秒数  剩下小时级别的毫秒数
+    // 用剩下毫秒数 计算出还有多少个小时
+    //        var h = time%86400000/(60*60*1000);
+    var h = parseInt(time%86400000/3600000);
+    console.log(h);
+
+
+    //计算 分
+    //取模每小时的毫秒数  剩下分钟级别的毫秒数
+    // 用剩下毫秒数 计算出还有多少分钟
+    //        var m = time%3600000/(60*1000);
+    var m = parseInt(time%3600000/60000);
+    console.log(m);
+
+    //计算秒
+    //取模每分钟的毫秒数  剩下秒级别的毫秒数
+    // 用剩下毫秒数 计算出还有多少秒钟
+    var s = parseInt(time%60000/1000);
+    console.log(s);
+
+    document.body.innerHTML = '距离到期时间还有：'+d+'天'+h+'时'+m+'分'+s+'秒';
+
+
+    //4.通过时间差计算 天数，时，分，秒
+    // 1s = 1000ms
+
+    //        var  t = 15500;
+    //
+    //        //拿到毫秒数中的秒数
+    //        console.log(parseInt(t/1000)); //取整那到秒
+    //        //拿到毫秒
+    //        console.log(t%1000); //剩下的数字是毫秒
+
+
+
+
+
+
+    setInterval(function(){
+
+        //2.获取当前的时间
+        var currTime = new Date();
+
+        //计算时间差 设置的时间戳 - 当前的时间戳
+        //  getTime()  获取时间戳的方法
+        var time = endTime.getTime() - currTime.getTime();
+
+        console.log(time);
+
+        //计算天数：  一天   86400000  毫秒
+//        var d = time/(24*60*60*1000);
+        var d =  parseInt(time/86400000);
+        console.log(d);
+
+        //计算 时
+        //取模一天的毫秒数  剩下小时级别的毫秒数
+        // 用剩下毫秒数 计算出还有多少个小时
+//        var h = time%86400000/(60*60*1000);
+        var h = parseInt(time%86400000/3600000);
+        console.log(h);
+
+
+        //计算 分
+        //取模每小时的毫秒数  剩下分钟级别的毫秒数
+        // 用剩下毫秒数 计算出还有多少分钟
+//        var m = time%3600000/(60*1000);
+        var m = parseInt(time%3600000/60000);
+         console.log(m);
+
+         //计算秒
+        //取模每分钟的毫秒数  剩下秒级别的毫秒数
+        // 用剩下毫秒数 计算出还有多少秒钟
+        var s = parseInt(time%60000/1000);
+        console.log(s);
+
+        document.body.innerHTML = '距离到期时间还有：'+d+'天'+h+'时'+m+'分'+s+'秒';
+
+
+        //4.通过时间差计算 天数，时，分，秒
+        // 1s = 1000ms
+
+//        var  t = 15500;
+//
+//        //拿到毫秒数中的秒数
+//        console.log(parseInt(t/1000)); //取整那到秒
+//        //拿到毫秒
+//        console.log(t%1000); //剩下的数字是毫秒
+
+
+
+
+
+    },1000);
+
+
+
+
+
+
+</script>
+</body>
+</html>

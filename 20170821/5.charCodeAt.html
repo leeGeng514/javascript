@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * charCodeAt
+     作用
+     返回指定索引处字符的 Unicode 数值
+     语法
+     number str.charCodeAt(index)
+     参数
+     index
+     一个大于等于 0，小于字符串长度的整数。如果不是一个数值，则默认为 0。
+     返回值
+     返回指定索引处字符的 Unicode 数值
+
+
+     ASCII    只有  0-128 字符
+     Unicode  6万个字符  区别就是比ascii范围大
+
+
+     *
+    * */
+
+    var  str = 'abcd妙味ァ';
+
+    console.log(str.charCodeAt(0));//97
+    console.log(str.charCodeAt(4));//22937
+    console.log(str.charCodeAt(6));//12449
+
+
+
+
+
+</script>
+</body>
+</html>

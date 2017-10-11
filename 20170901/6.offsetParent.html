@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        div{
+            width:100px;
+            height:100px;
+            border:1px solid #000;
+            margin:80px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box1" style="position: relative;">
+    <div id="box2" style="position:fixed;">
+        <div id="box3">
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    /*
+    * offsetParent
+    *
+    * 1.如果没有设置定位父级 默认是body
+    *
+    * 2.如果有设置 找最近的定位父级
+    *
+    * 3.如果定位属性值是 static  会继续往上找
+    *
+    *
+    *
+    * */
+
+    var box3 = document.querySelector('#box3');
+
+    console.log(box3.offsetParent);
+
+    box3.offsetParent.style.backgroundColor = 'red';
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * substring
+     作用
+     截取指定位置之间的字符串  并返回这个新的字符串
+     语法
+     string string.substring(indexStart [, indexEnd])
+     参数
+     indexStart
+     截取的起始位置
+     indexEnd
+     截取的结束位置，默认为最后一个字符的位置
+     返回值
+     返回截取后的字符串
+
+
+     slice 可以接受负数
+     substring  不接受负数
+
+     *
+    *
+    *
+    * */
+
+
+    var str = '妙味课堂';
+
+
+    console.log(str.substring(2));//课堂
+    console.log(str.substring(0,2));//妙味
+    console.log(str.substring(-1));//妙味 如果参数是不写 或者识别不了  就默认从0开始
+
+
+
+//    console.log(str);//妙味课堂
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

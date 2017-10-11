@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script src="data.js"></script>
+<script>
+
+
+/*
+* 1.选择被移动的数据
+*
+* 2.找到移动到的位置
+*
+* 3.在当前数据中把被移动的数据删除
+*
+* 4.把删除的数据添加到移动到的位置
+*
+* */
+
+var currList = {
+    breadcrumb:'',
+    content:data[0].child[0]  //当前页面像是的列表数据是data[0].child[0].child
+}
+
+var checkedContent = ['0_0_0','0_0_3'];
+
+moveTo('0_0_1');
+
+function moveTo(route){
+
+    for(var i=0;i<checkedContent.length;i++){
+        if(route==checkedContent[i]){
+            alert('不能移动到自身及其子集里');
+            return;
+        }
+    }
+
+    //被移动的名称
+    var moveName = [];
+
+    var intoContent = findDataByRoute(route);
+
+    intoContent = intoContent.content;
+
+//删除被选中的内容
+    var  rightList = currList.content.child;
+
+    for(var i=0;i<checkedContent.length;i++){
+        for(var j=0;j<rightList.length;j++){
+            if(checkedContent[i]==rightList[j].route){
+//            rightList.splice(j,1)[0];
+                //排序被移动的内容
+                var delContent = rightList.splice(j,1)[0];
+                intoContent.child.push(delContent);
+                break;
+            }
+        }
+    }
+
+
+    for(var j=0;j<rightList.length;j++){
+        rightList[j].id = j;
+//    rightList[j].route = currList.content.route+'_'+j;
+        rightList[j].route = rightList[j].route.slice(0,-1)+j;
+    }
+
+//把添加的内容排序
+    for(var j=0;j<intoContent.child.length;j++){
+        intoContent.child[j].id = j;
+//    rightList[j].route = currList.content.route+'_'+j;
+        intoContent.child[j].route = intoContent.route+'_'+j;
+
+        moveName.push(intoContent.child[j].title);
+
+    }
+
+    moveName = moveName[0]+' <span style="background-color: red;">等'+moveName.length+'个文件</span>';
+
+    alert('移动成功');
+
+    document.body.innerHTML = moveName;
+
+    console.log(rightList);
+
+}
+
+function findDataByRoute(route){
+
+    route = route.split('_');
+
+    var obj={
+        content:'', //要被显示的内容对象
+        breadcrumb:'<a route="0_0" href="javascript:;">微云</a> &gt; ' //当前被显示内容的路径
+    };
+
+    findData(data,0);
+
+    //递归函数
+    function findData(dataJson,index){
+
+        if(index>1){
+            obj.breadcrumb += '<a route="'+dataJson[route[index]].route+'" href="javascript:;">'+dataJson[route[index]].title+'</a> &gt; ';
+        }
+
+
+        if(index<route.length-1){
+            findData(dataJson[route[index]].child,index+1);
+        }else{
+            obj.content = dataJson[route[index]];
+        }
+
+    }
+
+//        console.log(obj);
+
+    //去掉多余的 >
+    obj.breadcrumb = obj.breadcrumb.slice(0,-5);
+
+
+    return  obj; //把data传出去
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

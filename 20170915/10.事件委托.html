@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<input type="button" value="提交">
+
+<ul>
+    <li>1222222222 <a a_type="del" class="btn" href="javascript:;">删除</a><a href="javascript:;">添加</a></li>
+</ul>
+
+
+<script>
+
+    /*
+    * 事件委托
+    *
+    * 利用事件冒泡，执行父级身上的同名事件
+    *
+    *
+    *  需求：
+    *  点击a标签删除li
+    *
+    * */
+
+    var a = document.querySelectorAll('a');
+
+//    for(var i=0;i<a.length;i++){
+//        a[i].onclick = function(){
+//
+//            //删除li
+//            this.parentNode.parentNode.removeChild(this.parentNode);
+//
+//
+//        };
+//    }
+
+    var btn = document.querySelector('input[type=button]');
+    var text = document.querySelector('input[type=text]');
+
+    var ul = document.querySelector('ul');
+
+    //父元素身上绑定点击事件
+    ul.onclick = function(ev){
+
+        //如何找到当前要删除的元素
+        console.log(ev.target);
+
+
+        if(ev.target.getAttribute('a_type')=='del'){
+            ev.target.parentNode.parentNode .removeChild(ev.target.parentNode);
+        }
+
+
+
+    };
+
+
+    btn.onclick = function(){
+        var con = text.value;
+
+        if(!con){
+            alert('内容不能为空');
+            return;
+        }
+
+        var html = '<li>'+con+'<a a_type="del" href="javascript:;">删除</a></li>';
+
+        //这个过程会把页面原有元素变成字符串，重新渲染
+        //被重新渲染的元素，身上的属性和方法全部被清空
+        ul.innerHTML += html;
+    };
+
+
+
+
+</script>
+
+</body>
+</html>

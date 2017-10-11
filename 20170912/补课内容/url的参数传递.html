@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<a href="#?str=a">跳转到b页面</a>
+<a href="?str=a">跳转到b页面</a>
+<script>
+
+
+    /*
+    * window.location.search
+    *   url中  ？ -- # 之间的内容 包括？
+    *
+    *   http://2017.miaov.com/question/show/index?cat=1&sub=new&page=2
+    *
+    *  每一个页面都是一个单独全局作用域
+    *
+    *  search和hash是在url存储相关数据，用来筛选被访问的页面要显示的内容
+    *
+    * */
+
+    var json = {
+        a:'123',
+        b:'你好',
+        c:'leo'
+    };
+
+    console.log(window.location.search);
+
+    var str = 'a';
+
+    console.log(json[str]);
+
+
+
+
+</script>
+</body>
+</html>

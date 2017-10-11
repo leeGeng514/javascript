@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div style="overflow: auto;height:200px;border:1px solid #000;width:500px;">
+
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div><div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div><div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+    <div style="height:50px; background-color: red;margin: 20px;"></div>
+
+
+
+</div>
+<script>
+
+
+    /*
+    * 自定义滚动条元素：
+    *
+    * 滚动条滚动了多少距离  内容框就要滚动对应比例的距离
+    *
+    * 已知：
+    *    滚动条的可滚动距离为  H1   已滚动距离为  h1
+    *
+    *    内容可滚动距离为   H2
+    *
+    *    计算内容需要滚动的距离  h2
+    *
+    *    h2 = h1/H1*H2  总公式
+    *
+    *    //获取H1
+    *    H1 = 滚动条的父级高度 - 滚动条高度
+    *
+    *    //获取以滚动高度
+    *    h1 = 滚动条高度.offsetTop;
+    *
+    *
+    *    //内容的可滚动距离
+    *    H2 = contentBox.offsetHeight - contentBoxParent.clientHeight;
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+
+
+
+
+
+
+
+    /*
+    * 鼠标滚轮事件   onmousewheel  (ie ,  chrome)
+    *
+    *               DOMMouseScroll (火狐的滚轮事件)
+    *                   需要通过addEventListener来添加
+    *
+    * wheelDelta  记录的滚动方向  和 滚动距离  （分正负的数字）
+    *
+    * 负数  代表向下滚动
+    * 正数  代表向上滚动
+    *
+    *
+    * ie  wheelDelta -120 向下  120  向上
+    *
+    * chrome  wheelDelta -120  向下  120 向上
+    *
+    *
+    * 火狐：detail  3 -3
+    *
+    * 正数代表 向下   负数 代表向上
+    *
+    *
+    *
+    *
+    * */
+
+
+
+    //滚轮事件函数
+
+    /*
+    * option: 是参数集合 是一个对象
+    *
+    * option:
+    *   {
+    *       obj:null,  //要操作的元素
+    *       down:null, //向下滚动的函数
+    *       up:null //向上滚动的函数
+    *   }
+    *
+    *
+    * */
+
+    function scroll(option){
+
+        //如果用户没有传obj 就默认为document
+        if(option.obj==null){
+            option.obj = document;
+        }
+
+        option.obj.onmousewheel = function(ev){
+
+
+            if(ev.wheelDelta>0){
+                console.log('向上滚动22222');
+
+                if(option.up!=null){
+                    option.up(ev);
+                }
+
+            }
+
+            if(ev.wheelDelta<0){
+                console.log('向下滚动22222222');
+
+                if(option.down!=null){
+                    option.down(ev);
+                }
+
+            }
+
+            //阻止默认行为
+            return false;
+
+
+        };
+
+        option.obj.addEventListener('DOMMouseScroll',function(ev){
+
+            if(ev.detail<0){
+                console.log('向上滚动111111111');
+                if(option.up!=null){
+                    option.up(ev);
+                }
+            }
+            if(ev.detail>0){
+                console.log('向下滚动11111111');
+                if(option.down!=null){
+                    option.down(ev);
+                }
+            }
+
+            //阻止默认行为
+            ev.preventDefault();
+
+
+        },false)
+
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

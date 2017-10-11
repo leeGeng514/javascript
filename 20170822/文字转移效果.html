@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #A2C3F8;
+        }
+        #box{
+            width:900px;
+            overflow: hidden;
+            margin:100px auto auto;
+            background-color: #7168C9;
+            padding:10px;
+            border-radius:10px;
+        }
+        .left{
+            float: left;
+            width:320px;
+            height:470px;
+            border-radius:10px;
+            outline:none;
+            padding:15px;
+            font-size:18px;
+            resize: none;
+            border:none;
+            font-family: Arial;
+        }
+        .right{
+            float: left;
+            width:320px;
+            height:470px;
+            border-radius:10px;
+            outline:none;
+            padding:15px;
+            font-size:18px;
+            background-color: #fff;
+            word-break: break-all;
+            font-family: Arial;
+        }
+        .tool{
+            float: left;
+            width:200px;
+            height:500px;
+        }
+        .tool a{
+            display: block;
+            width:100px;
+            height:80px;
+            text-align: center;
+            color:#fff;
+            background-color: #6DE0FD;
+            border-radius:10px;
+            margin:200px auto auto;
+            line-height: 80px;
+            text-decoration: none;
+            font-size:18px;
+        }
+        .tool p{
+            color:#fff;
+            font-weight: 700;
+            text-align: center;
+            margin:20px auto;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <textarea class="left"></textarea>
+    <div class="tool">
+        <a href="javascript:;">开始转移</a>
+        <p>0/0</p>
+    </div>
+    <div class="right"></div>
+</div>
+
+<script>
+
+        /*
+        * 思路：
+        *   1.获取要操作元素
+        *
+        *   2.给按钮添加上点击事件
+        *
+        *   3.在事件在中 获取文字内容  统计左边总字数
+        *
+        *   4.开启定时器  间隔300
+        *          左边的文字逐个减少
+        *          右边的文字逐个增加
+        *          （右边显示的正好是左边减少的文字）
+        *
+        * */
+
+        // 1.获取要操作元素
+        //左框
+        var leftBox = document.querySelector('.left');
+        //右框
+        var rightBox = document.querySelector('.right');
+        //转移按钮
+        var btn = document.querySelector('a');
+        //统计框
+        var totalBox = document.querySelector('p');
+
+        var state = false;//动画还没执行 状态为假
+
+        var timer = 0;//定时器
+
+
+        //2.给按钮添加上点击事件
+        btn.onclick = function(){
+
+            if(state) return;
+
+            //获取左边的内容
+            var text = leftBox.value;// !innerHTML
+
+            //统计文字数目
+            totalBox.innerHTML  = '0/'+text.length;
+
+            //截取位置
+            var num = 0;
+
+            //如果没有内容，提示用户
+            if(text==''){
+                alert('内容不能为空');
+                rightBox.innerHTML = '';
+            }else{
+
+
+                //有内容的情况下
+                clearInterval(timer);//每次开启定时器之前要先清除定时器
+                state = true;//点击之后，动画开始了
+                timer = setInterval(function(){
+
+                    num++;//每次定时器执行时 让截取位置向上加一个   1  2   3  4
+
+                    leftBox.value = text.slice(num);
+
+
+                    rightBox.innerHTML = text.slice(0,num);
+
+
+
+                    //统计文字数目
+                    totalBox.innerHTML  = num+'/'+text.length;
+
+                    if(num==text.length){
+                        clearInterval(timer);
+                        //动画已完成   修改状态值为假
+                        state = false;
+                    }
+
+
+                },100)
+
+
+
+
+            }
+
+
+
+        };
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

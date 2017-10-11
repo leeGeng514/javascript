@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #imgbox{
+            width:800px;
+            height:500px;
+            overflow: hidden;
+        }
+        #imgbox .wrap{
+            height:100%;
+        }
+        #imgbox .wrap div{
+            float: left;
+            width:800px;
+            height:500px;
+            position: relative;
+            background-color: green;
+            text-align:center;
+            line-height: 500px;
+            color:#fff;
+            font-size:50px;
+        }
+        p{
+            position: absolute;
+            height:100px;
+            width:100%;
+            background-color: blue;
+            bottom:-100px;
+            /*bottom:0;*/
+            margin: 0;
+            padding: 0;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div id="imgbox">
+    <div class="wrap">
+        <div>1
+            <p>1</p>
+        </div>
+        <div>2
+            <p>2</p>
+        </div>
+        <div>3
+            <p>3</p>
+        </div>
+        <div>4
+            <p>4</p>
+        </div>
+    </div>
+</div>
+<script>
+
+    var wrap = document.querySelector('.wrap');
+    var p = document.querySelectorAll('p');
+
+    //设置滚动框宽度
+    wrap.style.width = p.length*800+'px';
+
+    var timer = 0;
+    var num = 0;
+
+    for(var i=0;i<p.length;i++){
+        p[i].style.bottom = '-100px';
+    }
+    p[num%4].style.bottom = '0';
+
+    timer = setInterval(function(){
+        num++;
+        if(num>p.length-1){
+            wrap.style.marginLeft = 0;
+            num = 0;
+        }
+        console.log(num);
+        wrap.style.marginLeft = -num*800+'px';
+
+        setTimeout(function(){
+            for(var i=0;i<p.length;i++){
+                p[i].style.bottom = '-100px';
+            }
+            p[num].style.bottom = '0';
+        },500)
+
+    },1000);
+
+
+    function getCss(obj,attr){
+        return getComputedStyle(obj)[attr];
+    }
+
+</script>
+</body>
+</html>

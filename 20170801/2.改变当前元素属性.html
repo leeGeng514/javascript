@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            margin:5px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+
+    var dives = document.getElementsByTagName('div');
+
+    //批量添加事件
+    for(var i=0;i<dives.length;i++){
+        dives[i].onclick = function(){
+//            this.style.backgroundColor = 'yellow';
+            //恢复默认样式（清除所有人为添加的样式）
+            for(var i=0;i<dives.length;i++){ //for清除样式一样要在添加之前
+                dives[i].style.backgroundColor = '';
+            }
+            this.style.backgroundColor = 'yellow';
+        };
+    }
+
+</script>
+</body>
+</html>

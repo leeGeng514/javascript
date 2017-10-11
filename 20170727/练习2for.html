@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:50px;
+            height:50px;
+            background: red;
+            position:absolute;
+            text-align: center;
+            line-height: 50px;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+
+    //创建5个元素  成v自行排列
+
+
+    //取绝对值：Math.abs(number);
+
+    for(var i=0;i<5;i++){
+        document.body.innerHTML += '<div style="left:'+(i*55)+'px;top:'+((2-(Math.abs(i-2)))*55)+'px;">'+(Math.abs(i-2))+'</div>';
+    }
+
+</script>
+</body>
+</html>

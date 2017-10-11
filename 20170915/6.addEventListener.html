@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+    /*
+    * ele.addEventListener()
+     给ele的指定事件添加一个指定的事件处理函数。
+     参数：
+     1.事件类型（click，mouseover...）
+     2.要添加的事件处理函数（可以是匿名函数也可以是有名字的函数）
+     3.在捕获阶段添加还是冒泡阶段添加
+     添加时，事件类型前边不能加on，例如click
+
+
+     //手动添加的事件  需要自己删除
+
+
+
+    *
+    *
+    * */
+
+
+    document.addEventListener('click',function(){
+        console.log('我是document11111');
+
+    });
+
+    document.addEventListener('click',function(){
+        console.log('我是document2222');
+    });
+
+    document.addEventListener('click',function(){
+        console.log('我是document333');
+    });
+
+
+
+
+
+</script>
+</body>
+</html>

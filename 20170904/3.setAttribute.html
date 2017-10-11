@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="box" c="abc" style="width:100px;"></div>
+
+
+<script>
+
+
+    /*
+    * 属性节点的操作方法  attributes
+    *
+    * 1.设置属性
+    *
+    * node.setAttribute(属性名,属性值);
+    *
+    * 作用： 给节点设置一个属性
+    *
+    * 参数：
+    *  属性名：  要设置的属性
+    *  属性值：  要设置的值
+    *
+    *
+    *  如果不存在 就添加
+    *  如果存在  就修改
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+    var div = document.querySelector('div');
+
+
+    div.setAttribute('index','1111');
+    div.setAttribute('c','1111');
+
+    console.log(div.getAttribute('index'));//1
+
+
+
+
+</script>
+
+</body>
+</html>

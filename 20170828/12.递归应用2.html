@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        #box {
+            width: 800px;
+            height: 600px;
+            overflow: hidden;
+            border: 1px solid #000;
+            margin: auto;
+        }
+
+        #box div {
+            width: 70px;
+            height: 50px;
+            margin: 5px;
+            background-color: red;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+</div>
+
+
+<script>
+
+    /*
+    * 1.元素放在一个二维数组里 y  x
+    *
+    *    arr = [
+    *           [1,2,3,55],  //0
+    *           [],  //1
+    *           [],
+    *           []
+    *    ]
+    *
+    * 2.元素点击事件
+    *     获取到 索引值 10位数代表的是y  个位数 x
+    *
+    *     32 索引    第3行   2个   y = 3  x = 2;
+    *
+    *     arr[y][x];
+    * 3.修改颜色
+    *
+    *
+    * 4.根据x y 找下一个元素 再调用一次函数  递归
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+
+    //修改一列的颜色
+    var dives = document.querySelectorAll('#box div');
+
+    var domArr = []; //根据坐标存的div
+
+
+    //每个div添加点击事件
+    for (var i = 0; i < dives.length; i++) {
+
+        dives[i].index = i;
+
+        dives[i].onclick = function () {
+
+            //获取到 索引值 10位数代表的是y  个位数 x
+            var y = parseInt(this.index / 10);
+            var x = this.index % 10;
+
+//            domArr[y][x].style.backgroundColor = 'green';
+
+            changeBg(domArr, y, x, 'yellow');
+
+        };
+
+    }
+
+    //改变背景颜色的函数
+    //objes 查找的内容
+    // y    要查找的第几行
+    // x    要查找的第几列
+    //color  改的颜色
+    function changeBg(objes, y, x, color) {
+
+        objes[y][x].style.backgroundColor = color;
+
+        //已经发生过变化的  不允许在执行递归函数
+        objes[y][x].isChange = true;
+
+
+        setTimeout(function () {
+            if (y > 0 && !objes[y - 1][x].isChange) {
+                changeBg(objes, y - 1, x, color);
+            }
+
+            if (y < 9 && !objes[y + 1][x].isChange) {
+                changeBg(objes, y + 1, x, color);
+            }
+
+            if (x > 0 && !objes[y][x - 1].isChange) {
+                changeBg(objes, y, x - 1, color);
+            }
+
+            if (x < 9 && !objes[y][x + 1].isChange) {
+                changeBg(objes, y, x + 1, color);
+            }
+        }, 500);
+
+    }
+
+
+    //按照坐标保存div （x,y）
+    for (var i = 0; i < 10; i++) {
+        var arr = [];
+        //保存10个div到arr中
+        for (var j = 0; j < 10; j++) {
+            arr.push(dives[j + i * 10]);
+        }
+
+        domArr.push(arr);
+
+    }
+
+    console.log(domArr);
+
+
+</script>
+</body>
+</html>

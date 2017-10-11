@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+
+    /*
+    * 调用函数方法    函数名();
+    *
+    * call方法调用函数
+    *
+    * 调用函数的方法： 函数名()   函数名.call(参数1，参数2)；
+
+
+     call调用方法
+     参数1 是this指向的元素
+     参数2以及后面的所有参数，都是自定义参数
+
+     *
+    * */
+
+    var div = document.querySelector('div');
+
+    div.onclick = function(){
+        this.innerHTML = '123';
+        fn1.call(this,'a');
+    };
+
+    function fn1(num){
+        this.style.background = 'green';
+        console.log(num);
+    }
+
+</script>
+</body>
+</html>

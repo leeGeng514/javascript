@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        div{
+            padding:50px;
+            border:1px solid #000;
+
+        }
+    </style>
+</head>
+<body>
+
+<div id="box1">
+
+    111111
+    <div id="box2">22222</div>
+
+</div>
+<script>
+
+
+
+    /*
+    * 阻止冒泡事件
+    *
+    * 使用on的方式绑定的事件处理函数如果需要阻止冒泡则需要在该函数中将event的cancelBubble属性的指改为true，该属性默认值为false代表允许冒泡
+    *
+    * ev.cancelBubble = true;
+    *
+    * true  阻止冒泡
+    * false  允许冒泡
+    *
+    *
+    *
+    * 使用addEventListener();方式绑定的事件阻止冒泡则需要在该函数内调用event下的stopPropagation();方法
+     document.addEventListener('click', function(event){
+     event.stopPropagation();
+     //这样便也可以阻止事件冒泡的发生。
+     })
+
+     *
+
+     *
+    *
+    *
+    * */
+
+    var div = document.querySelectorAll('div');
+
+    for(var i=0;i<div.length;i++){
+//        div[i].onclick = function(){
+//
+//
+//            console.log(this.id);
+//
+//
+//        };
+        div[i].addEventListener('click',function(ev){
+            console.log(this.id);
+            //这个阻止冒泡的方式是标配
+            ev.stopPropagation();
+
+
+        });
+    }
+
+
+
+</script>
+</body>
+</html>

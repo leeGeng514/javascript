@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div class="box1">
+    <div data-file="" class="box2"></div>
+</div>
+<div data-file="" class="box2"></div>
+
+
+<script>
+
+
+    /*
+    *
+    * 通过自定义属性找元素的方法
+    *
+    * */
+
+    //获取class为box2
+//    var box2 = document.querySelectorAll('.box');
+    var box2 = document.getElementsByClassName('box');
+
+
+    //自定义一个byclassname的方法
+
+//    console.log(getEleByClassName('box2'));
+
+    function getEleByClassName(className){
+
+        //如果没有输入内容要中断代码
+        if(!className){
+            console.log('请输入className');
+            return;
+        }
+
+        //先找到所有的元素
+        var elements = document.getElementsByTagName('*');
+        //循环遍历找到对应的元素
+        var arr = [];
+        for(var i=0;i<elements.length;i++){
+            if(elements[i].className==className){
+                arr.push(elements[i]);
+            }
+        }
+        return arr.length==0?undefined:arr;
+    }
+
+    //自定义一个byattr（通过属性名）的方法
+    console.log(getByAttrName('data-file'));
+    function getByAttrName(attrName){
+        if(!attrName){
+            console.log('请输入属性名');
+            return;
+        }
+
+        var elements = document.getElementsByTagName('*');
+
+        var arr = [];
+        for(var i=0;i<elements.length;i++){
+            var attrs = elements[i].attributes;
+            for(var j=0;j<attrs.length;j++){
+                if(attrs[j].nodeName==attrName){
+
+                    arr.push(elements[i]);
+                    break;
+                }
+            }
+
+        }
+
+        return arr;
+    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            display: block;
+            width:100px;
+            height:50px;
+            border:1px solid #000;
+            position: relative;
+            margin:100px auto;
+        }
+        div{
+            display: none;
+            width:100px;
+            height:50px;
+            background-color: red;
+            border:1px solid #000;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+
+<a href="#">123</a>
+
+
+
+<div class="message">hello world</div>
+
+
+<script src="MTween.js"></script>
+<script>
+
+  var a = document.querySelector('a');
+  var msg = document.querySelector('.message');
+
+
+  a.onmouseover = function(){
+
+      console.log(getCss(msg,'width'));
+
+//      msg.style.display = 'block';
+
+      //获取的是a标签距离左边的距离
+      var left = this.offsetLeft;
+      var top = this.offsetTop-msg.offsetHeight;
+
+      console.log(msg.offsetHeight);
+
+
+        msg.style.left = left+'px';
+        msg.style.top = top+'px';
+
+  };
+  a.onmouseout = function(){
+      msg.style.display = 'none';
+  };
+    
+</script>
+</body>
+</html>

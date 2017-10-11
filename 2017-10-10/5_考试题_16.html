@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var b = 10;
+    function fn1(){
+        var a = b = 20;
+        b++;
+    }
+    fn1();
+    fn1();
+    alert(b);
+</script>
+</body>
+</html>

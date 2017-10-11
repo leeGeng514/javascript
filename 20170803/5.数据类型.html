@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    * js数据类型：
+    *
+    *   基本数据类型：
+    *      字符串类型
+    *      数字类型
+    *      布尔类型
+    *
+    *      基本类型： 传值的时候传的是值
+    *
+    *   引用数据类型：(复合数据类型)
+    *      对象类型 :  一堆数据类型的集合
+    *
+    *      引用类型是  传值的时候传的是内存地址
+    *
+    *   特殊数据类型：
+     *      空类型   null
+     *      未定义类型  undefined
+    *
+    *
+    *
+    *
+    * */
+
+//    var str = 'abc';
+
+    var str = 123;
+
+    var str2 = str;
+
+    str = 222;
+
+    console.log(str);
+
+    console.log(str2);
+
+    var obj = {
+        a:123,
+        b:222
+    };
+
+    var obj2 = obj;
+
+    obj.a = 444;
+
+    obj2.b = 'abc';
+
+//  console.log(obj2.a);
+  console.log(obj.b);
+
+
+
+
+
+</script>
+</body>
+</html>

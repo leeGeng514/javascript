@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text">
+<br />
+<input type="button" value="7">
+<input type="button" value="8">
+<input type="button" value="9">
+<input type="button" value="*">
+<br>
+<input type="button" value="4">
+<input type="button" value="5">
+<input type="button" value="6">
+<input type="button" value="/">
+<br>
+<input type="button" value="1">
+<input type="button" value="2">
+<input type="button" value="3">
+<input type="button" value="-">
+<br>
+<input type="button" value="0">
+<input type="button" value=".">
+<input type="button" value="=">
+<input type="button" value="+">
+<script>
+
+    var text = document.querySelector('input[type="text"]');
+    var btns = document.querySelectorAll('input[type="button"]');
+
+    var fh = '';
+    var numArr = ['','']; //存要运算的数字
+    var toClear = true;
+
+    for(var i=0;i<btns.length;i++){
+        btns[i].onclick = function(){
+            //数字
+            if(!isNaN(this.value)||this.value=='.'){
+                if(toClear){
+                    text.value = '';
+                }
+                toClear = false; //数字和一直输入
+                text.value += this.value;
+            }
+            //运算按钮
+            if(isNaN(this.value)&&this.value!='.'){
+                toClear = true; //每次点了符号 ，下次输入数字的话需要清空
+                if(numArr[0]==''){
+                    numArr[0] = text.value;
+                }else if(numArr[1]==''){
+                    numArr[1] = text.value;
+                }
+                if(fh==''){
+                    fh = this.value;
+                }
+                if(this.value=='='){
+                    total();
+                    numArr[0] = '';
+                    numArr[1] = '';
+                }else{
+                    total();
+                    numArr[0] = Number(text.value);
+                    numArr[1] = '';
+                    fh = this.value;//如果有符号，必须运算完之后，记录下一次运算的符号
+                }
+            }
+        };
+    }
+
+    function total(){
+        if(numArr[0]==''||numArr[1]==''){
+            return ;
+        }
+        var num1 = Number(numArr[0]);
+        var num2 = Number(numArr[1]);
+
+        if(fh=='+'){
+            text.value = num1+num2;
+        }
+        if(fh=='-'){
+            text.value = num1-num2;
+        }
+        if(fh=='*'){
+            console.log(numArr);
+            text.value = num1*num2;
+        }
+        if(fh=='/'){
+            text.value = num1/num2;
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div style="position: absolute;">123</div>
+<script>
+
+    var div = document.querySelector('div');
+
+
+    /*
+
+
+        onkeydown  会连续触发
+
+
+    * event.keyCode
+     当前按下按键的键值
+
+
+
+     回车     13
+     左键     37
+     上键     38
+     右键     39
+     下键     40
+     空格     32
+
+
+     event.ctrlKey
+     事件触发时，ctrl键是否被按下，true按下，false未按下
+     event.shiftKey
+     事件触发时，shift键是否被按下，true按下，false未按下
+     event.altKey
+     事件触		发时，alt键是否被按下，true按下，false未按下
+    *
+    *
+    * */
+
+    document.onkeydown = function(ev){
+
+
+//        console.log(ev.keyCode,ev.ctrlKey);
+
+        if(ev.shiftKey&&ev.keyCode==32){
+
+            console.log('leo 组合键');
+
+        }
+
+        if(ev.keyCode==32){
+            console.log('我是空格');
+        }
+
+        if(ev.keyCode==13){
+            console.log('我是回车');
+        }
+
+
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

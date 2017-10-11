@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    123
+    <!--1235-->
+    <span>123</span>
+    <ul>
+        <li>123</li>
+    </ul>
+</div>
+<script>
+
+
+    var div = document.querySelector('div');
+
+
+    //找所有合适元素
+    function getChildElements(obj,nName){
+        //获取一堆子节点
+        var child = obj.childNodes;
+        var childElements = [];
+        for(var i=0;i<child.length;i++){
+            //判断是元素节点类型的才push
+            if(nName){
+                if(child[i].nodeType==1&&child[i].nodeName.toLowerCase()==nName.toLowerCase()){
+                    childElements.push(child[i]);
+                }
+            }else{
+                if(child[i].nodeType==1){
+                    childElements.push(child[i]);
+                }
+            }
+
+        }
+        return childElements;
+    }
+
+    console.log(getChildElements(div));
+    console.log(getChildElements(div,'span'));
+    console.log(getChildElements(div,'ul'));
+
+
+
+</script>
+</body>
+</html>

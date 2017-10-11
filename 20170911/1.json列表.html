@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li>12333</li>
+    <li>22222222</li>
+    <li>333333</li>
+</ul>
+
+
+<script>
+
+
+//    var listJson = [
+//        '数据1',
+//        '数据2',
+//        '数据3',
+//        '数据4',
+//    ];
+
+
+/*
+* JSON 字符串和对象之间的转换
+*
+*   JSON.parse(jsonString) 把字符串的json转成可以操作的js对象
+*   JSON.stringify(jsonObject) 把字符串的json对象转成可以发送的js字符串
+*
+*
+*
+* */
+
+
+
+    //一般接受的数据是一寸json格式的字符串
+
+    var listJson = '["数据1","数据2","数据3","数据4"]';
+
+    //把json转成对象
+    listJson = JSON.parse(listJson);
+
+
+    //把json对象转成string
+//    console.log(JSON.stringify(listJson));
+
+
+    //根据json数据显示列表
+
+    var ul = document.querySelector('ul');
+
+    var html = '';
+    for(var i=0;i<listJson.length;i++){
+        html += '<li>'+listJson[i]+'</li>'
+    }
+
+    ul.innerHTML = html;
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

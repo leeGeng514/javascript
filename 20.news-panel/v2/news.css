@@ -1,0 +1,113 @@
+/* css reset */
+body{
+    margin: 0;
+    background-color: #000;
+    font-family: 'Arial', "微软雅黑";
+    font-size: 14px;
+}
+
+h3{
+    margin: 0;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.panel {
+    width: 450px;
+    background-color: #ffaf31;
+    margin: 200px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.panel .tabs{
+    height: 40px;
+}
+
+.panel .tab{
+    height: 40px;
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #fff;
+    color: #0f0f0f;
+    cursor: pointer;
+}
+
+.panel .content {
+    padding: 20px;
+    color: #fff;
+    background-color: #ffaf31;
+}
+
+.panel .tab.active{
+    background-color: #ffaf31;
+    color: #fff;
+}
+
+.list {
+    position: relative;
+}
+
+img {
+    border: 2px solid #fafcfd;
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.text {
+    width: 226px;
+    padding: 0 10px 0 30px;
+    margin-left: 180px;
+    height: 60px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+
+h3 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 40px;
+}
+
+.active .tab {
+    background-color: #fff;
+    color: #d3d3d3;
+}
+
+.active .text {
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+}
+
+
+
+.list .item:nth-child(1) img{
+    z-index: 3;
+}
+
+.list .item:nth-child(2) img{
+    z-index: 2;
+}
+
+.list .item:nth-child(3) img{
+    z-index: 1;
+}
+
+.list .item.active img{
+    z-index: 999;
+}
+
+.item {
+    cursor: pointer;
+}

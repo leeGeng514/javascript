@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background-color:red;
+            float: left;
+            margin:5px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<p></p>
+<script>
+
+    //凡是操作元素的变化只和元素本身有关系的都用自定义属性来操作（用自定义属性来创造判断条件）
+    //如果和整个程序有关系的就用变量
+
+
+
+
+    //如果div有内容就删除内容，没有内容就添加一行内容
+
+    //获取元素
+    var dives = document.querySelectorAll('div');
+    var p = document.querySelector('p');
+
+    var currColor = 'red';
+
+    p.innerHTML = '当前判断条件：'+currColor;
+
+    //添加事件
+    for(var i=0;i<dives.length;i++){
+
+        dives[i].index = i;
+
+
+        dives[i].onclick = function(){
+//            if(this.index!=1){
+                //修改背景颜色  如果是红色就变成黄色 如果是黄色就变成红色
+                if(currColor=='red'){
+                    this.style.backgroundColor = 'yellow';
+                    currColor = 'yellow';
+                }else{
+                    this.style.backgroundColor = 'red';
+                    currColor = 'red';
+                }
+
+                p.innerHTML = '当前判断条件：'+currColor;
+//            }
+        };
+    }
+
+
+</script>
+</body>
+</html>

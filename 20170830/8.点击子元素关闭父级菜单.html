@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul,li{
+            overflow: hidden;
+        }
+        h2{
+            height:40px;
+            line-height: 40px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+    <h2>+菜单</h2>
+    <ul>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+    </ul>
+</li>
+    <li>
+        <h2>+菜单</h2>
+        <ul>
+            <li>123</li>
+            <li>123</li>
+            <li>123</li>
+        </ul>
+    </li>
+    <li>
+        <h2>+菜单</h2>
+        <ul>
+            <li>123</li>
+            <li>123</li>
+            <li>123</li>
+        </ul>
+    </li>
+</ul>
+<script>
+
+
+    //点击h2关闭子菜单
+
+    var h2s = document.querySelectorAll('h2');
+
+//    var lis = document.querySelectorAll('li');
+
+//    for(var i=0;i<h2s.length;i++){
+//        h2s[i].index = i;
+//        h2s[i].isShow = true;
+//        h2s[i].onclick = function(){
+//            if(this.isShow){
+//                lis[this.index].style.height = '40px';
+//                this.isShow = false;
+//            }else{
+//                lis[this.index].style.height = 'auto';
+//                this.isShow = true;
+//            }
+//
+//        };
+//    }
+
+    for(var i=0;i<h2s.length;i++){
+
+        h2s[i].isShow = true;
+
+        h2s[i].onclick = function(){
+            if(this.isShow){
+                this.parentNode.style.height = '40px';
+                this.isShow = false;
+            }else{
+                this.parentNode.style.height = 'auto';
+                this.isShow = true;
+            }
+
+        };
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

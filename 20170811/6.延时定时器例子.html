@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        ul{
+            overflow: hidden;
+            list-style: none;
+        }
+        li{
+            height:40px;
+            width:100px;
+            background-color: green;
+            float: left;
+            margin:5px;
+        }
+        div{
+            width:1000px;
+            height:300px;
+            background-color: red;
+            position: absolute;
+            top:100px;
+            display: none;
+        }
+    </style>
+</head>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<div></div>
+<body>
+<script>
+
+    /*
+    *
+    * 清除延迟定时器：clearTimeout(timer);
+    *
+    * */
+
+    var timer = 0;
+
+    var menu = document.querySelectorAll('li');
+    var div = document.querySelector('div');
+
+    for(var i=0;i<menu.length;i++){
+        menu[i].onmouseover = function(){
+            div.style.display = 'block';
+        };
+        menu[i].onmouseout = function(){
+            timer = setTimeout(function(){
+                div.style.display = 'none';
+            },200);
+
+        };
+    }
+
+    div.onmouseover = function(){
+        clearTimeout(timer);
+    };
+    div.onmouseout = function(){
+        timer = setTimeout(function(){
+            div.style.display = 'none';
+        },200);
+    }
+
+
+</script>
+</body>
+</html>

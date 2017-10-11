@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+    /*
+    * 数据类型转换
+    *
+    * 注：
+    *   转换的过程不会改变原值，而是产生新值
+    *
+    *
+    *
+    * 字符串类型  String
+    *   转换方法：String(要转换的数据)  obj.toString();
+    *   String(123);
+    *   var num = 123;
+    *   num.toString();
+    *
+    *   数组是对象，但是转换的结果是数组内的内容
+    *   数组转换过程：是逐个转换数组里面的内容，输出结果保留数组内部格式
+    *
+    *
+    * 数字类型   Number
+    *   转换方法：
+    *       var str = '23';
+    *       1.var num = parseInt(str)
+    *       2.parseFloat(str)
+    *       3.Number(str)
+    *
+    *       console.log(typeof str);  string
+    *
+    *    字符串转数字：
+    *     parseInt()
+    *       1.必须是数字开头的字符串
+    *       2.只能去整数
+    *     parseFloat()  取值范围比parseInt大
+    *       1.必须是数字开头的字符串
+    *       2.可以去包括小数和整数
+    *     Number()
+    *       1.必须是数字形态字符串
+    *
+    *    Number(undefined)   NaN;
+    *    Number(null)        0;
+    *    Number(true)        1;
+    *    Number(false)       0;
+    *    Number('')          0;
+    *
+    *
+    *
+    *   //NaN    Not a number;  属于数字类型
+    *   typeof NaN  //number
+    *
+    *   如果在将其他类型的数据转换成数字类型的时候，不能转成数字的数据都会被强制转换成 NaN
+    *
+    *   NaN的判断：  NaN不等于NaN   NaN==NaN  false
+    *   判断NaN是NaN的方法： isNaN();
+    *   isNaN(数据)  执行的时候 会自动采用Number()强制转换作为默认的转换方式，把放在扩号里的数据转换成数字
+    *
+    *
+    * 布尔类型   Boolean
+    *
+    *   Boolean();
+    *
+    *   console.log(Boolean(undefined)); //false
+    *   console.log(Boolean(null)); //false
+    *   console.log(Boolean('')); //false
+    *   console.log(Boolean('asdd')); //true
+    *   console.log(Boolean(' ')); //true
+    *   console.log(Boolean(0)); //false
+    *   console.log(Boolean(NaN)); //false
+    *   console.log(Boolean(1)); //true
+    *   console.log(Boolean(2)); //true
+    *   console.log(Boolean(-2)); //true
+    *   console.log(Boolean({})); //true
+    *   console.log(Boolean([])); //true
+    *
+    *
+    *
+    *
+    * 空类型     Null
+    * 未定义类型  Undefined
+    * 没有转换能力
+    *
+    *
+    *
+    *
+    * 对象类型   Object
+    *
+    *
+    *
+    *
+    * 检测数据类型的方法：
+    *
+    *   typeof  检测数据类型的运算符
+    *   typeof 要检测的数据
+    *   typeof 计算出来的值是全小写的字符串
+    *
+    *   数据类型转换不会改变原值 而是产生一个新值
+    *
+    *
+    * */
+
+
+    //转字符串
+
+//    var num={
+//        "a":123,
+//        "b":222
+//    };
+    var num=null; //undefined
+//    var b = num.toString();
+//    var a = String(num);
+
+//    console.log(typeof a,a);
+
+//    checkbox.checked = 'false';
+//    checkbox.checked = false;
+
+//    console.dir(undefined);
+
+
+    //转数字类型
+//    var str = '1.1a1bc';
+//    var str = '123.0123';
+//    var str = [1,2.1,'1px','2','abc'];
+    //找出都是数字的内容
+//    for(var i=0;i<str.length;i++){
+//        //1 2 1 2 NaN
+//        if(isNaN(parseInt(str[i]))){
+//            console.log(str[i]);
+//        }
+//    }
+//    console.log(NaN!=NaN);
+//    console.log(isNaN(123));
+//    console.log(parseInt(str));
+//    console.log(parseFloat(str));
+//    console.log(Number(str));
+//    console.log(typeof parseInt(str));
+
+//    var obj = {};  //[object object]
+//    console.log(Number(obj));
+
+    var obj = [];//'' 原始值
+    console.log(Number(obj));
+
+    //布尔值转换
+//    console.log(Boolean(undefined)); //false
+//    console.log(Boolean(null)); //false
+//    console.log(Boolean('')); //false
+//    console.log(Boolean('asdd')); //true
+//    console.log(Boolean(' ')); //true
+//    console.log(Boolean(0)); //false
+//    console.log(Boolean(NaN)); //false
+//    console.log(Boolean(1)); //true
+//    console.log(Boolean(2)); //true
+//    console.log(Boolean(-2)); //true
+//    console.log(Boolean({})); //true
+//    console.log(Boolean([])); //true
+
+
+    console.log(typeof 123);//number
+    console.log(typeof '123');//string
+    console.log(typeof {});//object
+    console.log(typeof undefined);//undefined
+    console.log(typeof true);//boolean
+    console.log(typeof null);//object
+
+    var str = '';
+    var num = 0;
+    var timer = null;
+    if(typeof timer=='object'){
+        alert('我是对象');
+    }
+
+    timer = setTimeout(function(){},100);
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

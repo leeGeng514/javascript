@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            margin:5px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div>用户名：abc</div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+
+    //需求   点击div弹出当前div的索引值（当前div在这一堆div中的下标）
+
+    /*
+    * 1.for循环结束后的 i 是最终值
+    *       i<dives.length（10） 当这个判断不成立的时候  i=10，最终中就是10
+    *
+    * 2.所有for循环添加的事件里要做事情 都是在for循环执行完之后才执行的
+    *
+    *
+    *
+    * */
+
+    var dives = document.getElementsByTagName('div');
+
+    for(var i=0;i<dives.length;i++){
+        dives[i].index = i;
+        dives[i].innerHTML = i;
+        dives[i].onclick = function(){
+            console.log(this.index);
+        };
+
+    }
+
+//    dives[0].index = 0;
+//    dives[1].index = 1;
+//    dives[2].index = 2;
+//    dives[3].index = 3;
+
+//    console.log(i);
+
+//    dives[0].onclick = function(){
+//        alert(0);
+//    };
+//    dives[1].onclick = function(){
+//        alert(1);
+//    };
+//    dives[2].onclick = function(){
+//        alert(2);
+//    };
+//    dives[3].onclick = function(){
+//        alert(3);
+//    };
+
+</script>
+</body>
+</html>

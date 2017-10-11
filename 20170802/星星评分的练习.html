@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:400px;
+            border:1px solid #000;
+            margin:100px auto auto;
+            padding:60px 0;
+            text-align: center;
+            font-size:0;
+        }
+        span{
+            font-size:36px;
+            color:#fff;
+            text-shadow: 0 0 1px #000;
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        em{
+            display: inline-block;
+            opacity: 0;
+            width:50px;
+            height:30px;
+            background: red;
+            color:#fff;
+            text-align: center;
+            line-height:30px;
+            border-radius: 10px;
+            vertical-align: middle;
+            font-size:14px;
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span>★</span>
+    <span>★</span>
+    <span>★</span>
+    <span>★</span>
+    <span>★</span>
+    <em>极差</em>
+</div>
+<script>
+
+    //整理内容
+    var textArr = ['极差','一般','不错','推荐','力推'];
+
+    var starCurrSite = -1; //用来记录被点击的星星位置
+
+    //获取要操作的元素
+    var starBox = document.querySelectorAll('span');
+    var textBox = document.querySelector('em');
+
+    //遍历所有的星星元素
+    for(var i=0;i<starBox.length;i++){
+
+        //给所有星星添加一个下标信息
+        starBox[i].index = i;
+
+        //移入事件
+        starBox[i].onmouseover = function(){
+
+            for(var i=0;i<starBox.length;i++){
+
+                if(i<=this.index){
+                    if(this.index<=1){
+                        starBox[i].style.color = 'pink';
+                    }else{
+                        starBox[i].style.color = 'red';
+                    }
+                }else{
+                    starBox[i].style.color = '';
+                }
+//                starBox[i].style.color = 'red';
+            }
+
+            //设置一批星星变色
+            //从0到鼠标移入的星星下标位置
+//            for(var i=0;i<=this.index;i++){
+//                //如果星星位置小于等于1 用 pink
+//                //否则（大于1的）用 red
+//                if(this.index<=1){
+//                    starBox[i].style.color = 'pink';
+//                }else{
+//                    starBox[i].style.color = 'red';
+//                }
+////                starBox[i].style.color = 'red';
+//            }
+            //清除右边的颜色
+//            for(var i=this.index+1;i<starBox.length;i++){
+//                starBox[i].style.color = '';
+//            }
+
+            //要显示的描述文字
+            textBox.innerHTML = textArr[this.index];
+            textBox.style.opacity = 1;
+
+        };
+
+        //移出事件
+        starBox[i].onmouseout = function(){
+            //移出的时候要清空星星的颜色
+            for(var i=0;i<starBox.length;i++){
+                starBox[i].style.color = '';
+            }
+            textBox.style.opacity = 0;
+
+
+            //看看有没有被点击过的星星
+            //发现有点击的位置信息
+            if(starCurrSite>-1){
+                for(var i=0;i<=starCurrSite;i++){
+                    //如果星星位置小于等于1 用 pink
+                    //否则（大于1的）用 red
+                    if(starCurrSite<=1){
+                        starBox[i].style.color = 'pink';
+                    }else{
+                        starBox[i].style.color = 'red';
+                    }
+                }
+                //要显示的描述文字
+                textBox.innerHTML = textArr[starCurrSite];
+                textBox.style.opacity = 1;
+            }
+        };
+
+        //点击事件
+        starBox[i].onclick = function(){
+            if(starCurrSite == this.index){
+                starCurrSite = -1;
+            }else{
+                starCurrSite = this.index;
+            }
+        };
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

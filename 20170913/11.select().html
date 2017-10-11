@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<input type="text" value="111111">
+
+<textarea name="" id="" cols="30" rows="10">
+    1231lalsdkka;dsj;askdf;kdsf
+</textarea>
+
+<script>
+
+
+    /*
+    * input.select()/textarea.select()
+     选中input或textarea中的内容。
+
+     每次只能选中当前页面中的一个内容
+
+     *
+    *
+    * */
+
+    var input =document.querySelector('input');
+    var textarea =document.querySelector('textarea');
+
+    document.onclick  = function(){
+
+        textarea.select();
+        input.select();
+    };
+
+
+
+</script>
+</body>
+</html>

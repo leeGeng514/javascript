@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:300px;
+            overflow: hidden;
+            border:1px solid #000;
+            margin:50px auto;
+        }
+        dl{
+            margin:0;
+            border-bottom:5px solid #fff;
+        }
+        dt h2{
+            margin:0;
+            line-height:40px;
+            background-color:#333;
+            color:#fff;
+            padding:10px;
+        }
+        dd{
+            margin:0;
+        }
+        dd a{
+            display: block;
+            line-height:40px;
+            padding:5px;
+            text-indent: 2em;
+            border-bottom:1px solid #333;
+            background-color:#f3f3f3;
+            margin:0;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <dl>
+        <dt><h2>菜单1</h2></dt>
+        <dd>
+            <a href="javascript:;">菜单1.1</a>
+            <a href="javascript:;">菜单1.2</a>
+            <a href="javascript:;">菜单1.3</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><h2>菜单2</h2></dt>
+        <dd>
+            <a href="javascript:;">菜单2.1</a>
+            <a href="javascript:;">菜单2.2</a>
+            <a href="javascript:;">菜单2.3</a>
+            <a href="javascript:;">菜单2.4</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><h2>菜单3</h2></dt>
+        <dd>
+            <a href="javascript:;">菜单3.1</a>
+            <a href="javascript:;">菜单3.2</a>
+        </dd>
+    </dl>
+</div>
+<script>
+
+    //获取元素
+    var dts = document.querySelectorAll('dt');
+    var dds = document.querySelectorAll('dd');
+    var menu_a = document.querySelectorAll('a');
+
+
+    for(var i=0;i<menu_a.length;i++){
+
+        //默认点击状态是否
+        menu_a[i].isClick = 0;
+
+        menu_a[i].onclick = function(){
+            for(var i=0;i<menu_a.length;i++){
+                menu_a[i].style.backgroundColor = '';
+                menu_a[i].style.color = '';
+                menu_a[i].isClick = 0;
+            }
+            this.style.backgroundColor = 'red';
+            this.style.color = '#fff';
+            this.isClick = 1;
+        };
+        menu_a[i].onmouseover = function(){
+            if(this.isClick==0){
+                this.style.backgroundColor = '#999';
+            }
+        };
+        menu_a[i].onmouseout = function(){
+            if(this.isClick==0){
+                this.style.backgroundColor = '';
+            }
+        };
+    }
+
+
+
+
+    //批量添加点击事件
+    for(var i=0;i<dts.length;i++){
+
+        //初始化
+        dts[i].index = i; //设置菜单按钮的下标
+        dds[i].style.display = 'none';
+
+
+        dts[i].onclick = function(){
+
+            if(dds[this.index].style.display=='block'){
+                dds[this.index].style.display = 'none';
+            }else{
+                for(var i=0;i<menu_a.length;i++){
+                    menu_a[i].style.backgroundColor = '';
+                    menu_a[i].style.color = '';
+                }
+                dds[this.index].style.display = 'block';
+            }
+
+            for(var i=0;i<dds.length;i++){
+                if(i==this.index){
+                   continue;
+                }
+                dds[i].style.display = 'none';
+            }
+
+
+
+        };
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

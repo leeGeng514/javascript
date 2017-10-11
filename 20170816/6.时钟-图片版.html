@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img{
+            display: block;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<img src="img/0.jpg" alt="">
+<img src="img/0.jpg" alt="">
+<img src="img/c.jpg" alt="">
+<img src="img/0.jpg" alt="">
+<img src="img/0.jpg" alt="">
+<img src="img/c.jpg" alt="">
+<img src="img/0.jpg" alt="">
+<img src="img/0.jpg" alt="">
+<script>
+
+
+    var timer = 0;
+    var imges = document.querySelectorAll('img');
+    fn();
+    timer = setInterval(function(){
+        fn();
+    },1000);
+
+
+    function fn(){
+        var week = ['日','一','二','三','四','五','六'];
+        var imgs = ['img/0.jpg','img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg','img/9.jpg'];
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        var d = date.getDate();
+        var w = date.getDay();
+        var h = date.getHours();
+        var mi = date.getMinutes();
+        var s = date.getSeconds();
+
+
+        //处理小于10的时间
+        if(h<10){
+            h = '0'+h;
+        }
+        if(mi<10){
+            mi = '0'+mi;
+        }
+        if(s<10){
+            s = '0'+s;
+        }
+
+
+
+
+//        document.body.innerHTML = y+'年'+m+'月'+d+'日 星期'+week[w]+' '+h+'时'+mi+'分'+s+'秒';
+//        document.body.innerHTML = h+':'+mi+':'+s;
+        //将数字改变成图片
+        //charAt(参数) 获取第几个字符串，参数是字符串下标
+        //先把数字转成字符串
+//        document.body.innerHTML = '<img src="'+imgs[h.toString().charAt(0)]+'" /><img src="'+imgs[h.toString().charAt(1)]+'" /><img src="img/c.jpg" /><img src="'+imgs[mi.toString().charAt(0)]+'" /><img src="'+imgs[mi.toString().charAt(1)]+'" /><img src="img/c.jpg" /><img src="'+imgs[s.toString().charAt(0)]+'" /><img src="'+imgs[s.toString().charAt(1)]+'" />';
+        imges[0].src = imgs[h.toString().charAt(0)];
+        imges[1].src = imgs[h.toString().charAt(1)];
+        imges[3].src = imgs[mi.toString().charAt(0)];
+        imges[4].src = imgs[mi.toString().charAt(1)];
+        imges[6].src = imgs[s.toString().charAt(0)];
+        imges[7].src = imgs[s.toString().charAt(1)];
+    }
+
+</script>
+</body>
+</html>

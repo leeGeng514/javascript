@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <input type="text" style="width:75px;">
+</div>
+<div style="width:100px;">
+    <input type="button" value="7">
+    <input type="button" value="8">
+    <input type="button" value="9">
+    <input type="button" value="4">
+    <input type="button" value="5">
+    <input type="button" value="6">
+    <input type="button" value="1">
+    <input type="button" value="2">
+    <input type="button" value="3">
+    <input type="button" value="0">
+    <input type="button" value="=">
+    <input type="button" value="+">
+</div>
+<script>
+
+    var text = document.querySelector('input[type="text"]');
+    var btnes = document.querySelectorAll('input[type="button"]');
+
+    var arr = [78,94,55];
+    var a = '+';
+
+    for(var i=0;i<btnes.length;i++){
+        btnes[i].onclick = function(){
+            if(this.value!='='){
+                text.value += this.value;
+                if(this.value=='+'){
+                    a = '+';
+                }
+            }else{
+                arr = text.value.split(a);
+                if(a=='+'){
+                    text.value = jiafa();
+                }
+            }
+        };
+    }
+
+    function jiafa(){
+        var sum = 0;
+        for(var i=0;i<arr.length;i++){
+            sum += Number(arr[i]);
+        }
+        return sum;
+    }
+
+
+</script>
+</body>
+</html>

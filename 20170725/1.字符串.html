@@ -1,0 +1,73 @@
+    <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //字符串：单引号或者双引号包起来内容（0-n字符）
+
+    /*
+    * 1.单双引号嵌套使用 （交替使用） '  " "   '   " ''  "
+    * 2.转义字符：  \   取消符号原有功能，当做字符串解析
+    * 3.字符串可以是任何没有规则的内容
+    *
+    *
+    * 字符串的 +  连字符
+    * 字符串的 + 运算结果是字符串拼接成一个更长的字符串
+    * 只要+(连字符)左右两边有一个是字符串 就是拼接运算
+    *
+    * +=  左边的内容等于自己加右边的内容
+    *
+    * */
+
+    //    var str = ''; //空字符串
+    //    var str = "";
+    //    var str = ' ';//空格字符串
+    //    var str = 'a';
+    //    var str = '1';
+    //    var str = '^&*($%^&*()';
+    //    var str = '你好';
+    //    var str = '<li></li>';
+    //  我说："你们都很美！";
+    var str = "我说：\"你们都很\"美\"！\";";
+    //    console.log(str);
+
+    var str1 = 'a' + 'b';
+    //    console.log(str1);
+    //    console.log('1'+'2'); //12
+    //
+    //    console.log('1'+1); // 11;
+    //
+    //    console.log(1+'1'); //11
+    //
+    //    console.log('1'+1+1); //111
+    //
+    //    console.log(1+1+'2'); //22
+
+    var a = '你';
+    var b = '好';
+
+    a = 'c' + a + b + 'd';
+
+
+    var c = '大家都是 ？ 人';
+    var d = '美';
+
+    //    c = '大家都是 '+ d +' 人';
+    c = '大家' + d + '都是 人';
+
+    c = c + '!';
+
+    c += '!';
+    
+    console.log(c);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    *   全局作用域
+    *       如果一个变量或者函数不在一个函数内部申明，那么他就是全局可用的
+    *
+    * 局部作用域
+    *   定义在一个函数内部的变量或者另外一个函数
+    * */
+
+    var a = 10;//全局变量
+
+    function fn(){ //全局函数
+        alert(1);
+    }
+
+
+    function fn1(){
+
+        var b = 10;//函数内部定义的，就是局部变量
+
+        c = 20; //申明变量不带var的 默认是全局变量
+
+        fn();//alert(1);
+
+        console.log(a);//10  //局部作用域可以访问全局作用的变量和函数
+    }
+
+    fn1();
+
+//    console.log(b);//not a defined
+
+    console.log(c);
+
+    console.log(window); //全局变量默认是在window的一个属性
+
+
+</script>
+</body>
+</html>

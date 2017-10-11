@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 定时器：不会阻断代码执行
+    *
+    * 定时器不会再完整的代码块执行完之前插入代码
+    *
+    * */
+    var time = (new Date()).getTime();
+    setInterval(function(){
+        delayTime(time);
+    },20);
+
+    for(var i=0;i<100;i++){
+
+    }
+
+
+
+    for(var i=0;i<10000;i++){
+
+    }
+
+
+    for(var i=0;i<5000;i++){
+
+    }
+
+    for(var i=0;i<2000;i++){
+
+    }
+
+    console.log(1);
+
+
+
+
+    function delayTime(time){
+        var time2 = (new Date()).getTime();
+        console.log(time2-time);
+        time = time2;
+    }
+
+
+</script>
+</body>
+</html>

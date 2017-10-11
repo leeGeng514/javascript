@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div userid="0" username="yinwei" info="我是妙味讲师" c="abc" style="">加载中..</div>
+<div userid="1" username="momo" info="我是妙味讲师" c="abc" style="">加载中..</div>
+<div userid="2" username="leo" info="我是老大" c="abc" style="">加载中..</div>
+<div userid="3" username="钟爷" info="我是讲师" c="abc" style="">加载中..</div>
+
+<div id="box"></div>
+
+<script>
+
+    var div = document.querySelectorAll('div');
+    var box = document.querySelector('#box');
+
+
+//    setTimeout(function(){
+    for(var i=0;i<div.length;i++){
+
+        div[i].innerHTML = div[i].getAttribute('username');
+
+        div[i].onmouseover = function(){
+            box.innerHTML = this.getAttribute('info');
+        };
+    }
+//    },1000);
+
+
+
+
+</script>
+
+</body>
+</html>
